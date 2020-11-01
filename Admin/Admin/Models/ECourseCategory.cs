@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Admin.Models
+{
+    public partial class ECourseCategory
+    {
+        public ECourseCategory()
+        {
+            MCourse = new HashSet<MCourse>();
+        }
+
+        public string Id { get; set; }
+        public string Category { get; set; }
+
+        public virtual ICollection<MCourse> MCourse { get; set; }
+    }
+}

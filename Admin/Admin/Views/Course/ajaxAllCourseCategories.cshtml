@@ -1,0 +1,68 @@
+﻿@{
+    var course_categories = (List<Admin.Models.ECourseCategory>)ViewBag.course_categories;
+}
+
+<table id="dt" class="table tblsm">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in course_categories)
+        {
+            <tr>
+                <td title="@item.Category">@item.Category</td>
+                <td>
+                    <a href="~/Course/EditCourseCategory?category_id=@item.Id" style="color:green;">
+                        Edit
+                    </a>
+                    |
+                    <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="~/Course/DeleteCourseCategory" id="f1">
+    <input type="hidden" name="id" id="id"/>
+</form>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function confirm_delete(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Category?',
+            buttons: {
+                Yes: function () {
+                    $("#id").val(id);
+                    $("#f1").submit();
+                },
+                No: function () {
+                },
+
+            }
+        });
+
+    }
+
+</script>

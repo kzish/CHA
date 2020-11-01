@@ -1,0 +1,70 @@
+﻿@{
+    var topics = (List<Admin.Models.MCourseTopic>)ViewBag.topics;
+}
+
+<table id="dt" class="table tblsm">
+    <thead>
+        <tr>
+            <th>Topic</th>
+            <th>Sequence</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in topics)
+        {
+            <tr>
+                <td title="@item.Topic">@item.Topic</td>
+                <td title="@item.Sequence">@item.Sequence</td>
+                <td>
+                    <a href="~/CourseTopics/EditCourseTopic?topic_id=@item.Id&course_id=@item.CourseIdFkNavigation.Id" style="color:green;">
+                        Edit
+                    </a>
+                    |
+                    <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="~/CourseTopics/DeleteTopic" id="f1">
+    <input type="hidden" name="id" id="id"/>
+</form>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function confirm_delete(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Topic?',
+            buttons: {
+                Yes: function () {
+                    $("#id").val(id);
+                    $("#f1").submit();
+                },
+                No: function () {
+                },
+
+            }
+        });
+
+    }
+
+</script>

@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var course_categories = (List<Admin.Models.ECourseCategory>)ViewBag.course_categories;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/Course/CreateNewCourse">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="..." required name="CourseName">
+                    <small><span style="color:red;">*</span> Course Name</small>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" placeholder="..." required name="ECourseCategoryIdFk">
+                        @foreach (var item in course_categories)
+                        {
+                            <option value="@item.Id">@item.Category</option>
+                        }
+                    </select>
+                    <small><span style="color:red;">*</span> Course Category</small>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" name="Published" value="true">
+                    <small>Published</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿@{
+    var materials = (List<Admin.Models.MCourseMaterial>)ViewBag.materials;
+}
+
+<table id="dt" class="table tblsm">
+    <thead>
+        <tr>
+            <th>Topic</th>
+            <th>Title</th>
+            <th>Sequence</th>
+            <th>CreatedBy</th>
+            <th>DateCreated</th>
+            <th>Published</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in materials)
+        {
+            <tr>
+                <td title="@item.MCourseTopicIdFkNavigation.Topic">@item.MCourseTopicIdFkNavigation.Topic</td>
+                <td title="@item.PageTitle">@item.PageTitle</td>
+                <td title="@item.PageSequence">@item.PageSequence</td>
+                <td title="@item.CreatedByAspNetUserIdFkNavigation.Email">@item.CreatedByAspNetUserIdFkNavigation.Email</td>
+                <td title="@item.DateCreated.ToString("yyyy-MM-dd")">@item.DateCreated.ToString("yyyy-MM-dd")</td>
+                <td title="@item.Published">@item.Published</td>
+                <td>
+                    <a href="~/CourseMaterial/EditCourseMaterial?material_id=@item.Id" style="color:green;">
+                        Edit
+                    </a>
+                    |
+                    <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="~/CourseMaterial/DeleteCourseMaterial" id="f1">
+    <input type="hidden" name="id" id="id"/>
+</form>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function confirm_delete(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Material?',
+            buttons: {
+                Yes: function () {
+                    $("#id").val(id);
+                    $("#f1").submit();
+                },
+                No: function () {
+                },
+
+            }
+        });
+
+    }
+
+</script>

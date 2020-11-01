@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var topics = (List<Admin.Models.MCourseTopic>)ViewBag.topics;
+    var material = (Admin.Models.MCourseMaterial)ViewBag.material;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            Edit Material for Course: @material.MCourseIdFkNavigation.CourseName
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#uploadfiles">
+                Upload files
+            </button>
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#uploadfiles">
+                Get files
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/CourseMaterial/EditCourseMaterial">
+                <div class="form-group">
+                    <input type="hidden" name="Id" value="@material.Id" />
+                    <select class="form-control" name="MCourseTopicIdFk">
+                        @foreach (var item in topics)
+                        {
+                            <option value="@item.Id" selected="@(material.MCourseTopicIdFk==item.Id)">@item.Topic</option>
+                        }
+                    </select>
+                    <small><span style="color:red;">*</span> Course Topic</small>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="..." required name="PageTitle" value="@material.PageTitle">
+                    <small><span style="color:red;">*</span> Title</small>
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="..." required name="PageSequence" min="0" value="@material.PageSequence">
+                    <small><span style="color:red;">*</span> Sequence</small>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="editor" class="form-control" placeholder="..." name="PageData">@material.PageData</textarea>
+                    <small><span style="color:red;">*</span> Page Data</small>
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="checkbox" name="Published" value="true" @(material.Published ? "checked" : "") />
+                    <small>Published</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@*modal upload files*@
+<div class="modal fade" id="uploadfiles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload files</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               <iframe src="~/media/UploadMediaFile" style="border:0;height:auto;width:100%"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>

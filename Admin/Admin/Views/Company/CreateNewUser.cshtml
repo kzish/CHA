@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var company = (Admin.Models.MCompany)ViewBag.company;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/Company/CreateNewUser">
+                <input type="hidden" name="company_id" value="@company.Id" />
+                <div class="form-group">
+                    <label><span style="color:red;">*</span> Email </label>
+                    <input type="email" class="form-control" placeholder="..." required name="Email">
+                </div>
+                <div class="form-group">
+                    <label><span style="color:red;">*</span> Password </label>
+                    <input type="text" class="form-control" placeholder="Password" required name="Password" value="Password#99">
+                </div>
+                <h6>Roles</h6>
+                <div class="form-group">
+                    <label><span style="color:red;">*</span> Company Admin </label>
+                    <input type="checkbox" name="company_admin" value="true">
+                </div>
+                <div class="form-group">
+                    <label><span style="color:red;">*</span> Student </label>
+                    <input type="checkbox" name="student" value="true">
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

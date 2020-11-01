@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var company = (Admin.Models.MCompany)ViewBag.company;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/Company/EditCompany">
+                <div class="form-group">
+                    <input type="hidden" name="Id" value="@company.Id"/>
+                    <label><span style="color:red;">*</span> Company Name</label>
+                    <input type="text" class="form-control" placeholder="..." required name="CompanyName" value="@company.CompanyName">
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var course = (Admin.Models.MCourse)ViewBag.course;
+    var topics = (List<Admin.Models.MCourseTopic>)ViewBag.topics;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            Create Material for Course: @course.CourseName
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/CourseMaterial/CreateCourseMaterial">
+                <input type="hidden" name="MCourseIdFk" value="@course.Id" />
+
+                <div class="form-group">
+                    <select class="form-control" name="MCourseTopicIdFk">
+                        @foreach (var item in topics)
+                        {
+                            <option value="@item.Id">@item.Topic</option>
+                        }
+                    </select>
+                    <small><span style="color:red;">*</span> Course Topic</small>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="..." required name="PageTitle" value="">
+                    <small><span style="color:red;">*</span> Title</small>
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="..." required name="PageSequence" min="0" value="0">
+                    <small><span style="color:red;">*</span> Sequence</small>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="editor" class="form-control" placeholder="..." name="PageData"></textarea>
+                    <small><span style="color:red;">*</span> Page Data</small>
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="checkbox" name="Published" value="true" />
+                    <small>Published</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>

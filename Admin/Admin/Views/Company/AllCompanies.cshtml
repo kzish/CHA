@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="~/" style="color:blue;"> Home </a>
+                /   Company 
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="~/Company/CreateNewCompany" style="color:blue;">New Company</a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12" id="data">
+                <center>
+                    <img src="~/assets/img/loader.gif" id="loader" style="height:100px" />
+                </center>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+
+    $.ajax({
+        type:"get",
+        url: "@(Url.Content("~/Company/ajaxAllCompanies"))",
+        success: function (data) {
+            $("#data").html(data);
+        },
+        error: function () {
+            alert('Error fetching data, reload page');
+        },
+        complete: function () {
+              $("#loader").hide();
+        }
+    });
+
+
+</script>

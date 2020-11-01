@@ -1,0 +1,83 @@
+﻿@{
+    var rabbits = (List<FarmManager.Models.MRabbitsDeseasesAndTreatmentNotes>)ViewBag.rabbits;
+}
+<style>
+    @*style the drop down select entries - datatables*@
+    .custom-select
+    {
+        height:30px!important;
+        width:50px!important;
+        margin-left:5px!important;
+    }
+    @*style the copy buttons- datatables*@
+    .dt-buttons
+    {
+        margin-left:4px!important;
+    }
+</style>
+
+<table id="dt" class="table tblsm">
+    <thead>
+        <tr>
+            <th>Desease</th>
+            <th>Symptoms</th>
+            <th>Treatment</th>
+            <th>Notes</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in rabbits)
+        {
+            <tr>
+                <td title="@item.Desease">@item.Desease</td>
+                <td title="@item.Symptoms">@item.Symptoms</td>
+                <td title="@item.Treatment">@item.Treatment</td>
+                <td title="@item.Notes">@item.Notes</td>
+                <td>
+                    <a href="~/RabbitsDeseasesAndTreatments/EditRecord/@item.Id" style="color:blue;">
+                        Edit
+                    </a>
+                    |
+                    <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function confirm_delete(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Record?',
+            buttons: {
+                Yes: function () {
+                    window.location = "../RabbitsDeseasesAndTreatments/DeleteRecord/" + id;
+                },
+                No: function () {
+                },
+
+            }
+        });
+
+    }
+
+</script>

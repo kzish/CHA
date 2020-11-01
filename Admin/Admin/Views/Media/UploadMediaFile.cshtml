@@ -1,0 +1,46 @@
+﻿<link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/assets/js/jquery-3.4.1.min.js"></script>
+<form enctype="multipart/form-data" method="post" action="~/Media/UploadMediaFile" id="f1">
+    <div class="form-group">
+        <input required type="file" class="form-control" id="files" name="files" multiple>
+        <small class="form-text text-muted"><span style="color:red;">*</span> Upload Media (multiple)</small>
+    </div>
+    <button type="button" class="btn btn-primary btn-sm" id="upload">
+        <img src="~/assets/img/loader.gif" style="height:25px!important;display:none;" id="loader"/>
+        Upload
+    </button>
+</form>
+
+<script>
+    $("#upload").click(function (evt) {
+        var fileUpload = $("#files").get(0);
+        var files = fileUpload.files;
+        var data = new FormData();
+        for (var i = 0; i < files.length ; i++) {
+            data.append(files[i].name, files[i]);
+        }
+        $("#loader").show();
+        $.ajax({
+            type: "POST",
+            url: "@(Url.Content("~/Media/UploadMediaFile"))",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (json) {
+                if (json.res == "ok") {
+                    alert("Success");
+                     $("#f1").trigger("reset");
+                } else {
+                    alert("Error");
+                }
+
+            },
+            error: function () {
+                alert("There was error uploading files!");
+            },
+            complete: function () {
+                $("#loader").hide();
+            }
+        });
+    });
+</script>

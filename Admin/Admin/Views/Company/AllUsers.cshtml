@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var company = (Admin.Models.MCompany)ViewBag.company;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="~/" style="color:blue;"> Home </a>
+            /  <a href="~/Company" style="color:blue;">  @company.CompanyName </a>
+            / Users
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <a href="~/Company/CreateNewUser?company_id=@company.Id" style="color:blue;">New User</a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12" id="data">
+            <center>
+                <img src="~/assets/img/loader.gif" id="loader" style="height:100px" />
+            </center>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    $.ajax({
+        type:"get",
+        url: "@(Url.Content($"~/Company/ajaxAllUsers?company_id={company.Id}"))",
+        success: function (data) {
+            $("#data").html(data);
+        },
+        error: function () {
+            alert('Error fetching data, reload page');
+        },
+        complete: function () {
+              $("#loader").hide();
+        }
+    });
+
+
+</script>
