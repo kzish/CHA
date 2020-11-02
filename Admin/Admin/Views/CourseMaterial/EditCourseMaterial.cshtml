@@ -10,12 +10,7 @@
             Edit Material for Course: @material.MCourseIdFkNavigation.CourseName
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#uploadfiles">
-                Upload files
-            </button>
-            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#uploadfiles">
-                Get files
-            </button>
+            @await Html.PartialAsync("~/Views/Shared/_MediaModals.cshtml")
         </div>
     </div>
     <div class="row">
@@ -47,8 +42,6 @@
                     <small><span style="color:red;">*</span> Page Data</small>
                 </div>
 
-
-
                 <div class="form-group">
                     <input type="checkbox" name="Published" value="true" @(material.Published ? "checked" : "") />
                     <small>Published</small>
@@ -59,22 +52,7 @@
     </div>
 </div>
 
-@*modal upload files*@
-<div class="modal fade" id="uploadfiles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Upload files</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-               <iframe src="~/media/UploadMediaFile" style="border:0;height:auto;width:100%"></iframe>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script>
     ClassicEditor
@@ -83,3 +61,5 @@
             console.error(error);
         });
 </script>
+
+

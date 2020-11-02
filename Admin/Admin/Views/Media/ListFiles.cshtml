@@ -1,0 +1,88 @@
+﻿@{
+    var files = (List<Admin.Models.MMedia>)ViewBag.files;
+}
+
+<html>
+<head>
+
+    <link href="~/libs/data_tables/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap.min.css." rel="stylesheet" />
+    <script src="~/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/libs/data_tables/jquery.dataTables.js"></script>
+
+</head>
+<body>
+    <table id="dt" class="table tblsm">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in files)
+            {
+                <tr>
+                    <td title="@item.OriginalFileName">@item.OriginalFileName</td>
+                    <td>
+                        <a href="javascript:void(0)" style="color:green;" onclick="copyLink('@item.IdFileNameGuid');">
+                            CopyLink
+                        </a>
+                        |
+                        <a href="~/Media/PreviewFile/@item.IdFileNameGuid" target="_blank" style="color:blue;">
+                            Preview
+                        </a>
+                        |
+                        <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.IdFileNameGuid')">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form method="post" action="~/Media/DeleteMediaFile" id="f1">
+        <input type="hidden" name="id" id="id" />
+        <input type="hidden" name="return_url" id="return_url" value="" />
+    </form>
+
+    <script>
+
+        $('#dt').DataTable({
+            select: true,
+            responsive: true,
+            dom: 'lBfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+        });
+
+        function confirm_delete(id) {
+            if (confirm('Delete this file')) {
+                $("#id").val(id);
+                $("#f1").submit();
+            }
+        }
+
+    </script>
+
+
+    <script>
+        function copyLink(id) {
+            var clip_text = `{{file:${id},height:100,width:100}}`;
+            navigator.clipboard.writeText(clip_text).then(function () {
+                alert("Link Copied:");
+            }, function (err) {
+                alert('Your current Browser does not support this function');
+            });
+        }
+    </script>
+</body>
+</html>
+
+

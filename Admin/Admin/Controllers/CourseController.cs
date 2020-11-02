@@ -39,7 +39,7 @@ namespace Admin.Controllers
         [HttpGet("AllCourses")]
         public IActionResult AllCourses()
         {
-            ViewBag.title = "All AllCourses";
+            ViewBag.title = "All Courses";
             return View();
         }
 

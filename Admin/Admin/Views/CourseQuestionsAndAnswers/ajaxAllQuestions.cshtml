@@ -1,0 +1,72 @@
+﻿@{
+    var questions = (List<Admin.Models.MQuestion>)ViewBag.questions;
+}
+
+<table id="dt" class="table tblsm">
+    <thead>
+        <tr>
+            <th>Topic</th>
+            <th>Type</th>
+            <th>Sequence</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in questions)
+        {
+            <tr>
+                <td title="@item.MCourseTopicIdFkNavigation.Topic">@item.MCourseTopicIdFkNavigation.Topic</td>
+                <td title="@item.EQuestionTypeIdFkNavigation.Type">@item.EQuestionTypeIdFkNavigation.Type</td>
+                <td title="@item.QuestionSequence">@item.QuestionSequence</td>
+                <td>
+                    <a href="~/CourseQuestionsAndAnswers/CreateQuestionAndAnswer?course_id=@(item.MCourseIdFk)&question_id=@(item.Id)" style="color:green;">
+                        Open
+                    </a>
+                    |
+                    <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="~/CourseQuestionsAndAnswers/DeleteQuestion" id="f1">
+    <input type="hidden" name="id" id="id"/>
+</form>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function confirm_delete(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Question?',
+            buttons: {
+                Yes: function () {
+                    $("#id").val(id);
+                    $("#f1").submit();
+                },
+                No: function () {
+                },
+
+            }
+        });
+
+    }
+
+</script>

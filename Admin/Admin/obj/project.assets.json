@@ -2709,6 +2709,15 @@
           }
         }
       },
+      "MimeTypeMapOfficial/1.0.11": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.2/MimeTypes.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.2/MimeTypes.dll": {}
+        }
+      },
       "NETStandard.Library/2.0.3": {
         "type": "package",
         "dependencies": {
@@ -7207,6 +7216,22 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "MimeTypeMapOfficial/1.0.11": {
+      "sha512": "oXciEYRlvN78upJvsFC7YqmTh0h4ije6TDeEgqgjslxObTkTMwYsABdpsNY9GtTLuH2SpyWNwrLoHO5piISHtA==",
+      "type": "package",
+      "path": "mimetypemapofficial/1.0.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/MimeTypes.dll",
+        "lib/net48/MimeTypes.dll",
+        "lib/netcoreapp2.2/MimeTypes.dll",
+        "lib/netcoreapp3.1/MimeTypes.dll",
+        "lib/netstandard2.0/MimeTypes.dll",
+        "mimetypemapofficial.1.0.11.nupkg.sha512",
+        "mimetypemapofficial.nuspec"
       ]
     },
     "NETStandard.Library/2.0.3": {
@@ -12158,6 +12183,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.2.6",
       "Microsoft.EntityFrameworkCore.Tools >= 2.2.6",
       "Microsoft.NETCore.App >= 2.2.0",
+      "MimeTypeMapOfficial >= 1.0.11",
       "Newtonsoft.Json >= 12.0.3"
     ]
   },
@@ -12235,6 +12261,10 @@
             "target": "Package",
             "version": "[2.2.0, )",
             "autoReferenced": true
+          },
+          "MimeTypeMapOfficial": {
+            "target": "Package",
+            "version": "[1.0.11, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

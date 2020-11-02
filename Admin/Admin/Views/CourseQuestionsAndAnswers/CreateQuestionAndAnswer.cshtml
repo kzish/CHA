@@ -1,0 +1,135 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var course = (Admin.Models.MCourse)ViewBag.course;
+    var topics = (List<Admin.Models.MCourseTopic>)ViewBag.topics;
+    var question_types = (List<Admin.Models.EQuestionAnswerType>)ViewBag.question_types;
+    var question = (Admin.Models.MQuestion)ViewBag.question;
+    var answers = (List<Admin.Models.MQuestionAnswerOptions>)ViewBag.answers;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            Create Question for Course: @course.CourseName
+        </div>
+        <div class="col-md-3">
+            @await Html.PartialAsync("~/Views/Shared/_MediaModals.cshtml")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a style="color:blue;" href="~/CourseQuestionsAndAnswers/AllQuestions?course_id=@course.Id">Back to Questions</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/CourseQuestionsAndAnswers/CreateQuestionAndAnswer">
+                <input type="hidden" name="Id" value="@question.Id" />
+                <input type="hidden" name="MCourseIdFk" value="@course.Id" />
+
+                <div class="form-group">
+                    <select class="form-control" name="MCourseTopicIdFk">
+                        @foreach (var item in topics)
+                        {
+                            <option value="@item.Id" selected="@(question.MCourseTopicIdFk==item.Id)">@item.Topic</option>
+                        }
+                    </select>
+                    <small><span style="color:red;">*</span> Course Topic</small>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control" name="EQuestionTypeIdFk">
+                        @foreach (var item in question_types)
+                        {
+                            <option value="@item.Id" selected="@(question.EQuestionTypeIdFk==item.Id)">@item.Type</option>
+                        }
+                    </select>
+                    <small><span style="color:red;">*</span> Answer Type</small>
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" min="0" required name="QuestionSequence" value="@question.QuestionSequence">
+                    <small><span style="color:red;">*</span> Sequence</small>
+                </div>
+
+              
+                <div class="form-group">
+                    <textarea id="editor" class="form-control" placeholder="..." name="QuestionText">@question.QuestionText</textarea>
+                    <small><span style="color:red;">*</span> Question Text</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalanswer">
+               Add Answer Option
+            </button>
+        </div>
+    </div>
+
+     <div class="row">
+         <div class="col-md-12">
+
+             <table id="dt" class="table tblsm">
+                 <thead>
+                     <tr>
+                         <th>Answer</th>
+                         <th>IsCorrectAnswer</th>
+                         <th>Action</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     @foreach (var item in answers)
+                     {
+                         <tr>
+                             <td title="@item.OptionText">@item.OptionText</td>
+                             <td title="@item.IsCorrectAnswer">@item.IsCorrectAnswer</td>
+                             <td>
+                                 <a href="~/Course/EditCourse?course_id=@item.Id" style="color:green;">
+                                     Edit
+                                 </a>
+                                 |
+                                 <a href="~/CourseTopics/AllTopics?course_id=@item.Id" style="color:orange;">
+                                     Topics
+                                 </a>
+                                 |
+                                 <a href="~/CourseMaterial/AllCourseMaterial?course_id=@item.Id" style="color:purple;">
+                                     CourseWork
+                                 </a>
+                                 |
+                                 <a href="~/CourseQuestionsAndAnswers/AllQuestions?course_id=@item.Id" style="color:black;">
+                                     Questions
+                                 </a>
+                                 |
+                                 <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">
+                                     Delete
+                                 </a>
+                             </td>
+                         </tr>
+                     }
+                 </tbody>
+             </table>
+
+             <form method="post" action="~/Course/DeleteCourse" id="f1">
+                 <input type="hidden" name="id" id="id" />
+             </form>
+
+         </div>
+    </div>
+
+
+
+</div>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>

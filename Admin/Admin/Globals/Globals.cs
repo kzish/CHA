@@ -9,7 +9,7 @@ using System.IO;
 public class Globals
 {
     public static string log_file = "C:\\rubiem\\simba\\simba_logs.txt";
-    public static string uploads_folder = @"c:\rubiem\telepathy\uploads\";
+    public static string uploads_folder = @"c:/cha";
     //config file path
     public static string simba_config = @"c:\rubiem\simba\simba_config.json";//this is keyvalue pairs json file with configuration
 
