@@ -4,7 +4,6 @@
     var topics = (List<Admin.Models.MCourseTopic>)ViewBag.topics;
     var question_types = (List<Admin.Models.EQuestionAnswerType>)ViewBag.question_types;
     var question = (Admin.Models.MQuestion)ViewBag.question;
-    var answers = (List<Admin.Models.MQuestionAnswerOptions>)ViewBag.answers;
 }
 
 <div class="container">
@@ -52,78 +51,113 @@
                     <small><span style="color:red;">*</span> Sequence</small>
                 </div>
 
-              
+
                 <div class="form-group">
                     <textarea id="editor" class="form-control" placeholder="..." name="QuestionText">@question.QuestionText</textarea>
                     <small><span style="color:red;">*</span> Question Text</small>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary btn-sm">Save Question</button>
             </form>
         </div>
     </div>
 
+    <hr />
 
     <div class="row">
         <div class="col-md-12">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalanswer">
-               Add Answer Option
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addAnswer">
+                Add Answer Option
             </button>
         </div>
     </div>
 
-     <div class="row">
-         <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
 
-             <table id="dt" class="table tblsm">
-                 <thead>
-                     <tr>
-                         <th>Answer</th>
-                         <th>IsCorrectAnswer</th>
-                         <th>Action</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     @foreach (var item in answers)
-                     {
-                         <tr>
-                             <td title="@item.OptionText">@item.OptionText</td>
-                             <td title="@item.IsCorrectAnswer">@item.IsCorrectAnswer</td>
-                             <td>
-                                 <a href="~/Course/EditCourse?course_id=@item.Id" style="color:green;">
-                                     Edit
-                                 </a>
-                                 |
-                                 <a href="~/CourseTopics/AllTopics?course_id=@item.Id" style="color:orange;">
-                                     Topics
-                                 </a>
-                                 |
-                                 <a href="~/CourseMaterial/AllCourseMaterial?course_id=@item.Id" style="color:purple;">
-                                     CourseWork
-                                 </a>
-                                 |
-                                 <a href="~/CourseQuestionsAndAnswers/AllQuestions?course_id=@item.Id" style="color:black;">
-                                     Questions
-                                 </a>
-                                 |
-                                 <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">
-                                     Delete
-                                 </a>
-                             </td>
-                         </tr>
-                     }
-                 </tbody>
-             </table>
-
-             <form method="post" action="~/Course/DeleteCourse" id="f1">
-                 <input type="hidden" name="id" id="id" />
-             </form>
-
-         </div>
+            <table id="dt" class="table tblsm">
+                <thead>
+                    <tr>
+                        <th>Answer</th>
+                        <th>IsCorrectAnswer</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in question.MQuestionAnswerOptions)
+                    {
+                        <tr>
+                            <td title="@item.OptionText">@item.OptionText</td>
+                            <td title="@item.IsCorrectAnswer">@item.IsCorrectAnswer</td>
+                            <td>
+                                <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','True')" style="color:green;">
+                                    Set-Correct
+                                </a>
+                                |
+                                <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','False')" style="color:orange;">
+                                    Set-Wrong
+                                </a>
+                                |
+                                <a href="javascript:void(0);" style="color:red;" onclick="DeleteAnswerOption('@item.Id')">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 
 
 
+</div>
+
+<form action="~/CourseQuestionsAndAnswers/DeleteAnswerOption" method="post" id="DeleteAnswerOption">
+    <input type="hidden" value="" name="answer_id" id="answer_id_1" />
+    <input type="hidden" value="@question.Id" name="question_id" id="question_id_1" />
+    <input type="hidden" value="@course.Id" name="course_id" id="course_id_1" />
+</form>
+
+<form action="~/CourseQuestionsAndAnswers/SetIsCorrectAnswer" method="post" id="SetIsCorrectAnswer">
+    <input type="hidden" value="" name="answer_id" id="answer_id_2" />
+    <input type="hidden" value="@question.Id" name="question_id" id="question_id_2" />
+    <input type="hidden" value="@course.Id" name="course_id" id="course_id_2" />
+    <input type="hidden" value="" name="isCorrectAnswer" id="isCorrectAnswer" />
+</form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addAnswer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="~/CourseQuestionsAndAnswers/AddAnswerOption" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Answer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="MCourseIdFk" value="@course.Id" />
+                    <input type="hidden" name="MQuestionIdFk" value="@question.Id" />
+
+                    <div class="form-group">
+                        <textarea class="form-control" name="OptionText" placeholder="enter answer"></textarea>
+                        <small class="form-text text-muted">Option Text</small>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" name="IsCorrectAnswer" value="true" />&nbsp;Correct Answer
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -132,4 +166,39 @@
         .catch(error => {
             console.error(error);
         });
+</script>
+
+<script>
+    function DeleteAnswerOption(answer_id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Answer?',
+            buttons: {
+                Yes: function () {
+                    $("#answer_id_1").val(answer_id);
+                    $("#DeleteAnswerOption").submit();
+                },
+                No: function () {
+                },
+            }
+        });
+    }
+
+    function SetIsCorrectAnswer(answer_id, is_correct) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Update Answer?',
+            buttons: {
+                Yes: function () {
+                    $("#answer_id_2").val(answer_id);
+                    $("#isCorrectAnswer").val(is_correct);
+                    $("#SetIsCorrectAnswer").submit();
+                },
+                No: function () {
+                },
+            }
+        });
+    }
 </script>

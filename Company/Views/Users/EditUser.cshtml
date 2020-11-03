@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var roles = (Company.Models.Admin.Roles)ViewBag.roles;
+    var user = (Company.Models.AspNetUsers)ViewBag.user;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/Users/EditUser">
+                <input type="hidden" name="user_id" value="@user.Id" />
+                <div class="form-group">
+                    <label><span style="color:red;">*</span> Email </label>
+                    <input type="email" class="form-control" placeholder="..." required name="Email" readonly value="@user.Email">
+                </div>
+                <div class="form-group">
+                    <label><span style="color:red;">*</span> Reset Password </label>
+                    <input type="checkbox" name="reset_password" value="true">
+                    <br/>
+                    <small>default password: Password#99</small>
+                </div>
+                <h6>Roles</h6>
+                <div class="form-group">
+                    <label><span style="color:red;">*</span> Company Admin </label>
+                    <input type="checkbox" name="company_admin" value="true" @(roles.company_admin?"checked":"")>
+                </div>
+                <div class="form-group">
+                    <label><span style="color:red;">*</span> Student </label>
+                    <input type="checkbox" name="student" value="true" @(roles.student?"checked":"")>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

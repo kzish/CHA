@@ -1,0 +1,121 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var user = (Company.Models.AspNetUsers)ViewBag.user;
+    var all_courses = (List<Company.Models.MCourse>)ViewBag.all_courses;
+    var this_users_courses = (List<Company.Models.MCourseTakers>)ViewBag.this_users_courses;
+    var course_categories = (List<Company.Models.ECourseCategory>)ViewBag.course_categories;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="~/Users/Courses" method="get" style="width:100%">
+                <div class="form-group form-inline" style="width:100%">
+                    <input type="hidden" value="@user.Id" name="user_id" />
+                    <select class="form-control" name="course_category">
+                        <option value="" selected>All</option>
+                        @foreach (var item in course_categories)
+                        {
+                            <option value="@item.Id" selected="@(ViewBag.course_category==item.Id)">@item.Category</option>
+                        }
+                    </select>
+                    <input type="submit" value="Filter" class="btn btn-primary btn-sm" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<table id="dt" class="table tblsm">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Published</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in all_courses)
+        {
+            <tr>
+                <td title="@item.ECourseCategoryIdFkNavigation.Category">@item.ECourseCategoryIdFkNavigation.Category</td>
+                <td title="@item.CourseName">@item.CourseName</td>
+                <td title="@item.CourseName">@item.CourseName</td>
+                <td title="@item.DatePublished?.ToString("yyyy-MM-dd")">@item.DatePublished?.ToString("yyyy-MM-dd")</td>
+                <td>
+                    @if (user.MCourseTakers.Where(i => i.CourseIdFk == item.Id).Any())
+                    {
+                        <a href="javascript:void(0)" onclick="RemoveCourse('@item.Id');" style="color:white;" class="btn btn-danger btn-sm">
+                            Remove
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="javascript:void(0)" onclick="AddCourse('@item.Id');" style="color:white;" class="btn btn-success btn-sm">
+                            Add
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="~/Users/AddCourse" id="f1">
+    <input type="hidden" name="user_id" id="user_id" value="@user.Id" />
+    <input type="hidden" name="course_id" id="course_id" />
+</form>
+
+<form method="post" action="~/Users/RemoveCourse" id="f2">
+    <input type="hidden" name="user_id" id="user_id_1" value="@user.Id" />
+    <input type="hidden" name="course_id" id="course_id_1" />
+</form>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function AddCourse(course_id) {
+        $("#course_id").val(course_id);
+        $("#f1").submit();
+    }
+
+    function RemoveCourse(course_id) {
+        $("#course_id_1").val(course_id);
+        $("#f2").submit();
+    }
+
+
+    function confirm_delete(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this User?',
+            buttons: {
+                Yes: function () {
+                    $("#id").val(id);
+                    $("#f1").submit();
+                },
+                No: function () {
+                },
+
+            }
+        });
+
+    }
+
+</script>

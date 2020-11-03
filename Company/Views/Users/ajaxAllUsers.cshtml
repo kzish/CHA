@@ -1,0 +1,76 @@
+﻿@{
+    var users = (List<Company.Models.AspNetUsers>)ViewBag.users;
+}
+
+<table id="dt" class="table tblsm">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in users)
+        {
+            @if (item.Email == User.Identity.Name)
+            {
+                continue;//skipe self
+            }
+            <tr>
+                <td title="@item.Email">@item.Email</td>
+                <td>
+                    <a href="~/Users/EditUser?user_id=@item.Id" style="color:green;">
+                        Edit
+                    </a>
+                    |
+                    <a href="~/Users/Courses?user_id=@item.Id" style="color:orange;">
+                        Courses
+                    </a>
+                    |
+                    <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="~/Users/DeleteUser" id="f1">
+    <input type="hidden" name="user_id" id="id"/>
+</form>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function confirm_delete(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this User?',
+            buttons: {
+                Yes: function () {
+                    $("#id").val(id);
+                    $("#f1").submit();
+                },
+                No: function () {
+                },
+
+            }
+        });
+
+    }
+
+</script>

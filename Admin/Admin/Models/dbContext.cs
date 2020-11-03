@@ -415,7 +415,7 @@ namespace Admin.Models
 
                 entity.Property(e => e.IdFileNameGuid)
                     .HasColumnName("id_file_name_guid")
-                    .HasMaxLength(50)
+                    .HasMaxLength(450)
                     .IsUnicode(false)
                     .HasDefaultValueSql("(newid())");
 
@@ -489,23 +489,11 @@ namespace Admin.Models
                     .IsUnicode(false)
                     .HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.EQuestionAnswerTypeIdFk)
-                    .IsRequired()
-                    .HasColumnName("e_question_answer_type_id_fk")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.IsCorrectAnswer).HasColumnName("is_correct_answer");
 
                 entity.Property(e => e.MCourseIdFk)
                     .IsRequired()
                     .HasColumnName("m_course_id_fk")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.MCourseTopicIdFk)
-                    .IsRequired()
-                    .HasColumnName("m_course_topic_id_fk")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -520,23 +508,11 @@ namespace Admin.Models
                     .HasColumnName("option_text")
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.EQuestionAnswerTypeIdFkNavigation)
-                    .WithMany(p => p.MQuestionAnswerOptions)
-                    .HasForeignKey(d => d.EQuestionAnswerTypeIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_m_question_answer_options_e_question_answer_type");
-
                 entity.HasOne(d => d.MCourseIdFkNavigation)
                     .WithMany(p => p.MQuestionAnswerOptions)
                     .HasForeignKey(d => d.MCourseIdFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_question_answer_options_m_course");
-
-                entity.HasOne(d => d.MCourseTopicIdFkNavigation)
-                    .WithMany(p => p.MQuestionAnswerOptions)
-                    .HasForeignKey(d => d.MCourseTopicIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_m_question_answer_options_m_course_topic");
 
                 entity.HasOne(d => d.MQuestionIdFkNavigation)
                     .WithMany(p => p.MQuestionAnswerOptions)

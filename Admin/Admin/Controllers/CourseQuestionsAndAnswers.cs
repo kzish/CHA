@@ -59,7 +59,7 @@ namespace Admin.Controllers
         }
 
         [HttpGet("CreateQuestionAndAnswer")]
-        public IActionResult CreateQuestionAndAnswer(string question_id,string course_id)
+        public IActionResult CreateQuestionAndAnswer(string question_id, string course_id)
         {
             var course = db.MCourse.Find(course_id);
             //
@@ -81,7 +81,10 @@ namespace Admin.Controllers
             }
             else//fetch existing
             {
-                question = db.MQuestion.Find(question_id);
+                question = db.MQuestion
+                    .Where(i => i.Id == question_id)
+                    .Include(i => i.MQuestionAnswerOptions)
+                    .FirstOrDefault();
             }
             //
             ViewBag.title = "Create Question";
@@ -104,12 +107,12 @@ namespace Admin.Controllers
                 TempData["msg"] = "Question Saved";
                 TempData["type"] = "success";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["msg"] = ex.Message;
                 TempData["type"] = "error";
             }
-            return RedirectToAction("CreateQuestionAndAnswer", new { question_id=mQuestion.Id,course_id=mQuestion.MCourseIdFk });
+            return RedirectToAction("CreateQuestionAndAnswer", new { question_id = mQuestion.Id, course_id = mQuestion.MCourseIdFk });
         }
 
 
@@ -125,9 +128,9 @@ namespace Admin.Controllers
                 TempData["msg"] = "Question rmoved";
                 TempData["type"] = "success";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                TempData["msg"] =ex.Message;
+                TempData["msg"] = ex.Message;
                 TempData["type"] = "error";
             }
             return RedirectToAction("AllQuestions", new { course_id = question.MCourseIdFk });
@@ -135,6 +138,61 @@ namespace Admin.Controllers
         }
 
 
+        [HttpPost("AddAnswerOption")]
+        public IActionResult AddAnswerOption(MQuestionAnswerOptions answer)
+        {
+            try
+            {
+                db.MQuestionAnswerOptions.Add(answer);
+                db.SaveChanges();
+                TempData["msg"] = "Answer Saved";
+                TempData["type"] = "success";
+            }
+            catch (Exception ex)
+            {
+                TempData["msg"] = ex.Message;
+                TempData["type"] = "error";
+            }
+            return RedirectToAction("CreateQuestionAndAnswer", new {course_id= answer.MCourseIdFk, question_id=answer.MQuestionIdFk });
+        }
+
+        [HttpPost("SetIsCorrectAnswer")]
+        public IActionResult SetIsCorrectAnswer(string answer_id, bool isCorrectAnswer, string course_id, string question_id)
+        {
+            try
+            {
+                var answer = db.MQuestionAnswerOptions.Find(answer_id);
+                answer.IsCorrectAnswer = isCorrectAnswer;
+                db.SaveChanges();
+                TempData["msg"] = "Answer Saved";
+                TempData["type"] = "success";
+            }
+            catch (Exception ex)
+            {
+                TempData["msg"] = ex.Message;
+                TempData["type"] = "error";
+            }
+            return RedirectToAction("CreateQuestionAndAnswer", new { course_id, question_id });
+        }
+
+        [HttpPost("DeleteAnswerOption")]
+        public IActionResult DeleteAnswerOption(string answer_id, string course_id, string question_id)
+        {
+            try
+            {
+                var answer = db.MQuestionAnswerOptions.Find(answer_id);
+                db.Remove(answer);
+                db.SaveChanges();
+                TempData["msg"] = "Answer Removed";
+                TempData["type"] = "success";
+            }
+            catch (Exception ex)
+            {
+                TempData["msg"] = ex.Message;
+                TempData["type"] = "error";
+            }
+            return RedirectToAction("CreateQuestionAndAnswer", new { course_id, question_id });
+        }
 
     }
 }
