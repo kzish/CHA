@@ -1,0 +1,1 @@
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\CHABlazorClient\Client\obj\Debug\netstandard2.1\CHABlazorClient.Client.csprojAssemblyReference.cache
