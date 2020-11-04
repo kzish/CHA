@@ -43,3 +43,6 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Deb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.csproj.CopyComplete
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.csprojAssemblyReference.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.csproj.CoreCompileInputs.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.genruntimeconfig.cache

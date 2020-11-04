@@ -1,7 +1,0 @@
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\CHABlazorClient\Shared\bin\Debug\netstandard2.1\CHABlazorClient.Shared.deps.json
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\CHABlazorClient\Shared\bin\Debug\netstandard2.1\CHABlazorClient.Shared.dll
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\CHABlazorClient\Shared\bin\Debug\netstandard2.1\CHABlazorClient.Shared.pdb
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\CHABlazorClient\Shared\obj\Debug\netstandard2.1\CHABlazorClient.Shared.AssemblyInfoInputs.cache
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\CHABlazorClient\Shared\obj\Debug\netstandard2.1\CHABlazorClient.Shared.AssemblyInfo.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\CHABlazorClient\Shared\obj\Debug\netstandard2.1\CHABlazorClient.Shared.dll
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\CHABlazorClient\Shared\obj\Debug\netstandard2.1\CHABlazorClient.Shared.pdb
