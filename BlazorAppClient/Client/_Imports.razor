@@ -8,3 +8,15 @@
 @using Microsoft.JSInterop
 @using BlazorAppClient.Client
 @using BlazorAppClient.Client.Shared
+
+
+@inject Blazored.LocalStorage.ILocalStorageService local_storage
+@using System.Security.Claims
+@inject AuthenticationStateProvider authentication_state_provider
+@using Newtonsoft.Json;
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@inject IToastService toastService
+@using Blazored.Toast.Configuration
+@using CurrieTechnologies.Razor.SweetAlert2
+@inject SweetAlertService Swal

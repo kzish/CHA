@@ -1,7 +1,12 @@
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(Program).Assembly">
         <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <AuthorizeRouteView RouteData="@routeData">
+                <Authorizing>
+                    <div style="height:100vh;width:100%;display: flex;justify-content: center;align-items: center;">
+                        <img src="assets/img/loading.gif" style="height:70px;width:70px;" />
+                    </div>
+                </Authorizing>
                 <NotAuthorized>
                     @if (!context.User.Identity.IsAuthenticated)
                     {
@@ -15,7 +20,7 @@
             </AuthorizeRouteView>
         </Found>
         <NotFound>
-            <LayoutView Layout="@typeof(MainLayout)">
+            <LayoutView>
                 <p>Sorry, there's nothing at this address.</p>
             </LayoutView>
         </NotFound>
