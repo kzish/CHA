@@ -1,0 +1,134 @@
+﻿@page "/CourseWork/{course_id}"
+
+@inject IJSRuntime js;
+@inject HttpClient http_client;
+@using System.Web;
+
+
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+@if (course == null)
+{
+    <div class="row">
+        <div class="col-md-12" style="display:flex;align-content:center;justify-content:center;">
+            <Loading isloading="true" height="50" width="50" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="display:flex;align-content:center;justify-content:center;">
+            <p style="clear:both;">Loading course...</p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <!-- sidebar-brand  -->
+                <div class="sidebar-item sidebar-brand">
+                    <a href="/Course/@course.Id"><i class="fas fa-arrow-left" style="color:white;"></i></a><a style="color:white;">@(course.CourseName.Length >= 10 ? course.CourseName.Substring(0, 9) + "..." : course.CourseName)</a>
+                </div>
+                <!-- sidebar-search  -->
+                <div class="sidebar-item sidebar-search">
+                    <div>
+                        <div class="input-group">
+                            <input type="text" class="form-control search-menu" placeholder="Search...">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-menu  -->
+                <div class=" sidebar-item sidebar-menu">
+                    <ul>
+                        @foreach (var topic in course.MCourseTopic.OrderBy(i=>i.Sequence))
+                        {
+                            <li class="header-menu">
+                                <span>@topic.Topic</span>
+                            </li>
+                            @foreach (var page in course.MCourseMaterial)
+                            {
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-book"></i>
+                                        <span class="menu-text">page.title</span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- page-content  -->
+        <main class="page-content pt-2">
+            <div id="overlay" class="overlay"></div>
+            <div class="container-fluid p-5">
+
+            </div>
+        </main>
+
+    </div>
+}
+
+
+@code {
+    [Parameter]
+    public string course_id { get; set; }
+
+
+    private BlazorAppClient.Shared.Models.MCourse course = null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        base.OnParametersSet();
+        await StartCourse();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool first_render)
+    {
+        if (first_render)
+            await js.InvokeAsync<string>("init");
+    }
+
+
+    private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
+    {
+        dynamic user_string = await local_storage.GetItemAsStringAsync("current_user");
+        var current_user = JsonConvert.DeserializeObject<BlazorAppClient.Shared.CurrentUser>(user_string);
+        return current_user;
+    }
+
+
+    public async Task StartCourse()
+    {
+        try
+        {
+            var current_user = await GetCurrentUser();
+            var response1 = await http_client
+                   .GetAsync($"Courses/StartCourse?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}&course_id={course_id}");
+            var response2 = await response1.Content.ReadAsStringAsync();
+            Console.WriteLine(response2);
+            dynamic json = JsonConvert.DeserializeObject(response2);
+            if (json.res == "ok")
+            {
+                course = JsonConvert.DeserializeObject<BlazorAppClient.Shared.Models.MCourse>(json.data.ToString());
+            }
+            else
+            {
+                toastService.ShowError(json.data.ToString(), "Error");
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError(ex.Message, "Error");
+        }
+    }
+
+
+}

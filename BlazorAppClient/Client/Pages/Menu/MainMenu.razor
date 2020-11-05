@@ -33,8 +33,8 @@ else
     <div class="row">
         @foreach (var item in my_courses)
         {
-            <div class="col-md-4">
-                <a href="/BusinessPartners/Dashboard" class="menu_link">
+            <div class="col-md-4" style="margin-bottom:15px!important;">
+                <a href="/Course/@item.Id" class="menu_link">
                     <div class="menu_item">
                         <div class="menu_item_title">
                             @item.CourseName
@@ -59,10 +59,10 @@ else
 
 @code {
 
-    List<BlazorAppClient.Server.Models.MCourse> my_courses = null;
+    List<BlazorAppClient.Shared.Models.MCourse> my_courses = null;
     public BlazorAppClient.Shared.PaginationMetaData MetaData  = new BlazorAppClient.Shared.PaginationMetaData();
     int current_page = 0;//start at 0
-    int page_size = 2;//how many per page
+    int page_size = 12;//how many per page
 
 
 
@@ -99,7 +99,7 @@ else
             if(json.res=="ok")
             {
 
-                my_courses = JsonConvert.DeserializeObject<List<BlazorAppClient.Server.Models.MCourse>>(json.data.ToString());
+                my_courses = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MCourse>>(json.data.ToString());
                 MetaData = JsonConvert.DeserializeObject<BlazorAppClient.Shared.PaginationMetaData>(json.paging_meta_data.ToString());
             }
             else

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BlazorAppClient.Server.Models
+namespace BlazorAppClient.Shared.Models
 {
     public partial class EQuestionAnswerType
     {

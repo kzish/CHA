@@ -197,6 +197,15 @@ namespace Admin.Controllers
                 var old_course = db.MCourse.Find(course.Id);
                 old_course.CourseName = course.CourseName;
                 old_course.Published = course.Published;
+                //
+                old_course.StartDate = course.StartDate;
+                old_course.EndDate = course.EndDate;
+                old_course.CourseDurationHours = course.CourseDurationHours;
+                old_course.CourseStudyTimeHours = course.CourseStudyTimeHours;
+                old_course.CourseDescription = course.CourseDescription;
+                old_course.CourseAudience = course.CourseAudience;
+                old_course.CourseObjectives = course.CourseObjectives;
+                //
                 old_course.ECourseCategoryIdFk = course.ECourseCategoryIdFk;
                 if (course.Published) old_course.DatePublished = DateTime.Now;
                 else old_course.DatePublished = null;

@@ -1,0 +1,118 @@
+﻿@page "/Course/{course_id}"
+@layout MainLayoutCourse
+
+@inject HttpClient http_client
+@using System.Web;
+
+@inject IJSRuntime js
+
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<div class="jumbotron">
+    @if (course != null)
+    {
+        <div>
+            <h1 class="display-4">@course.CourseName</h1>
+            <p class="lead">
+                <b>COURSE DURATION</b>: @course.CourseDurationHours Hours  |   <b>STUDY TIME</b>: @course.CourseStudyTimeHours Hours  |   <b>START DATE</b>: @course.StartDate?.ToString("yyyy-MM-dd")  |   <b>END DATE</b>: @course.EndDate?.ToString("yyyy-MM-dd")
+            </p>
+            <hr class="my-4">
+            <h3>Description</h3>
+            <p>
+                @course.CourseDescription
+            </p>
+
+            @if (course_objectives.Count > 0)
+            {
+                <h3>Objectives</h3>
+                <p>By the end of this course, you will be able to:</p>
+                <ul>
+                    @foreach (var item in course_objectives)
+                    {
+                        <li>@item</li>
+                    }
+                </ul>
+            }
+
+            <h3>Is this course for me?</h3>
+            @course.CourseAudience
+            <br/>
+            <br/>
+            <br/>
+            <a href="/CourseWork/@course.Id" class="btn btn-primary btn-sm">Continue</a>
+        </div>
+    }
+    else
+    {
+        <div style="display:flex;align-content:center;justify-content:center">
+            <Loading isloading="true" height="50" width="50" />
+        </div>
+    }
+
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string course_id { get; set; }
+
+    private BlazorAppClient.Shared.Models.MCourse course = null;
+    List<string> course_objectives = new List<string>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        base.OnParametersSet();
+        await FetchCourse();
+    }
+
+
+    private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
+    {
+        dynamic user_string = await local_storage.GetItemAsStringAsync("current_user");
+        var current_user = JsonConvert.DeserializeObject<BlazorAppClient.Shared.CurrentUser>(user_string);
+        return current_user;
+    }
+
+
+    public async Task FetchCourse()
+    {
+        try
+        {
+            var current_user = await GetCurrentUser();
+            var response1 = await http_client
+                   .GetAsync($"Courses/FetchCourse?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}&course_id={course_id}");
+            var response2 = await response1.Content.ReadAsStringAsync();
+            dynamic json = JsonConvert.DeserializeObject(response2);
+            if (json.res == "ok")
+            {
+                course = JsonConvert.DeserializeObject<BlazorAppClient.Shared.Models.MCourse>(json.data.ToString());
+                if (!string.IsNullOrEmpty(course.CourseObjectives))
+                {
+                    course_objectives = course.CourseObjectives
+                        .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                        .ToList();
+                }
+            }
+            else
+            {
+                toastService.ShowError(json.data.ToString(), "Error");
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError(ex.Message, "Error");
+        }
+    }
+
+    public async Task ConfirmContinue()
+    {
+        await js.InvokeAsync<string>("confirm", new[] { "Confirm"
+            ,"You are about to start this course, you must finish within the stipulated time frame"
+            ,$"window.location='/CourseWork/{course.Id}'"});
+
+    }
+
+
+}

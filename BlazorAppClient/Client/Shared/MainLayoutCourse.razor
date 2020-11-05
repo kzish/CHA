@@ -1,0 +1,116 @@
+﻿@inherits LayoutComponentBase
+@inject IJSRuntime js;
+
+<div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+    <nav id="sidebar" class="sidebar-wrapper">
+        <div class="sidebar-content">
+            <!-- sidebar-brand  -->
+            <div class="sidebar-item sidebar-brand">
+                <a href="/"><i class="fas fa-arrow-left" style="color:white;"></i></a><a style="color:white;">Course Material</a>
+            </div>
+            <!-- sidebar-header  -->
+            <div class="sidebar-item sidebar-header d-flex flex-nowrap">
+                <div class="user-pic">
+                    <img class="img-responsive img-rounded" src="assets/img/user.jpg" alt="User picture">
+                </div>
+                <div class="user-info">
+                    <span class="user-name">
+                        <AuthorizeView>
+                            @context.User.Identity.Name
+                        </AuthorizeView>
+                    </span>
+                    <span class="user-role">Candidate</span>
+                    <span class="user-status">
+                        <i class="fa fa-circle"></i>
+                        <span>Online</span>
+                    </span>
+                </div>
+            </div>
+            <!-- sidebar-search  -->
+            <div class="sidebar-item sidebar-search">
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-menu" placeholder="Search...">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar-menu  -->
+            <div class=" sidebar-item sidebar-menu">
+                <ul>
+                    <li class="header-menu">
+                        <span>General</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-book"></i>
+                            <span class="menu-text">Course Introduction</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-calendar"></i>
+                            <span class="menu-text">Reports</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-folder"></i>
+                            <span class="menu-text">Exam</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- sidebar-menu  -->
+        </div>
+        <!-- sidebar-footer  -->
+        <!--<div class="sidebar-footer">
+            <div class="dropdown">
+                <a href="/" title="Menu">
+                    <i class="fa fa-home"></i>
+                </a>
+            </div>
+            <div class="dropdown">
+                <a href="javascript:void();" id="pin-sidebar" title="Pin sidebar">
+                    <i class="fa fa-thumbtack"></i>
+                </a>
+            </div>
+            <div class="dropdown">
+                <a href="javascript:void();">
+                   
+                </a>
+            </div>
+            <div class="dropdown">
+                <a href="javascript:void();">
+                   
+                </a>
+            </div>
+            <div class="pinned-footer">
+                <a href="#">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </div>
+        </div>-->
+    </nav>
+    <!-- page-content  -->
+    <main class="page-content pt-2">
+        <div id="overlay" class="overlay"></div>
+        <div class="container-fluid p-5">
+            @Body
+        </div>
+    </main>
+
+</div>
+
+@code
+{
+    protected override async Task OnAfterRenderAsync(bool first_render)
+    {
+        if (first_render)
+            await js.InvokeAsync<string>("init");
+    }
+}

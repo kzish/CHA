@@ -53,7 +53,6 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csproj.CopyComplete
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csprojAssemblyReference.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseTopics\ajaxAllTopics.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseTopics\AllTopics.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseTopics\CreateTopic.cshtml.g.cs
@@ -70,3 +69,4 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_MediaModals.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csproj.CoreCompileInputs.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.genruntimeconfig.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csprojAssemblyReference.cache

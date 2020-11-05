@@ -66,6 +66,14 @@ namespace BlazorAppClient.Server
             //services.AddRazorPages();
 
 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Globals.Secret));
             //var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -139,7 +147,6 @@ namespace BlazorAppClient.Server
             //    });
             //});
 
-            services.AddSwagger();
 
             //
             services.AddHttpContextAccessor();
@@ -175,7 +182,6 @@ namespace BlazorAppClient.Server
             app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseSwaggerUI();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

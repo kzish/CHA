@@ -22,16 +22,20 @@ namespace Admin.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<DeviceCodes> DeviceCodes { get; set; }
         public virtual DbSet<ECourseCategory> ECourseCategory { get; set; }
         public virtual DbSet<EQuestionAnswerType> EQuestionAnswerType { get; set; }
         public virtual DbSet<MCompany> MCompany { get; set; }
         public virtual DbSet<MCourse> MCourse { get; set; }
         public virtual DbSet<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual DbSet<MCourseMaterial> MCourseMaterial { get; set; }
+        public virtual DbSet<MCourseObjectives> MCourseObjectives { get; set; }
+        public virtual DbSet<MCourseTakers> MCourseTakers { get; set; }
         public virtual DbSet<MCourseTopic> MCourseTopic { get; set; }
         public virtual DbSet<MMedia> MMedia { get; set; }
         public virtual DbSet<MQuestion> MQuestion { get; set; }
         public virtual DbSet<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
+        public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -158,6 +162,27 @@ namespace Admin.Models
                     .HasConstraintName("FK_AspNetUsers_m_company");
             });
 
+            modelBuilder.Entity<DeviceCodes>(entity =>
+            {
+                entity.HasKey(e => e.UserCode);
+
+                entity.Property(e => e.UserCode)
+                    .HasMaxLength(200)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.ClientId)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Data).IsRequired();
+
+                entity.Property(e => e.DeviceCode)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.SubjectId).HasMaxLength(200);
+            });
+
             modelBuilder.Entity<ECourseCategory>(entity =>
             {
                 entity.ToTable("e_course_category");
@@ -235,11 +260,27 @@ namespace Admin.Models
                     .IsUnicode(false)
                     .HasDefaultValueSql("(newid())");
 
+                entity.Property(e => e.CourseAudience)
+                    .HasColumnName("course_audience")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CourseDescription)
+                    .HasColumnName("course_description")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CourseDurationHours).HasColumnName("course_duration_hours");
+
                 entity.Property(e => e.CourseName)
                     .IsRequired()
                     .HasColumnName("course_name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.CourseObjectives)
+                    .HasColumnName("course_objectives")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CourseStudyTimeHours).HasColumnName("course_study_time_hours");
 
                 entity.Property(e => e.CreatedByAspNetUserIdFk)
                     .IsRequired()
@@ -260,7 +301,15 @@ namespace Admin.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.EndDate)
+                    .HasColumnName("end_date")
+                    .HasColumnType("datetime");
+
                 entity.Property(e => e.Published).HasColumnName("published");
+
+                entity.Property(e => e.StartDate)
+                    .HasColumnName("start_date")
+                    .HasColumnType("datetime");
 
                 entity.HasOne(d => d.CreatedByAspNetUserIdFkNavigation)
                     .WithMany(p => p.MCourse)
@@ -372,8 +421,64 @@ namespace Admin.Models
                 entity.HasOne(d => d.MCourseTopicIdFkNavigation)
                     .WithMany(p => p.MCourseMaterial)
                     .HasForeignKey(d => d.MCourseTopicIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_course_material_m_course_topic");
+            });
+
+            modelBuilder.Entity<MCourseObjectives>(entity =>
+            {
+                entity.ToTable("m_course_objectives");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.CourseIdFk)
+                    .HasColumnName("course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Objective)
+                    .HasColumnName("objective")
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CourseIdFkNavigation)
+                    .WithMany(p => p.MCourseObjectives)
+                    .HasForeignKey(d => d.CourseIdFk)
+                    .HasConstraintName("FK_m_course_objectives_m_course");
+            });
+
+            modelBuilder.Entity<MCourseTakers>(entity =>
+            {
+                entity.ToTable("m_course_takers");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.CourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MCourseTakers)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .HasConstraintName("FK_m_course_takers_AspNetUsers");
+
+                entity.HasOne(d => d.CourseIdFkNavigation)
+                    .WithMany(p => p.MCourseTakers)
+                    .HasForeignKey(d => d.CourseIdFk)
+                    .HasConstraintName("FK_m_course_takers_m_course");
             });
 
             modelBuilder.Entity<MCourseTopic>(entity =>
@@ -403,7 +508,6 @@ namespace Admin.Models
                 entity.HasOne(d => d.CourseIdFkNavigation)
                     .WithMany(p => p.MCourseTopic)
                     .HasForeignKey(d => d.CourseIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_course_topic_m_course");
             });
 
@@ -475,7 +579,6 @@ namespace Admin.Models
                 entity.HasOne(d => d.MCourseTopicIdFkNavigation)
                     .WithMany(p => p.MQuestion)
                     .HasForeignKey(d => d.MCourseTopicIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_question_m_course_topic");
             });
 
@@ -519,6 +622,27 @@ namespace Admin.Models
                     .HasForeignKey(d => d.MQuestionIdFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_question_answer_options_m_question");
+            });
+
+            modelBuilder.Entity<PersistedGrants>(entity =>
+            {
+                entity.HasKey(e => e.Key);
+
+                entity.Property(e => e.Key)
+                    .HasMaxLength(200)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.ClientId)
+                    .IsRequired()
+                    .HasMaxLength(200);
+
+                entity.Property(e => e.Data).IsRequired();
+
+                entity.Property(e => e.SubjectId).HasMaxLength(200);
+
+                entity.Property(e => e.Type)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
         }
     }

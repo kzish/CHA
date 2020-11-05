@@ -14,6 +14,7 @@ namespace Admin.Models
             MCourse = new HashSet<MCourse>();
             MCourseInstructor = new HashSet<MCourseInstructor>();
             MCourseMaterial = new HashSet<MCourseMaterial>();
+            MCourseTakers = new HashSet<MCourseTakers>();
         }
 
         public string Id { get; set; }
@@ -41,5 +42,6 @@ namespace Admin.Models
         public virtual ICollection<MCourse> MCourse { get; set; }
         public virtual ICollection<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual ICollection<MCourseMaterial> MCourseMaterial { get; set; }
+        public virtual ICollection<MCourseTakers> MCourseTakers { get; set; }
     }
 }

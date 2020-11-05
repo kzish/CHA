@@ -11,8 +11,58 @@
             <form method="post" action="~/Course/EditCourse">
                 <div class="form-group">
                     <input type="hidden" value="@course.Id" name="Id" />
-                    <input type="text" class="form-control" placeholder="..." required name="CourseName" value="@course.CourseName">
-                    <small><span style="color:red;">*</span> Course Name</small>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" placeholder="..." required name="CourseName" value="@course.CourseName">
+                            <small><span style="color:red;">*</span> Course Name</small>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" min="1" class="form-control" placeholder="1" required name="CourseDurationHours" value="@course.CourseDurationHours">
+                            <small><span style="color:red;">*</span> Course Duration (hours)</small>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" min="1" class="form-control" placeholder="1" required name="CourseStudyTimeHours" value="@course.CourseStudyTimeHours">
+                            <small><span style="color:red;">*</span> Allocated Study Time (hours)</small>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" placeholder="" required name="StartDate" value="@course.StartDate" id="StartDate">
+                            <small><span style="color:red;">*</span> Start Date</small>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" placeholder="" required name="EndDate" value="@course.EndDate" id="EndDate">
+                            <small><span style="color:red;">*</span> End Date</small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea name="CourseDescription" class="form-control">@course.CourseDescription</textarea>
+                            <small><span style="color:red;">*</span> Description</small>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea name="CourseAudience" class="form-control">@course.CourseAudience</textarea>
+                            <small><span style="color:red;">*</span> Audience (who this course is for)</small>
+                        </div>
+                    </div>
+
+                     <div class="row">
+                        <div class="col-md-12">
+                            <textarea name="CourseObjectives" class="form-control">@course.CourseObjectives</textarea>
+                            <small><span style="color:red;">*</span>Course Objectives (one per line)</small>
+                        </div>
+                    </div>
+
+
+
                 </div>
                 <div class="form-group">
                     <select class="form-control" placeholder="..." required name="ECourseCategoryIdFk">
@@ -25,7 +75,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="checkbox" name="Published" value="true" @(course.Published?"checked":"")>
+                    <input type="checkbox" name="Published" value="true" @(course.Published ? "checked" : "")>
                     <small>Published</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
@@ -33,3 +83,16 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $('#StartDate').Zebra_DatePicker({
+        format: 'Y-m-d',
+        direction: true,
+        pair: $('#EndDate')
+    });
+    $('#EndDate').Zebra_DatePicker({
+        format: 'Y-m-d',
+        direction: true,
+    });
+</script>
