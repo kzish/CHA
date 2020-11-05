@@ -31,6 +31,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
+using NSwag.AspNetCore;
+using NJsonSchema;
 
 namespace BlazorAppClient.Server
 {
@@ -76,6 +78,7 @@ namespace BlazorAppClient.Server
                            .AddDefaultUI()
                            .AddDefaultTokenProviders();
 
+
             services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme,
             opt =>
             {
@@ -112,37 +115,38 @@ namespace BlazorAppClient.Server
             .AddApiAuthorization<IdentityUser, ApplicationDbContext>();
 
             //
-            services.AddSwaggerGen(c =>
-            {
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Please insert JWT with Bearer into field",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                   {
-                     new OpenApiSecurityScheme
-                     {
-                       Reference = new OpenApiReference
-                       {
-                         Type = ReferenceType.SecurityScheme,
-                         Id = "Bearer"
-                       }
-                      },
-                      new string[] { }
-                    }
-                });
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            //    {
+            //        In = ParameterLocation.Header,
+            //        Description = "Please insert JWT with Bearer into field",
+            //        Name = "Authorization",
+            //        Type = SecuritySchemeType.ApiKey
+            //    });
+            //    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+            //       {
+            //         new OpenApiSecurityScheme
+            //         {
+            //           Reference = new OpenApiReference
+            //           {
+            //             Type = ReferenceType.SecurityScheme,
+            //             Id = "Bearer"
+            //           }
+            //          },
+            //          new string[] { }
+            //        }
+            //    });
+            //});
 
-
+            services.AddSwagger();
 
             //
             services.AddHttpContextAccessor();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            services.AddMvc().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
         }
 
@@ -171,7 +175,7 @@ namespace BlazorAppClient.Server
             app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSwaggerUI();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

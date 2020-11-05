@@ -4,20 +4,19 @@
 @using System.Web;
 @inject NavigationManager navigation_manager;
 @using Newtonsoft.Json
- 
+@inject ILogger<Login> logger;
+
 <div class="login_page">
     <div class="row">
         <div class="col-md-12">
             <EditForm Model="@LM" OnValidSubmit="@HandleValidSubmit">
                 <DataAnnotationsValidator />
                 <center>
-                    <h2 class="black">Legatus</h2>
-                    <img class="login_hcity_icon" src="/assets/img/logo.png" />
+                    <img src="/assets/img/logo.png" style="height:auto;width:184px;" />
+                    <br />
                     <br />
                     <br />
                     <h3 class="black">User Login</h3>
-                    <br />
-                    <br />
                 </center>
 
                 <div class="form-group">
@@ -35,7 +34,7 @@
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">
-                        <Loading isloading="@isloading"/>
+                        <Loading isloading="@isloading" />
                         Login
                     </button>
                 </div>
@@ -44,7 +43,7 @@
                 </center>
 
             </EditForm>
-          
+
         </div>
     </div>
 </div>
@@ -85,8 +84,9 @@
             var response1 = await http_client
                 .PostAsync(($"_Auth/Login?email={HttpUtility.UrlEncode(LM.email)}&password={HttpUtility.UrlEncode(LM.password)}"), null);
             var response2 = await response1.Content.ReadAsStringAsync();
+            logger.LogInformation(response2);
             dynamic json = JsonConvert.DeserializeObject(response2);
-            if (json.res.ToString()=="ok")
+            if (json.res.ToString() == "ok")
             {
                 string current_user = json.data.ToString();
                 string access_token = json.access_token.ToString();
@@ -96,7 +96,7 @@
                 //
                 await local_storage.RemoveItemAsync("access_token");
                 await local_storage.SetItemAsync("access_token", access_token);
-                navigation_manager.NavigateTo("/",true);//goes to main menu and force reload
+                navigation_manager.NavigateTo("/", true);//goes to main menu and force reload
             }
             else
             {
@@ -107,7 +107,7 @@
         catch (Exception ex)
         {
             message = "Error occurred";
-            Console.WriteLine(ex.Message);
+            logger.LogError(ex.Message);
         }
         finally
         {

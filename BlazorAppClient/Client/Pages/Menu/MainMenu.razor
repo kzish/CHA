@@ -1,89 +1,96 @@
 ﻿@layout MainLayoutMenu
 @page "/"
 @page "/Menu"
+
+@inject IJSRuntime js
+@inject HttpClient http_client;
+@using System.Web;
+@inject ILogger<MainMenu> logger;
+
+
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
 
 
 <br />
 
-<div class="row row_80_percent">
-    <div class="col-md-4">
-        <a href="/BusinessPartners/Dashboard" class="menu_link">
-            <div class="menu_item">
-                <div class="menu_item_title">
-                    business partners
-                </div>
-                <center>
-                    <br />
-                    <img src="/assets/img/business_partners.png" class="menu_icon" />
-                </center>
-            </div>
-        </a>
-    </div>
-    <div class="col-md-4">
-        <div class="menu_item">
-            <div class="menu_item_title">
-                payroll
-            </div>
-            <center>
-                <br />
-                <img src="/assets/img/money.png" class="menu_icon" />
-            </center>
+@if (my_courses == null)
+{
+    <div class="row">
+        <div class="col-md-12" style="display:flex;align-content:center;justify-content:center;">
+            <Loading isloading="true" height="50" width="50"/>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="menu_item">
-            <div class="menu_item_title">
-                fleet management
-            </div>
-            <center>
-                <br />
-                <img src="/assets/img/truck.png" class="menu_icon" />
-            </center>
+    <div class="row">
+        <div class="col-md-12" style="display:flex;align-content:center;justify-content:center;">
+            <p style="clear:both;">Loading courses...</p>
         </div>
     </div>
-</div>
+}
+else
+{
 
-<div class="row row_80_percent">
-    <div class="col-md-4">
-        <a href="/Users" class="menu_link">
-            <div class="menu_item">
-                <div class="menu_item_title">
-                    users
-                </div>
-                <center>
-                    <br />
-                    <img src="/assets/img/users.png" class="menu_icon" />
-                </center>
+    <div class="row">
+        @foreach (var item in my_courses)
+        {
+            <div class="col-md-4">
+                <a href="/BusinessPartners/Dashboard" class="menu_link">
+                    <div class="menu_item">
+                        <div class="menu_item_title">
+                            @item.CourseName
+                        </div>
+                        <center>
+                            <br />
+                            <img src="/assets/img/atom.png" class="menu_icon" />
+                        </center>
+                    </div>
+                </a>
             </div>
-        </a>
+        }
     </div>
-    <div class="col-md-4">
-        <div class="menu_item">
-            <div class="menu_item_title">
-                pos
-            </div>
-            <center>
-                <br />
-                <img src="/assets/img/pos.png" class="menu_icon" />
-            </center>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="menu_item">
-            <div class="menu_item_title">
-                tos
-            </div>
-            <center>
-                <br />
-                <img src="/assets/img/tos.png" class="menu_icon" />
-            </center>
-        </div>
-    </div>
-</div>
+}
 
 
 @code {
+
+    List<BlazorAppClient.Server.Models.MCourse> my_courses = null;
+    protected override async Task OnInitializedAsync()
+    {
+        await FetchMyCourses();
+    }
+
+    private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
+    {
+        dynamic user_string = await local_storage.GetItemAsStringAsync("current_user");
+        var current_user = JsonConvert.DeserializeObject<BlazorAppClient.Shared.CurrentUser>(user_string);
+        return current_user;
+    }
+
+
+
+    private async Task FetchMyCourses()
+    {
+        try
+        {
+            var current_user = await GetCurrentUser();
+            var response1 = await http_client
+                   .GetAsync($"Courses/FetchMyCourses?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}");
+            var response2 = await response1.Content.ReadAsStringAsync();
+            logger.LogWarning(response2);
+            dynamic json = JsonConvert.DeserializeObject(response2);
+            if(json.res=="ok")
+            {
+                my_courses = JsonConvert.DeserializeObject<List<BlazorAppClient.Server.Models.MCourse>>(json.data.ToString());
+            }
+            else
+            {
+                toastService.ShowError(json.data.ToString(), "Error");
+            }
+        }catch(Exception  ex)
+        {
+            toastService.ShowError(ex.Message,"Error");
+        }
+
+    }
 
 }
