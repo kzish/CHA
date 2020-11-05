@@ -4,5 +4,10 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="PagedList.cs" />
+    <Compile Remove="PagingMetaData.cs" />
+  </ItemGroup>
+
 
 </Project>

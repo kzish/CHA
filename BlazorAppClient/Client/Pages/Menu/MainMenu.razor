@@ -48,14 +48,32 @@ else
             </div>
         }
     </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-12">
+            <Pagination MetaData="@MetaData" Spread="2" SelectedPage="@SelectedPage" />
+        </div>
+    </div>
 }
 
 
 @code {
 
     List<BlazorAppClient.Server.Models.MCourse> my_courses = null;
+    public BlazorAppClient.Shared.PaginationMetaData MetaData  = new BlazorAppClient.Shared.PaginationMetaData();
+    int current_page = 0;//start at 0
+    int page_size = 2;//how many per page
+
+
+
     protected override async Task OnInitializedAsync()
     {
+        await FetchMyCourses();
+    }
+
+    private async Task SelectedPage(int page)
+    {
+        current_page = page;
         await FetchMyCourses();
     }
 
@@ -74,13 +92,15 @@ else
         {
             var current_user = await GetCurrentUser();
             var response1 = await http_client
-                   .GetAsync($"Courses/FetchMyCourses?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}");
+                   .GetAsync($"Courses/FetchMyCourses?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}&page_size={page_size}&page_number={current_page}");
             var response2 = await response1.Content.ReadAsStringAsync();
-            logger.LogWarning(response2);
+            //logger.LogWarning(response2);
             dynamic json = JsonConvert.DeserializeObject(response2);
             if(json.res=="ok")
             {
+
                 my_courses = JsonConvert.DeserializeObject<List<BlazorAppClient.Server.Models.MCourse>>(json.data.ToString());
+                MetaData = JsonConvert.DeserializeObject<BlazorAppClient.Shared.PaginationMetaData>(json.paging_meta_data.ToString());
             }
             else
             {
