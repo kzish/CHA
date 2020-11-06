@@ -12,3 +12,10 @@ function confirm(title, content, yes_call_back) {
         }
     });
 }
+
+//init tree in coursework
+function initTree() {
+   
+    $('#html').jstree();
+   
+}

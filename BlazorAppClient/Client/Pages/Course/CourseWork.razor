@@ -44,24 +44,26 @@ else
                     </div>
                 </div>
                 <!-- sidebar-menu  -->
-                <div class=" sidebar-item sidebar-menu">
-                    <ul>
-                        @foreach (var topic in course.MCourseTopic.OrderBy(i=>i.Sequence))
-                        {
-                            <li class="header-menu">
-                                <span>@topic.Topic</span>
-                            </li>
-                            @foreach (var page in course.MCourseMaterial)
+                <div class="sidebar-item.">
+
+                    <div id="html" class="demo">
+                        <ul>
+                            @foreach (var topic in course.MCourseTopic.OrderBy(i => i.Sequence))
                             {
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-book"></i>
-                                        <span class="menu-text">page.title</span>
-                                    </a>
+                                <li data-jstree='{ "opened" : true }'>
+                                    @topic.Topic
+                                    <ul>
+                                        @foreach (var page in course.MCourseMaterial)
+                                        {
+                                            <li data-jstree='{ "selected" : true }'>Child node 1</li>
+                                        }
+                                    </ul>
                                 </li>
                             }
-                        }
-                    </ul>
+                        </ul>
+                    </div>
+
+
                 </div>
             </div>
         </nav>
@@ -70,11 +72,14 @@ else
             <div id="overlay" class="overlay"></div>
             <div class="container-fluid p-5">
 
+               
             </div>
         </main>
 
     </div>
 }
+
+
 
 
 @code {
@@ -88,12 +93,12 @@ else
     {
         base.OnParametersSet();
         await StartCourse();
+
     }
 
     protected override async Task OnAfterRenderAsync(bool first_render)
     {
-        if (first_render)
-            await js.InvokeAsync<string>("init");
+        await js.InvokeAsync<string>("initTree");
     }
 
 
@@ -113,7 +118,6 @@ else
             var response1 = await http_client
                    .GetAsync($"Courses/StartCourse?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}&course_id={course_id}");
             var response2 = await response1.Content.ReadAsStringAsync();
-            Console.WriteLine(response2);
             dynamic json = JsonConvert.DeserializeObject(response2);
             if (json.res == "ok")
             {
@@ -127,6 +131,10 @@ else
         catch (Exception ex)
         {
             toastService.ShowError(ex.Message, "Error");
+        }
+        finally
+        {
+
         }
     }
 
