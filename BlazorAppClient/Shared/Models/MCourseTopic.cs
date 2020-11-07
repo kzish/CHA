@@ -9,6 +9,7 @@ namespace BlazorAppClient.Shared.Models
         {
             MCourseMaterial = new HashSet<MCourseMaterial>();
             MQuestion = new HashSet<MQuestion>();
+            MUsersAnswers = new HashSet<MUsersAnswers>();
         }
 
         public string Id { get; set; }
@@ -19,5 +20,6 @@ namespace BlazorAppClient.Shared.Models
         public virtual MCourse CourseIdFkNavigation { get; set; }
         public virtual ICollection<MCourseMaterial> MCourseMaterial { get; set; }
         public virtual ICollection<MQuestion> MQuestion { get; set; }
+        public virtual ICollection<MUsersAnswers> MUsersAnswers { get; set; }
     }
 }

@@ -1,0 +1,35 @@
+﻿@foreach (var item in course.MQuestionAnswerOptions.Where(i => i.MQuestionIdFk == question.Id))
+{
+    if (question.EQuestionTypeIdFk == "04E2AB58-1885-411E-BCB5-0A14894571E9")//checkbox
+    {
+        <input type="checkbox" value="@item.Id" name="answer[]" />
+        @item.OptionText
+        <br />
+    }
+    else if (question.EQuestionTypeIdFk == "C277D965-1573-43C7-8E23-81AD4AAAB6F9")//radio
+    {
+        <input type="radio" value="@item.Id" name="answer[]" />
+        @item.OptionText
+        <br />
+    }
+    else if (question.EQuestionTypeIdFk == "A011ED2A-AE61-43BB-BD01-EEFD428DE0FE")//text
+    {
+        <textarea placeholder="type answer here..." value="@item.Id" name="answer[]" required></textarea>
+    }
+}
+
+<br />
+<button type="button" class="btn btn-success btn-sm">Submit Answer:</button><br />
+<small style="color:red;">you will not be able to change the answer</small>
+
+@code {
+
+    [Parameter]
+    public BlazorAppClient.Shared.Models.MQuestion question { get; set; }
+
+    [Parameter]
+    public BlazorAppClient.Shared.Models.MCourse course { get; set; }
+
+
+
+}

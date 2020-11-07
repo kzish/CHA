@@ -28,10 +28,20 @@ function initTree() {
     //if (dotnetInstance == null) {
     //    dotnetInstance = dotnetInstance_;
     //}
-    $('#html').jstree();
-    $('#html').on("changed.jstree", function (e, data) {
+    $('#html_course_work').jstree();
+    $('#html_exam').jstree();
+
+
+    $('#html_course_work').on("changed.jstree", function (e, data) {
         var pageData = (data.node.data.jstree.PageData);
         dotnetInstance.invokeMethodAsync("RenderContent", pageData)
+    });
+
+    $('#html_exam').on("changed.jstree", function (e, data) {
+        var pageData = (data.node.data.jstree.PageData);
+        var QuestionID = (data.node.data.jstree.QuestionID);
+        console.log(pageData);
+        dotnetInstance.invokeMethodAsync("RenderContent", pageData, QuestionID)
     });
 
 }

@@ -14,6 +14,7 @@ namespace BlazorAppClient.Shared.Models
             MCourseTopic = new HashSet<MCourseTopic>();
             MQuestion = new HashSet<MQuestion>();
             MQuestionAnswerOptions = new HashSet<MQuestionAnswerOptions>();
+            MUsersAnswers = new HashSet<MUsersAnswers>();
         }
 
         public string Id { get; set; }
@@ -40,5 +41,6 @@ namespace BlazorAppClient.Shared.Models
         public virtual ICollection<MCourseTopic> MCourseTopic { get; set; }
         public virtual ICollection<MQuestion> MQuestion { get; set; }
         public virtual ICollection<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
+        public virtual ICollection<MUsersAnswers> MUsersAnswers { get; set; }
     }
 }

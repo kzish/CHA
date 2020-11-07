@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MimeTypes;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 namespace Admin.Controllers
 {
@@ -21,13 +20,13 @@ namespace Admin.Controllers
             var stream = System.IO.File.OpenRead(path);
             var file_extension = Path.GetExtension(file_id).Replace(".", "");
 
-            var mime_type = MimeTypeMap.GetMimeType(file_extension);
-            if (!string.IsNullOrEmpty(mime_type))
+            if (MIMETYPES.mime_types.ContainsKey(file_extension))
             {
-                return new FileStreamResult(stream, mime_type);
+                return new FileStreamResult(stream, MIMETYPES.mime_types[file_extension]);
             }
             else
             {
+                //download unknown file extension
                 return new FileStreamResult(stream, "application/octet-stream");
             }
 

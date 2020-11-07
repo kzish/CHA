@@ -28,7 +28,7 @@ else
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
                 <div class="sidebar-item. sidebar-brand" style="color:black!important;">
-                    <a href="/Course/@course.Id"><i title="back" class="fas fa-sign-out-alt flip_180" style="color:black;font-size:22px;"></i></a><a style="color:black;" title="@course.CourseName">@(course.CourseName.Length >= 10 ? course.CourseName.Substring(0, 9) + "..." : course.CourseName)</a>
+                    <a href="/Course/@course.Id"><i title="back" class="fas fa-sign-out-alt flip_180" style="color:black;font-size:22px;"></i></a><a style="color:black;" title="@course.CourseName">@(course.CourseName.Length >= 10 ? course.CourseName.Substring(0, 9) + "..." : course.CourseName) / CW</a>
                 </div>
                 <!--<hr />-->
                 <!-- sidebar-search  -->
@@ -48,7 +48,7 @@ else
                 <!-- sidebar-menu  -->
                 <div class="sidebar-item.">
 
-                    <div id="html" class="demo">
+                    <div id="html_course_work" class="demo">
                         <ul>
                             @foreach (var topic in course.MCourseTopic.OrderBy(i => i.Sequence))
                             {

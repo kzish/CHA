@@ -8,6 +8,7 @@ namespace Admin.Models
         public MQuestion()
         {
             MQuestionAnswerOptions = new HashSet<MQuestionAnswerOptions>();
+            MUsersAnswers = new HashSet<MUsersAnswers>();
         }
 
         public string Id { get; set; }
@@ -21,5 +22,6 @@ namespace Admin.Models
         public virtual MCourse MCourseIdFkNavigation { get; set; }
         public virtual MCourseTopic MCourseTopicIdFkNavigation { get; set; }
         public virtual ICollection<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
+        public virtual ICollection<MUsersAnswers> MUsersAnswers { get; set; }
     }
 }

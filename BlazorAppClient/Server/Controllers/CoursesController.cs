@@ -114,16 +114,29 @@ namespace BlazorAppClient.Server.Controllers
                     .Where(i => i.Id == course_id)
                     .Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
+                    .Include(i => i.MQuestion)
+                    .Include(i => i.MQuestionAnswerOptions)
                     .First();
-
+                //
                 var course_materials_base_64 = new List<MCourseMaterial>();
+                var course_question_base_64 = new List<MQuestion>();
+                //
                 foreach(var data in course.MCourseMaterial)
                 {
                     //convert to base64
                     data.PageData = Globals.Base64Encode(data.PageData);
                     course_materials_base_64.Add(data);
                 }
+                //
+                foreach (var data in course.MQuestion)
+                {
+                    //convert to base64
+                    data.QuestionText = Globals.Base64Encode(data.QuestionText);
+                    course_question_base_64.Add(data);
+                }
+                //
                 course.MCourseMaterial = course_materials_base_64;
+                course.MQuestion = course_question_base_64;
 
                 return Json(new
                 {
@@ -165,16 +178,29 @@ namespace BlazorAppClient.Server.Controllers
                     .Where(i => i.Id == course_id)
                     .Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
+                    .Include(i => i.MQuestion)
+                    .Include(i => i.MQuestionAnswerOptions)
                     .First();
-
+                //
                 var course_materials_base_64 = new List<MCourseMaterial>();
-                foreach(var data in course.MCourseMaterial)
+                var course_question_base_64 = new List<MQuestion>();
+                //
+                foreach (var data in course.MCourseMaterial)
                 {
                     //convert to base64
                     data.PageData = Globals.Base64Encode(data.PageData);
                     course_materials_base_64.Add(data);
                 }
+                //
+                foreach (var data in course.MQuestion)
+                {
+                    //convert to base64
+                    data.QuestionText = Globals.Base64Encode(data.QuestionText);
+                    course_question_base_64.Add(data);
+                }
+                //
                 course.MCourseMaterial = course_materials_base_64;
+                course.MQuestion = course_question_base_64;
 
                 return Json(new
                 {
