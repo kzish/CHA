@@ -57,7 +57,7 @@
                     <small><span style="color:red;">*</span> Question Text</small>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-sm">Save Question</button>
+                <button type="submit" class="btn btn-success">Save Question</button>
             </form>
         </div>
     </div>
@@ -84,26 +84,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @*@foreach (var item in question.MQuestionAnswerOptions)
-                    {
-                        <tr>
-                            <td title="@item.OptionText">@item.OptionText</td>
-                            <td title="@item.IsCorrectAnswer">@item.IsCorrectAnswer</td>
-                            <td>
-                                <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','True')" style="color:green;">
-                                    Set-Correct
-                                </a>
-                                |
-                                <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','False')" style="color:orange;">
-                                    Set-Wrong
-                                </a>
-                                |
-                                <a href="javascript:void(0);" style="color:red;" onclick="DeleteAnswerOption('@item.Id')">
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                    }*@
+                    @foreach (var item in question.MQuestionAnswerOptions)
+                        {
+                            <tr>
+                                <td title="@item.OptionText">@item.OptionText</td>
+                                <td title="@item.IsCorrectAnswer">@item.IsCorrectAnswer</td>
+                                <td>
+                                    <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','True')" style="color:green;">
+                                        Set-Correct
+                                    </a>
+                                    |
+                                    <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','False')" style="color:orange;">
+                                        Set-Wrong
+                                    </a>
+                                    |
+                                    <a href="javascript:void(0);" style="color:red;" onclick="DeleteAnswerOption('@item.Id')">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
                 </tbody>
             </table>
         </div>
@@ -160,12 +160,10 @@
     </div>
 </div>
 
+<script src="~/libs/ckeditor/ckeditor.js"></script>
+<script src="~/libs/ckeditor/config.js"></script>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
+    CKEDITOR.replace('editor');
 </script>
 
 <script>

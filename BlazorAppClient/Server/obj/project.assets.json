@@ -1446,6 +1446,15 @@
           }
         }
       },
+      "MimeTypeMapOfficial/1.0.11": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/MimeTypes.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MimeTypes.dll": {}
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "type": "package",
         "dependencies": {
@@ -5480,6 +5489,22 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "MimeTypeMapOfficial/1.0.11": {
+      "sha512": "oXciEYRlvN78upJvsFC7YqmTh0h4ije6TDeEgqgjslxObTkTMwYsABdpsNY9GtTLuH2SpyWNwrLoHO5piISHtA==",
+      "type": "package",
+      "path": "mimetypemapofficial/1.0.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/MimeTypes.dll",
+        "lib/net48/MimeTypes.dll",
+        "lib/netcoreapp2.2/MimeTypes.dll",
+        "lib/netcoreapp3.1/MimeTypes.dll",
+        "lib/netstandard2.0/MimeTypes.dll",
+        "mimetypemapofficial.1.0.11.nupkg.sha512",
+        "mimetypemapofficial.nuspec"
       ]
     },
     "NETStandard.Library/1.6.1": {
@@ -10436,6 +10461,7 @@
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.6",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.9",
+      "MimeTypeMapOfficial >= 1.0.11",
       "NSwag.AspNetCore >= 11.20.1",
       "Swashbuckle.AspNetCore.Swagger >= 5.6.3",
       "Swashbuckle.AspNetCore.SwaggerGen >= 5.6.3",
@@ -10526,6 +10552,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[3.1.9, )"
+          },
+          "MimeTypeMapOfficial": {
+            "target": "Package",
+            "version": "[1.0.11, )"
           },
           "NSwag.AspNetCore": {
             "target": "Package",

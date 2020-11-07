@@ -73,8 +73,41 @@
 
 
     <script>
-        function copyLink(id) {
-            var clip_text = `{{file:${id},height:100,width:100}}`;
+        function copyLink(file_name) {
+            //
+            var clip_text = "";
+            //
+            var file_extension = file_name.split('.').pop().toLowerCase();
+            //
+            var extensions_images = ["jpg","jpeg","png","gif","tiff","tif","webp","bmp","eps","svg"];
+            var extensions_audio = ["wav","mp3","m4a","wma","aac","flac","aiff","3ga","asf","acc"];
+            var extensions_video = ["3gp","vob","mkv","wma","mov","webm", "mpg", "mp2", "mpeg", "mpe", "mpv", "ogg", "mp4", "m4p", "m4v", "avi", "wmv", "mov", "qt", "flv", "swf", "avchd"];
+            var extensions_documents = ["doc", "docx", "html", "htm", "odt", "pdf", "xlsx", "xls", "ods", "ppt","pptx", "txt"];
+
+            var is_file_image = extensions_images.includes(file_extension);
+            var is_file_audio = extensions_audio.includes(file_extension);
+            var is_file_video = extensions_video.includes(file_extension);
+            var is_file_document = extensions_documents.includes(file_extension);
+
+            if (is_file_image) {
+                clip_text = "<img src='@(Url.Content("~/Media/PreviewFile"))/" + file_name + "' height='150' />";
+            }
+            else if (is_file_audio) {
+                clip_text = `<audio controls>
+                                <source src="@(Url.Content("~/Media/PreviewFile"))/${file_name}" type="audio/${file_extension}">
+                                Your browser does not support the audio element.
+                            </audio>`;
+            }
+            else if (is_file_video) {
+                clip_text = `<video width="320" height="240" controls>
+                                <source src="@(Url.Content("~/Media/PreviewFile"))/${file_name}" type="video/${file_extension}">
+                                Your browser does not support the video tag.
+                            </video>`;
+            }
+            else if (is_file_document) {
+                clip_text = `<iframe src='@(Url.Content("~/Media/PreviewFile"))/${file_name}' width='80%' height='565px' frameborder='0'> </iframe>`;
+            }
+
             navigator.clipboard.writeText(clip_text).then(function () {
                 alert("Link Copied:");
             }, function (err) {

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BlazorAppClient.Server.Models;
 using BlazorAppClient.Shared;
@@ -114,6 +116,65 @@ namespace BlazorAppClient.Server.Controllers
                     .Include(i => i.MCourseTopic)
                     .First();
 
+                var course_materials_base_64 = new List<MCourseMaterial>();
+                foreach(var data in course.MCourseMaterial)
+                {
+                    //convert to base64
+                    data.PageData = Globals.Base64Encode(data.PageData);
+                    course_materials_base_64.Add(data);
+                }
+                course.MCourseMaterial = course_materials_base_64;
+
+                return Json(new
+                {
+                    res = "ok",
+                    data = course
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    res = "err",
+                    data = ex.Message
+                });
+            }
+        }
+
+
+         [HttpGet("StartExam")]
+        public JsonResult StartExam(string course_id, string asp_net_user_id)
+        {
+            //todo record that this course has begun
+            //and must be submitted by enddate
+            try
+            {
+                var course_taker = db.MCourseTakers
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
+                    .Any();
+                if(!course_taker)
+                {
+                    return Json(new
+                    {
+                        res = "err",
+                        data = "You cannot take this exam"
+                    });
+                }
+
+                var course = db.MCourse
+                    .Where(i => i.Id == course_id)
+                    .Include(i => i.MCourseMaterial)
+                    .Include(i => i.MCourseTopic)
+                    .First();
+
+                var course_materials_base_64 = new List<MCourseMaterial>();
+                foreach(var data in course.MCourseMaterial)
+                {
+                    //convert to base64
+                    data.PageData = Globals.Base64Encode(data.PageData);
+                    course_materials_base_64.Add(data);
+                }
+                course.MCourseMaterial = course_materials_base_64;
 
                 return Json(new
                 {

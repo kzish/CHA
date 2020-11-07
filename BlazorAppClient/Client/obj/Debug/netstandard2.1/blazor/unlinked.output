@@ -43,7 +43,6 @@ obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Components.Forms.d
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Components.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Authorization.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Metadata.dll
-obj\Debug\netstandard2.1\blazor\unlinked\BlazorAppClient.Shared.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.JSInterop.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Components.Web.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
@@ -60,5 +59,6 @@ obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Extensions.FileProviders.Phys
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Extensions.FileSystemGlobbing.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Extensions.FileProviders.Abstractions.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.JSInterop.WebAssembly.dll
+obj\Debug\netstandard2.1\blazor\unlinked\BlazorAppClient.Shared.dll
 obj\Debug\netstandard2.1\blazor\unlinked\BlazorAppClient.Client.pdb
 obj\Debug\netstandard2.1\blazor\unlinked\BlazorAppClient.Shared.pdb

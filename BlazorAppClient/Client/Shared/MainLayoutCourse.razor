@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
-@inject IJSRuntime js;
+@inject IJSRuntime js
+@inject State state
 
 <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
     <nav id="sidebar" class="sidebar-wrapper">
@@ -27,7 +28,7 @@
                 </div>
             </div>
             <!-- sidebar-search  -->
-            <div class="sidebar-item sidebar-search">
+            <!--<div class="sidebar-item sidebar-search">
                 <div>
                     <div class="input-group">
                         <input type="text" class="form-control search-menu" placeholder="Search...">
@@ -38,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-- sidebar-menu  -->
             <div class=" sidebar-item sidebar-menu">
                 <ul>
@@ -46,19 +47,19 @@
                         <span>General</span>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/Course/@state.course.Id">
                             <i class="fa fa-book"></i>
                             <span class="menu-text">Course Introduction</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/">
                             <i class="fa fa-calendar"></i>
                             <span class="menu-text">Reports</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/Exam/@state.course.Id">
                             <i class="fa fa-folder"></i>
                             <span class="menu-text">Exam</span>
                         </a>
@@ -108,9 +109,24 @@
 
 @code
 {
+
+    private BlazorAppClient.Shared.Models.MCourse course;
     protected override async Task OnAfterRenderAsync(bool first_render)
     {
         if (first_render)
             await js.InvokeAsync<string>("init");
     }
+
+
+    protected override void OnInitialized()
+    {
+        state.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        state.OnChange -= StateHasChanged;
+    }
+
+
 }

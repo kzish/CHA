@@ -298,3 +298,4 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\BlazorAppClient.Server.csproj.CoreCompileInputs.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\BlazorAppClient.Server.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\BlazorAppClient.Server.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\MimeTypes.dll

@@ -217,6 +217,10 @@
               "target": "Package",
               "version": "[3.1.9, )"
             },
+            "MimeTypeMapOfficial": {
+              "target": "Package",
+              "version": "[1.0.11, )"
+            },
             "NSwag.AspNetCore": {
               "target": "Package",
               "version": "[11.20.1, )"
