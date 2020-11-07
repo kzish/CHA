@@ -387,6 +387,10 @@ body {
     background: #46454c; }
   .page-wrapper .theme.light-theme {
     background: #ececec; }
+    .page-wrapper .theme.white-theme {
+        background: #fff;
+        color:#000;
+    }
   .page-wrapper .page-content {
     display: inline-block;
     width: 100%;

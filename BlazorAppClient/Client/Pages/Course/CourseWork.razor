@@ -23,13 +23,14 @@
 }
 else
 {
-    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+    <div class="page-wrapper white-theme sidebar-bg. bg1. toggled">
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
-                <div class="sidebar-item sidebar-brand">
-                    <a href="/Course/@course.Id"><i class="fas fa-arrow-left" style="color:white;"></i></a><a style="color:white;">@(course.CourseName.Length >= 10 ? course.CourseName.Substring(0, 9) + "..." : course.CourseName)</a>
+                <div class="sidebar-item. sidebar-brand" style="color:black!important;">
+                    <a href="/Course/@course.Id"><i title="back" class="fas fa-sign-out-alt flip_180" style="color:black;font-size:22px;"></i></a><a style="color:black;" title="@course.CourseName">@(course.CourseName.Length >= 10 ? course.CourseName.Substring(0, 9) + "..." : course.CourseName)</a>
                 </div>
+                <hr />
                 <!-- sidebar-search  -->
                 <div class="sidebar-item sidebar-search">
                     <div>
@@ -43,6 +44,7 @@ else
                         </div>
                     </div>
                 </div>
+                <hr />
                 <!-- sidebar-menu  -->
                 <div class="sidebar-item.">
 
@@ -50,20 +52,21 @@ else
                         <ul>
                             @foreach (var topic in course.MCourseTopic.OrderBy(i => i.Sequence))
                             {
-                                <li data-jstree='{ "opened" : true }'>
+                                <li data-jstree='{ "opened" : @(course_counter == 0 ? "true" : "false") }'>
                                     @topic.Topic
                                     <ul>
-                                        @foreach (var page in course.MCourseMaterial)
+                                        @foreach (var page_ in course.MCourseMaterial.Where(i => i.MCourseTopicIdFk == topic.Id).OrderBy(i => i.PageSequence))
                                         {
-                                            <li data-jstree='{ "selected" : true }'>Child node 1</li>
+                                            <li data-jstree='{ "selected" : false,"PageData":"@page_.PageData" }'>
+                                                @page_.PageTitle
+                                            </li>
                                         }
                                     </ul>
                                 </li>
+                                @(course_counter = course_counter + 1)
                             }
                         </ul>
                     </div>
-
-
                 </div>
             </div>
         </nav>
@@ -71,8 +74,7 @@ else
         <main class="page-content pt-2">
             <div id="overlay" class="overlay"></div>
             <div class="container-fluid p-5">
-
-               
+                @((MarkupString)PageData)
             </div>
         </main>
 
@@ -80,11 +82,11 @@ else
 }
 
 
-
-
 @code {
-    [Parameter]
-    public string course_id { get; set; }
+        [Parameter]
+        public string course_id { get; set; }
+    private int course_counter = 0;
+    private static string PageData = string.Empty;
 
 
     private BlazorAppClient.Shared.Models.MCourse course = null;
@@ -93,14 +95,12 @@ else
     {
         base.OnParametersSet();
         await StartCourse();
-
     }
 
     protected override async Task OnAfterRenderAsync(bool first_render)
     {
-        await js.InvokeAsync<string>("initTree");
+        await js.InvokeAsync<string>("initTree", DotNetObjectReference.Create(this));
     }
-
 
     private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
     {
@@ -109,6 +109,16 @@ else
         return current_user;
     }
 
+
+    [JSInvokable]
+    public void RenderContent(string page_data)
+    {
+        if (!string.IsNullOrEmpty(page_data))
+        {
+            PageData = page_data;
+            StateHasChanged();
+        }
+    }
 
     public async Task StartCourse()
     {
