@@ -8,6 +8,7 @@
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
 @inject State state
+@inject IToastService toastService
 
 @if (course == null)
 {
@@ -64,7 +65,7 @@ else
                                             <li data-jstree='{ "selected" : false,"PageData":"@page_.QuestionText","QuestionID":"@page_.Id" }'>
                                                 Question @question_number
                                             </li>
-                                            @(question_number=question_number+1)
+                                            @(question_number = question_number + 1)
                                         }
                                     </ul>
                                 </li>
@@ -83,14 +84,26 @@ else
                 @if (question != null && course.MQuestionAnswerOptions != null)
                 {
                     <hr />
-                    <QuestionAnswerComponent question="question" course="course"/>
+                    @if (state.answers.Where(i => i.QuestionIdFk == question.Id).Any())
+                    {
+                        <AnswersComponent question="question" course="course" />
+                    }
+                    else
+                    {
+                        <QuestionOptionsComponent question="question" course="course" />
+                    }
                 }
             </div>
         </main>
-
     </div>
 }
 
+<BlazoredToasts Position="ToastPosition.BottomCenter"
+                Timeout="3"
+                IconType="IconType.FontAwesome"
+                SuccessClass="success-toast-override"
+                SuccessIcon="fa fa-thumbs-up"
+                ErrorIcon="fa fa-bug" />
 
 @code {
     [Parameter]
@@ -99,7 +112,7 @@ else
     private static string PageData = string.Empty;
     private bool tree_initialized = false;
     private BlazorAppClient.Shared.Models.MQuestion question = null;
-
+    private bool show_answer = false;
 
 
     private BlazorAppClient.Shared.Models.MCourse course = null;
@@ -109,6 +122,16 @@ else
         base.OnParametersSet();
         PageData = string.Empty;
         await StartExam();
+    }
+
+    protected override void OnInitialized()
+    {
+        state.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        state.OnChange -= StateHasChanged;
     }
 
     protected override async Task OnAfterRenderAsync(bool first_render)
@@ -143,6 +166,7 @@ else
             var base64EncodedBytes = System.Convert.FromBase64String(page_data);
             PageData = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
             question = course.MQuestion.Where(i => i.Id == question_id).First();
+            show_answer = state.answers.Where(i => i.QuestionIdFk == question_id).Any();
             StateHasChanged();
         }
     }
@@ -155,11 +179,12 @@ else
             var response1 = await http_client
                    .GetAsync($"Courses/StartExam?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}&course_id={course_id}");
             var response2 = await response1.Content.ReadAsStringAsync();
-            Console.WriteLine(response2);
             dynamic json = JsonConvert.DeserializeObject(response2);
             if (json.res == "ok")
             {
                 course = JsonConvert.DeserializeObject<BlazorAppClient.Shared.Models.MCourse>(json.data.ToString());
+                var users_answers = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MUsersAnswers>>(json.users_answers.ToString());
+                state.SetAnswers(users_answers);
             }
             else
             {

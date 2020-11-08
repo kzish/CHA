@@ -1,0 +1,94 @@
+﻿@inject State state
+
+<h3>Your answer is: @(state.answers.Where(i=>i.QuestionIdFk==question.Id).FirstOrDefault().CorrectAnswer? ((MarkupString)"<span style='color:green'>Correct</span>") : ((MarkupString)"<span style='color:red'>Wrong</span>"))</h3>
+@if (question.EQuestionTypeIdFk == text_based_question_id)
+{
+    <p>@text_answer</p>
+}
+else
+{
+    <ul>
+        @foreach (var ans in selected_answers)
+        {
+            <li>
+                @question.MQuestionAnswerOptions.Where(i=>i.Id== ans).First().OptionText
+            </li>
+        }
+    </ul>
+}
+
+
+
+<h3>
+    Correct Answer
+</h3>
+
+@if (question.EQuestionTypeIdFk == text_based_question_id)
+{
+    <p>
+        @question.MQuestionAnswerOptions.FirstOrDefault().OptionText
+    </p>
+}
+else
+{
+    <ul>
+        @foreach (var ans in question.MQuestionAnswerOptions)
+        {
+
+            <li style="color:@(ans.IsCorrectAnswer?"green":"red")">
+                @ans.OptionText
+            </li>
+        }
+    </ul>
+}
+
+
+@code{
+
+    [Parameter]
+    public BlazorAppClient.Shared.Models.MQuestion question { get; set; }
+
+    [Parameter]
+    public BlazorAppClient.Shared.Models.MCourse course { get; set; }
+    //
+    private string text_based_question_id = "A011ED2A-AE61-43BB-BD01-EEFD428DE0FE";
+    private string radio_based_question_id = "C277D965-1573-43C7-8E23-81AD4AAAB6F9";
+    private string checkbox_based_question_id = "04E2AB58-1885-411E-BCB5-0A14894571E9";
+
+    private List<string> selected_answers = new List<string>();
+    private string text_answer = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        state.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        state.OnChange -= StateHasChanged;
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        var ans = state.answers.Where(i => i.QuestionIdFk == question.Id).FirstOrDefault();
+        if(question.EQuestionTypeIdFk== text_based_question_id)
+        {
+            text_answer = ans.Answer;
+        }
+        else
+        {
+            selected_answers = ans.Answer.Split(",").ToList();
+        }
+        StateHasChanged();
+    }
+
+    private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
+    {
+        dynamic user_string = await local_storage.GetItemAsStringAsync("current_user");
+        var current_user = JsonConvert.DeserializeObject<BlazorAppClient.Shared.CurrentUser>(user_string);
+        return current_user;
+
+    }
+}

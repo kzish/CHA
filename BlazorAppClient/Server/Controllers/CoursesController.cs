@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BlazorAppClient.Server.Models;
 using BlazorAppClient.Shared;
+using BlazorAppClient.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -101,7 +102,7 @@ namespace BlazorAppClient.Server.Controllers
                 var course_taker = db.MCourseTakers
                     .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
                     .Any();
-                if(!course_taker)
+                if (!course_taker)
                 {
                     return Json(new
                     {
@@ -118,72 +119,8 @@ namespace BlazorAppClient.Server.Controllers
                     .Include(i => i.MQuestionAnswerOptions)
                     .First();
                 //
-                var course_materials_base_64 = new List<MCourseMaterial>();
-                var course_question_base_64 = new List<MQuestion>();
-                //
-                foreach(var data in course.MCourseMaterial)
-                {
-                    //convert to base64
-                    data.PageData = Globals.Base64Encode(data.PageData);
-                    course_materials_base_64.Add(data);
-                }
-                //
-                foreach (var data in course.MQuestion)
-                {
-                    //convert to base64
-                    data.QuestionText = Globals.Base64Encode(data.QuestionText);
-                    course_question_base_64.Add(data);
-                }
-                //
-                course.MCourseMaterial = course_materials_base_64;
-                course.MQuestion = course_question_base_64;
-
-                return Json(new
-                {
-                    res = "ok",
-                    data = course
-                });
-            }
-            catch (Exception ex)
-            {
-                return Json(new
-                {
-                    res = "err",
-                    data = ex.Message
-                });
-            }
-        }
-
-
-         [HttpGet("StartExam")]
-        public JsonResult StartExam(string course_id, string asp_net_user_id)
-        {
-            //todo record that this course has begun
-            //and must be submitted by enddate
-            try
-            {
-                var course_taker = db.MCourseTakers
-                    .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
-                    .Any();
-                if(!course_taker)
-                {
-                    return Json(new
-                    {
-                        res = "err",
-                        data = "You cannot take this exam"
-                    });
-                }
-
-                var course = db.MCourse
-                    .Where(i => i.Id == course_id)
-                    .Include(i => i.MCourseMaterial)
-                    .Include(i => i.MCourseTopic)
-                    .Include(i => i.MQuestion)
-                    .Include(i => i.MQuestionAnswerOptions)
-                    .First();
-                //
-                var course_materials_base_64 = new List<MCourseMaterial>();
-                var course_question_base_64 = new List<MQuestion>();
+                var course_materials_base_64 = new List<BlazorAppClient.Server.Models.MCourseMaterial>();
+                var course_question_base_64 = new List<BlazorAppClient.Server.Models.MQuestion>();
                 //
                 foreach (var data in course.MCourseMaterial)
                 {
@@ -219,6 +156,100 @@ namespace BlazorAppClient.Server.Controllers
         }
 
 
+        //todo: record start the exam
+        //returns the exam and also the users answers that are existing for this exam
+        [HttpGet("StartExam")]
+        public JsonResult StartExam(string course_id, string asp_net_user_id)
+        {
+            //todo record that this course has begun
+            //and must be submitted by enddate
+            try
+            {
+                var course_taker = db.MCourseTakers
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
+                    .Any();
+                if (!course_taker)
+                {
+                    return Json(new
+                    {
+                        res = "err",
+                        data = "You cannot take this exam"
+                    });
+                }
+
+                var course = db.MCourse
+                    .Where(i => i.Id == course_id)
+                    .Include(i => i.MCourseMaterial)
+                    .Include(i => i.MCourseTopic)
+                    .Include(i => i.MQuestion)
+                    .Include(i => i.MQuestionAnswerOptions)
+                    .First();
+
+                var users_answers = db.MUsersAnswers
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id
+                && i.CourseIdFk == course_id)
+                    .ToList();
+                //
+                var course_materials_base_64 = new List<BlazorAppClient.Server.Models.MCourseMaterial>();
+                var course_question_base_64 = new List<BlazorAppClient.Server.Models.MQuestion>();
+                //
+                foreach (var data in course.MCourseMaterial)
+                {
+                    //convert to base64
+                    data.PageData = Globals.Base64Encode(data.PageData);
+                    course_materials_base_64.Add(data);
+                }
+                //
+                foreach (var data in course.MQuestion)
+                {
+                    //convert to base64
+                    data.QuestionText = Globals.Base64Encode(data.QuestionText);
+                    course_question_base_64.Add(data);
+                }
+                //
+                course.MCourseMaterial = course_materials_base_64;
+                course.MQuestion = course_question_base_64;
+
+                return Json(new
+                {
+                    res = "ok",
+                    data = course,
+                    users_answers
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    res = "err",
+                    data = ex.Message
+                });
+            }
+        }
+
+
+        [HttpPost("UploadAnswerToServer")]
+        public JsonResult UploadAnswerToServer([FromBody] BlazorAppClient.Server.Models.MUsersAnswers answer)
+        {
+            try
+            {
+                db.MUsersAnswers.Add(answer);
+                db.SaveChanges();
+                return Json(new
+                {
+                    res = "ok",
+                    data = "Answer Saved"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    res = "err",
+                    data = ex.Message
+                });
+            }
+        }
 
 
     }

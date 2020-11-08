@@ -1,7 +1,9 @@
 ﻿using BlazorAppClient.Shared.Models;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 
@@ -19,9 +21,23 @@ public class State
 
     //
     public MCourse course { get; private set; } = new MCourse();
+    public List<MUsersAnswers> answers { get; private set; } = new List<MUsersAnswers>();
+
     public void SetCourse(MCourse course)
     {
         this.course = course;
+        NotifyStateChanged();
+    }
+
+    public void SetAnswer(MUsersAnswers answer)
+    {
+        this.answers.Add(answer);
+        NotifyStateChanged();
+    }
+
+    public void SetAnswers(List<MUsersAnswers> answers)
+    {
+        this.answers = answers;
         NotifyStateChanged();
     }
 }

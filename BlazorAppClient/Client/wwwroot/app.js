@@ -1,16 +1,20 @@
 ﻿
-function confirm(title, content, yes_call_back) {
-    $.confirm({
+
+function jsconfirm_(title, content) {
+    var result="saint";
+    result=$.confirm({
         title: title,
         content: content,
         buttons: {
             yes: function () {
-                yes_call_back;
+                result= "true";
             },
             no: function () {
+                result= "false";
             },
         }
     });
+    return result;
 }
 var dotnetInstance;
 
@@ -40,7 +44,6 @@ function initTree() {
     $('#html_exam').on("changed.jstree", function (e, data) {
         var pageData = (data.node.data.jstree.PageData);
         var QuestionID = (data.node.data.jstree.QuestionID);
-        console.log(pageData);
         dotnetInstance.invokeMethodAsync("RenderContent", pageData, QuestionID)
     });
 

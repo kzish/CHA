@@ -35,6 +35,7 @@ namespace BlazorAppClient.Server.Models
         public virtual DbSet<MMedia> MMedia { get; set; }
         public virtual DbSet<MQuestion> MQuestion { get; set; }
         public virtual DbSet<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
+        public virtual DbSet<MUsersAnswers> MUsersAnswers { get; set; }
         public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -677,6 +678,77 @@ each question type will be rendered in its own way");
                     .HasForeignKey(d => d.MQuestionIdFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_question_answer_options_m_question");
+            });
+
+            modelBuilder.Entity<MUsersAnswers>(entity =>
+            {
+                entity.ToTable("m_users_answers");
+
+                entity.HasComment("the answeres to the questions");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Answer)
+                    .IsRequired()
+                    .HasColumnName("answer")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.CorrectAnswer).HasColumnName("correct_answer");
+
+                entity.Property(e => e.CourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DateAnswered)
+                    .HasColumnName("date_answered")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.QuestionIdFk)
+                    .IsRequired()
+                    .HasColumnName("question_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TopicIdFk)
+                    .IsRequired()
+                    .HasColumnName("topic_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswers)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_users_answers_AspNetUsers");
+
+                entity.HasOne(d => d.CourseIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswers)
+                    .HasForeignKey(d => d.CourseIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_users_answers_m_course");
+
+                entity.HasOne(d => d.QuestionIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswers)
+                    .HasForeignKey(d => d.QuestionIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_users_answers_m_question");
+
+                entity.HasOne(d => d.TopicIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswers)
+                    .HasForeignKey(d => d.TopicIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_users_answers_m_course_topic");
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>
