@@ -1,9 +1,9 @@
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.AssemblyInfoInputs.cache
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.AssemblyInfo.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\bin\Debug\netstandard2.1\BlazorAppClient.Shared.deps.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\bin\Debug\netstandard2.1\BlazorAppClient.Shared.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\bin\Debug\netstandard2.1\BlazorAppClient.Shared.pdb
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.AssemblyInfoInputs.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.AssemblyInfo.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.csproj.CoreCompileInputs.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.csprojAssemblyReference.cache
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.csproj.CoreCompileInputs.cache

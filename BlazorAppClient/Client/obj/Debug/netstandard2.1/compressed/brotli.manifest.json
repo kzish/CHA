@@ -351,7 +351,7 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.boot.json.br"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\i0of9YukdPtxwapAnNem7emJ-BWLFfEewko-9WA6uWc=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\tn4kuVgq29_esZAxh_vBI8n090TH7OI_-qShb0w5BWw=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\service-worker-assets.js",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\service-worker-assets.js.br"
     }

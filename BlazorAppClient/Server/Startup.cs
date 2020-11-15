@@ -120,6 +120,7 @@ namespace BlazorAppClient.Server
 
             ///
             services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
             .AddApiAuthorization<IdentityUser, ApplicationDbContext>();
 
             //
@@ -153,7 +154,8 @@ namespace BlazorAppClient.Server
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddMvc().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddMvc()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
         }
 

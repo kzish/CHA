@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>BlazorAppClient.Server-A8A83FE4-F6ED-4157-A999-EF523331D565</UserSecretsId>
+    <UserSecretsId>7c340cdc-0b45-4d14-8c0b-f4baaf6f4e6e</UserSecretsId>
+    <!--<UserSecretsId>4c781dc8-03cc-4d98-bada-6ba5a8688c73</UserSecretsId>
+    <UserSecretsId>BlazorAppClient.Server-A8A83FE4-F6ED-4157-A999-EF523331D565</UserSecretsId>-->
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />

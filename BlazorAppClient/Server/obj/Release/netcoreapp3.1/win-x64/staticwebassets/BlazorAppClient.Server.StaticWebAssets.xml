@@ -1,0 +1,9 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Release\netstandard2.1\wwwroot\" />
+  <ContentRoot BasePath="/Identity" Path="C:\Users\Kudzai\.nuget\packages\microsoft.aspnetcore.identity.ui\3.1.6\staticwebassets\V4\" />
+  <ContentRoot BasePath="_content/Blazored.Toast" Path="C:\Users\Kudzai\.nuget\packages\blazored.toast\3.1.2\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/BlazorTable" Path="C:\Users\Kudzai\.nuget\packages\blazortable\1.12.1\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/CurrieTechnologies.Razor.SweetAlert2" Path="C:\Users\Kudzai\.nuget\packages\currietechnologies.razor.sweetalert2\3.0.0\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication" Path="C:\Users\Kudzai\.nuget\packages\microsoft.aspnetcore.components.webassembly.authentication\3.2.1\build\..\staticwebassets\" />
+</StaticWebAssets>
