@@ -119,6 +119,11 @@ namespace BlazorAppClient.Server.Controllers
                     .Include(i => i.MQuestionAnswerOptions)
                     .First();
                 //
+                //tell the client which pages are completed
+                var completed_pages = db.MCourseWorkProgress
+                    .Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id)
+                    .ToList();
+                //
                 var course_materials_base_64 = new List<BlazorAppClient.Server.Models.MCourseMaterial>();
                 var course_question_base_64 = new List<BlazorAppClient.Server.Models.MQuestion>();
                 //
@@ -142,7 +147,8 @@ namespace BlazorAppClient.Server.Controllers
                 return Json(new
                 {
                     res = "ok",
-                    data = course
+                    data = course,
+                    completed_pages
                 });
             }
             catch (Exception ex)
@@ -251,6 +257,35 @@ namespace BlazorAppClient.Server.Controllers
             }
         }
 
+
+        [HttpPost("UpdateCourseProgress")]
+        public JsonResult UpdateCourseProgress(string asp_net_user_id, string page_id,string course_id)
+        {
+            try
+            {
+                var course_work_progress = new BlazorAppClient.Server.Models.MCourseWorkProgress();
+                course_work_progress.AspNetUserIdFk = asp_net_user_id;
+                course_work_progress.CoursePageIdFk = page_id;
+                course_work_progress.CourseIdFk = course_id;
+                db.MCourseWorkProgress.Add(course_work_progress);
+                db.SaveChanges();
+
+                //tell the client which pages are completed
+                var completed_pages = db.MCourseWorkProgress
+                    .Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id)
+                    .ToList();
+
+                return Json(new { 
+                    res = "ok",
+                    data = "progress saved",
+                    completed_pages 
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { res = "err", data = ex.Message });
+            }
+        }
 
     }
 

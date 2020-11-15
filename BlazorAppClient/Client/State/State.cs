@@ -1,4 +1,5 @@
-﻿using BlazorAppClient.Shared.Models;
+﻿using BlazorAppClient.Shared;
+using BlazorAppClient.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -20,24 +21,35 @@ public class State
     private void NotifyStateChanged() => OnChange?.Invoke();
 
     //
+    public int course_percentage_complete => (int)(((decimal)this.completed_pages.Count / (decimal)this.course.MCourseMaterial.Count) * 100);
+    //
     public MCourse course { get; private set; } = new MCourse();
     public List<MUsersAnswers> answers { get; private set; } = new List<MUsersAnswers>();
-
+    public List<MCourseWorkProgress> completed_pages { get; private set; } = new List<MCourseWorkProgress>();//course work progress is the completed pages
+    
+    //
     public void SetCourse(MCourse course)
     {
         this.course = course;
         NotifyStateChanged();
     }
-
+    //
     public void SetAnswer(MUsersAnswers answer)
     {
         this.answers.Add(answer);
         NotifyStateChanged();
     }
-
+    //
     public void SetAnswers(List<MUsersAnswers> answers)
     {
         this.answers = answers;
         NotifyStateChanged();
     }
+    //set completed pages for a particular course, this is to monitor course progress
+    public void SetCompletedPages(List<MCourseWorkProgress> completed_pages)
+    {
+        this.completed_pages = completed_pages;
+        NotifyStateChanged();
+    }
+
 }

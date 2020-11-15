@@ -5,6 +5,7 @@
 @inject NavigationManager navigation_manager;
 @using Newtonsoft.Json
 @inject ILogger<Login> logger;
+@inject State state
 
 <div class="login_page">
     <div class="row">
@@ -72,6 +73,17 @@
         public string password { get; set; }
     }
 
+
+
+    protected override void OnInitialized()
+    {
+        state.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        state.OnChange -= StateHasChanged;
+    }
 
     private async Task HandleValidSubmit()
     {

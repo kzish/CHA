@@ -7,7 +7,7 @@
 @using System.Web;
 @inject ILogger<MainMenu> logger;
 
-
+@inject State state
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
 
@@ -65,10 +65,22 @@ else
     int page_size = 12;//how many per page
 
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        state.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        state.OnChange -= StateHasChanged;
+    }
 
     protected override async Task OnInitializedAsync()
     {
+
         await FetchMyCourses();
+
     }
 
     private async Task SelectedPage(int page)

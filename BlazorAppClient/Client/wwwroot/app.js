@@ -1,16 +1,16 @@
 ﻿
 
 function jsconfirm_(title, content) {
-    var result="saint";
-    result=$.confirm({
+    var result = "saint";
+    result = $.confirm({
         title: title,
         content: content,
         buttons: {
             yes: function () {
-                result= "true";
+                result = "true";
             },
             no: function () {
-                result= "false";
+                result = "false";
             },
         }
     });
@@ -38,7 +38,8 @@ function initTree() {
 
     $('#html_course_work').on("changed.jstree", function (e, data) {
         var pageData = (data.node.data.jstree.PageData);
-        dotnetInstance.invokeMethodAsync("RenderContent", pageData)
+        var page_id = (data.node.data.jstree.page_id);
+        dotnetInstance.invokeMethodAsync("RenderContent", page_id, pageData)
     });
 
     $('#html_exam').on("changed.jstree", function (e, data) {

@@ -27,11 +27,13 @@ namespace BlazorAppClient.Server.Models
         public virtual DbSet<EQuestionAnswerType> EQuestionAnswerType { get; set; }
         public virtual DbSet<MCompany> MCompany { get; set; }
         public virtual DbSet<MCourse> MCourse { get; set; }
+        public virtual DbSet<MCourseExamReports> MCourseExamReports { get; set; }
         public virtual DbSet<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual DbSet<MCourseMaterial> MCourseMaterial { get; set; }
         public virtual DbSet<MCourseObjectives> MCourseObjectives { get; set; }
         public virtual DbSet<MCourseTakers> MCourseTakers { get; set; }
         public virtual DbSet<MCourseTopic> MCourseTopic { get; set; }
+        public virtual DbSet<MCourseWorkProgress> MCourseWorkProgress { get; set; }
         public virtual DbSet<MMedia> MMedia { get; set; }
         public virtual DbSet<MQuestion> MQuestion { get; set; }
         public virtual DbSet<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
@@ -43,7 +45,7 @@ namespace BlazorAppClient.Server.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("server=.;user id=sa;password=Password#99;database=CHA;");
+                optionsBuilder.UseSqlServer("server=localhost;database=CHA;trusted_connection=true");
             }
         }
 
@@ -338,6 +340,50 @@ company admin  will manage his own users
                     .HasConstraintName("FK_m_course_e_course_category");
             });
 
+            modelBuilder.Entity<MCourseExamReports>(entity =>
+            {
+                entity.ToTable("m_course_exam_reports");
+
+                entity.HasComment("parent table store statistics of the exam for reporting purposes");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.CourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ExamEndDate)
+                    .HasColumnName("exam_end_date")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.ExamStartDate)
+                    .HasColumnName("exam_start_date")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MCourseExamReports)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_course_exam_reports_AspNetUsers");
+
+                entity.HasOne(d => d.CourseIdFkNavigation)
+                    .WithMany(p => p.MCourseExamReports)
+                    .HasForeignKey(d => d.CourseIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_course_exam_reports_m_course");
+            });
+
             modelBuilder.Entity<MCourseInstructor>(entity =>
             {
                 entity.ToTable("m_course_instructor");
@@ -541,6 +587,52 @@ images, audio, video will be rendered and will have extra parameters to help ren
                     .WithMany(p => p.MCourseTopic)
                     .HasForeignKey(d => d.CourseIdFk)
                     .HasConstraintName("FK_m_course_topic_m_course");
+            });
+
+            modelBuilder.Entity<MCourseWorkProgress>(entity =>
+            {
+                entity.ToTable("m_course_work_progress");
+
+                entity.HasComment(@"monitors the progress of the coursework by the user
+records the pages completed
+user simply clicks a button to confirm that he/she  has gone thru this page and is recorded as progress");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450)
+                    .HasComment("links to the user/course taker");
+
+                entity.Property(e => e.CourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CoursePageIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_page_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasComment("links to the page that is completed by the user");
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkProgress)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_course_work_progress_AspNetUsers");
+
+                entity.HasOne(d => d.CourseIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkProgress)
+                    .HasForeignKey(d => d.CourseIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_course_work_progress_m_course");
             });
 
             modelBuilder.Entity<MMedia>(entity =>
