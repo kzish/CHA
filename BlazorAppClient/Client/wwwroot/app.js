@@ -39,7 +39,8 @@ function initTree() {
     $('#html_course_work').on("changed.jstree", function (e, data) {
         var pageData = (data.node.data.jstree.PageData);
         var page_id = (data.node.data.jstree.page_id);
-        dotnetInstance.invokeMethodAsync("RenderContent", page_id, pageData)
+        var topic_id = (data.node.data.jstree.topic_id);
+        dotnetInstance.invokeMethodAsync("RenderContent", page_id, pageData, topic_id)
     });
 
     $('#html_exam').on("changed.jstree", function (e, data) {
@@ -48,4 +49,56 @@ function initTree() {
         dotnetInstance.invokeMethodAsync("RenderContent", pageData, QuestionID)
     });
 
+}
+
+
+function printExamPercentageChart(correct, failed) {
+    console.log(parseFloat(correct), parseFloat(failed));
+    Highcharts.chart('printExamPercentageChart', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+        credits: false,
+        title: {
+            text: 'Your Score '+correct+'%',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: 60
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: -50,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'white'
+                    }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '75%'],
+                size: '110%'
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Exam Score',
+            innerSize: '50%',
+            data: [
+                ['Correct ('+correct+')%', parseFloat(correct)],
+                ['Failed ('+failed+')%', parseFloat(failed)],
+            ]
+        }]
+    });
 }

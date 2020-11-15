@@ -22,6 +22,7 @@ public class State
 
     //
     public int course_percentage_complete => (int)(((decimal)this.completed_pages.Count / (decimal)this.course.MCourseMaterial.Count) * 100);
+    public int exam_percentage_complete => (int)(((decimal)this.answers.Count / (decimal)this.course.MQuestion.Count) * 100);
     //
     public MCourse course { get; private set; } = new MCourse();
     public List<MUsersAnswers> answers { get; private set; } = new List<MUsersAnswers>();
@@ -51,5 +52,7 @@ public class State
         this.completed_pages = completed_pages;
         NotifyStateChanged();
     }
+
+
 
 }

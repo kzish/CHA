@@ -233,6 +233,80 @@ namespace BlazorAppClient.Server.Controllers
             }
         }
 
+       
+        [HttpGet("FetchReports")]
+        public JsonResult FetchReports(string course_id, string asp_net_user_id)
+        {
+            try
+            {
+                //var course_taker = db.MCourseTakers
+                //    .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
+                //    .Any();
+                //if (!course_taker)
+                //{
+                //    return Json(new
+                //    {
+                //        res = "err",
+                //        data = "You cannot take this exam"
+                //    });
+                //}
+
+                var course = db.MCourse
+                    .Where(i => i.Id == course_id)
+                    .Include(i => i.MCourseMaterial)
+                    .Include(i => i.MCourseTopic)
+                    .Include(i => i.MQuestion)
+                    //.Include(i => i.MQuestionAnswerOptions)
+                    .First();
+
+                var users_answers = db.MUsersAnswers
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id
+                && i.CourseIdFk == course_id)
+                    .ToList();
+
+                //tell the client which pages are completed
+                var completed_pages = db.MCourseWorkProgress
+                    .Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id)
+                    .ToList();
+                //
+                //var course_materials_base_64 = new List<BlazorAppClient.Server.Models.MCourseMaterial>();
+                //var course_question_base_64 = new List<BlazorAppClient.Server.Models.MQuestion>();
+                //
+                //foreach (var data in course.MCourseMaterial)
+                //{
+                //    //convert to base64
+                //    data.PageData = Globals.Base64Encode(data.PageData);
+                //    course_materials_base_64.Add(data);
+                //}
+                //
+                //foreach (var data in course.MQuestion)
+                //{
+                //    //convert to base64
+                //    data.QuestionText = Globals.Base64Encode(data.QuestionText);
+                //    course_question_base_64.Add(data);
+                //}
+                //
+                //course.MCourseMaterial = course_materials_base_64;
+                //course.MQuestion = course_question_base_64;
+
+                return Json(new
+                {
+                    res = "ok",
+                    data = course,
+                    users_answers,
+                    completed_pages
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    res = "err",
+                    data = ex.Message
+                });
+            }
+        }
+
 
         [HttpPost("UploadAnswerToServer")]
         public JsonResult UploadAnswerToServer([FromBody] BlazorAppClient.Server.Models.MUsersAnswers answer)
@@ -259,7 +333,7 @@ namespace BlazorAppClient.Server.Controllers
 
 
         [HttpPost("UpdateCourseProgress")]
-        public JsonResult UpdateCourseProgress(string asp_net_user_id, string page_id,string course_id)
+        public JsonResult UpdateCourseProgress(string asp_net_user_id, string page_id,string course_id,string topic_id)
         {
             try
             {
@@ -267,6 +341,7 @@ namespace BlazorAppClient.Server.Controllers
                 course_work_progress.AspNetUserIdFk = asp_net_user_id;
                 course_work_progress.CoursePageIdFk = page_id;
                 course_work_progress.CourseIdFk = course_id;
+                course_work_progress.TopicIdFk = topic_id;
                 db.MCourseWorkProgress.Add(course_work_progress);
                 db.SaveChanges();
 
@@ -287,6 +362,10 @@ namespace BlazorAppClient.Server.Controllers
             }
         }
 
+    
+    
+    
+    
     }
 
 

@@ -622,17 +622,25 @@ user simply clicks a button to confirm that he/she  has gone thru this page and 
                     .IsUnicode(false)
                     .HasComment("links to the page that is completed by the user");
 
+                entity.Property(e => e.TopicIdFk)
+                    .HasColumnName("topic_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.AspNetUserIdFkNavigation)
                     .WithMany(p => p.MCourseWorkProgress)
                     .HasForeignKey(d => d.AspNetUserIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_course_work_progress_AspNetUsers");
 
                 entity.HasOne(d => d.CourseIdFkNavigation)
                     .WithMany(p => p.MCourseWorkProgress)
                     .HasForeignKey(d => d.CourseIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_course_work_progress_m_course");
+
+                entity.HasOne(d => d.TopicIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkProgress)
+                    .HasForeignKey(d => d.TopicIdFk)
+                    .HasConstraintName("FK_m_course_work_progress_m_course_topic");
             });
 
             modelBuilder.Entity<MMedia>(entity =>

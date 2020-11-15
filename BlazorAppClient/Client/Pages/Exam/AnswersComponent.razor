@@ -7,14 +7,17 @@
 }
 else
 {
-    <ul>
-        @foreach (var ans in selected_answers)
-        {
-            <li>
-                @question.MQuestionAnswerOptions.Where(i=>i.Id== ans).First().OptionText
-            </li>
-        }
-    </ul>
+    @if (selected_answers.Count > 0 && selected_answers!=null)
+    {
+        <ul>
+            @foreach (var ans in selected_answers)
+            {
+                <li>
+                    @question.MQuestionAnswerOptions.Where(i => i.Id == ans).FirstOrDefault()?.OptionText
+                </li>
+            }
+        </ul>
+    }
 }
 
 
@@ -73,7 +76,7 @@ else
         base.OnParametersSet();
 
         var ans = state.answers.Where(i => i.QuestionIdFk == question.Id).FirstOrDefault();
-        if(question.EQuestionTypeIdFk== text_based_question_id)
+        if (question.EQuestionTypeIdFk == text_based_question_id)
         {
             text_answer = ans.Answer;
         }

@@ -1,0 +1,213 @@
+﻿@page "/Reports/{course_id}"
+@layout MainLayoutCourse
+
+@inject HttpClient http_client
+@using System.Web;
+
+@inject IJSRuntime js
+
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+@inject State state
+@using System.Linq
+
+<div class="container">
+
+    @if (course == null)
+    {
+        <div class="row">
+            <div class="col-md-12" style="display:flex;align-content:center;justify-content:center;">
+                <Loading isloading="true" height="50" width="50" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="display:flex;align-content:center;justify-content:center;">
+                <p style="clear:both;">Loading reports...</p>
+            </div>
+        </div>
+    }
+    else
+    {
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Course Progress</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @* course over all report *@
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated @(state.course_percentage_complete==100?"bg-success":
+                                                           state.course_percentage_complete>=75?"bg-info":
+                                                           state.course_percentage_complete>=50?"bg-warning":
+                                                           "bg-danger")"
+                         role="progressbar"
+                         aria-valuenow="@(state.course_percentage_complete)"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="width: @(state.course_percentage_complete)%;">
+                        <span style="color:white"> Overall @(state.course_percentage_complete)% </span>
+                    </div>
+                </div>
+
+                @* course topics *@
+                <div class="row">
+                    <div class="col-md-12">
+                        @foreach (var topic in course.MCourseTopic)
+                        {
+                            int completed = GetPercentageCompletionForTopic(topic.Id);
+
+                            <br />
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated  @(completed==100?"bg-success":
+                                                           completed>=75?"bg-info":
+                                                           completed>=50?"bg-warning":
+                                                           "bg-danger")"
+                                     role="progressbar"
+                                     aria-valuenow="@completed"
+                                     aria-valuemin="0"
+                                     aria-valuemax="100"
+                                     style="width: @(completed)%;">
+                                    <span style="color:white"> @(topic.Topic) @(completed)% </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Exam Progress</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @* exam over all report *@
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated @(state.exam_percentage_complete==100?"bg-success":
+                                                           state.exam_percentage_complete>=75?"bg-info":
+                                                           state.exam_percentage_complete>=50?"bg-warning":
+                                                           "bg-danger")"
+                         role="progressbar"
+                         aria-valuenow="@(state.exam_percentage_complete)"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="width: @(state.exam_percentage_complete)%;">
+                        <span style="color:white"> Overall @(state.exam_percentage_complete)% </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div id="printExamPercentageChart" style="height:400px;width:100%;">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 400px;
+                            width: 100%;
+                            ">
+                    <h4>Total Time</h4>
+                   &nbsp;
+                   &nbsp;
+                    <h4>12:22:00</h4>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+@code {
+
+
+    [Parameter]
+    public string course_id { get; set; }
+
+    private BlazorAppClient.Shared.Models.MCourse course = null;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+    }
+
+    protected override void OnInitialized()
+    {
+        state.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        state.OnChange -= StateHasChanged;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        base.OnParametersSet();
+        await FetchReports();
+    }
+
+    private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
+    {
+        dynamic user_string = await local_storage.GetItemAsStringAsync("current_user");
+        var current_user = JsonConvert.DeserializeObject<BlazorAppClient.Shared.CurrentUser>(user_string);
+        return current_user;
+    }
+
+
+    public async Task FetchReports()
+    {
+        try
+        {
+            var current_user = await GetCurrentUser();
+            var response1 = await http_client
+                   .GetAsync($"Courses/FetchReports?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}&course_id={course_id}");
+            var response2 = await response1.Content.ReadAsStringAsync();
+            dynamic json = JsonConvert.DeserializeObject(response2);
+            if (json.res.ToString() == "ok")
+            {
+                course = JsonConvert.DeserializeObject<BlazorAppClient.Shared.Models.MCourse>(json.data.ToString());
+                var users_answers = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MUsersAnswers>>(json.users_answers.ToString());
+                var completed_pages = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MCourseWorkProgress>>(json.completed_pages.ToString());
+                //
+                state.SetCourse(course);
+                state.SetAnswers(users_answers);
+                state.SetCompletedPages(completed_pages);
+
+            }
+            else
+            {
+                toastService.ShowError(json.data.ToString(), "Error");
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError(ex.Message, "Error");
+        }
+        finally
+        {
+            await js.InvokeAsync<string>("printExamPercentageChart", 20, 80);
+        }
+    }
+
+    private int GetPercentageCompletionForTopic(string topic_id)
+    {
+        var completion = (int)(((decimal)state.completed_pages.Count(i => i.TopicIdFk == topic_id) / (decimal)this.course.MCourseMaterial.Count(i => i.MCourseTopicIdFk == topic_id)) * 100);
+        return completion;
+    }
+
+
+
+}

@@ -9,13 +9,13 @@
 {
     if (question.EQuestionTypeIdFk == checkbox_based_question_id)//checkbox
     {
-        <input type="checkbox" @onchange="( (ev) =>  { AddRemoveAnswer(ev, item.Id); } )" />
+        <input type="checkbox" value="true" @onchange="( (ev) =>  { AddRemoveAnswer(ev, item.Id); } )" />
         @item.OptionText
         <br />
     }
     else if (question.EQuestionTypeIdFk == radio_based_question_id)//radio
     {
-        <input type="radio" @onchange="( (ev) =>  { AddRemoveAnswer(ev, item.Id); } )" />
+        <input name="radio" value="true" type="radio" @onchange="( (ev) =>  { AddRemoveAnswer(ev, item.Id); } )" />
         @item.OptionText
         <br />
     }
@@ -83,6 +83,12 @@
         Console.WriteLine(confirm);
         if (confirm)
         {
+
+            if (selected_answers.Count == 0 && string.IsNullOrEmpty(text_answer))
+            {
+                toastService.ShowError("Provide and answer");
+                return;
+            }
             Console.WriteLine(1);
             var current_user = await GetCurrentUser();
             if (question.EQuestionTypeIdFk == text_based_question_id)//text based answer
@@ -166,7 +172,11 @@
 
     private void AddRemoveAnswer(ChangeEventArgs e, string answer)
     {
-        if ((bool)e.Value)
+        if(question.EQuestionTypeIdFk==radio_based_question_id)
+        {
+            selected_answers.Clear();//remove all answers for radio
+        }
+        if (bool.Parse(e.Value.ToString()))
         {
             if (!selected_answers.Contains(answer))
             {
@@ -178,6 +188,7 @@
             if (selected_answers.Contains(answer))
                 selected_answers.Remove(answer);
         }
+        Console.WriteLine(string.Join(",", selected_answers));
     }
 
 
@@ -187,7 +198,7 @@
         {
 
             loading = true;
-            StateHasChanged();
+            //StateHasChanged();
             var response1 = await http_client.PostAsJsonAsync<BlazorAppClient.Shared.Models.MUsersAnswers>("/Courses/UploadAnswerToServer", answer);
             var response2 = await response1.Content.ReadAsStringAsync();
             dynamic json = JsonConvert.DeserializeObject(response2);

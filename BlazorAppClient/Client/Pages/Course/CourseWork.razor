@@ -61,7 +61,7 @@ else
                                     <ul>
                                         @foreach (var page_ in course.MCourseMaterial.Where(i => i.MCourseTopicIdFk == topic.Id).OrderBy(i => i.PageSequence))
                                         {
-                                            <li data-jstree='{"page_id":"@page_.Id", "selected" : false,"PageData":"@page_.PageData" }'>
+                                            <li data-jstree='{"topic_id":"@topic.Id","page_id":"@page_.Id", "selected" : false,"PageData":"@page_.PageData" }'>
                                                 @page_.PageTitle
                                             </li>
                                         }
@@ -148,6 +148,7 @@ else
     private int course_counter = 0;
     private static string PageData = string.Empty;
     private static string page_id = string.Empty;
+    private static string topic_id = string.Empty;
     private bool tree_initialized = false;
     private bool loading = false;
 
@@ -158,6 +159,7 @@ else
         base.OnParametersSet();
         PageData = string.Empty;
         page_id = string.Empty;
+        topic_id = string.Empty;
         await StartCourse();
     }
 
@@ -202,7 +204,7 @@ else
 
 
     [JSInvokable]
-    public void RenderContent(string _page_id, string page_data)
+    public void RenderContent(string _page_id, string page_data,string _topic_id)
     {
         tree_initialized = true;
         if (!string.IsNullOrEmpty(page_data))
@@ -211,6 +213,7 @@ else
             PageData = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
             PageData = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
             page_id = _page_id;
+            topic_id = _topic_id;
             StateHasChanged();
         }
     }
@@ -260,7 +263,7 @@ else
         try
         {
             var current_user = await GetCurrentUser();
-            var content = new StringContent($"asp_net_user_id={current_user.user_id}&page_id={page_id}&course_id={course.Id}",
+            var content = new StringContent($"asp_net_user_id={current_user.user_id}&page_id={page_id}&course_id={course.Id}&topic_id={topic_id}",
                System.Text.Encoding.UTF8,
                "application/x-www-form-urlencoded");
             var response1 = await http_client.PostAsync("/Courses/UpdateCourseProgress", content);
