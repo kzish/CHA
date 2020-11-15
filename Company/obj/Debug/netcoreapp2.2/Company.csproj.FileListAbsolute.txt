@@ -8,10 +8,12 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Deb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Debug\netcoreapp2.2\Company.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Debug\netcoreapp2.2\Company.Views.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Debug\netcoreapp2.2\Company.Views.pdb
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.RazorAssemblyInfo.cache
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.RazorAssemblyInfo.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.csprojAssemblyReference.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.AssemblyInfoInputs.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.AssemblyInfo.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.csproj.CoreCompileInputs.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.RazorAssemblyInfo.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.RazorAssemblyInfo.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.TagHelpers.input.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.TagHelpers.output.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.RazorCoreGenerate.cache
@@ -42,7 +44,5 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Deb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.Views.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.pdb
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.csproj.CopyComplete
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.csprojAssemblyReference.cache
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.csproj.CoreCompileInputs.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.genruntimeconfig.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\obj\Debug\netcoreapp2.2\Company.csproj.CopyComplete
