@@ -405,7 +405,7 @@
       "url": "libs\/highcharts\/highcharts.js"
     },
     {
-      "hash": "sha256-r86DjtFeQ2TQ69cJDFZ7iMecHS2HR8F7AXYBIYGUL8I=",
+      "hash": "sha256-VSsvZf9+JfnQ6WSermE579h\/kRSrxPNRzn75RseqSq4=",
       "url": "libs\/sidebar_off_canvas\/estilos.css"
     },
     {
@@ -473,7 +473,7 @@
       "url": "themes\/default\/throbber.gif"
     },
     {
-      "hash": "sha256-h5lSq6uqdcEnlHKwe+oSbYEJYGl\/4zuonwDn3PrZ\/v0=",
+      "hash": "sha256-1SB4vec9CW72pshVh5teM0Q7WUkmsSkLcdLyQhvTovo=",
       "url": "_framework\/_bin\/BlazorAppClient.Client.dll"
     },
     {
@@ -725,7 +725,7 @@
       "url": "_framework\/_bin\/BlazorAppClient.Shared.dll"
     },
     {
-      "hash": "sha256-IS3WNKo+WMkPMSdRTX6hvbdHVQGVxp0WyJ+sbGxgIOk=",
+      "hash": "sha256-zRVuukM8R+co0u96lLzIW+iGmYtrfxIeeR96ZaeQN0I=",
       "url": "_framework\/_bin\/BlazorAppClient.Client.pdb"
     },
     {
@@ -749,9 +749,9 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-1s45EakOYekvCSmfH0ASy12ffgrTrGAV07Ua4VZ4MMM=",
+      "hash": "sha256-fnTQMbJMaRaLnaEXfChI+1CfYYPXbx8lyVWaka+BA94=",
       "url": "_framework\/blazor.boot.json"
     }
   ],
-  "version": "rwLAWQVB"
+  "version": "1T+biZwx"
 };

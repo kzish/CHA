@@ -27,7 +27,7 @@
         </div>
     </div>
 }
-else
+else if(my_courses.Count>0)
 {
 
     <div class="row">
@@ -55,7 +55,24 @@ else
         </div>
     </div>
 }
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <h3 style="color:red">You have no courses<br />assigned to you</h3>
+            </center>
+        </div>
+    </div>
+}
 
+
+<BlazoredToasts Position="ToastPosition.BottomCenter"
+                Timeout="3"
+                IconType="IconType.FontAwesome"
+                SuccessClass="success-toast-override"
+                SuccessIcon="fa fa-thumbs-up"
+                ErrorIcon="fa fa-bug" />
 
 @code {
 
