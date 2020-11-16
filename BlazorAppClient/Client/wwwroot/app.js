@@ -27,8 +27,10 @@ function initInstance(dotnetInstance_) {
 //init tree in coursework
 function initTree() {
 
-    console.log('initree called');
-    ////
+    $('#mobile-nav').click(function (event) {
+        $('._nav').toggleClass('active');
+    });
+    ////console.log('initree called');
     //if (dotnetInstance == null) {
     //    dotnetInstance = dotnetInstance_;
     //}
