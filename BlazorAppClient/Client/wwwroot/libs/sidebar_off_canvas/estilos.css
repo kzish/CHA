@@ -59,7 +59,10 @@
 
 
 ._nav {
-    background: #fff;
+    /*background: #eaeaea;*/
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(246,244,244,1) 45%, rgba(255,255,255,1) 100%);
+    /**/
     padding-right: .25em;
     position: absolute;
     left: -18em;
@@ -71,7 +74,7 @@
     -webkit-transition: all .3s;
     -o-transition: all .3s;
     transition: all .3s;
-/**/
+    /**/
     -o-box-shadow: 0px 0px 2px #d9d0d0;
     -moz-box-shadow: 0px 0px 2px #d9d0d0;
     -webkit-box-shadow: 0px 0px 2px #d9d0d0;

@@ -1,7 +1,7 @@
 {
   "FilesToCompress": [
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\zvyjIoqUp3TYRj6gc4q4N49DBVhwS2ydl355BnDiwCQ=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\h5lSq6uqdcEnlHKwe_oSbYEJYGl-4zuonwDn3PrZ-v0=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BlazorAppClient.Client.dll",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BlazorAppClient.Client.dll.gz"
     },
@@ -316,7 +316,7 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BlazorAppClient.Shared.dll.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\tovdivj2m4rEdpVVuNweTcAy-7s2g-4qjUllTpcXpCA=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\IS3WNKo_WMkPMSdRTX6hvbdHVQGVxp0WyJ_sbGxgIOk=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BlazorAppClient.Client.pdb",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BlazorAppClient.Client.pdb.gz"
     },
@@ -346,12 +346,12 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.webassembly.js.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\frd5hVcUC9RCXCL7TKYC-hzadrjAs9PhSKwWY7eii1M=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\1s45EakOYekvCSmfH0ASy12ffgrTrGAV07Ua4VZ4MMM=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\blazor.boot.json",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.boot.json.gz"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\RsGRiYH0rkIqfgEX81QYfiWOH1GPgmVzhUk12zapYEU=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\usyFj8vhgvpe6rQk9-x8NR6YeZDmvorlPgoTlBAExm4=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\service-worker-assets.js",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\service-worker-assets.js.gz"
     }

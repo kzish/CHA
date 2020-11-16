@@ -30,10 +30,10 @@ function initTree() {
     $('#mobile-nav').click(function (event) {
         $('._nav').toggleClass('active');
     });
-    //console.log('initree called');
-    if (dotnetInstance == null) {
-        dotnetInstance = dotnetInstance_;
-    }
+    ////console.log('initree called');
+    //if (dotnetInstance == null) {
+    //    dotnetInstance = dotnetInstance_;
+    //}
     $('#html_course_work').jstree();
     $('#html_exam').jstree();
 
