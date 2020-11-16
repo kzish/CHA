@@ -9,7 +9,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "BlazorAppClient.Client.dll": "sha256-AtNT82kGxp6wuos1hcSHn51g4mAot5vssDGYwsOMRtM=",
+      "BlazorAppClient.Client.dll": "sha256-zvyjIoqUp3TYRj6gc4q4N49DBVhwS2ydl355BnDiwCQ=",
       "System.Net.Http.Json.dll": "sha256-99dseBOagY3mzu5Y8Eqm8gRI+o8QbbCp7R2Ew9bQ+5E=",
       "System.Buffers.dll": "sha256-ZxXy75PYbzJxNfAc\/SAP1nUYm4gt1jSaOpFnBb9m85M=",
       "mscorlib.dll": "sha256-BaZPMj95+YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=",
@@ -74,7 +74,7 @@
       "BlazorAppClient.Shared.dll": "sha256-Ds\/MgnAYCqFayI3cMThhHDr2lxk+gHQRIVRCHsqx4c4="
     },
     "pdb": {
-      "BlazorAppClient.Client.pdb": "sha256-6m36qXVy46Zc2ivu\/1QYnUO65DZMfhvj\/FRQwFlZ2cU=",
+      "BlazorAppClient.Client.pdb": "sha256-tovdivj2m4rEdpVVuNweTcAy\/7s2g\/4qjUllTpcXpCA=",
       "BlazorAppClient.Shared.pdb": "sha256-9h5MJaTEbls\/gRt08cdNLnIExJB8wep825OnhS\/Klfk="
     },
     "runtime": {

@@ -25,62 +25,60 @@
 }
 else
 {
-    <div class="page-wrapper white-theme sidebar-bg. bg1. toggled">
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-                <!-- sidebar-brand  -->
-                <div class="sidebar-item. sidebar-brand" style="color:black!important;">
-                    <a href="/Course/@course.Id"><i title="back" class="fas fa-sign-out-alt flip_180" style="color:black;font-size:22px;"></i></a><a style="color:black;" title="@course.CourseName">@(course.CourseName.Length >= 10 ? course.CourseName.Substring(0, 9) + "..." : course.CourseName) / Exam</a>
-                </div>
-                <!--<hr />-->
-                <!-- sidebar-search  -->
-                <!--<div class="sidebar-item sidebar-search">
-                    <div>
-                        <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="Search...">
-                            <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr />-->
-                <!-- sidebar-menu  -->
-                <div class="sidebar-item.">
 
-                    <div id="html_exam" class="demo">
+
+    <div id="mobile-nav"></div>
+    <nav class="_nav active">
+        <div class="sidebar-item. sidebar-brand" style="color:black!important;">
+
+            <a href="/Course/@course.Id" style="color:black;font-size:22px;text-decoration:none;margin:10px;">
+                <i title="back" class="fas fa-sign-out-alt flip_180"></i>
+                Back
+            </a>
+            <hr />
+            <h3 style="margin:10px;color:black;">
+                <a title="@course.CourseName">
+                    @(course.CourseName.Length >= 10 ? course.CourseName.Substring(0, 9) + "..." : course.CourseName)
+                </a>
+
+            </h3>
+            <h4 style="margin:10px;color:Highlight;">
+                <a>
+                    Exam
+                </a>
+            </h4>
+
+        </div>
+        <br />
+        <div id="html_exam" class="demo">
+            <ul>
+                @foreach (var topic in course.MCourseTopic.OrderBy(i => i.Sequence))
+                {
+                    <li data-jstree='{ "opened" : @(course_counter == 0 ? "true" : "false") }'>
+                        @topic.Topic
                         <ul>
-                            @foreach (var topic in course.MCourseTopic.OrderBy(i => i.Sequence))
+                            @{
+                                int question_number = 1;
+                            }
+                            @foreach (var page_ in course.MQuestion.Where(i => i.MCourseTopicIdFk == topic.Id).OrderBy(i => i.QuestionSequence))
                             {
-                                <li data-jstree='{ "opened" : @(course_counter == 0 ? "true" : "false") }'>
-                                    @topic.Topic
-                                    <ul>
-                                        @{
-                                            int question_number = 1;
-                                        }
-                                        @foreach (var page_ in course.MQuestion.Where(i => i.MCourseTopicIdFk == topic.Id).OrderBy(i => i.QuestionSequence))
-                                        {
-                                            <li data-jstree='{ "selected" : false,"PageData":"@page_.QuestionText","QuestionID":"@page_.Id" }'>
-                                                Question @question_number
-                                            </li>
-                                            @(question_number = question_number + 1)
-                                        }
-                                    </ul>
+                                <li data-jstree='{ "selected" : false,"PageData":"@page_.QuestionText","QuestionID":"@page_.Id" }'>
+                                    Question @question_number
                                 </li>
-                                @(course_counter = course_counter + 1)
+                                @(question_number = question_number + 1)
                             }
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <!-- page-content  -->
-        <main class="page-content pt-2">
-         
+                    </li>
+                    @(course_counter = course_counter + 1)
+                }
+            </ul>
+        </div>
+    </nav>
 
-              <div class="container">
+
+    <div class="page-wrapper white-theme sidebar-bg. bg1. toggled">
+        <main class="page-content pt-2">
+            <div class="container">
                 @if (!string.IsNullOrEmpty(PageData))
                 {
                     <div class="row">
@@ -90,10 +88,10 @@ else
                                 <div class="progress-bar @(state.exam_percentage_complete==100?"bg-success":
                                                            state.exam_percentage_complete>=75?"bg-info":
                                                            state.exam_percentage_complete>=50?"bg-warning":
-                                                           "bg-danger")" 
-                                     role="progressbar" 
-                                     style="width: @(state.exam_percentage_complete)%;" 
-                                     aria-valuenow="@(state.exam_percentage_complete)" 
+                                                           "bg-danger")"
+                                     role="progressbar"
+                                     style="width: @(state.exam_percentage_complete)%;"
+                                     aria-valuenow="@(state.exam_percentage_complete)"
                                      aria-valuemin="0" aria-valuemax="100">@(state.exam_percentage_complete)%</div>
                             </div>
                         </div>
@@ -111,13 +109,8 @@ else
 
 
 
-            <div id="overlay" class="overlay"></div>
+            @*<div id="overlay" class="overlay"></div>*@
             <div class="container-fluid p-5">
-                <div class="row">
-                    <div class="col-md-12">
-
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         @((MarkupString)PageData)

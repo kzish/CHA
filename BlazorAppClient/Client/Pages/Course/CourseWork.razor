@@ -24,57 +24,54 @@
 else
 {
 
+    <div id="mobile-nav"></div>
+    <nav class="_nav active">
+        <div class="sidebar-item. sidebar-brand" style="color:black!important;">
+
+            <a href="/Course/@course.Id" style="color:black;font-size:22px;text-decoration:none;margin:10px;">
+                <i title="back" class="fas fa-sign-out-alt flip_180"></i>
+                Back
+            </a>
+            <hr />
+            <h3 style="margin:10px;color:black;">
+                <a title="@course.CourseName">
+                    @(course.CourseName.Length >= 10 ? course.CourseName.Substring(0, 9) + "..." : course.CourseName)
+                </a>
+
+            </h3>
+            <h4 style="margin:10px;color:Highlight;">
+                <a>
+                    Course Work
+                </a>
+            </h4>
+
+        </div>
+        <br />
+        <div id="html_course_work" class="demo">
+            <ul>
+                @foreach (var topic in course.MCourseTopic.OrderBy(i => i.Sequence))
+                {
+                    <li data-jstree='{ "opened" : @(course_counter == 0 ? "true" : "false") }'>
+                        @topic.Topic
+                        <ul>
+                            @foreach (var page_ in course.MCourseMaterial.Where(i => i.MCourseTopicIdFk == topic.Id).OrderBy(i => i.PageSequence))
+                            {
+                                <li data-jstree='{"topic_id":"@topic.Id","page_id":"@page_.Id", "selected" : false,"PageData":"@page_.PageData" }'>
+                                    @page_.PageTitle
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    @(course_counter = course_counter + 1)
+                }
+            </ul>
+        </div>
+    </nav>
 
 
 
     <div class="page-wrapper white-theme sidebar-bg. bg1. toggled">
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-                <!-- sidebar-brand  -->
-                <div class="sidebar-item. sidebar-brand" style="color:black!important;">
-                    <a href="/Course/@course.Id"><i title="back" class="fas fa-sign-out-alt flip_180" style="color:black;font-size:22px;"></i></a><a style="color:black;" title="@course.CourseName">@(course.CourseName.Length >= 10 ? course.CourseName.Substring(0, 9) + "..." : course.CourseName) / CW</a>
-                </div>
-                <!--<hr />-->
-                <!-- sidebar-search  -->
-                <!--<div class="sidebar-item sidebar-search">
-                    <div>
-                        <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="Search...">
-                            <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr />-->
-                <!-- sidebar-menu  -->
-                <div class="sidebar-item.">
 
-                    <div id="html_course_work" class="demo">
-                        <ul>
-                            @foreach (var topic in course.MCourseTopic.OrderBy(i => i.Sequence))
-                            {
-                                <li data-jstree='{ "opened" : @(course_counter == 0 ? "true" : "false") }'>
-                                    @topic.Topic
-                                    <ul>
-                                        @foreach (var page_ in course.MCourseMaterial.Where(i => i.MCourseTopicIdFk == topic.Id).OrderBy(i => i.PageSequence))
-                                        {
-                                            <li data-jstree='{"topic_id":"@topic.Id","page_id":"@page_.Id", "selected" : false,"PageData":"@page_.PageData" }'>
-                                                @page_.PageTitle
-                                            </li>
-                                        }
-                                    </ul>
-                                </li>
-                                @(course_counter = course_counter + 1)
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        <!-- page-content  -->
         <main class="page-content pt-2">
 
             <div class="container">
@@ -88,10 +85,10 @@ else
                                 <div class="progress-bar @(state.course_percentage_complete==100?"bg-success":
                                                            state.course_percentage_complete>=75?"bg-info":
                                                            state.course_percentage_complete>=50?"bg-warning":
-                                                           "bg-danger")" 
-                                     role="progressbar" 
-                                     style="width: @(state.course_percentage_complete)%;" 
-                                     aria-valuenow="@(state.course_percentage_complete)" 
+                                                           "bg-danger")"
+                                     role="progressbar"
+                                     style="width: @(state.course_percentage_complete)%;"
+                                     aria-valuenow="@(state.course_percentage_complete)"
                                      aria-valuemin="0" aria-valuemax="100">@(state.course_percentage_complete)%</div>
                             </div>
                         </div>
@@ -108,7 +105,7 @@ else
             </div>
 
 
-            <div id="overlay" class="overlay"></div>
+            @*<div id="overlay" class="overlay"></div>*@
             <div class="container-fluid p-5">
                 @if (!string.IsNullOrEmpty(PageData))
                 {
@@ -119,7 +116,7 @@ else
                         @if (state.completed_pages.Where(i => i.CoursePageIdFk == page_id).Any())
                         {
                             <button class="btn btn-sm btn-warning">
-                                Already saved
+                                Saved
                             </button>
                         }
                         else
@@ -204,7 +201,7 @@ else
 
 
     [JSInvokable]
-    public void RenderContent(string _page_id, string page_data,string _topic_id)
+    public void RenderContent(string _page_id, string page_data, string _topic_id)
     {
         tree_initialized = true;
         if (!string.IsNullOrEmpty(page_data))
