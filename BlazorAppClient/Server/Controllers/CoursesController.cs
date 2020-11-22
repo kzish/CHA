@@ -19,6 +19,14 @@ namespace BlazorAppClient.Server.Controllers
     {
         private dbContext db = new dbContext();
 
+        /// <summary>
+        /// only fetch relevant information for the main menu
+        /// optimise for network spead
+        /// </summary>
+        /// <param name="asp_net_user_id"></param>
+        /// <param name="page_number"></param>
+        /// <param name="page_size"></param>
+        /// <returns></returns>
         [HttpGet("FetchMyCourses")]
         public JsonResult FetchMyCourses(string asp_net_user_id, int page_number = 0, int page_size = 10)
         {
@@ -64,6 +72,12 @@ namespace BlazorAppClient.Server.Controllers
         }
 
 
+        /// <summary>
+        /// optimized to fetch only relevant information
+        /// </summary>
+        /// <param name="course_id"></param>
+        /// <param name="asp_net_user_id"></param>
+        /// <returns></returns>
         [HttpGet("FetchCourse")]
         public JsonResult FetchCourse(string course_id, string asp_net_user_id)
         {
@@ -115,8 +129,8 @@ namespace BlazorAppClient.Server.Controllers
                     .Where(i => i.Id == course_id)
                     .Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
-                    .Include(i => i.MQuestion)
-                    .Include(i => i.MQuestionAnswerOptions)
+                    //.Include(i => i.MQuestion)
+                    //.Include(i => i.MQuestionAnswerOptions)
                     .First();
                 //
                 //tell the client which pages are completed
@@ -125,7 +139,7 @@ namespace BlazorAppClient.Server.Controllers
                     .ToList();
                 //
                 var course_materials_base_64 = new List<BlazorAppClient.Server.Models.MCourseMaterial>();
-                var course_question_base_64 = new List<BlazorAppClient.Server.Models.MQuestion>();
+                //var course_question_base_64 = new List<BlazorAppClient.Server.Models.MQuestion>();
                 //
                 foreach (var data in course.MCourseMaterial)
                 {
@@ -133,16 +147,16 @@ namespace BlazorAppClient.Server.Controllers
                     data.PageData = Globals.Base64Encode(data.PageData);
                     course_materials_base_64.Add(data);
                 }
-                //
-                foreach (var data in course.MQuestion)
-                {
-                    //convert to base64
-                    data.QuestionText = Globals.Base64Encode(data.QuestionText);
-                    course_question_base_64.Add(data);
-                }
+                ////
+                //foreach (var data in course.MQuestion)
+                //{
+                //    //convert to base64
+                //    data.QuestionText = Globals.Base64Encode(data.QuestionText);
+                //    course_question_base_64.Add(data);
+                //}
                 //
                 course.MCourseMaterial = course_materials_base_64;
-                course.MQuestion = course_question_base_64;
+                //course.MQuestion = course_question_base_64;
 
                 return Json(new
                 {
@@ -233,7 +247,7 @@ namespace BlazorAppClient.Server.Controllers
             }
         }
 
-       
+
         [HttpGet("FetchReports")]
         public JsonResult FetchReports(string course_id, string asp_net_user_id)
         {
@@ -333,7 +347,7 @@ namespace BlazorAppClient.Server.Controllers
 
 
         [HttpPost("UpdateCourseProgress")]
-        public JsonResult UpdateCourseProgress(string asp_net_user_id, string page_id,string course_id,string topic_id)
+        public JsonResult UpdateCourseProgress(string asp_net_user_id, string page_id, string course_id, string topic_id)
         {
             try
             {
@@ -350,10 +364,11 @@ namespace BlazorAppClient.Server.Controllers
                     .Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id)
                     .ToList();
 
-                return Json(new { 
+                return Json(new
+                {
                     res = "ok",
                     data = "progress saved",
-                    completed_pages 
+                    completed_pages
                 });
             }
             catch (Exception ex)
@@ -362,10 +377,93 @@ namespace BlazorAppClient.Server.Controllers
             }
         }
 
-    
-    
-    
-    
+
+        /// <summary>
+        /// load the questions and answers for the selected page/course material
+        /// </summary>
+        /// <param name="course_material_id"></param>
+        /// <param name="asp_net_user_id"></param>
+        /// <returns></returns>
+        [HttpGet("LoadQuestionsForCourseMaterial")]
+        public JsonResult LoadQuestionsForCourseMaterial(string course_id,string course_material_id, string asp_net_user_id)
+        {
+            try
+            {
+                var course_taker = db.MCourseTakers
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
+                    .Any();
+                //
+                if (!course_taker)
+                {
+                    return Json(new
+                    {
+                        res = "err",
+                        data = "You cannot take this course"
+                    });
+                }
+                //
+                var course_material_questions = db.MCourseWorkQuestion
+                    .Where(i => i.MCourseMaterialIdFk == course_material_id)
+                    .Include(i => i.MCourseWorkQuestionAnswerOptions)
+                    .ToList();
+
+                //tell the client which questions are completed
+                var completed_questions_answers = db.MUsersAnswersCourseMaterial
+                    .Where(i => i.CourseMaterialIdFk == course_material_id && i.AspNetUserIdFk == asp_net_user_id)
+                    .ToList();
+                //
+                var course_material_questions_base_64 = new List<BlazorAppClient.Server.Models.MCourseWorkQuestion>();
+                foreach (var data in course_material_questions)
+                {
+                    //convert to base64
+                    data.QuestionText = Globals.Base64Encode(data.QuestionText);
+                    course_material_questions_base_64.Add(data);
+                }
+                //
+                return Json(new
+                {
+                    res = "ok",
+                    data = course_material_questions_base_64,
+                    completed_questions_answers
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    res = "err",
+                    data = ex.Message
+                });
+            }
+        }
+
+
+        [HttpPost("UploadCourseMaterialAnswerToServer")]
+        public JsonResult UploadCourseMaterialAnswerToServer([FromBody] BlazorAppClient.Server.Models.MUsersAnswersCourseMaterial answer)
+        {
+            try
+            {
+                db.MUsersAnswersCourseMaterial.Add(answer);
+                db.SaveChanges();
+                return Json(new
+                {
+                    res = "ok",
+                    data = "Answer Saved"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    res = "err",
+                    data = ex.Message
+                });
+            }
+        }
+
+
+
+
     }
 
 

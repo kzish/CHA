@@ -42,7 +42,8 @@ function initTree() {
         var pageData = (data.node.data.jstree.PageData);
         var page_id = (data.node.data.jstree.page_id);
         var topic_id = (data.node.data.jstree.topic_id);
-        dotnetInstance.invokeMethodAsync("RenderContent", page_id, pageData, topic_id)
+        var has_questions = (data.node.data.jstree.has_questions);
+        dotnetInstance.invokeMethodAsync("RenderContent", page_id, pageData, topic_id, has_questions)
     });
 
     $('#html_exam').on("changed.jstree", function (e, data) {

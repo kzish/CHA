@@ -18,6 +18,7 @@ namespace BlazorAppClient.Shared.Models
             MCourseTakers = new HashSet<MCourseTakers>();
             MCourseWorkProgress = new HashSet<MCourseWorkProgress>();
             MUsersAnswers = new HashSet<MUsersAnswers>();
+            MUsersAnswersCourseMaterial = new HashSet<MUsersAnswersCourseMaterial>();
         }
 
         public string Id { get; set; }
@@ -49,5 +50,6 @@ namespace BlazorAppClient.Shared.Models
         public virtual ICollection<MCourseTakers> MCourseTakers { get; set; }
         public virtual ICollection<MCourseWorkProgress> MCourseWorkProgress { get; set; }
         public virtual ICollection<MUsersAnswers> MUsersAnswers { get; set; }
+        public virtual ICollection<MUsersAnswersCourseMaterial> MUsersAnswersCourseMaterial { get; set; }
     }
 }

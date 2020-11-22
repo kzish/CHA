@@ -120,6 +120,7 @@ namespace Admin.Controllers
                 old_material.Published = material.Published;
                 old_material.DatePublished = DateTime.Now;
                 old_material.PageTitle = material.PageTitle;
+                old_material.HasQuestions = material.HasQuestions;
                 db.SaveChanges();
                 TempData["msg"] = "Material Updated";
                 TempData["type"] = "success";

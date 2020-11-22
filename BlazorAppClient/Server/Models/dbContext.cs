@@ -34,10 +34,13 @@ namespace BlazorAppClient.Server.Models
         public virtual DbSet<MCourseTakers> MCourseTakers { get; set; }
         public virtual DbSet<MCourseTopic> MCourseTopic { get; set; }
         public virtual DbSet<MCourseWorkProgress> MCourseWorkProgress { get; set; }
+        public virtual DbSet<MCourseWorkQuestion> MCourseWorkQuestion { get; set; }
+        public virtual DbSet<MCourseWorkQuestionAnswerOptions> MCourseWorkQuestionAnswerOptions { get; set; }
         public virtual DbSet<MMedia> MMedia { get; set; }
         public virtual DbSet<MQuestion> MQuestion { get; set; }
         public virtual DbSet<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
         public virtual DbSet<MUsersAnswers> MUsersAnswers { get; set; }
+        public virtual DbSet<MUsersAnswersCourseMaterial> MUsersAnswersCourseMaterial { get; set; }
         public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -448,6 +451,8 @@ sequencing by page numbers");
                     .HasColumnName("date_published")
                     .HasColumnType("datetime");
 
+                entity.Property(e => e.HasQuestions).HasColumnName("has_questions");
+
                 entity.Property(e => e.MCourseIdFk)
                     .IsRequired()
                     .HasColumnName("m_course_id_fk")
@@ -643,6 +648,91 @@ user simply clicks a button to confirm that he/she  has gone thru this page and 
                     .HasConstraintName("FK_m_course_work_progress_m_course_topic");
             });
 
+            modelBuilder.Entity<MCourseWorkQuestion>(entity =>
+            {
+                entity.ToTable("m_course_work_question");
+
+                entity.HasComment(@"inline questions for the course work
+
+these questions will appear in the page for that course work page");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.EQuestionTypeIdFk)
+                    .IsRequired()
+                    .HasColumnName("e_question_type_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasComment("links to the question type");
+
+                entity.Property(e => e.MCourseMaterialIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_course_material_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasComment("links to the course");
+
+                entity.Property(e => e.QuestionSequence)
+                    .HasColumnName("question_sequence")
+                    .HasComment("order you want the question to appear");
+
+                entity.Property(e => e.QuestionText)
+                    .IsRequired()
+                    .HasColumnName("question_text")
+                    .IsUnicode(false)
+                    .HasComment("this will be html content rendered onto the screen, videos and audio will have extra paraeters to help render the content");
+
+                entity.HasOne(d => d.EQuestionTypeIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkQuestion)
+                    .HasForeignKey(d => d.EQuestionTypeIdFk)
+                    .HasConstraintName("FK_m_course_work_question_e_question_answer_type");
+
+                entity.HasOne(d => d.MCourseMaterialIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkQuestion)
+                    .HasForeignKey(d => d.MCourseMaterialIdFk)
+                    .HasConstraintName("FK_m_course_work_question_m_course_material");
+            });
+
+            modelBuilder.Entity<MCourseWorkQuestionAnswerOptions>(entity =>
+            {
+                entity.ToTable("m_course_work_question_answer_options");
+
+                entity.HasComment("inline course work page question options");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Explanation)
+                    .HasColumnName("explanation")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IsCorrectAnswer).HasColumnName("is_correct_answer");
+
+                entity.Property(e => e.MCourseWorkQuestionIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_course_work_question_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasComment("links to the course material question");
+
+                entity.Property(e => e.OptionText)
+                    .IsRequired()
+                    .HasColumnName("option_text")
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.MCourseWorkQuestionIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkQuestionAnswerOptions)
+                    .HasForeignKey(d => d.MCourseWorkQuestionIdFk)
+                    .HasConstraintName("FK_m_course_work_question_answer_options_m_course_work_question");
+            });
+
             modelBuilder.Entity<MMedia>(entity =>
             {
                 entity.HasKey(e => e.IdFileNameGuid);
@@ -745,6 +835,10 @@ each question type will be rendered in its own way");
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Explanation)
+                    .HasColumnName("explanation")
+                    .IsUnicode(false);
 
                 entity.Property(e => e.IsCorrectAnswer).HasColumnName("is_correct_answer");
 
@@ -849,6 +943,63 @@ each question type will be rendered in its own way");
                     .HasForeignKey(d => d.TopicIdFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_users_answers_m_course_topic");
+            });
+
+            modelBuilder.Entity<MUsersAnswersCourseMaterial>(entity =>
+            {
+                entity.ToTable("m_users_answers_course_material");
+
+                entity.HasComment("users answers for each courematerial question");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Answer)
+                    .IsRequired()
+                    .HasColumnName("answer")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.CorrectAnswer).HasColumnName("correct_answer");
+
+                entity.Property(e => e.CourseMaterialIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_material_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CourseMaterialQuestionIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_material_question_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DateAnswered)
+                    .HasColumnName("date_answered")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswersCourseMaterial)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .HasConstraintName("FK_m_users_answers_coure_material_AspNetUsers");
+
+                entity.HasOne(d => d.CourseMaterialIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswersCourseMaterial)
+                    .HasForeignKey(d => d.CourseMaterialIdFk)
+                    .HasConstraintName("FK_m_users_answers_coure_material_m_course_material");
+
+                entity.HasOne(d => d.CourseMaterialQuestionIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswersCourseMaterial)
+                    .HasForeignKey(d => d.CourseMaterialQuestionIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_users_answers_course_material_m_course_work_question");
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>

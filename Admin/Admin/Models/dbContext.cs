@@ -427,6 +427,8 @@ namespace Admin.Models
                     .HasColumnName("date_published")
                     .HasColumnType("datetime");
 
+                entity.Property(e => e.HasQuestions).HasColumnName("has_questions");
+
                 entity.Property(e => e.MCourseIdFk)
                     .IsRequired()
                     .HasColumnName("m_course_id_fk")

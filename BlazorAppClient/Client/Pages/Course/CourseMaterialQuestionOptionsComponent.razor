@@ -1,0 +1,236 @@
+﻿@inject State state
+@inject IJSRuntime js
+@inject IToastService toastService
+@inject HttpClient http_client
+@* question text *@
+<div class="jumbotron">
+    <p class="lead">
+        <b>@((MarkupString)question.QuestionText)</b>
+    </p>
+</div>
+
+@* show answer if one exists *@
+@if (answers.Where(i => i.CourseMaterialQuestionIdFk == question.Id).Any())
+{
+    //show answer
+    <CourseMaterialAnswersComponent question="question"
+                                    answer="answers.Where(i => i.CourseMaterialQuestionIdFk == question.Id).FirstOrDefault()" />
+}
+else
+{
+    @* else show question options *@
+    @foreach (var item in question.MCourseWorkQuestionAnswerOptions)
+    {
+        if (question.EQuestionTypeIdFk == checkbox_based_question_id)//checkbox
+        {
+            <input type="checkbox" value="true" @onchange="( (ev) =>  { AddRemoveAnswer(ev, item.Id); } )" />
+            @item.OptionText
+            <br />
+        }
+        else if (question.EQuestionTypeIdFk == radio_based_question_id)//radio
+        {
+            <input name="radio" value="true" type="radio" @onchange="( (ev) =>  { AddRemoveAnswer(ev, item.Id); } )" />
+            @item.OptionText
+            <br />
+        }
+        else if (question.EQuestionTypeIdFk == text_based_question_id)//text
+        {
+            <textarea placeholder="type answer here..." required @bind="text_answer"></textarea>
+        }
+    }
+}
+
+@if (!answers.Where(i => i.CourseMaterialQuestionIdFk == question.Id).Any())
+{
+    <br />
+    <button type="button" @onclick="ConfirmSubmit" class="btn btn-success btn-sm">
+        <Loading isloading="loading" />
+        Submit Answer
+    </button>
+    <br />
+    <small style="color:red;">you will not be able to change the answer</small>
+}
+
+
+@code {
+
+    [Parameter]
+    public BlazorAppClient.Shared.Models.MCourseWorkQuestion question { get; set; }
+    [Parameter]
+    public List<BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial> answers { get; set; } = new List<BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial>();
+
+    public List<string> selected_answers = new List<string>();
+    private string text_answer = string.Empty;
+    //
+    private string text_based_question_id = "A011ED2A-AE61-43BB-BD01-EEFD428DE0FE";
+    private string radio_based_question_id = "C277D965-1573-43C7-8E23-81AD4AAAB6F9";
+    private string checkbox_based_question_id = "04E2AB58-1885-411E-BCB5-0A14894571E9";
+    //only show the answer if the question has been answered
+    private bool loading { get; set; } = false;
+
+    protected override void OnInitialized()
+    {
+        state.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        state.OnChange -= StateHasChanged;
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        //convert from base 64 text
+        question.QuestionText = System.Text.ASCIIEncoding.ASCII.GetString(System.Convert.FromBase64String(question.QuestionText));
+    }
+
+    private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
+    {
+        dynamic user_string = await local_storage.GetItemAsStringAsync("current_user");
+        var current_user = JsonConvert.DeserializeObject<BlazorAppClient.Shared.CurrentUser>(user_string);
+        return current_user;
+    }
+
+
+
+
+    private void AddRemoveAnswer(ChangeEventArgs e, string answer)
+    {
+        if (question.EQuestionTypeIdFk == radio_based_question_id)
+        {
+            selected_answers.Clear();//remove all answers for radio
+        }
+        if (bool.Parse(e.Value.ToString()))
+        {
+            if (!selected_answers.Contains(answer))
+            {
+                selected_answers.Add(answer);
+            }
+        }
+        else
+        {
+            if (selected_answers.Contains(answer))
+                selected_answers.Remove(answer);
+        }
+        Console.WriteLine(string.Join(",", selected_answers));
+    }
+
+
+    private async Task<bool> UploadAnswerToServer(BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial answer)
+    {
+        try
+        {
+
+            loading = true;
+            //StateHasChanged();
+            var response1 = await http_client.PostAsJsonAsync<BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial>("/Courses/UploadCourseMaterialAnswerToServer", answer);
+            var response2 = await response1.Content.ReadAsStringAsync();
+            dynamic json = JsonConvert.DeserializeObject(response2);
+            if (json.res.ToString() == "ok")
+            {
+                answers.Add(answer);
+                return true;
+            }
+            else
+            {
+                toastService.ShowError(json.data.ToString());
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+        finally
+        {
+            loading = false;
+            //selected_answers.Clear();
+            StateHasChanged();
+        }
+    }
+
+
+
+    private async Task ConfirmSubmit()
+    {
+        var current_user = await GetCurrentUser();
+        //user has confirmed answer
+        var confirm = await js.InvokeAsync<bool>("confirm", new[] { "Confirm Answer", "Are you sure?" });
+        if (confirm)
+        {
+
+            if (selected_answers.Count == 0 && string.IsNullOrEmpty(text_answer))
+            {
+                toastService.ShowError("Provide and answer");
+                return;
+            }
+            if (question.EQuestionTypeIdFk == text_based_question_id)//text based answer
+            {
+                if (string.IsNullOrEmpty(text_answer))
+                {
+                    toastService.ShowError("Answer is empty");
+                    return;
+                }
+                else
+                {
+                    //todo: compare text asnwer with users answer using bayes algorithm
+                }
+            }
+            else//radio and checkbox
+            {
+                var list_of_correct_answers = question.MCourseWorkQuestionAnswerOptions
+                .Where(i => i.IsCorrectAnswer)
+                .Select(i => i.Id)
+                .ToList();
+
+                //first check same number of answers
+                if (selected_answers.Count == list_of_correct_answers.Count)
+                {
+                    //
+                    var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial()
+                    {
+                        CourseMaterialIdFk = question.MCourseMaterialIdFk,
+                        CourseMaterialQuestionIdFk = question.Id,
+                        AspNetUserIdFk = current_user.user_id,
+                        DateAnswered = DateTime.Now,
+                        Answer = String.Join(",", selected_answers),
+                        CorrectAnswer = false,
+                    };
+                    //
+                    var intersection = selected_answers.Intersect(list_of_correct_answers).ToList();
+                    if (intersection.Count == list_of_correct_answers.Count)
+                    {
+                        users_answer.CorrectAnswer = true;
+                    }
+                    //
+                    if (await UploadAnswerToServer(users_answer))
+                    {
+                        //state.SetAnswer(users_answer);
+                    }
+                }
+                else
+                {
+                    //record answers as incorrect already, since they are different lengths
+                    var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial()
+                    {
+                        CourseMaterialIdFk = question.MCourseMaterialIdFk,
+                        CourseMaterialQuestionIdFk = question.Id,
+                        AspNetUserIdFk = current_user.user_id,
+                        DateAnswered = DateTime.Now,
+                        Answer = String.Join(",", selected_answers),
+                        CorrectAnswer = false,
+                    };
+                    //
+                    if (await UploadAnswerToServer(users_answer))
+                    {
+                        //state.SetAnswer(users_answer);
+                    }
+                }
+
+
+            }
+
+        }
+    }
+}

@@ -1,0 +1,83 @@
+﻿
+<h3>Your answer is: @(answer.CorrectAnswer? ((MarkupString)"<span style='color:green'>Correct</span>") : ((MarkupString)"<span style='color:red'>Wrong</span>"))</h3>
+@if (question.EQuestionTypeIdFk == text_based_question_id)
+{
+    <p>@text_answer</p>
+}
+else
+{
+    @if (selected_answers.Count > 0 && selected_answers != null)
+    {
+        <ul>
+            @foreach (var ans in selected_answers)
+            {
+                <li>
+                    @question.MCourseWorkQuestionAnswerOptions.Where(i => i.Id == ans).FirstOrDefault()?.OptionText
+                </li>
+            }
+        </ul>
+    }
+}
+
+
+
+<h3>
+    Correct Answer
+</h3>
+
+@if (question.EQuestionTypeIdFk == text_based_question_id)
+{
+    <p>
+        @question.MCourseWorkQuestionAnswerOptions.FirstOrDefault().OptionText
+    </p>
+}
+else
+{
+    <div id="accordion">
+        @foreach (var ans in question.MCourseWorkQuestionAnswerOptions)
+        {
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <button style="color:@(ans.IsCorrectAnswer?"green":"red")" class="btn btn-link" data-toggle="collapse" data-target="#collapse_@(ans.Id)" aria-expanded="true" aria-controls="collapseOne">
+                            @ans.OptionText   <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapse_@(ans.Id)" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        @ans.Explanation
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
+<br />
+<hr />
+<br />
+
+
+@code{
+
+    [Parameter]
+    public BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial answer { get; set; }
+    [Parameter]
+    public BlazorAppClient.Shared.Models.MCourseWorkQuestion question { get; set; }
+
+    private List<string> selected_answers = null;
+
+    private string text_answer = string.Empty;
+
+    private string text_based_question_id = "A011ED2A-AE61-43BB-BD01-EEFD428DE0FE";
+    private string radio_based_question_id = "C277D965-1573-43C7-8E23-81AD4AAAB6F9";
+    private string checkbox_based_question_id = "04E2AB58-1885-411E-BCB5-0A14894571E9";
+
+    protected override void OnParametersSet()
+    {
+        selected_answers = answer.Answer.Split(",").ToList();
+    }
+
+}

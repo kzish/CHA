@@ -20,6 +20,7 @@ namespace Admin.Models
         public bool Published { get; set; }
         public DateTime? DatePublished { get; set; }
         public string PageTitle { get; set; }
+        public bool HasQuestions { get; set; }
 
         public virtual AspNetUsers CreatedByAspNetUserIdFkNavigation { get; set; }
         public virtual MCourse MCourseIdFkNavigation { get; set; }

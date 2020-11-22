@@ -7,7 +7,7 @@
 }
 else
 {
-    @if (selected_answers.Count > 0 && selected_answers!=null)
+    @if (selected_answers.Count > 0 && selected_answers != null)
     {
         <ul>
             @foreach (var ans in selected_answers)
@@ -34,15 +34,28 @@ else
 }
 else
 {
-    <ul>
+
+    <div id="accordion">
         @foreach (var ans in question.MQuestionAnswerOptions)
         {
-
-            <li style="color:@(ans.IsCorrectAnswer?"green":"red")">
-                @ans.OptionText
-            </li>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <button style="color:@(ans.IsCorrectAnswer?"green":"red")" class="btn btn-link" data-toggle="collapse" data-target="#collapse_@(ans.Id)" aria-expanded="true" aria-controls="collapseOne">
+                            @ans.OptionText   <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapse_@(ans.Id)" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        @ans.Explanation
+                    </div>
+                </div>
+            </div>
         }
-    </ul>
+    </div>
+
+
 }
 
 

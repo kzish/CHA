@@ -53,6 +53,7 @@ namespace Admin.Controllers
             var questions = db.MCourseWorkQuestion
                  .Include(i => i.MCourseWorkQuestionAnswerOptions)
                 .Include(i => i.EQuestionTypeIdFkNavigation)
+                .Include(i => i.MCourseMaterialIdFkNavigation)
                 .Where(i => i.MCourseMaterialIdFk == course_material_id)
                 .ToList();
             ViewBag.questions = questions;

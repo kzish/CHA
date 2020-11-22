@@ -56,7 +56,7 @@ else
                         <ul>
                             @foreach (var page_ in course.MCourseMaterial.Where(i => i.MCourseTopicIdFk == topic.Id).OrderBy(i => i.PageSequence))
                             {
-                                <li data-jstree='{"topic_id":"@topic.Id","page_id":"@page_.Id", "selected" : false,"PageData":"@page_.PageData" }'>
+                                <li data-jstree='{"topic_id":"@topic.Id","page_id":"@page_.Id", "selected" : false,"PageData":"@page_.PageData", "has_questions":"@page_.HasQuestions" }'>
                                     @page_.PageTitle
                                 </li>
                             }
@@ -132,6 +132,28 @@ else
                 }
             </div>
 
+            @* Questions *@
+            <div class="container-fluid p-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (has_questions && course_material_questions == null)
+                        {
+                            <p>Loading Questions...</p>
+                        }
+                        else if (has_questions && course_material_questions != null)
+                        {
+                            <hr />
+                            foreach (var question in course_material_questions.OrderBy(i=>i.QuestionSequence))
+                            {
+                                {
+                                    <CourseMaterialQuestionOptionsComponent question="question" answers="completed_questions_answers" />
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
         </main>
 
     </div>
@@ -153,10 +175,14 @@ else
     private static string PageData = string.Empty;
     private static string page_id = string.Empty;
     private static string topic_id = string.Empty;
+    private static bool has_questions = false;//does this course page/material have any questions?load questions from server
     private bool tree_initialized = false;
     private bool loading = false;
+    private List<BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial> completed_questions_answers = null;
 
     private BlazorAppClient.Shared.Models.MCourse course = null;
+
+    private List<BlazorAppClient.Shared.Models.MCourseWorkQuestion> course_material_questions = null;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -164,6 +190,7 @@ else
         PageData = string.Empty;
         page_id = string.Empty;
         topic_id = string.Empty;
+        has_questions = false;
         await StartCourse();
     }
 
@@ -171,7 +198,6 @@ else
     {
         if (first_render)
         {
-
             await js.InvokeAsync<string>("initInstance", DotNetObjectReference.Create(this));
             StateHasChanged();
         }
@@ -208,9 +234,11 @@ else
 
 
     [JSInvokable]
-    public void RenderContent(string _page_id, string page_data, string _topic_id)
+    public async Task RenderContent(string _page_id, string page_data, string _topic_id, string _has_questions)
     {
         tree_initialized = true;
+        has_questions = false;
+        course_material_questions = null;
         if (!string.IsNullOrEmpty(page_data))
         {
             var base64EncodedBytes = System.Convert.FromBase64String(page_data);
@@ -218,6 +246,11 @@ else
             PageData = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
             page_id = _page_id;
             topic_id = _topic_id;
+            has_questions = bool.Parse(_has_questions.ToLower());
+            if (has_questions)
+            {
+                await LoadQuestionsForCourseMaterial();
+            }
             StateHasChanged();
         }
     }
@@ -293,6 +326,40 @@ else
         finally
         {
             loading = false;
+        }
+    }
+
+
+    /// <summary>
+    /// load the questions and answers for the selected page/course material
+    /// load also the completed answers
+    /// </summary>
+    /// <returns></returns>
+    public async Task LoadQuestionsForCourseMaterial()
+    {
+        try
+        {
+            var current_user = await GetCurrentUser();
+            var response1 = await http_client
+                   .GetAsync($"Courses/LoadQuestionsForCourseMaterial?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}&course_material_id={page_id}&course_id={course_id}");
+            var response2 = await response1.Content.ReadAsStringAsync();
+            dynamic json = JsonConvert.DeserializeObject(response2);
+            if (json.res.ToString() == "ok")
+            {
+                course_material_questions = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MCourseWorkQuestion>>(json.data.ToString());
+                completed_questions_answers = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial>>(json.completed_questions_answers.ToString());
+            }
+            else
+            {
+                toastService.ShowError(json.data.ToString(), "Error");
+            }
+        }
+        catch (Exception ex)
+        {
+            toastService.ShowError(ex.Message, "Error");
+        }
+        finally
+        {
         }
     }
 
