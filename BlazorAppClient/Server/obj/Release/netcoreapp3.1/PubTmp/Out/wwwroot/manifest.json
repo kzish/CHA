@@ -1,6 +1,6 @@
 {
-  "name": "BlazorAppClient",
-  "short_name": "BlazorAppClient",
+  "name": "CHA Courses",
+  "short_name": "CHA Courses",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

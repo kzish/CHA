@@ -5,6 +5,11 @@ namespace Admin.Models
 {
     public partial class MCourseMaterial
     {
+        public MCourseMaterial()
+        {
+            MCourseWorkQuestion = new HashSet<MCourseWorkQuestion>();
+        }
+
         public string Id { get; set; }
         public string MCourseIdFk { get; set; }
         public string MCourseTopicIdFk { get; set; }
@@ -19,5 +24,6 @@ namespace Admin.Models
         public virtual AspNetUsers CreatedByAspNetUserIdFkNavigation { get; set; }
         public virtual MCourse MCourseIdFkNavigation { get; set; }
         public virtual MCourseTopic MCourseTopicIdFkNavigation { get; set; }
+        public virtual ICollection<MCourseWorkQuestion> MCourseWorkQuestion { get; set; }
     }
 }

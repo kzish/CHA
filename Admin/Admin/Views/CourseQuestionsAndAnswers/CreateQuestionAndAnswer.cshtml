@@ -80,30 +80,39 @@
                     <tr>
                         <th>Answer</th>
                         <th>IsCorrectAnswer</th>
+                        <th>Explanation</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in question.MQuestionAnswerOptions)
-                        {
-                            <tr>
-                                <td title="@item.OptionText">@item.OptionText</td>
-                                <td title="@item.IsCorrectAnswer">@item.IsCorrectAnswer</td>
-                                <td>
-                                    <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','True')" style="color:green;">
-                                        Set-Correct
-                                    </a>
-                                    |
-                                    <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','False')" style="color:orange;">
-                                        Set-Wrong
-                                    </a>
-                                    |
-                                    <a href="javascript:void(0);" style="color:red;" onclick="DeleteAnswerOption('@item.Id')">
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
-                        }
+                    {
+                        <tr>
+                            <td title="@item.OptionText">@item.OptionText</td>
+                            <td title="@item.IsCorrectAnswer">@item.IsCorrectAnswer</td>
+                            <td title="@item.Explanation">
+                                <form action="~/CourseQuestionsAndAnswers/UpdateQuestionAnswerOptionExplanation" method="post">
+                                    <input type="hidden" name="Id" value="@item.Id" />
+                                    <textarea name="Explanation" required>@item.Explanation</textarea>
+                                    <br />
+                                    <button type="submit">save</button>
+                                </form>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','True')" style="color:green;">
+                                    Set-Correct
+                                </a>
+                                |
+                                <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','False')" style="color:orange;">
+                                    Set-Wrong
+                                </a>
+                                |
+                                <a href="javascript:void(0);" style="color:red;" onclick="DeleteAnswerOption('@item.Id')">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -149,6 +158,11 @@
 
                     <div class="form-group">
                         <input type="checkbox" name="IsCorrectAnswer" value="true" />&nbsp;Correct Answer
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" name="Explanation" placeholder="enter exlpanation"></textarea>
+                        <small class="form-text text-muted">Explanation</small>
                     </div>
                 </div>
                 <div class="modal-footer">

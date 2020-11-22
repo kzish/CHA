@@ -12,9 +12,11 @@ namespace Admin.Models
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
             MCourse = new HashSet<MCourse>();
+            MCourseExamReports = new HashSet<MCourseExamReports>();
             MCourseInstructor = new HashSet<MCourseInstructor>();
             MCourseMaterial = new HashSet<MCourseMaterial>();
             MCourseTakers = new HashSet<MCourseTakers>();
+            MCourseWorkProgress = new HashSet<MCourseWorkProgress>();
             MUsersAnswers = new HashSet<MUsersAnswers>();
         }
 
@@ -41,9 +43,11 @@ namespace Admin.Models
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual ICollection<MCourse> MCourse { get; set; }
+        public virtual ICollection<MCourseExamReports> MCourseExamReports { get; set; }
         public virtual ICollection<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual ICollection<MCourseMaterial> MCourseMaterial { get; set; }
         public virtual ICollection<MCourseTakers> MCourseTakers { get; set; }
+        public virtual ICollection<MCourseWorkProgress> MCourseWorkProgress { get; set; }
         public virtual ICollection<MUsersAnswers> MUsersAnswers { get; set; }
     }
 }

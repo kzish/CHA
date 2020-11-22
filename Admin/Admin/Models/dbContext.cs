@@ -27,11 +27,15 @@ namespace Admin.Models
         public virtual DbSet<EQuestionAnswerType> EQuestionAnswerType { get; set; }
         public virtual DbSet<MCompany> MCompany { get; set; }
         public virtual DbSet<MCourse> MCourse { get; set; }
+        public virtual DbSet<MCourseExamReports> MCourseExamReports { get; set; }
         public virtual DbSet<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual DbSet<MCourseMaterial> MCourseMaterial { get; set; }
         public virtual DbSet<MCourseObjectives> MCourseObjectives { get; set; }
         public virtual DbSet<MCourseTakers> MCourseTakers { get; set; }
         public virtual DbSet<MCourseTopic> MCourseTopic { get; set; }
+        public virtual DbSet<MCourseWorkProgress> MCourseWorkProgress { get; set; }
+        public virtual DbSet<MCourseWorkQuestion> MCourseWorkQuestion { get; set; }
+        public virtual DbSet<MCourseWorkQuestionAnswerOptions> MCourseWorkQuestionAnswerOptions { get; set; }
         public virtual DbSet<MMedia> MMedia { get; set; }
         public virtual DbSet<MQuestion> MQuestion { get; set; }
         public virtual DbSet<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
@@ -325,6 +329,48 @@ namespace Admin.Models
                     .HasConstraintName("FK_m_course_e_course_category");
             });
 
+            modelBuilder.Entity<MCourseExamReports>(entity =>
+            {
+                entity.ToTable("m_course_exam_reports");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.CourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ExamEndDate)
+                    .HasColumnName("exam_end_date")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.ExamStartDate)
+                    .HasColumnName("exam_start_date")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MCourseExamReports)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_course_exam_reports_AspNetUsers");
+
+                entity.HasOne(d => d.CourseIdFkNavigation)
+                    .WithMany(p => p.MCourseExamReports)
+                    .HasForeignKey(d => d.CourseIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_course_exam_reports_m_course");
+            });
+
             modelBuilder.Entity<MCourseInstructor>(entity =>
             {
                 entity.ToTable("m_course_instructor");
@@ -512,6 +558,127 @@ namespace Admin.Models
                     .HasConstraintName("FK_m_course_topic_m_course");
             });
 
+            modelBuilder.Entity<MCourseWorkProgress>(entity =>
+            {
+                entity.ToTable("m_course_work_progress");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.CourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CoursePageIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_page_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TopicIdFk)
+                    .HasColumnName("topic_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkProgress)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .HasConstraintName("FK_m_course_work_progress_AspNetUsers");
+
+                entity.HasOne(d => d.CourseIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkProgress)
+                    .HasForeignKey(d => d.CourseIdFk)
+                    .HasConstraintName("FK_m_course_work_progress_m_course");
+
+                entity.HasOne(d => d.TopicIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkProgress)
+                    .HasForeignKey(d => d.TopicIdFk)
+                    .HasConstraintName("FK_m_course_work_progress_m_course_topic");
+            });
+
+            modelBuilder.Entity<MCourseWorkQuestion>(entity =>
+            {
+                entity.ToTable("m_course_work_question");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.EQuestionTypeIdFk)
+                    .IsRequired()
+                    .HasColumnName("e_question_type_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MCourseMaterialIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_course_material_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.QuestionSequence).HasColumnName("question_sequence");
+
+                entity.Property(e => e.QuestionText)
+                    .IsRequired()
+                    .HasColumnName("question_text")
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.EQuestionTypeIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkQuestion)
+                    .HasForeignKey(d => d.EQuestionTypeIdFk)
+                    .HasConstraintName("FK_m_course_work_question_e_question_answer_type");
+
+                entity.HasOne(d => d.MCourseMaterialIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkQuestion)
+                    .HasForeignKey(d => d.MCourseMaterialIdFk)
+                    .HasConstraintName("FK_m_course_work_question_m_course_material");
+            });
+
+            modelBuilder.Entity<MCourseWorkQuestionAnswerOptions>(entity =>
+            {
+                entity.ToTable("m_course_work_question_answer_options");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Explanation)
+                    .HasColumnName("explanation")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IsCorrectAnswer).HasColumnName("is_correct_answer");
+
+                entity.Property(e => e.MCourseWorkQuestionIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_course_work_question_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.OptionText)
+                    .IsRequired()
+                    .HasColumnName("option_text")
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.MCourseWorkQuestionIdFkNavigation)
+                    .WithMany(p => p.MCourseWorkQuestionAnswerOptions)
+                    .HasForeignKey(d => d.MCourseWorkQuestionIdFk)
+                    .HasConstraintName("FK_m_course_work_question_answer_options_m_course_work_question");
+            });
+
             modelBuilder.Entity<MMedia>(entity =>
             {
                 entity.HasKey(e => e.IdFileNameGuid);
@@ -592,6 +759,10 @@ namespace Admin.Models
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Explanation)
+                    .HasColumnName("explanation")
+                    .IsUnicode(false);
 
                 entity.Property(e => e.IsCorrectAnswer).HasColumnName("is_correct_answer");
 

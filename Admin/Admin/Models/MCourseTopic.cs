@@ -8,6 +8,7 @@ namespace Admin.Models
         public MCourseTopic()
         {
             MCourseMaterial = new HashSet<MCourseMaterial>();
+            MCourseWorkProgress = new HashSet<MCourseWorkProgress>();
             MQuestion = new HashSet<MQuestion>();
             MUsersAnswers = new HashSet<MUsersAnswers>();
         }
@@ -19,6 +20,7 @@ namespace Admin.Models
 
         public virtual MCourse CourseIdFkNavigation { get; set; }
         public virtual ICollection<MCourseMaterial> MCourseMaterial { get; set; }
+        public virtual ICollection<MCourseWorkProgress> MCourseWorkProgress { get; set; }
         public virtual ICollection<MQuestion> MQuestion { get; set; }
         public virtual ICollection<MUsersAnswers> MUsersAnswers { get; set; }
     }

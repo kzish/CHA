@@ -1,0 +1,208 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var course_material = (Admin.Models.MCourseMaterial)ViewBag.course_material;
+    var question_types = (List<Admin.Models.EQuestionAnswerType>)ViewBag.question_types;
+    var question = (Admin.Models.MCourseWorkQuestion)ViewBag.question;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            Create Question for CourseMaterial: @course_material.PageTitle
+        </div>
+        <div class="col-md-3">
+            @await Html.PartialAsync("~/Views/Shared/_MediaModals.cshtml")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a style="color:blue;" href="~/CourseMaterialQuestionsAndAnswers/AllQuestions?course_material_id=@course_material.Id">Back to Questions</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/CourseMaterialQuestionsAndAnswers/CreateQuestionAndAnswer">
+                <input type="hidden" name="Id" value="@question.Id" />
+                <input type="hidden" name="MCourseMaterialIdFk" value="@question.MCourseMaterialIdFk" />
+
+                <div class="form-group">
+                    <select class="form-control" name="EQuestionTypeIdFk">
+                        @foreach (var item in question_types)
+                        {
+                            <option value="@item.Id" selected="@(question.EQuestionTypeIdFk==item.Id)">@item.Type</option>
+                        }
+                    </select>
+                    <small><span style="color:red;">*</span> Answer Type</small>
+                </div>
+
+                <div class="form-group">
+                    <input type="number" class="form-control" min="0" required name="QuestionSequence" value="@question.QuestionSequence">
+                    <small><span style="color:red;">*</span> Sequence</small>
+                </div>
+
+
+                <div class="form-group">
+                    <textarea id="editor" class="form-control" placeholder="..." name="QuestionText">@question.QuestionText</textarea>
+                    <small><span style="color:red;">*</span> Question Text</small>
+                </div>
+
+                <button type="submit" class="btn btn-success">Save Question</button>
+            </form>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addAnswer">
+                Add Answer Option
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table id="dt" class="table tblsm">
+                <thead>
+                    <tr>
+                        <th>Answer</th>
+                        <th>IsCorrectAnswer</th>
+                        <th>Explanation</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in question.MCourseWorkQuestionAnswerOptions)
+                    {
+                        <tr>
+                            <td title="@item.OptionText">@item.OptionText</td>
+                            <td title="@item.IsCorrectAnswer">@item.IsCorrectAnswer</td>
+                            <td title="@item.Explanation">
+                                <form action="~/CourseMaterialQuestionsAndAnswers/UpdateQuestionAnswerOptionExplanation" method="post">
+                                    <input type="hidden" name="Id" value="@item.Id" />
+                                    <input type="hidden" name="course_material_id" value="@question.MCourseMaterialIdFk" />
+                                    <input type="hidden" name="question_id" value="@question.Id" />
+                                    <textarea name="Explanation" required>@item.Explanation</textarea>
+                                    <br />
+                                    <button type="submit">save</button>
+                                </form>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','True')" style="color:green;">
+                                    Set-Correct
+                                </a>
+                                |
+                                <a href="javascript:void(0);" onclick="SetIsCorrectAnswer('@item.Id','False')" style="color:orange;">
+                                    Set-Wrong
+                                </a>
+                                |
+                                <a href="javascript:void(0);" style="color:red;" onclick="DeleteAnswerOption('@item.Id')">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
+
+<form action="~/CourseMaterialQuestionsAndAnswers/DeleteAnswerOption" method="post" id="DeleteAnswerOption">
+    <input type="hidden" value="" name="answer_id" id="answer_id_1" />
+    <input type="hidden" value="@question.Id" name="question_id" id="question_id_1" />
+    <input type="hidden" value="@course_material.Id" name="course_material_id" id="course_id_1" />
+</form>
+
+<form action="~/CourseMaterialQuestionsAndAnswers/SetIsCorrectAnswer" method="post" id="SetIsCorrectAnswer">
+    <input type="hidden" value="" name="answer_id" id="answer_id_2" />
+    <input type="hidden" value="@question.Id" name="question_id" id="question_id_2" />
+    <input type="hidden" value="@course_material.Id" name="course_material_id" id="course_id_2" />
+    <input type="hidden" value="" name="isCorrectAnswer" id="isCorrectAnswer" />
+</form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addAnswer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="~/CourseMaterialQuestionsAndAnswers/AddAnswerOption" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Answer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="MCourseWorkQuestionIdFk" value="@question.Id" />
+                    <input type="hidden" name="question_id" value="@question.Id" />
+                    <input type="hidden" name="course_material_id" value="@question.MCourseMaterialIdFk" />
+
+                    <div class="form-group">
+                        <textarea class="form-control" required name="OptionText" placeholder="enter answer"></textarea>
+                        <small class="form-text text-muted">Option Text</small>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" name="IsCorrectAnswer" value="true" />&nbsp;Correct Answer
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" required name="Explanation" placeholder="enter exlpanation"></textarea>
+                        <small class="form-text text-muted">Explanation</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/libs/ckeditor/ckeditor.js"></script>
+<script src="~/libs/ckeditor/config.js"></script>
+<script>
+    CKEDITOR.replace('editor');
+</script>
+
+<script>
+    function DeleteAnswerOption(answer_id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Answer?',
+            buttons: {
+                Yes: function () {
+                    $("#answer_id_1").val(answer_id);
+                    $("#DeleteAnswerOption").submit();
+                },
+                No: function () {
+                },
+            }
+        });
+    }
+
+    function SetIsCorrectAnswer(answer_id, is_correct) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Update Answer?',
+            buttons: {
+                Yes: function () {
+                    $("#answer_id_2").val(answer_id);
+                    $("#isCorrectAnswer").val(is_correct);
+                    $("#SetIsCorrectAnswer").submit();
+                },
+                No: function () {
+                },
+            }
+        });
+    }
+</script>

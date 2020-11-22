@@ -7,11 +7,13 @@ namespace Admin.Models
     {
         public MCourse()
         {
+            MCourseExamReports = new HashSet<MCourseExamReports>();
             MCourseInstructor = new HashSet<MCourseInstructor>();
             MCourseMaterial = new HashSet<MCourseMaterial>();
             MCourseObjectives = new HashSet<MCourseObjectives>();
             MCourseTakers = new HashSet<MCourseTakers>();
             MCourseTopic = new HashSet<MCourseTopic>();
+            MCourseWorkProgress = new HashSet<MCourseWorkProgress>();
             MQuestion = new HashSet<MQuestion>();
             MQuestionAnswerOptions = new HashSet<MQuestionAnswerOptions>();
             MUsersAnswers = new HashSet<MUsersAnswers>();
@@ -34,11 +36,13 @@ namespace Admin.Models
 
         public virtual AspNetUsers CreatedByAspNetUserIdFkNavigation { get; set; }
         public virtual ECourseCategory ECourseCategoryIdFkNavigation { get; set; }
+        public virtual ICollection<MCourseExamReports> MCourseExamReports { get; set; }
         public virtual ICollection<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual ICollection<MCourseMaterial> MCourseMaterial { get; set; }
         public virtual ICollection<MCourseObjectives> MCourseObjectives { get; set; }
         public virtual ICollection<MCourseTakers> MCourseTakers { get; set; }
         public virtual ICollection<MCourseTopic> MCourseTopic { get; set; }
+        public virtual ICollection<MCourseWorkProgress> MCourseWorkProgress { get; set; }
         public virtual ICollection<MQuestion> MQuestion { get; set; }
         public virtual ICollection<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
         public virtual ICollection<MUsersAnswers> MUsersAnswers { get; set; }

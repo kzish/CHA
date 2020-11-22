@@ -10,6 +10,7 @@ namespace Admin.Models
         public string MQuestionIdFk { get; set; }
         public string OptionText { get; set; }
         public bool IsCorrectAnswer { get; set; }
+        public string Explanation { get; set; }
 
         public virtual MCourse MCourseIdFkNavigation { get; set; }
         public virtual MQuestion MQuestionIdFkNavigation { get; set; }
