@@ -199,7 +199,7 @@ namespace BlazorAppClient.Server.Controllers
 
                 var course = db.MCourse
                     .Where(i => i.Id == course_id)
-                    .Include(i => i.MCourseMaterial)
+                    //.Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
                     .Include(i => i.MQuestion)
                     .Include(i => i.MQuestionAnswerOptions)
@@ -210,15 +210,15 @@ namespace BlazorAppClient.Server.Controllers
                 && i.CourseIdFk == course_id)
                     .ToList();
                 //
-                var course_materials_base_64 = new List<BlazorAppClient.Server.Models.MCourseMaterial>();
+                //var course_materials_base_64 = new List<BlazorAppClient.Server.Models.MCourseMaterial>();
                 var course_question_base_64 = new List<BlazorAppClient.Server.Models.MQuestion>();
-                //
-                foreach (var data in course.MCourseMaterial)
-                {
-                    //convert to base64
-                    data.PageData = Globals.Base64Encode(data.PageData);
-                    course_materials_base_64.Add(data);
-                }
+                ////
+                //foreach (var data in course.MCourseMaterial)
+                //{
+                //    //convert to base64
+                //    data.PageData = Globals.Base64Encode(data.PageData);
+                //    course_materials_base_64.Add(data);
+                //}
                 //
                 foreach (var data in course.MQuestion)
                 {
@@ -227,7 +227,7 @@ namespace BlazorAppClient.Server.Controllers
                     course_question_base_64.Add(data);
                 }
                 //
-                course.MCourseMaterial = course_materials_base_64;
+                //course.MCourseMaterial = course_materials_base_64;
                 course.MQuestion = course_question_base_64;
 
                 return Json(new
