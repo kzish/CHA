@@ -243,7 +243,8 @@ else
         {
             var base64EncodedBytes = System.Convert.FromBase64String(page_data);
             PageData = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
-            PageData = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+            var deccodec = PageData;
+
             page_id = _page_id;
             topic_id = _topic_id;
             has_questions = bool.Parse(_has_questions.ToLower());

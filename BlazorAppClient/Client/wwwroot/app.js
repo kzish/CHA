@@ -55,8 +55,9 @@ function initTree() {
 }
 
 
-function printExamPercentageChart(correct, failed) {
-    console.log(parseFloat(correct), parseFloat(failed));
+function printExamPercentageChart(_correct, _failed) {
+    var correct = _correct;//parseFloat(_correct);
+    var failed = _failed;//parseFloat(_failed);
     Highcharts.chart('printExamPercentageChart', {
         chart: {
             plotBackgroundColor: null,
@@ -65,7 +66,7 @@ function printExamPercentageChart(correct, failed) {
         },
         credits: false,
         title: {
-            text: 'Your Score '+correct+'%',
+            text: 'Your Score ' + correct + '%',
             align: 'center',
             verticalAlign: 'middle',
             y: 60
@@ -99,8 +100,8 @@ function printExamPercentageChart(correct, failed) {
             name: 'Exam Score',
             innerSize: '50%',
             data: [
-                ['Correct ('+correct+')%', parseFloat(correct)],
-                ['Failed ('+failed+')%', parseFloat(failed)],
+                ['Correct (' + correct + ')%', correct],
+                ['Failed (' + failed + ')%', failed],
             ]
         }]
     });

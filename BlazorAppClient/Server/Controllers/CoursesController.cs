@@ -105,12 +105,16 @@ namespace BlazorAppClient.Server.Controllers
         }
 
 
-
+        /// <summary>
+        /// fetched the course and course material 
+        /// also records course start time
+        /// </summary>
+        /// <param name="course_id"></param>
+        /// <param name="asp_net_user_id"></param>
+        /// <returns></returns>
         [HttpGet("StartCourse")]
         public JsonResult StartCourse(string course_id, string asp_net_user_id)
         {
-            //todo record that this course has begun
-            //and must be submitted by enddate
             try
             {
                 var course_taker = db.MCourseTakers
@@ -157,6 +161,22 @@ namespace BlazorAppClient.Server.Controllers
                 //
                 course.MCourseMaterial = course_materials_base_64;
                 //course.MQuestion = course_question_base_64;
+
+                //record course start time
+                var start_time_exists = db.MCourseStartAndStopTime
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id).Any();
+
+                if(!start_time_exists)
+                {
+                    //record start time
+                    var new_start_time = new MCourseStartAndStopTime();
+                    new_start_time.AspNetUserIdFk = asp_net_user_id;
+                    new_start_time.CourseStartTime = DateTime.Now;
+                    new_start_time.CourseEndTime = DateTime.Now;
+                    new_start_time.CourseIdFk = course_id;
+                    db.MCourseStartAndStopTime.Add(new_start_time);
+                    db.SaveChanges();
+                }
 
                 return Json(new
                 {
@@ -270,45 +290,43 @@ namespace BlazorAppClient.Server.Controllers
                     .Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
                     .Include(i => i.MQuestion)
-                    //.Include(i => i.MQuestionAnswerOptions)
+                    .Include(i => i.MQuestionAnswerOptions)
                     .First();
-
+                //
                 var users_answers = db.MUsersAnswers
                     .Where(i => i.AspNetUserIdFk == asp_net_user_id
                 && i.CourseIdFk == course_id)
                     .ToList();
-
                 //tell the client which pages are completed
                 var completed_pages = db.MCourseWorkProgress
                     .Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id)
                     .ToList();
                 //
-                //var course_materials_base_64 = new List<BlazorAppClient.Server.Models.MCourseMaterial>();
-                //var course_question_base_64 = new List<BlazorAppClient.Server.Models.MQuestion>();
+                var topic_percentage_completed = new Dictionary<string, int>();
                 //
-                //foreach (var data in course.MCourseMaterial)
-                //{
-                //    //convert to base64
-                //    data.PageData = Globals.Base64Encode(data.PageData);
-                //    course_materials_base_64.Add(data);
-                //}
+                foreach(var topic in course.MCourseTopic)
+                {
+                    var completion = (int)(((decimal)completed_pages.Count(i => i.TopicIdFk == topic.Id) / (decimal)course.MCourseMaterial.Count(i => i.MCourseTopicIdFk == topic.Id)) * 100);
+                    topic_percentage_completed.Add(topic.Topic,completion);
+                }
                 //
-                //foreach (var data in course.MQuestion)
-                //{
-                //    //convert to base64
-                //    data.QuestionText = Globals.Base64Encode(data.QuestionText);
-                //    course_question_base_64.Add(data);
-                //}
+                int course_percentage_complete = (int)(((decimal)completed_pages.Count / (decimal)course.MCourseMaterial.Count) * 100);
+                int exam_percentage_complete = (int)(((decimal)users_answers.Count / (decimal)course.MQuestion.Count) * 100);
                 //
-                //course.MCourseMaterial = course_materials_base_64;
-                //course.MQuestion = course_question_base_64;
-
+                var exam_time = db.MCourseStartAndStopTime.Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id).FirstOrDefault();
+                var total_time = exam_time?.CourseEndTime - exam_time?.CourseStartTime;
+                var time = total_time?.ToString() ?? TimeSpan.FromSeconds(0).ToString();
+                //
+                double exam_pass_percentage = 30;
+                //
                 return Json(new
                 {
                     res = "ok",
-                    data = course,
-                    users_answers,
-                    completed_pages
+                    course_percentage_complete,
+                    exam_percentage_complete,
+                    topic_percentage_completed,
+                    exam_pass_percentage,
+                    time
                 });
             }
             catch (Exception ex)

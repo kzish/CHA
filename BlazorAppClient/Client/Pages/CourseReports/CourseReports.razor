@@ -14,7 +14,7 @@
 
 <div class="container">
 
-    @if (course == null)
+    @if (course_percentage_complete == -1)
     {
         <div class="row">
             <div class="col-md-12" style="display:flex;align-content:center;justify-content:center;">
@@ -39,25 +39,25 @@
             <div class="col-md-12">
                 @* course over all report *@
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated @(state.course_percentage_complete==100?"bg-success":
-                                                           state.course_percentage_complete>=75?"bg-info":
-                                                           state.course_percentage_complete>=50?"bg-warning":
+                    <div class="progress-bar progress-bar-striped progress-bar-animated @(course_percentage_complete==100?"bg-success":
+                                                           course_percentage_complete>=75?"bg-info":
+                                                           course_percentage_complete>=50?"bg-warning":
                                                            "bg-danger")"
                          role="progressbar"
-                         aria-valuenow="@(state.course_percentage_complete)"
+                         aria-valuenow="@(course_percentage_complete)"
                          aria-valuemin="0"
                          aria-valuemax="100"
-                         style="width: @(state.course_percentage_complete)%;">
-                        <span style="color:white"> Overall @(state.course_percentage_complete)% </span>
+                         style="width: @(course_percentage_complete)%;">
+                        <span style="color:white"> Overall @(course_percentage_complete)% </span>
                     </div>
                 </div>
 
                 @* course topics *@
                 <div class="row">
                     <div class="col-md-12">
-                        @foreach (var topic in course.MCourseTopic)
+                        @foreach (var topic in topic_percentage_completed.Keys)
                         {
-                            int completed = GetPercentageCompletionForTopic(topic.Id);
+                            int completed = topic_percentage_completed[topic];
 
                             <br />
                             <div class="progress">
@@ -70,7 +70,7 @@
                                      aria-valuemin="0"
                                      aria-valuemax="100"
                                      style="width: @(completed)%;">
-                                    <span style="color:white"> @(topic.Topic) @(completed)% </span>
+                                    <span style="color:white"> @(topic) @(completed)% </span>
                                 </div>
                             </div>
                         }
@@ -90,42 +90,43 @@
             <div class="col-md-12">
                 @* exam over all report *@
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated @(state.exam_percentage_complete==100?"bg-success":
-                                                           state.exam_percentage_complete>=75?"bg-info":
-                                                           state.exam_percentage_complete>=50?"bg-warning":
+                    <div class="progress-bar progress-bar-striped progress-bar-animated @(exam_percentage_complete==100?"bg-success":
+                                                           exam_percentage_complete>=75?"bg-info":
+                                                           exam_percentage_complete>=50?"bg-warning":
                                                            "bg-danger")"
                          role="progressbar"
-                         aria-valuenow="@(state.exam_percentage_complete)"
+                         aria-valuenow="@(exam_percentage_complete)"
                          aria-valuemin="0"
                          aria-valuemax="100"
-                         style="width: @(state.exam_percentage_complete)%;">
-                        <span style="color:white"> Overall @(state.exam_percentage_complete)% </span>
+                         style="width: @(exam_percentage_complete)%;">
+                        <span style="color:white"> Overall @(exam_percentage_complete)% </span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div id="printExamPercentageChart" style="height:400px;width:100%;">
-                </div>
+
+
+    }
+    <div class="row">
+        <div class="col-md-6">
+            <div id="printExamPercentageChart" style="height:400px;width:100%;">
             </div>
-            <div class="col-md-6">
-                <div style="display: flex;
+        </div>
+        <div class="col-md-6">
+            <div style="display: flex;
                             justify-content: center;
                             align-items: center;
                             height: 400px;
                             width: 100%;
                             ">
-                    <h4>Total Time</h4>
-                   &nbsp;
-                   &nbsp;
-                    <h4>12:22:00</h4>
-                </div>
+                <h4>Total Time</h4>
+                &nbsp;
+                &nbsp;
+                <h4>@total_time</h4>
             </div>
         </div>
-
-    }
+    </div>
 </div>
 
 <BlazoredToasts Position="ToastPosition.BottomCenter"
@@ -142,12 +143,17 @@
     [Parameter]
     public string course_id { get; set; }
 
-    private BlazorAppClient.Shared.Models.MCourse course = null;
+    private int course_percentage_complete = -1;
+    private int exam_percentage_complete = -1;
+    private Dictionary<string, int> topic_percentage_completed;
+    private double exam_pass_percentage;
+    private string total_time;
+
+    ///private BlazorAppClient.Shared.Models.MCourse course = null;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         base.OnAfterRender(firstRender);
-
     }
 
     protected override void OnInitialized()
@@ -185,14 +191,12 @@
             dynamic json = JsonConvert.DeserializeObject(response2);
             if (json.res.ToString() == "ok")
             {
-                course = JsonConvert.DeserializeObject<BlazorAppClient.Shared.Models.MCourse>(json.data.ToString());
-                var users_answers = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MUsersAnswers>>(json.users_answers.ToString());
-                var completed_pages = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MCourseWorkProgress>>(json.completed_pages.ToString());
-                //
-                state.SetCourse(course);
-                state.SetAnswers(users_answers);
-                state.SetCompletedPages(completed_pages);
-
+                course_percentage_complete = JsonConvert.DeserializeObject<int>(json.course_percentage_complete.ToString());
+                exam_percentage_complete = JsonConvert.DeserializeObject<int>(json.exam_percentage_complete.ToString());
+                topic_percentage_completed = JsonConvert.DeserializeObject<Dictionary<string, int>>(json.topic_percentage_completed.ToString());
+                exam_pass_percentage = JsonConvert.DeserializeObject<double>(json.exam_pass_percentage.ToString());
+                total_time = json.time.ToString();
+                await js.InvokeAsync<string>("printExamPercentageChart", exam_pass_percentage, (100 - exam_pass_percentage));
             }
             else
             {
@@ -205,16 +209,9 @@
         }
         finally
         {
-            await js.InvokeAsync<string>("printExamPercentageChart", 20, 80);
+
         }
     }
-
-    private int GetPercentageCompletionForTopic(string topic_id)
-    {
-        var completion = (int)(((decimal)state.completed_pages.Count(i => i.TopicIdFk == topic_id) / (decimal)this.course.MCourseMaterial.Count(i => i.MCourseTopicIdFk == topic_id)) * 100);
-        return completion;
-    }
-
 
 
 }

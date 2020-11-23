@@ -11,6 +11,7 @@ namespace BlazorAppClient.Server.Models
             MCourseInstructor = new HashSet<MCourseInstructor>();
             MCourseMaterial = new HashSet<MCourseMaterial>();
             MCourseObjectives = new HashSet<MCourseObjectives>();
+            MCourseStartAndStopTime = new HashSet<MCourseStartAndStopTime>();
             MCourseTakers = new HashSet<MCourseTakers>();
             MCourseTopic = new HashSet<MCourseTopic>();
             MCourseWorkProgress = new HashSet<MCourseWorkProgress>();
@@ -40,6 +41,7 @@ namespace BlazorAppClient.Server.Models
         public virtual ICollection<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual ICollection<MCourseMaterial> MCourseMaterial { get; set; }
         public virtual ICollection<MCourseObjectives> MCourseObjectives { get; set; }
+        public virtual ICollection<MCourseStartAndStopTime> MCourseStartAndStopTime { get; set; }
         public virtual ICollection<MCourseTakers> MCourseTakers { get; set; }
         public virtual ICollection<MCourseTopic> MCourseTopic { get; set; }
         public virtual ICollection<MCourseWorkProgress> MCourseWorkProgress { get; set; }

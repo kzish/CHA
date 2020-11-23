@@ -31,6 +31,7 @@ namespace BlazorAppClient.Server.Models
         public virtual DbSet<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual DbSet<MCourseMaterial> MCourseMaterial { get; set; }
         public virtual DbSet<MCourseObjectives> MCourseObjectives { get; set; }
+        public virtual DbSet<MCourseStartAndStopTime> MCourseStartAndStopTime { get; set; }
         public virtual DbSet<MCourseTakers> MCourseTakers { get; set; }
         public virtual DbSet<MCourseTopic> MCourseTopic { get; set; }
         public virtual DbSet<MCourseWorkProgress> MCourseWorkProgress { get; set; }
@@ -526,6 +527,48 @@ images, audio, video will be rendered and will have extra parameters to help ren
                     .WithMany(p => p.MCourseObjectives)
                     .HasForeignKey(d => d.CourseIdFk)
                     .HasConstraintName("FK_m_course_objectives_m_course");
+            });
+
+            modelBuilder.Entity<MCourseStartAndStopTime>(entity =>
+            {
+                entity.ToTable("m_course_start_and_stop_time");
+
+                entity.HasComment("record course start and stop times");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.CourseEndTime)
+                    .HasColumnName("course_end_time")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.CourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CourseStartTime)
+                    .HasColumnName("course_start_time")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MCourseStartAndStopTime)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .HasConstraintName("FK_m_course_start_and_stop_time_AspNetUsers");
+
+                entity.HasOne(d => d.CourseIdFkNavigation)
+                    .WithMany(p => p.MCourseStartAndStopTime)
+                    .HasForeignKey(d => d.CourseIdFk)
+                    .HasConstraintName("FK_m_course_start_and_stop_time_m_course");
             });
 
             modelBuilder.Entity<MCourseTakers>(entity =>

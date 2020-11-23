@@ -1,3 +1,4 @@
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\Properties\launchSettings.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\BlazorAppClient.Client.StaticWebAssets.xml
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\BlazorAppClient.Client.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\BlazorAppClient.Client.pdb
@@ -216,7 +217,10 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\BlazorAppClient.Client.RazorComponent.input.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\App.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Auth\Login.razor.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\CourseReports\CourseReports.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Course\CourseIntroduction.razor.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Course\CourseMaterialAnswersComponent.razor.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Course\CourseMaterialQuestionOptionsComponent.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Course\CourseWork.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Exam\AnswersComponent.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Exam\CourseExam.razor.g.cs
@@ -240,7 +244,10 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\BlazorAppClient.Client.RazorCoreGenerate.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\App.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\Auth\Login.razor.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\CourseReports\CourseReports.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\Course\CourseIntroduction.razor.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\Course\CourseMaterialAnswersComponent.razor.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\Course\CourseMaterialQuestionOptionsComponent.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\Course\CourseWork.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\Exam\AnswersComponent.razor.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\Exam\CourseExam.razor.g.cs
@@ -322,6 +329,8 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\r8LuqDQgcB-c3E48xHqsAY1eRZB1ZtuqZF6nlufn7kg=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\DrtNiKIMjfSOdamH5Bs5zHmjFADgNiwrY5tRgTm6XuI=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\czNf3btAeBW-vvID5LAfgcsNZ_GM3ssVuPaMflcg0rs=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\qTkgmmlLdkRE5l1wYiUbG3oJcczS6JMt-wKPUnYHfKU=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\5w4rcf4BsRLwDj4ks60ICljxeqw3ny0_02uSn5iq6V8=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\mPoqx7XczFHBWk3gRNn0hc9ekG1OvkKY4XiKRY5Mj5U=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\3S0qzYaBEKOBXarzVLNzNAFXlwJr6nI3lFlYUpQTPH8=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\UC-3Rm1NkdNdlIrzYARo_dO-HDlS5mhPxo0IQv7kma8=.hash
@@ -475,16 +484,8 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\BlazorAppClient.Client.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\blazor\serviceworkers\wwwroot\service-worker.js
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\blazor\service-worker-assets.js
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\CourseReports\CourseReports.razor.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\CourseReports\CourseReports.razor.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\Properties\launchSettings.json
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Course\CourseMaterialAnswersComponent.razor.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Course\CourseMaterialQuestionOptionsComponent.razor.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\Course\CourseMaterialAnswersComponent.razor.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\Razor\Pages\Course\CourseMaterialQuestionOptionsComponent.razor.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\qTkgmmlLdkRE5l1wYiUbG3oJcczS6JMt-wKPUnYHfKU=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\5w4rcf4BsRLwDj4ks60ICljxeqw3ny0_02uSn5iq6V8=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\JMInwcFsouG8LfmNl6MsoOdCnquuO4DwdT6J7Ia3ErU=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\IxvbwRndmyn4E-io9UXyu42ins7rsFU5ZwhdTeMXI_o=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\399vAxnCde0rV2oNy87AxbytOdK-qtRNvaglusrbPGc=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\TFgrMxkjLaDV7r-rtUo8AO8FvG92cGMO5vdmVW2XUBs=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\8lnlNW0iWJCd2oR0Ojg-P9OvjSKnpLNK_a_W65cw1j8=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\xoqDXKCGexyZ3ur8JJ2EuKsZFgU1fHycHAgBTWT0Hjo=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\u3qSxYj_zAjS5iXPu-vXhpP7rIln79NwRdSq_bp6Vo0=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\SDhj797cys9av4d1Mph-G-t4SOsFpHfaHElLK9GmVek=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\kuBVM23lqpTIoQynP4k8EoOprR-lQtfgHm1-SLuqseU=.hash
