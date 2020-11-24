@@ -118,6 +118,7 @@ namespace BlazorAppClient.Server.Controllers
             try
             {
                 var course_taker = db.MCourseTakers
+                    .AsNoTracking()
                     .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
                     .Any();
                 if (!course_taker)
@@ -130,6 +131,7 @@ namespace BlazorAppClient.Server.Controllers
                 }
 
                 var course = db.MCourse
+                    .AsNoTracking()
                     .Where(i => i.Id == course_id)
                     .Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
@@ -139,6 +141,7 @@ namespace BlazorAppClient.Server.Controllers
                 //
                 //tell the client which pages are completed
                 var completed_pages = db.MCourseWorkProgress
+                    .AsNoTracking()
                     .Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id)
                     .ToList();
                 //
@@ -148,10 +151,10 @@ namespace BlazorAppClient.Server.Controllers
                 foreach (var data in course.MCourseMaterial)
                 {
                     //convert to base64
-                    data.PageData = Globals.Base64Encode(data.PageData);
+                    data.PageData = Globals.Base64Encode(data.PageData); ;
                     course_materials_base_64.Add(data);
                 }
-                ////
+                //
                 //foreach (var data in course.MQuestion)
                 //{
                 //    //convert to base64
@@ -164,9 +167,10 @@ namespace BlazorAppClient.Server.Controllers
 
                 //record course start time
                 var start_time_exists = db.MCourseStartAndStopTime
+                    .AsNoTracking()
                     .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id).Any();
 
-                if(!start_time_exists)
+                if (!start_time_exists)
                 {
                     //record start time
                     var new_start_time = new MCourseStartAndStopTime();
@@ -304,14 +308,34 @@ namespace BlazorAppClient.Server.Controllers
                 //
                 var topic_percentage_completed = new Dictionary<string, int>();
                 //
-                foreach(var topic in course.MCourseTopic)
+                foreach (var topic in course.MCourseTopic)
                 {
-                    var completion = (int)(((decimal)completed_pages.Count(i => i.TopicIdFk == topic.Id) / (decimal)course.MCourseMaterial.Count(i => i.MCourseTopicIdFk == topic.Id)) * 100);
-                    topic_percentage_completed.Add(topic.Topic,completion);
+                    int completion = 0;
+                    decimal cource_material_count = (decimal)course.MCourseMaterial.Count(i => i.MCourseTopicIdFk == topic.Id);
+                    if (cource_material_count == 0)//prevent devide by zero error
+                    {
+                        completion = 0;
+                        topic_percentage_completed.Add(topic.Topic, completion);
+                        continue;//skip
+                    }
+                    completion = (int)(((decimal)completed_pages.Count(i => i.TopicIdFk == topic.Id) / cource_material_count) * 100);
+                    topic_percentage_completed.Add(topic.Topic, completion);
                 }
                 //
-                int course_percentage_complete = (int)(((decimal)completed_pages.Count / (decimal)course.MCourseMaterial.Count) * 100);
-                int exam_percentage_complete = (int)(((decimal)users_answers.Count / (decimal)course.MQuestion.Count) * 100);
+                decimal course_material_count = (decimal)course.MCourseMaterial.Count;
+                decimal course_question_count = (decimal)course.MQuestion.Count;
+                int course_percentage_complete = 0;
+                int exam_percentage_complete = 0;
+                //
+                if (course_material_count != 0)//prevent devide by zero exception
+                {
+                    course_percentage_complete = (int)(((decimal)completed_pages.Count / course_material_count) * 100);
+                }
+                //
+                if(course_question_count!=0)//prevent devide by zero exception
+                {
+                   exam_percentage_complete = (int)(((decimal)users_answers.Count / course_question_count) * 100);
+                }
                 //
                 var exam_time = db.MCourseStartAndStopTime.Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id).FirstOrDefault();
                 var total_time = exam_time?.CourseEndTime - exam_time?.CourseStartTime;
@@ -403,7 +427,7 @@ namespace BlazorAppClient.Server.Controllers
         /// <param name="asp_net_user_id"></param>
         /// <returns></returns>
         [HttpGet("LoadQuestionsForCourseMaterial")]
-        public JsonResult LoadQuestionsForCourseMaterial(string course_id,string course_material_id, string asp_net_user_id)
+        public JsonResult LoadQuestionsForCourseMaterial(string course_id, string course_material_id, string asp_net_user_id)
         {
             try
             {
