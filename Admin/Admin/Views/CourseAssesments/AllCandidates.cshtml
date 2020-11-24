@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var course = (Admin.Models.MCourse)ViewBag.course;
+    var assesment = (Admin.Models.MContinouseAssesment)ViewBag.assesment;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="~/" style="color:blue;"> Home </a>
+            /   <a href="~/Course/AllCourses" style="color:blue;"> Course - @course.CourseName </a>
+            /   <a href="~/CourseAssesments/AllAssesments?course_id=@course.Id" style="color:blue;"> Assesments - @assesment.AssesmentName </a>
+            /    Candidates 
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12" id="data">
+            <center>
+                <img src="~/assets/img/loader.gif" id="loader" style="height:100px" />
+            </center>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    $.ajax({
+        type:"get",
+        url: "@(Url.Content($"~/CourseAssesments/ajaxAllCandidates?assesment_id={assesment.Id}&course_id={course.Id}"))",
+        success: function (data) {
+            $("#data").html(data);
+        },
+        error: function () {
+            alert('Error fetching data, reload page');
+        },
+        complete: function () {
+              $("#loader").hide();
+        }
+    });
+
+
+</script>

@@ -8,6 +8,7 @@ namespace Admin.Models
         public MCourseMaterial()
         {
             MCourseWorkQuestion = new HashSet<MCourseWorkQuestion>();
+            MUsersAnswersCourseMaterial = new HashSet<MUsersAnswersCourseMaterial>();
         }
 
         public string Id { get; set; }
@@ -26,5 +27,6 @@ namespace Admin.Models
         public virtual MCourse MCourseIdFkNavigation { get; set; }
         public virtual MCourseTopic MCourseTopicIdFkNavigation { get; set; }
         public virtual ICollection<MCourseWorkQuestion> MCourseWorkQuestion { get; set; }
+        public virtual ICollection<MUsersAnswersCourseMaterial> MUsersAnswersCourseMaterial { get; set; }
     }
 }

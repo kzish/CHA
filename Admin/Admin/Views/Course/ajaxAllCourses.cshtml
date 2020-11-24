@@ -23,23 +23,27 @@
                 <td title="@item.DateCreated.ToString("yyyy-MM-dd")">@item.DateCreated.ToString("yyyy-MM-dd")</td>
                 <td title="@item.DatePublished?.ToString("yyyy-MM-dd")">@item.DatePublished?.ToString("yyyy-MM-dd")</td>
                 <td>
-                    <a href="~/Course/EditCourse?course_id=@item.Id" style="color:green;">
+                    <a href="~/Course/EditCourse?course_id=@item.Id" style="color:green;" title="Edit course">
                         Edit
                     </a>
                     |
-                    <a href="~/CourseTopics/AllTopics?course_id=@item.Id" style="color:orange;">
+                    <a href="~/CourseTopics/AllTopics?course_id=@item.Id" style="color:orange;" title="View Topics">
                         Topics
                     </a>
                     |
-                    <a href="~/CourseMaterial/AllCourseMaterial?course_id=@item.Id" style="color:purple;">
+                    <a href="~/CourseMaterial/AllCourseMaterial?course_id=@item.Id" style="color:purple;" title="View Course Work">
                         CW
                     </a>
                     |
-                    <a href="~/CourseQuestionsAndAnswers/AllQuestions?course_id=@item.Id" style="color:black;">
+                    <a href="~/CourseAssesments/AllAssesments?course_id=@item.Id" style="color:blue;" title="Continuous assesment">
+                        CA
+                    </a>
+                    |
+                    <a href="~/CourseQuestionsAndAnswers/AllQuestions?course_id=@item.Id" style="color:black;" title="Exam Questions">
                         Questions
                     </a>
                     |
-                    <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">
+                    <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')" title="Delete this course">
                         Delete
                     </a>
                 </td>

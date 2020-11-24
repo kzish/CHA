@@ -26,11 +26,13 @@ namespace Admin.Models
         public virtual DbSet<ECourseCategory> ECourseCategory { get; set; }
         public virtual DbSet<EQuestionAnswerType> EQuestionAnswerType { get; set; }
         public virtual DbSet<MCompany> MCompany { get; set; }
+        public virtual DbSet<MContinouseAssesment> MContinouseAssesment { get; set; }
         public virtual DbSet<MCourse> MCourse { get; set; }
         public virtual DbSet<MCourseExamReports> MCourseExamReports { get; set; }
         public virtual DbSet<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual DbSet<MCourseMaterial> MCourseMaterial { get; set; }
         public virtual DbSet<MCourseObjectives> MCourseObjectives { get; set; }
+        public virtual DbSet<MCourseStartAndStopTime> MCourseStartAndStopTime { get; set; }
         public virtual DbSet<MCourseTakers> MCourseTakers { get; set; }
         public virtual DbSet<MCourseTopic> MCourseTopic { get; set; }
         public virtual DbSet<MCourseWorkProgress> MCourseWorkProgress { get; set; }
@@ -40,6 +42,8 @@ namespace Admin.Models
         public virtual DbSet<MQuestion> MQuestion { get; set; }
         public virtual DbSet<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
         public virtual DbSet<MUsersAnswers> MUsersAnswers { get; set; }
+        public virtual DbSet<MUsersAnswersCourseMaterial> MUsersAnswersCourseMaterial { get; set; }
+        public virtual DbSet<MUsersAssesmentMarks> MUsersAssesmentMarks { get; set; }
         public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -249,6 +253,38 @@ namespace Admin.Models
                     .HasColumnName("company_name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<MContinouseAssesment>(entity =>
+            {
+                entity.ToTable("m_continouse_assesment");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AssesmentName)
+                    .IsRequired()
+                    .HasColumnName("assesment_name")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                    .HasColumnName("description")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MCourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.MCourseIdFkNavigation)
+                    .WithMany(p => p.MContinouseAssesment)
+                    .HasForeignKey(d => d.MCourseIdFk)
+                    .HasConstraintName("FK_m_continouse_assesment_m_course");
             });
 
             modelBuilder.Entity<MCourse>(entity =>
@@ -496,6 +532,46 @@ namespace Admin.Models
                     .WithMany(p => p.MCourseObjectives)
                     .HasForeignKey(d => d.CourseIdFk)
                     .HasConstraintName("FK_m_course_objectives_m_course");
+            });
+
+            modelBuilder.Entity<MCourseStartAndStopTime>(entity =>
+            {
+                entity.ToTable("m_course_start_and_stop_time");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.CourseEndTime)
+                    .HasColumnName("course_end_time")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.CourseIdFk)
+                    .HasColumnName("course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CourseStartTime)
+                    .HasColumnName("course_start_time")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MCourseStartAndStopTime)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_m_course_start_and_stop_time_AspNetUsers");
+
+                entity.HasOne(d => d.CourseIdFkNavigation)
+                    .WithMany(p => p.MCourseStartAndStopTime)
+                    .HasForeignKey(d => d.CourseIdFk)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_m_course_start_and_stop_time_m_course");
             });
 
             modelBuilder.Entity<MCourseTakers>(entity =>
@@ -865,6 +941,92 @@ namespace Admin.Models
                     .HasForeignKey(d => d.TopicIdFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_users_answers_m_course_topic");
+            });
+
+            modelBuilder.Entity<MUsersAnswersCourseMaterial>(entity =>
+            {
+                entity.ToTable("m_users_answers_course_material");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.Answer)
+                    .IsRequired()
+                    .HasColumnName("answer")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.CorrectAnswer).HasColumnName("correct_answer");
+
+                entity.Property(e => e.CourseMaterialIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_material_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CourseMaterialQuestionIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_material_question_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DateAnswered)
+                    .HasColumnName("date_answered")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswersCourseMaterial)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .HasConstraintName("FK_m_users_answers_coure_material_AspNetUsers");
+
+                entity.HasOne(d => d.CourseMaterialIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswersCourseMaterial)
+                    .HasForeignKey(d => d.CourseMaterialIdFk)
+                    .HasConstraintName("FK_m_users_answers_coure_material_m_course_material");
+
+                entity.HasOne(d => d.CourseMaterialQuestionIdFkNavigation)
+                    .WithMany(p => p.MUsersAnswersCourseMaterial)
+                    .HasForeignKey(d => d.CourseMaterialQuestionIdFk)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_m_users_answers_course_material_m_course_work_question");
+            });
+
+            modelBuilder.Entity<MUsersAssesmentMarks>(entity =>
+            {
+                entity.ToTable("m_users_assesment_marks");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.MContinouseAssesmentIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_continouse_assesment_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Percentage)
+                    .HasColumnName("percentage")
+                    .HasColumnType("decimal(18, 2)");
+
+                entity.HasOne(d => d.MContinouseAssesmentIdFkNavigation)
+                    .WithMany(p => p.MUsersAssesmentMarks)
+                    .HasForeignKey(d => d.MContinouseAssesmentIdFk)
+                    .HasConstraintName("FK_m_users_assesment_marks_m_continouse_assesment");
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>

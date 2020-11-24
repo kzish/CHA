@@ -1,0 +1,71 @@
+﻿@{
+    var candidates = (List<Admin.Models.MCourseTakers>)ViewBag.candidates;
+    var scores = (List<Admin.Models.MUsersAssesmentMarks>)ViewBag.scores;
+    var assesment = (Admin.Models.MContinouseAssesment)ViewBag.assesment;
+}
+
+<table id="dt" class="table tblsm">
+    <thead>
+        <tr>
+            <th>Candidate</th>
+            <th>Assesment Score (%)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in candidates)
+        {
+            <tr>
+                <td title="@item.AspNetUserIdFkNavigation?.Email">@item.AspNetUserIdFkNavigation?.Email</td>
+                <td title="">
+                    <form action="~/CourseAssesments/SetCandidatePercentage" method="post">
+                        <input type="hidden" name="Id" value="@scores.Where(i=>i.AspNetUserIdFk==item.AspNetUserIdFkNavigation?.Id).FirstOrDefault()?.Id" />
+                        <input type="hidden" name="AspNetUserIdFk" value="@item.AspNetUserIdFkNavigation.Id" />
+                        <input type="hidden" name="course_id" value="@assesment.MCourseIdFk" />
+                        <input type="hidden" name="MContinouseAssesmentIdFk" value="@assesment.Id" />
+                        <input type="number" step="any" min="0" max="100" name="Percentage" placeholder="percentage" title="Enter percentage" value="@((decimal?)scores.Where(i=>i.AspNetUserIdFk==item.AspNetUserIdFkNavigation?.Id).FirstOrDefault()?.Percentage??0M)" />
+                        <button type="submit">Save</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="~/CourseAssesments/DeleteAssesment" id="f1">
+    <input type="hidden" name="id" id="id" />
+</form>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function confirm_delete(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Assesment?',
+            buttons: {
+                Yes: function () {
+                    $("#id").val(id);
+                    $("#f1").submit();
+                },
+                No: function () {
+                },
+
+            }
+        });
+
+    }
+
+</script>

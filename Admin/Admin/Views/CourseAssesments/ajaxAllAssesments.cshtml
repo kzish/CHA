@@ -1,0 +1,74 @@
+﻿@{
+    var assesments = (List<Admin.Models.MContinouseAssesment>)ViewBag.assesments;
+}
+
+<table id="dt" class="table tblsm">
+    <thead>
+        <tr>
+            <th>Assesment Title</th>
+            <th>Assesment Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in assesments)
+        {
+            <tr>
+                <td title="@item.AssesmentName">@item.AssesmentName</td>
+                <td title="@item.Description">@item.Description</td>
+                <td>
+                    <a href="~/CourseAssesments/EditAssesment?assesment_id=@item.Id" style="color:green;" title="Edit this assesment">
+                        Edit
+                    </a>
+                    |
+                    <a href="~/CourseAssesments/AllCandidates?assesment_id=@item.Id&course_id=@item.MCourseIdFk" style="color:blue;" title="Edit Candidates Score">
+                        Candidates
+                    </a>
+                    |
+                    <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')" title="Delete this assesment">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="~/CourseAssesments/DeleteAssesment" id="f1">
+    <input type="hidden" name="id" id="id"/>
+</form>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function confirm_delete(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Assesment?',
+            buttons: {
+                Yes: function () {
+                    $("#id").val(id);
+                    $("#f1").submit();
+                },
+                No: function () {
+                },
+
+            }
+        });
+
+    }
+
+</script>

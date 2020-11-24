@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var course = (Admin.Models.MCourse)ViewBag.course;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            Create Assesment for Course: @course.CourseName
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="~/CourseAssesments/CreateAssesment">
+                <div class="form-group">
+                    <input type="hidden" value="@course.Id" name="MCourseIdFk" />
+                    <input type="text" class="form-control" placeholder="..." required name="AssesmentName" />
+                    <small><span style="color:red;">*</span> Assesment Name</small>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="..." required name="Description" />
+                    <small><span style="color:red;">*</span> Description</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
