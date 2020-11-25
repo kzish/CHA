@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Admin.Models
 {
@@ -10,6 +9,7 @@ namespace Admin.Models
         public string AspNetUserIdFk { get; set; }
         public string MContinouseAssesmentIdFk { get; set; }
         public decimal Percentage { get; set; }
+        public string Comments { get; set; }
 
         public virtual MContinouseAssesment MContinouseAssesmentIdFkNavigation { get; set; }
     }

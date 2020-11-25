@@ -173,7 +173,7 @@ namespace BlazorAppClient.Server.Controllers
                 if (!start_time_exists)
                 {
                     //record start time
-                    var new_start_time = new MCourseStartAndStopTime();
+                    var new_start_time = new BlazorAppClient.Server.Models.MCourseStartAndStopTime();
                     new_start_time.AspNetUserIdFk = asp_net_user_id;
                     new_start_time.CourseStartTime = DateTime.Now;
                     new_start_time.CourseEndTime = DateTime.Now;
@@ -332,17 +332,66 @@ namespace BlazorAppClient.Server.Controllers
                     course_percentage_complete = (int)(((decimal)completed_pages.Count / course_material_count) * 100);
                 }
                 //
-                if(course_question_count!=0)//prevent devide by zero exception
+                if (course_question_count != 0)//prevent devide by zero exception
                 {
-                   exam_percentage_complete = (int)(((decimal)users_answers.Count / course_question_count) * 100);
+                    exam_percentage_complete = (int)(((decimal)users_answers.Count / course_question_count) * 100);
                 }
                 //
                 var exam_time = db.MCourseStartAndStopTime.Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id).FirstOrDefault();
                 var total_time = exam_time?.CourseEndTime - exam_time?.CourseStartTime;
                 var time = total_time?.ToString() ?? TimeSpan.FromSeconds(0).ToString();
                 //
-                double exam_pass_percentage = 30;
+                var assesments = db.MContinouseAssesment
+                    .Where(i => i.MCourseIdFk == course_id)
+                    .ToList();
+                var _assesments = new List<BlazorAppClient.Shared.Models._MContinouseAssesment>();//_MContinouseAssesment strips down the irrelevant members, this streamlines the response and makes it faster
+                var _continous_assesment_marks = new List<BlazorAppClient.Shared.Models._MUsersAssesmentMarks>();//strips down the irrelevant members
+                foreach (var assesment in assesments)
+                {
+                    //
+                    _assesments.Add(new BlazorAppClient.Shared.Models._MContinouseAssesment()
+                    {
+                        Id = assesment.Id,
+                        AssesmentName = assesment.AssesmentName,
+                        Description = assesment.Description,
+                        MCourseIdFk = assesment.MCourseIdFk
+                    });
+                    //
+                    var score = db.MUsersAssesmentMarks
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.MContinouseAssesmentIdFk == assesment.Id)
+                    .FirstOrDefault();
+                    //
+                    if (score != null)
+                    {
+                        _continous_assesment_marks.Add(new _MUsersAssesmentMarks()
+                        {
+                            MContinouseAssesmentIdFk = score.MContinouseAssesmentIdFk,
+                            Percentage = score.Percentage,
+                            Comments = score.Comments
+                        });
+                    }
+                }
                 //
+                double exam_pass_percentage = ((double)db.MUsersAnswers.Where(i=>i.AspNetUserIdFk==asp_net_user_id && i.CorrectAnswer && i.CourseIdFk==course_id).Count()/((double)db.MQuestion.Where(i=>i.MCourseIdFk==course_id).Count())*100);
+                double course_work_pass_percentage = 0;
+                //
+                var all_course_material = db.MCourseMaterial.Include(i=>i.MCourseWorkQuestion).Where(i => i.MCourseIdFk == course_id).ToList();
+                double all_course_material_questions = 0;
+                double all_course_material_questions_correct = 0;
+                //
+                foreach(var m in all_course_material)
+                {
+                    all_course_material_questions += m.MCourseWorkQuestion.Count;
+                    all_course_material_questions_correct += db.MUsersAnswersCourseMaterial.Where(i => i.CourseMaterialIdFk == m.Id && i.CorrectAnswer).Count();
+                }
+                //
+                course_work_pass_percentage = (all_course_material_questions_correct/ all_course_material_questions)*100;
+                //
+                double over_all_total_score_percentage = course_work_pass_percentage + exam_pass_percentage + (double)_continous_assesment_marks.Sum(i=>i.Percentage);
+                //assesments.count + course_work_pass_percentage + exam_pass_percentage
+                double over_all_total_score_percentage_total_items = assesments.Count + 1 + 1;
+                //
+                double over_all_percentage_score = over_all_total_score_percentage / over_all_total_score_percentage_total_items; //already in percentage
                 return Json(new
                 {
                     res = "ok",
@@ -350,7 +399,11 @@ namespace BlazorAppClient.Server.Controllers
                     exam_percentage_complete,
                     topic_percentage_completed,
                     exam_pass_percentage,
-                    time
+                    course_work_pass_percentage,
+                    over_all_percentage_score,
+                    time,
+                    _assesments,
+                    _continous_assesment_marks
                 });
             }
             catch (Exception ex)

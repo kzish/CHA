@@ -39,10 +39,10 @@
             <div class="col-md-12">
                 @* course over all report *@
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated @(course_percentage_complete==100?"bg-success":
-                                                           course_percentage_complete>=75?"bg-info":
-                                                           course_percentage_complete>=50?"bg-warning":
-                                                           "bg-danger")"
+                    <div class="progress-bar progress-bar-striped progress-bar-animated @(course_percentage_complete == 100 ? "bg-success" :
+                                               course_percentage_complete >= 75 ? "bg-info" :
+                                               course_percentage_complete >= 50 ? "bg-warning" :
+                                               "bg-danger")"
                          role="progressbar"
                          aria-valuenow="@(course_percentage_complete)"
                          aria-valuemin="0"
@@ -61,10 +61,10 @@
 
                             <br />
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated  @(completed==100?"bg-success":
-                                                           completed>=75?"bg-info":
-                                                           completed>=50?"bg-warning":
-                                                           "bg-danger")"
+                                <div class="progress-bar progress-bar-striped progress-bar-animated  @(completed == 100 ? "bg-success" :
+                                               completed >= 75 ? "bg-info" :
+                                               completed >= 50 ? "bg-warning" :
+                                               "bg-danger")"
                                      role="progressbar"
                                      aria-valuenow="@completed"
                                      aria-valuemin="0"
@@ -81,6 +81,56 @@
         </div>
         <hr />
 
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Course Work</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @* coursework reports *@
+                <div class="accordion" id="accordionExample">
+                    @foreach (var assesment in _assesments)
+                    {
+
+                        var score = _continous_assesment_marks.Where(i => i.MContinouseAssesmentIdFk == assesment.Id).FirstOrDefault();
+
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <div class="mb-0">
+                                    <button class="btn btn-link btn-block" type="button" data-toggle="collapse" data-target="#collapse_@assesment.Id" aria-expanded="true" aria-controls="collapseOne">
+                                        <div class="progress" style="width:100%!important;">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated @(score?.Percentage == 100 ? "bg-success" :
+                                               score?.Percentage >= 75 ? "bg-info" :
+                                               score?.Percentage >= 50 ? "bg-warning" :
+                                               "bg-danger")"
+                                                 role="progressbar"
+                                                 aria-valuenow="@(score?.Percentage)"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"
+                                                 style="width: @(score?.Percentage)%;">
+                                                <span style="color:white!important;"> @assesment.AssesmentName (@((score?.Percentage ?? 0).ToString("0"))%) </span>
+                                            </div>
+                                        </div>
+                                        <small style="color:black;">@assesment.Description</small>
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="collapse_@assesment.Id" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    @score?.Comments
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="printCourseWorkPercentageChart" style="height:400px;width:100%;">
+                </div>
+            </div>
+        </div>
+        <hr />
         <div class="row">
             <div class="col-md-12">
                 <h4>Exam Progress</h4>
@@ -105,28 +155,35 @@
             </div>
         </div>
 
-
-
-    }
-    <div class="row">
-        <div class="col-md-6">
-            <div id="printExamPercentageChart" style="height:400px;width:100%;">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="printExamPercentageChart" style="height:400px;width:100%;">
+                </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div style="display: flex;
+            <div class="col-md-6">
+                <div style="display: flex;
                             justify-content: center;
                             align-items: center;
                             height: 400px;
                             width: 100%;
                             ">
-                <h4>Total Time</h4>
-                &nbsp;
-                &nbsp;
-                <h4>@total_time</h4>
+                    <h4>Total Time</h4>
+                    &nbsp;
+                    &nbsp;
+                    <h4>@total_time</h4>
+                </div>
             </div>
         </div>
-    </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Final Score: @(over_all_percentage_score<0?0: over_all_percentage_score) %</h2>
+            </div>
+        </div>
+
+    }
+
 </div>
 
 <BlazoredToasts Position="ToastPosition.BottomCenter"
@@ -146,8 +203,12 @@
     private int course_percentage_complete = -1;
     private int exam_percentage_complete = -1;
     private Dictionary<string, int> topic_percentage_completed;
-    private double exam_pass_percentage;
+    private int exam_pass_percentage;
+    private int course_work_pass_percentage;
+    private int over_all_percentage_score;
     private string total_time;
+    private List<BlazorAppClient.Shared.Models._MContinouseAssesment> _assesments;
+    private List<BlazorAppClient.Shared.Models._MUsersAssesmentMarks> _continous_assesment_marks;
 
     ///private BlazorAppClient.Shared.Models.MCourse course = null;
 
@@ -194,9 +255,19 @@
                 course_percentage_complete = JsonConvert.DeserializeObject<int>(json.course_percentage_complete.ToString());
                 exam_percentage_complete = JsonConvert.DeserializeObject<int>(json.exam_percentage_complete.ToString());
                 topic_percentage_completed = JsonConvert.DeserializeObject<Dictionary<string, int>>(json.topic_percentage_completed.ToString());
-                exam_pass_percentage = JsonConvert.DeserializeObject<double>(json.exam_pass_percentage.ToString());
+                exam_pass_percentage = (int)JsonConvert.DeserializeObject<double>(json.exam_pass_percentage.ToString());
+                course_work_pass_percentage = (int)JsonConvert.DeserializeObject<double>(json.course_work_pass_percentage.ToString());
+                over_all_percentage_score = (int)JsonConvert.DeserializeObject<double>(json.over_all_percentage_score.ToString());
+                _assesments = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models._MContinouseAssesment>>(json._assesments.ToString());
+                _continous_assesment_marks = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models._MUsersAssesmentMarks>>(json._continous_assesment_marks.ToString());
                 total_time = json.time.ToString();
+                //
+                if (exam_pass_percentage < 0) exam_pass_percentage = 0;
+                if (course_work_pass_percentage < 0) course_work_pass_percentage = 0;
+                //
+                StateHasChanged();//force rerender before printing chart
                 await js.InvokeAsync<string>("printExamPercentageChart", exam_pass_percentage, (100 - exam_pass_percentage));
+                await js.InvokeAsync<string>("printCourseWorkPercentageChart", course_work_pass_percentage, (100 - course_work_pass_percentage));
             }
             else
             {

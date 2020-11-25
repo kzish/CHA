@@ -1013,6 +1013,10 @@ namespace Admin.Models
                     .HasColumnName("asp_net_user_id_fk")
                     .HasMaxLength(450);
 
+                entity.Property(e => e.Comments)
+                    .HasColumnName("comments")
+                    .IsUnicode(false);
+
                 entity.Property(e => e.MContinouseAssesmentIdFk)
                     .IsRequired()
                     .HasColumnName("m_continouse_assesment_id_fk")
@@ -1021,7 +1025,7 @@ namespace Admin.Models
 
                 entity.Property(e => e.Percentage)
                     .HasColumnName("percentage")
-                    .HasColumnType("decimal(18, 2)");
+                    .HasColumnType("numeric(18, 0)");
 
                 entity.HasOne(d => d.MContinouseAssesmentIdFkNavigation)
                     .WithMany(p => p.MUsersAssesmentMarks)

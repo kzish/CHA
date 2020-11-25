@@ -15,6 +15,7 @@ namespace BlazorAppClient.Shared.Models
             MCourseExamReports = new HashSet<MCourseExamReports>();
             MCourseInstructor = new HashSet<MCourseInstructor>();
             MCourseMaterial = new HashSet<MCourseMaterial>();
+            MCourseStartAndStopTime = new HashSet<MCourseStartAndStopTime>();
             MCourseTakers = new HashSet<MCourseTakers>();
             MCourseWorkProgress = new HashSet<MCourseWorkProgress>();
             MUsersAnswers = new HashSet<MUsersAnswers>();
@@ -47,6 +48,7 @@ namespace BlazorAppClient.Shared.Models
         public virtual ICollection<MCourseExamReports> MCourseExamReports { get; set; }
         public virtual ICollection<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual ICollection<MCourseMaterial> MCourseMaterial { get; set; }
+        public virtual ICollection<MCourseStartAndStopTime> MCourseStartAndStopTime { get; set; }
         public virtual ICollection<MCourseTakers> MCourseTakers { get; set; }
         public virtual ICollection<MCourseWorkProgress> MCourseWorkProgress { get; set; }
         public virtual ICollection<MUsersAnswers> MUsersAnswers { get; set; }

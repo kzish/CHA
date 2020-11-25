@@ -22,8 +22,9 @@
                         <input type="hidden" name="AspNetUserIdFk" value="@item.AspNetUserIdFkNavigation.Id" />
                         <input type="hidden" name="course_id" value="@assesment.MCourseIdFk" />
                         <input type="hidden" name="MContinouseAssesmentIdFk" value="@assesment.Id" />
-                        <input type="number" step="any" min="0" max="100" name="Percentage" placeholder="percentage" title="Enter percentage" value="@((decimal?)scores.Where(i=>i.AspNetUserIdFk==item.AspNetUserIdFkNavigation?.Id).FirstOrDefault()?.Percentage??0M)" />
-                        <button type="submit">Save</button>
+                        <input class="btn" type="number" step="any" min="0" max="100" name="Percentage" placeholder="percentage" title="Enter percentage" value="@((decimal?)scores.Where(i=>i.AspNetUserIdFk==item.AspNetUserIdFkNavigation?.Id).FirstOrDefault()?.Percentage??0M)" />
+                        <textarea class="btn" name="Comments" placeholder="Comments">@(scores.Where(i=>i.AspNetUserIdFk==item.AspNetUserIdFkNavigation?.Id).FirstOrDefault()?.Comments)</textarea>
+                        <button type="submit" class="btn btn-sm">Save</button>
                     </form>
                 </td>
             </tr>

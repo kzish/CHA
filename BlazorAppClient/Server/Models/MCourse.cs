@@ -7,6 +7,7 @@ namespace BlazorAppClient.Server.Models
     {
         public MCourse()
         {
+            MContinouseAssesment = new HashSet<MContinouseAssesment>();
             MCourseExamReports = new HashSet<MCourseExamReports>();
             MCourseInstructor = new HashSet<MCourseInstructor>();
             MCourseMaterial = new HashSet<MCourseMaterial>();
@@ -37,6 +38,7 @@ namespace BlazorAppClient.Server.Models
 
         public virtual AspNetUsers CreatedByAspNetUserIdFkNavigation { get; set; }
         public virtual ECourseCategory ECourseCategoryIdFkNavigation { get; set; }
+        public virtual ICollection<MContinouseAssesment> MContinouseAssesment { get; set; }
         public virtual ICollection<MCourseExamReports> MCourseExamReports { get; set; }
         public virtual ICollection<MCourseInstructor> MCourseInstructor { get; set; }
         public virtual ICollection<MCourseMaterial> MCourseMaterial { get; set; }

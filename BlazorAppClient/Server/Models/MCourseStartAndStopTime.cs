@@ -6,8 +6,8 @@ namespace BlazorAppClient.Server.Models
     public partial class MCourseStartAndStopTime
     {
         public string Id { get; set; }
-        public DateTime CourseStartTime { get; set; }
-        public DateTime CourseEndTime { get; set; }
+        public DateTime? CourseStartTime { get; set; }
+        public DateTime? CourseEndTime { get; set; }
         public string AspNetUserIdFk { get; set; }
         public string CourseIdFk { get; set; }
 

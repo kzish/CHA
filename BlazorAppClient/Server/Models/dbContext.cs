@@ -26,6 +26,7 @@ namespace BlazorAppClient.Server.Models
         public virtual DbSet<ECourseCategory> ECourseCategory { get; set; }
         public virtual DbSet<EQuestionAnswerType> EQuestionAnswerType { get; set; }
         public virtual DbSet<MCompany> MCompany { get; set; }
+        public virtual DbSet<MContinouseAssesment> MContinouseAssesment { get; set; }
         public virtual DbSet<MCourse> MCourse { get; set; }
         public virtual DbSet<MCourseExamReports> MCourseExamReports { get; set; }
         public virtual DbSet<MCourseInstructor> MCourseInstructor { get; set; }
@@ -42,6 +43,7 @@ namespace BlazorAppClient.Server.Models
         public virtual DbSet<MQuestionAnswerOptions> MQuestionAnswerOptions { get; set; }
         public virtual DbSet<MUsersAnswers> MUsersAnswers { get; set; }
         public virtual DbSet<MUsersAnswersCourseMaterial> MUsersAnswersCourseMaterial { get; set; }
+        public virtual DbSet<MUsersAssesmentMarks> MUsersAssesmentMarks { get; set; }
         public virtual DbSet<PersistedGrants> PersistedGrants { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -260,6 +262,41 @@ company admin  will manage his own users
                     .HasColumnName("company_name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<MContinouseAssesment>(entity =>
+            {
+                entity.ToTable("m_continouse_assesment");
+
+                entity.HasComment(@"allows admin to add aditional assesments for the candidate 
+during the coursework");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AssesmentName)
+                    .IsRequired()
+                    .HasColumnName("assesment_name")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                    .HasColumnName("description")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MCourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.MCourseIdFkNavigation)
+                    .WithMany(p => p.MContinouseAssesment)
+                    .HasForeignKey(d => d.MCourseIdFk)
+                    .HasConstraintName("FK_m_continouse_assesment_m_course");
             });
 
             modelBuilder.Entity<MCourse>(entity =>
@@ -542,7 +579,6 @@ images, audio, video will be rendered and will have extra parameters to help ren
                     .HasDefaultValueSql("(newid())");
 
                 entity.Property(e => e.AspNetUserIdFk)
-                    .IsRequired()
                     .HasColumnName("asp_net_user_id_fk")
                     .HasMaxLength(450);
 
@@ -551,7 +587,6 @@ images, audio, video will be rendered and will have extra parameters to help ren
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.CourseIdFk)
-                    .IsRequired()
                     .HasColumnName("course_id_fk")
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -563,11 +598,13 @@ images, audio, video will be rendered and will have extra parameters to help ren
                 entity.HasOne(d => d.AspNetUserIdFkNavigation)
                     .WithMany(p => p.MCourseStartAndStopTime)
                     .HasForeignKey(d => d.AspNetUserIdFk)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_m_course_start_and_stop_time_AspNetUsers");
 
                 entity.HasOne(d => d.CourseIdFkNavigation)
                     .WithMany(p => p.MCourseStartAndStopTime)
                     .HasForeignKey(d => d.CourseIdFk)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_m_course_start_and_stop_time_m_course");
             });
 
@@ -1043,6 +1080,47 @@ each question type will be rendered in its own way");
                     .HasForeignKey(d => d.CourseMaterialQuestionIdFk)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_users_answers_course_material_m_course_work_question");
+            });
+
+            modelBuilder.Entity<MUsersAssesmentMarks>(entity =>
+            {
+                entity.ToTable("m_users_assesment_marks");
+
+                entity.HasComment("these are the marks the candidate has recieved for the additional continuose assesment");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450)
+                    .HasComment("links to the candidate who is getting this assesment");
+
+                entity.Property(e => e.Comments)
+                    .HasColumnName("comments")
+                    .IsUnicode(false)
+                    .HasComment("any comments the admin may have");
+
+                entity.Property(e => e.MContinouseAssesmentIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_continouse_assesment_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasComment("links to the assesment");
+
+                entity.Property(e => e.Percentage)
+                    .HasColumnName("percentage")
+                    .HasColumnType("numeric(18, 0)")
+                    .HasComment("the percentage this candidate was awareded");
+
+                entity.HasOne(d => d.MContinouseAssesmentIdFkNavigation)
+                    .WithMany(p => p.MUsersAssesmentMarks)
+                    .HasForeignKey(d => d.MContinouseAssesmentIdFk)
+                    .HasConstraintName("FK_m_users_assesment_marks_m_continouse_assesment");
             });
 
             modelBuilder.Entity<PersistedGrants>(entity =>
