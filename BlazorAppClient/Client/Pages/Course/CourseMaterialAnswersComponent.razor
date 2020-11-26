@@ -2,7 +2,7 @@
 <h3>Your answer is: @(answer.CorrectAnswer? ((MarkupString)"<span style='color:green'>Correct</span>") : ((MarkupString)"<span style='color:red'>Wrong</span>"))</h3>
 @if (question.EQuestionTypeIdFk == text_based_question_id)
 {
-    <p>@text_answer</p>
+    <p>@answer.Answer</p>
 }
 else
 {

@@ -27,6 +27,12 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\Company\CreateNewUser.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\Company\EditCompany.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\Company\EditUser.cshtml.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\ajaxAllAssesments.cshtml.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\ajaxAllCandidates.cshtml.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\AllAssesments.cshtml.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\AllCandidates.cshtml.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\CreateAssesment.cshtml.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\EditAssesment.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseMaterialQuestionsAndAnswers\ajaxAllQuestions.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseMaterialQuestionsAndAnswers\AllQuestions.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseMaterialQuestionsAndAnswers\CreateQuestionAndAnswer.cshtml.g.cs
@@ -73,9 +79,3 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.genruntimeconfig.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csproj.CopyComplete
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\ajaxAllAssesments.cshtml.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\AllAssesments.cshtml.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\CreateAssesment.cshtml.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\EditAssesment.cshtml.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\ajaxAllCandidates.cshtml.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\CourseAssesments\AllCandidates.cshtml.g.cs
