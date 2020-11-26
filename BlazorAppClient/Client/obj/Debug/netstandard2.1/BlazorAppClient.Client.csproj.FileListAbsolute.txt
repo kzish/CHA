@@ -484,7 +484,6 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\blazor\service-worker-assets.js
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\ZVqBia8MUn_8RPDdfF7eRkxf67trkOLfY65UZlBOn2U=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\ZCGwPjB0L5TlPXbsMRTF7dsN390i5b-OBS2bZmoPZhk=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\b0SCTpuNNnjtdO1B24XQGsGOsdezyeup6N7B5l1sHg4=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\5imP2F6sVFOjmcg17Z8JDYu7NwsR4JExFbW_MC7EEOU=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\NcbOv2YwBmS9LSHLlKfpHjXwjapOiXVQBL-Z3XBeiDc=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\fMysh6gcTh36IpMJnkohdVTDEy0ZJ0FoevGi4a2k7I8=.hash
