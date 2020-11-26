@@ -35,7 +35,7 @@ else
         }
         else if (question.EQuestionTypeIdFk == text_based_question_id)//text
         {
-            <textarea placeholder="type answer here..." required @bind="text_answer"></textarea>
+            <textarea class="form-control" placeholder="type answer here..." required @bind="text_answer"></textarea>
         }
     }
 }
@@ -123,7 +123,7 @@ else
         {
 
             loading = true;
-            //StateHasChanged();
+            StateHasChanged();
             var response1 = await http_client.PostAsJsonAsync<BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial>("/Courses/UploadCourseMaterialAnswerToServer", answer);
             var response2 = await response1.Content.ReadAsStringAsync();
             dynamic json = JsonConvert.DeserializeObject(response2);
@@ -175,6 +175,18 @@ else
                 else
                 {
                     //todo: compare text asnwer with users answer using bayes algorithm
+                    //for now uload this answer to the server
+                    //
+                    var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial()
+                    {
+                        CourseMaterialIdFk = question.MCourseMaterialIdFk,
+                        CourseMaterialQuestionIdFk = question.Id,
+                        AspNetUserIdFk = current_user.user_id,
+                        DateAnswered = DateTime.Now,
+                        Answer = text_answer,
+                        CorrectAnswer = false,
+                    };
+                    await UploadAnswerToServer(users_answer);
                 }
             }
             else//radio and checkbox
