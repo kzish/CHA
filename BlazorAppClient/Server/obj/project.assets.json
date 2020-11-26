@@ -101,6 +101,27 @@
           "buildMultiTargeting/CurrieTechnologies.Razor.SweetAlert2.props": {}
         }
       },
+      "DuoVia.FuzzyStrings/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/DuoVia.FuzzyStrings.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/DuoVia.FuzzyStrings.dll": {}
+        }
+      },
+      "F23.StringSimilarity/3.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.0/F23.StringSimilarity.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/F23.StringSimilarity.dll": {}
+        }
+      },
       "IdentityModel/4.0.0": {
         "type": "package",
         "dependencies": {
@@ -3399,6 +3420,8 @@
           "Blazored.LocalStorage": "3.0.0",
           "Blazored.Toast": "3.1.2",
           "CurrieTechnologies.Razor.SweetAlert2": "3.0.0",
+          "DuoVia.FuzzyStrings": "2.1.0",
+          "F23.StringSimilarity": "3.1.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "3.2.1",
           "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "3.2.1",
           "Microsoft.CSharp": "4.4.1",
@@ -3548,6 +3571,33 @@
         "staticwebassets/sweetAlert2.min.js",
         "staticwebassets/wordpressAdminTheme.css",
         "staticwebassets/wordpressAdminTheme.min.css"
+      ]
+    },
+    "DuoVia.FuzzyStrings/2.1.0": {
+      "sha512": "xkGo6s2x3ISS6bLgxCW6lcrn0nxMbsuPuG8N55fk1g5TFkIVqWDlj0IVWQIW7anB0SmCWlPjACPHoFpw8gLJfQ==",
+      "type": "package",
+      "path": "duovia.fuzzystrings/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "duovia.fuzzystrings.2.1.0.nupkg.sha512",
+        "duovia.fuzzystrings.nuspec",
+        "lib/net462/DuoVia.FuzzyStrings.dll",
+        "lib/netstandard2.0/DuoVia.FuzzyStrings.dll",
+        "lib/netstandard2.1/DuoVia.FuzzyStrings.dll"
+      ]
+    },
+    "F23.StringSimilarity/3.1.0": {
+      "sha512": "vv4C72/x8oCRXDMEn2PtXrw5SSZ5MSXI+nN1uPb0smmvsFyo6ew2wQ2OsZuXIN6pWUAamx5twRFPqQoq6KN+LA==",
+      "type": "package",
+      "path": "f23.stringsimilarity/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "f23.stringsimilarity.3.1.0.nupkg.sha512",
+        "f23.stringsimilarity.nuspec",
+        "lib/netstandard1.0/F23.StringSimilarity.dll",
+        "lib/netstandard1.0/F23.StringSimilarity.xml"
       ]
     },
     "IdentityModel/4.0.0": {

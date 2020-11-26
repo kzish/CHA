@@ -9,7 +9,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "BlazorAppClient.Client.dll": "sha256-hFdhwoV0bphJ0TzDe3Flp8amjyZ0lhX5yp5PZt8Srgc=",
+      "BlazorAppClient.Client.dll": "sha256-hT1AeIpdftEg3LYJoTf+jMB9L1DnVQD7TfeP2irq4pE=",
       "System.Net.Http.Json.dll": "sha256-99dseBOagY3mzu5Y8Eqm8gRI+o8QbbCp7R2Ew9bQ+5E=",
       "System.Buffers.dll": "sha256-ZxXy75PYbzJxNfAc\/SAP1nUYm4gt1jSaOpFnBb9m85M=",
       "mscorlib.dll": "sha256-BaZPMj95+YNe3G4ckTGD6szZFwZeA2MOHn91zTGKDeU=",
@@ -53,6 +53,13 @@
       "System.ComponentModel.DataAnnotations.dll": "sha256-LIfCYwg+PHltTK4z3EnbSkA7m2cn8JS4jHVthdKrDF8=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-PnKO7lUOW7f4kozb+ZYmBIuHDJnrwSZKrFWmCL15nHk=",
       "Microsoft.AspNetCore.Components.dll": "sha256-A1FNAHZltX6j1uITGR2AmpE0HH1+iAQhYiPy8WEs6+A=",
+      "F23.StringSimilarity.dll": "sha256-LdSK7aRWeXOzd\/mvvJPyCa1Rdhqq1k1aOQ2vLJwsXQA=",
+      "System.ObjectModel.dll": "sha256-iRJn1bctufxFpdvL9HsDYr8vyHJ43sN8tu+e9uvVEbs=",
+      "System.Linq.dll": "sha256-egPOud7Mcxx\/20iAZiekEmazNYxAwi8HO1Z5+a4Ikww=",
+      "System.Runtime.Extensions.dll": "sha256-1FBfAreOfbXDp0WA294BCrk0EIa5ZqlghOuvDlqFtk8=",
+      "System.Text.RegularExpressions.dll": "sha256-YsVP1MH7elMIe4iUnDj+hJHfSvMWW8X4hzNlc2bvJ4k=",
+      "System.Collections.dll": "sha256-zWDzFtXZzC+KLMGVRm7c4nLj3X7VnzT9SMdxCVqb3dE=",
+      "System.Runtime.dll": "sha256-6CpyRQAYrVPJfNYBKH0K9lWX+rNPO15lwNhGHPmvxtk=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-OJlJ\/n0p9\/SW1kpHK6YE8g6oWHKImKZVf+VvZlVBJ60=",
       "Microsoft.AspNetCore.Metadata.dll": "sha256-C4iHzDU4kEkfkK3SIyKjVTaq4QMC+rxGcdJTuYWWiJM=",
       "Microsoft.JSInterop.dll": "sha256-YVKMyH3AN+9RSb6NRRz7JNpG\/bR+qYX2hqVAouLpfz4=",
@@ -74,7 +81,7 @@
       "BlazorAppClient.Shared.dll": "sha256-ZVqBia8MUn+8RPDdfF7eRkxf67trkOLfY65UZlBOn2U="
     },
     "pdb": {
-      "BlazorAppClient.Client.pdb": "sha256-es333L33mavSsTOXhaAejT0Br8KqzN9svh39WwOc44U=",
+      "BlazorAppClient.Client.pdb": "sha256-IsWDRti\/hvJtAryqJ7NK9L5c1rhNUnmuQeAr+fPWJYA=",
       "BlazorAppClient.Shared.pdb": "sha256-ZCGwPjB0L5TlPXbsMRTF7dsN390i5b\/OBS2bZmoPZhk="
     },
     "runtime": {

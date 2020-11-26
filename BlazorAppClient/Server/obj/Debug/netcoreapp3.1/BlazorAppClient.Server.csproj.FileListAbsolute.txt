@@ -300,3 +300,5 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\BlazorAppClient.Server.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\BlazorAppClient.Server.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\BlazorAppClient.Server.genruntimeconfig.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\F23.StringSimilarity.dll
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\DuoVia.FuzzyStrings.dll

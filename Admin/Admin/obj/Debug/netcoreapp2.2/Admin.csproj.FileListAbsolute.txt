@@ -11,7 +11,6 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\bin
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csprojAssemblyReference.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.AssemblyInfoInputs.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.AssemblyInfo.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csproj.CoreCompileInputs.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.RazorAssemblyInfo.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.RazorAssemblyInfo.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.TagHelpers.input.cache

@@ -473,7 +473,7 @@
       "url": "themes\/default\/throbber.gif"
     },
     {
-      "hash": "sha256-hFdhwoV0bphJ0TzDe3Flp8amjyZ0lhX5yp5PZt8Srgc=",
+      "hash": "sha256-hT1AeIpdftEg3LYJoTf+jMB9L1DnVQD7TfeP2irq4pE=",
       "url": "_framework\/_bin\/BlazorAppClient.Client.dll"
     },
     {
@@ -649,6 +649,34 @@
       "url": "_framework\/_bin\/Microsoft.AspNetCore.Components.dll"
     },
     {
+      "hash": "sha256-LdSK7aRWeXOzd\/mvvJPyCa1Rdhqq1k1aOQ2vLJwsXQA=",
+      "url": "_framework\/_bin\/F23.StringSimilarity.dll"
+    },
+    {
+      "hash": "sha256-iRJn1bctufxFpdvL9HsDYr8vyHJ43sN8tu+e9uvVEbs=",
+      "url": "_framework\/_bin\/System.ObjectModel.dll"
+    },
+    {
+      "hash": "sha256-egPOud7Mcxx\/20iAZiekEmazNYxAwi8HO1Z5+a4Ikww=",
+      "url": "_framework\/_bin\/System.Linq.dll"
+    },
+    {
+      "hash": "sha256-1FBfAreOfbXDp0WA294BCrk0EIa5ZqlghOuvDlqFtk8=",
+      "url": "_framework\/_bin\/System.Runtime.Extensions.dll"
+    },
+    {
+      "hash": "sha256-YsVP1MH7elMIe4iUnDj+hJHfSvMWW8X4hzNlc2bvJ4k=",
+      "url": "_framework\/_bin\/System.Text.RegularExpressions.dll"
+    },
+    {
+      "hash": "sha256-zWDzFtXZzC+KLMGVRm7c4nLj3X7VnzT9SMdxCVqb3dE=",
+      "url": "_framework\/_bin\/System.Collections.dll"
+    },
+    {
+      "hash": "sha256-6CpyRQAYrVPJfNYBKH0K9lWX+rNPO15lwNhGHPmvxtk=",
+      "url": "_framework\/_bin\/System.Runtime.dll"
+    },
+    {
       "hash": "sha256-OJlJ\/n0p9\/SW1kpHK6YE8g6oWHKImKZVf+VvZlVBJ60=",
       "url": "_framework\/_bin\/Microsoft.AspNetCore.Authorization.dll"
     },
@@ -725,7 +753,7 @@
       "url": "_framework\/_bin\/BlazorAppClient.Shared.dll"
     },
     {
-      "hash": "sha256-es333L33mavSsTOXhaAejT0Br8KqzN9svh39WwOc44U=",
+      "hash": "sha256-IsWDRti\/hvJtAryqJ7NK9L5c1rhNUnmuQeAr+fPWJYA=",
       "url": "_framework\/_bin\/BlazorAppClient.Client.pdb"
     },
     {
@@ -749,9 +777,9 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-b6WdhlwmDWDlxtNeuMqfwQh5d0nSE1RWY4yiIsbFlH4=",
+      "hash": "sha256-BZuzQfsi95Sj8SCOOe62PB8Euj2gPNwhjo7KzfmkEn8=",
       "url": "_framework\/blazor.boot.json"
     }
   ],
-  "version": "7zsNGEck"
+  "version": "jdwUy9yA"
 };
