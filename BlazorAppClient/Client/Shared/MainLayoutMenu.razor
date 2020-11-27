@@ -6,7 +6,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">
-        <img src="/assets/img/logo.png" style="height:auto;width:184px!important;" />
+        <img src="/assets/img/logo.png" style="height:auto;width:80px!important;" />|
+        <img src="/assets/img/sphere_logo.png" style="height:auto;width:80px!important;" />
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,8 +31,8 @@
                     <Loading isloading="@isloading" />@context.User.Identity.Name
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Account</a>
-                    <div class="dropdown-divider"></div>
+                    @*<a class="dropdown-item" href="#">Account</a>
+                    <div class="dropdown-divider"></div>*@
                     <a class="dropdown-item"@onclick="(()=>  Logout())">
                     Log out
                     </a>

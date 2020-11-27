@@ -129,6 +129,10 @@
       "url": "appsettings.json"
     },
     {
+      "hash": "sha256-2BbZGTMtMky616Pb0B5OqMk9+\/xwm9hCrv0Y6S1qC+0=",
+      "url": "assets\/about_cha.mp4"
+    },
+    {
       "hash": "sha256-PFhC9kJ9HQ4QSIMT7KYdUe097yxqw47gXRKqQPargjw=",
       "url": "assets\/css\/main.css"
     },
@@ -139,6 +143,10 @@
     {
       "hash": "sha256-vfCDiWNcImE5+vNIV+gab\/oy5NL5bY9rfyIdPdX+LTM=",
       "url": "assets\/css\/style.css"
+    },
+    {
+      "hash": "sha256-AVs6xtZ6h6VLMvooc8UEtST5t+mFPPjc3x2g8A0o4UU=",
+      "url": "assets\/img\/about_logo.png"
     },
     {
       "hash": "sha256-6hhVwOtvn5Is20E4sF7SG5dngO73TCZxmJCl8zKPlNI=",
@@ -187,6 +195,10 @@
     {
       "hash": "sha256-EAJTeRC1afkq7Us6L5cVILAqbG7jGbQOewzUytmydro=",
       "url": "assets\/img\/pos.png"
+    },
+    {
+      "hash": "sha256-\/77ngTiYaUenH1vefpYNz857HFmKlApk0q88Hixaf84=",
+      "url": "assets\/img\/sphere_logo.png"
     },
     {
       "hash": "sha256-UDKwpTYz4kziH4es1QLLJRoBKpQNN1E0aBZuTQ7T3\/Y=",
@@ -425,12 +437,16 @@
       "url": "main.js"
     },
     {
-      "hash": "sha256-GIjqMKVGWEo1r5Zm3YSYvEzq9mmPckF\/DsB+eBLiBXM=",
+      "hash": "sha256-lG6uKkS03WSTA3Lm4f1KKnaWbke86fUEUS3PSELZs8Y=",
       "url": "manifest.json"
     },
     {
       "hash": "sha256-WHwIASWxNdKakx7TceUP\/BqWQYMcEIfeLNdFMoFfRWA=",
       "url": "popper.min.js"
+    },
+    {
+      "hash": "sha256-BRGL8oSfl9BuM\/FEo95qe0fUXRU9ObCAomRFLKbuvBA=",
+      "url": "sphere_logo_crop.png"
     },
     {
       "hash": "sha256-nhNUhFlLeBkS1bxGftBUTmSiiZ6YYzb\/dmBq8dDxgZQ=",
@@ -473,7 +489,7 @@
       "url": "themes\/default\/throbber.gif"
     },
     {
-      "hash": "sha256-hFdhwoV0bphJ0TzDe3Flp8amjyZ0lhX5yp5PZt8Srgc=",
+      "hash": "sha256-re\/hMFzQo3UZyl7KhRC3dBcwRZjMmwdZYMg\/M3r4McU=",
       "url": "_framework\/_bin\/BlazorAppClient.Client.dll"
     },
     {
@@ -725,7 +741,7 @@
       "url": "_framework\/_bin\/BlazorAppClient.Shared.dll"
     },
     {
-      "hash": "sha256-es333L33mavSsTOXhaAejT0Br8KqzN9svh39WwOc44U=",
+      "hash": "sha256-1WXZYuFxuev+zRP2tVtl4qAbdF21coNXYPnH0J4rXkQ=",
       "url": "_framework\/_bin\/BlazorAppClient.Client.pdb"
     },
     {
@@ -749,9 +765,9 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-b6WdhlwmDWDlxtNeuMqfwQh5d0nSE1RWY4yiIsbFlH4=",
+      "hash": "sha256-LkU0+YA90UMoi8GOdkts4WVfC3lhpHkHwvliG0MgzoU=",
       "url": "_framework\/blazor.boot.json"
     }
   ],
-  "version": "7zsNGEck"
+  "version": "2v2qh7JT"
 };

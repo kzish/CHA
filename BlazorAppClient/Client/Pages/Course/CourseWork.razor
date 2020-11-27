@@ -296,6 +296,7 @@ else
     private async Task SaveProgress()
     {
         loading = true;
+        StateHasChanged();
         try
         {
             var current_user = await GetCurrentUser();
@@ -311,7 +312,7 @@ else
                 List<BlazorAppClient.Shared.Models.MCourseWorkProgress> completed_pages = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MCourseWorkProgress>>(json_data.completed_pages.ToString());
                 state.SetCompletedPages(completed_pages);
                 //course_percentage_complete = (int)(((decimal)state.completed_pages.Count / (decimal)state.course.MCourseMaterial.Count) * 100);
-                //StateHasChanged();
+                StateHasChanged();
             }
             else
             {
@@ -325,6 +326,7 @@ else
         finally
         {
             loading = false;
+            StateHasChanged();
         }
     }
 

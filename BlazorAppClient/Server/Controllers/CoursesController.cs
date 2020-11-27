@@ -39,6 +39,7 @@ namespace BlazorAppClient.Server.Controllers
 
                 var courses = my_courses
                     .Select(i => i.CourseIdFkNavigation)
+                    .Where(i => i.Published)//published
                     .Skip(page_size * (page_number - 1))
                     .Take(page_size)
                     .ToList();
@@ -87,12 +88,22 @@ namespace BlazorAppClient.Server.Controllers
                     .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
                     .Include(i => i.CourseIdFkNavigation)
                     .FirstOrDefault();
-
-                return Json(new
+                if (course_taker.CourseIdFkNavigation.Published)
                 {
-                    res = "ok",
-                    data = course_taker.CourseIdFkNavigation
-                });
+                    return Json(new
+                    {
+                        res = "ok",
+                        data = course_taker.CourseIdFkNavigation
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        res = "err",
+                        data = "Course does not exist"
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -135,9 +146,17 @@ namespace BlazorAppClient.Server.Controllers
                     .Where(i => i.Id == course_id)
                     .Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
-                    //.Include(i => i.MQuestion)
-                    //.Include(i => i.MQuestionAnswerOptions)
+                    .Where(i=>i.Published)
                     .First();
+
+                if(course==null)
+                {
+                    return Json(new
+                    {
+                        res = "err",
+                        data = "Course is not published or does not exist"
+                    });
+                }
                 //
                 //tell the client which pages are completed
                 var completed_pages = db.MCourseWorkProgress
@@ -223,11 +242,21 @@ namespace BlazorAppClient.Server.Controllers
 
                 var course = db.MCourse
                     .Where(i => i.Id == course_id)
+                    .Where(i=>i.Published)
                     //.Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
                     .Include(i => i.MQuestion)
                     .Include(i => i.MQuestionAnswerOptions)
                     .First();
+
+                if (course == null)
+                {
+                    return Json(new
+                    {
+                        res = "err",
+                        data = "Course is not published or does not exist"
+                    });
+                }
 
                 var users_answers = db.MUsersAnswers
                     .Where(i => i.AspNetUserIdFk == asp_net_user_id
@@ -291,11 +320,21 @@ namespace BlazorAppClient.Server.Controllers
 
                 var course = db.MCourse
                     .Where(i => i.Id == course_id)
+                    .Where(i => i.Published)
                     .Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
                     .Include(i => i.MQuestion)
                     .Include(i => i.MQuestionAnswerOptions)
                     .First();
+
+                if (course == null)
+                {
+                    return Json(new
+                    {
+                        res = "err",
+                        data = "Course is not published or does not exist"
+                    });
+                }
                 //
                 var users_answers = db.MUsersAnswers
                     .Where(i => i.AspNetUserIdFk == asp_net_user_id
@@ -372,22 +411,22 @@ namespace BlazorAppClient.Server.Controllers
                     }
                 }
                 //
-                double exam_pass_percentage = ((double)db.MUsersAnswers.Where(i=>i.AspNetUserIdFk==asp_net_user_id && i.CorrectAnswer && i.CourseIdFk==course_id).Count()/((double)db.MQuestion.Where(i=>i.MCourseIdFk==course_id).Count())*100);
+                double exam_pass_percentage = ((double)db.MUsersAnswers.Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CorrectAnswer && i.CourseIdFk == course_id).Count() / ((double)db.MQuestion.Where(i => i.MCourseIdFk == course_id).Count()) * 100);
                 double course_work_pass_percentage = 0;
                 //
-                var all_course_material = db.MCourseMaterial.Include(i=>i.MCourseWorkQuestion).Where(i => i.MCourseIdFk == course_id).ToList();
+                var all_course_material = db.MCourseMaterial.Include(i => i.MCourseWorkQuestion).Where(i => i.MCourseIdFk == course_id).ToList();
                 double all_course_material_questions = 0;
                 double all_course_material_questions_correct = 0;
                 //
-                foreach(var m in all_course_material)
+                foreach (var m in all_course_material)
                 {
                     all_course_material_questions += m.MCourseWorkQuestion.Count;
                     all_course_material_questions_correct += db.MUsersAnswersCourseMaterial.Where(i => i.CourseMaterialIdFk == m.Id && i.CorrectAnswer).Count();
                 }
                 //
-                course_work_pass_percentage = (all_course_material_questions_correct/ all_course_material_questions)*100;
+                course_work_pass_percentage = (all_course_material_questions_correct / all_course_material_questions) * 100;
                 //
-                double over_all_total_score_percentage = course_work_pass_percentage + exam_pass_percentage + (double)_continous_assesment_marks.Sum(i=>i.Percentage);
+                double over_all_total_score_percentage = course_work_pass_percentage + exam_pass_percentage + (double)_continous_assesment_marks.Sum(i => i.Percentage);
                 //assesments.count + course_work_pass_percentage + exam_pass_percentage
                 double over_all_total_score_percentage_total_items = assesments.Count + 1 + 1;
                 //
@@ -417,6 +456,11 @@ namespace BlazorAppClient.Server.Controllers
         }
 
 
+        /// <summary>
+        /// end the exam when the last question is answered and save the end time
+        /// </summary>
+        /// <param name="answer"></param>
+        /// <returns></returns>
         [HttpPost("UploadAnswerToServer")]
         public JsonResult UploadAnswerToServer([FromBody] BlazorAppClient.Server.Models.MUsersAnswers answer)
         {
@@ -424,6 +468,23 @@ namespace BlazorAppClient.Server.Controllers
             {
                 db.MUsersAnswers.Add(answer);
                 db.SaveChanges();
+
+                var exam_questions_count = db.MQuestion
+                    .Count(i => i.MCourseIdFk == answer.CourseIdFk);
+
+                var answers_count = db.MUsersAnswers
+                    .Count(i => i.AspNetUserIdFk == answer.AspNetUserIdFk);
+                //end the exam
+                if(exam_questions_count==answers_count)
+                {
+                    var time = db.MCourseStartAndStopTime
+                        .Where(i => i.AspNetUserIdFk == answer.AspNetUserIdFk)
+                        .Where(i => i.CourseIdFk == answer.CourseIdFk)
+                        .FirstOrDefault();
+                    time.CourseEndTime = DateTime.Now;
+                    db.SaveChanges();
+                }
+
                 return Json(new
                 {
                     res = "ok",
