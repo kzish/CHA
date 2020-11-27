@@ -78,3 +78,4 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.genruntimeconfig.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csproj.CopyComplete
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csproj.CoreCompileInputs.cache
