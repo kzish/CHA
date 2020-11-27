@@ -2,6 +2,27 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "DuoVia.FuzzyStrings/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/DuoVia.FuzzyStrings.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/DuoVia.FuzzyStrings.dll": {}
+        }
+      },
+      "F23.StringSimilarity/3.1.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.0/F23.StringSimilarity.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/F23.StringSimilarity.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -2983,6 +3004,15 @@
           }
         }
       },
+      "StringSimilarity/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/StringSimilarity.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/StringSimilarity.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -4451,6 +4481,33 @@
     }
   },
   "libraries": {
+    "DuoVia.FuzzyStrings/2.1.0": {
+      "sha512": "xkGo6s2x3ISS6bLgxCW6lcrn0nxMbsuPuG8N55fk1g5TFkIVqWDlj0IVWQIW7anB0SmCWlPjACPHoFpw8gLJfQ==",
+      "type": "package",
+      "path": "duovia.fuzzystrings/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "duovia.fuzzystrings.2.1.0.nupkg.sha512",
+        "duovia.fuzzystrings.nuspec",
+        "lib/net462/DuoVia.FuzzyStrings.dll",
+        "lib/netstandard2.0/DuoVia.FuzzyStrings.dll",
+        "lib/netstandard2.1/DuoVia.FuzzyStrings.dll"
+      ]
+    },
+    "F23.StringSimilarity/3.1.0": {
+      "sha512": "vv4C72/x8oCRXDMEn2PtXrw5SSZ5MSXI+nN1uPb0smmvsFyo6ew2wQ2OsZuXIN6pWUAamx5twRFPqQoq6KN+LA==",
+      "type": "package",
+      "path": "f23.stringsimilarity/3.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "f23.stringsimilarity.3.1.0.nupkg.sha512",
+        "f23.stringsimilarity.nuspec",
+        "lib/netstandard1.0/F23.StringSimilarity.dll",
+        "lib/netstandard1.0/F23.StringSimilarity.xml"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "owAlEIUZXWSnkK8Z1c+zR47A0X6ykF4XjbPok4lQKNuciUfHLGPd6QnI+rt/8KlQ17PmF+I4S3f+m+Qe4IvViw==",
       "type": "package",
@@ -7715,6 +7772,23 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "StringSimilarity/1.0.2": {
+      "sha512": "8yTbuyKNj4xWlVz1uImDddtw+GI+IASCspeVTtWDJBeRenuLf/01HnxbM0EipEp5/JBUdNWlawzO1znQLcd9eg==",
+      "type": "package",
+      "path": "stringsimilarity/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/StringSimilarity.dll",
+        "lib/net5.0/StringSimilarity.dll",
+        "lib/netcoreapp3.0/StringSimilarity.dll",
+        "lib/netcoreapp3.1/StringSimilarity.dll",
+        "lib/netstandard2.0/StringSimilarity.dll",
+        "lib/netstandard2.1/StringSimilarity.dll",
+        "stringsimilarity.1.0.2.nupkg.sha512",
+        "stringsimilarity.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -12177,6 +12251,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "DuoVia.FuzzyStrings >= 2.1.0",
+      "F23.StringSimilarity >= 3.1.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.EntityFrameworkCore >= 2.2.6",
@@ -12184,7 +12260,8 @@
       "Microsoft.EntityFrameworkCore.Tools >= 2.2.6",
       "Microsoft.NETCore.App >= 2.2.0",
       "MimeTypeMapOfficial >= 1.0.11",
-      "Newtonsoft.Json >= 12.0.3"
+      "Newtonsoft.Json >= 12.0.3",
+      "StringSimilarity >= 1.0.2"
     ]
   },
   "packageFolders": {
@@ -12231,6 +12308,14 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "DuoVia.FuzzyStrings": {
+            "target": "Package",
+            "version": "[2.1.0, )"
+          },
+          "F23.StringSimilarity": {
+            "target": "Package",
+            "version": "[3.1.0, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
@@ -12269,6 +12354,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[12.0.3, )"
+          },
+          "StringSimilarity": {
+            "target": "Package",
+            "version": "[1.0.2, )"
           }
         },
         "imports": [

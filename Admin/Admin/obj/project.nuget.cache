@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "mJHwrzZKw2jM6omEOBziqaS/q0tz2xJU2vL4MfThHLdcTB9/xvXgZgS7X5GnRnHgFG7UBlSybmUlTUDwRYr8gA==",
+  "dgSpecHash": "qGpgO7OSu8Tuu1sSnIXlUgkVkJwRDRsdtidbDpwq7tpm6qS0hsAsdZQKg69A8iKj72uqo0+oYfEUKC+w413t4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\Admin\\Admin\\Admin.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Kudzai\\.nuget\\packages\\duovia.fuzzystrings\\2.1.0\\duovia.fuzzystrings.2.1.0.nupkg.sha512",
+    "C:\\Users\\Kudzai\\.nuget\\packages\\f23.stringsimilarity\\3.1.0\\f23.stringsimilarity.3.1.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
@@ -200,6 +202,7 @@
     "C:\\Users\\Kudzai\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Kudzai\\.nuget\\packages\\stringsimilarity\\1.0.2\\stringsimilarity.1.0.2.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

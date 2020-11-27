@@ -42,6 +42,13 @@ obj\Debug\netstandard2.1\blazor\unlinked\System.ComponentModel.Annotations.dll
 obj\Debug\netstandard2.1\blazor\unlinked\System.ComponentModel.DataAnnotations.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Components.Forms.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Components.dll
+obj\Debug\netstandard2.1\blazor\unlinked\F23.StringSimilarity.dll
+obj\Debug\netstandard2.1\blazor\unlinked\System.ObjectModel.dll
+obj\Debug\netstandard2.1\blazor\unlinked\System.Linq.dll
+obj\Debug\netstandard2.1\blazor\unlinked\System.Runtime.Extensions.dll
+obj\Debug\netstandard2.1\blazor\unlinked\System.Text.RegularExpressions.dll
+obj\Debug\netstandard2.1\blazor\unlinked\System.Collections.dll
+obj\Debug\netstandard2.1\blazor\unlinked\System.Runtime.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Authorization.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Metadata.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.JSInterop.dll

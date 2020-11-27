@@ -2,6 +2,7 @@
 @inject IJSRuntime js
 @inject IToastService toastService
 @inject HttpClient http_client
+@using DuoVia.FuzzyStrings;
 @* question text *@
 <div class="jumbotron">
     <p class="lead">
@@ -12,7 +13,7 @@
 @* show answer if one exists *@
 @if (answers.Where(i => i.CourseMaterialQuestionIdFk == question.Id).Any())
 {
-    //show answer
+    //show answer is exist
     <CourseMaterialAnswersComponent question="question"
                                     answer="answers.Where(i => i.CourseMaterialQuestionIdFk == question.Id).FirstOrDefault()" />
 }
@@ -53,6 +54,8 @@ else
 
 
 @code {
+
+
 
     [Parameter]
     public BlazorAppClient.Shared.Models.MCourseWorkQuestion question { get; set; }
@@ -174,9 +177,18 @@ else
                 }
                 else
                 {
-                    //todo: compare text asnwer with users answer using bayes algorithm
-                    //for now uload this answer to the server
-                    //
+                    //todo: improve on text based answer comparison
+                    //compare text asnwer with users answer
+                    //upload this answer to the server
+                    //taken from https://github.com/feature23/StringSimilarity.NET
+                    //also https://github.com/tylerjensen/FuzzyStrings
+
+                    var nlevenshtien = new F23.StringSimilarity.NormalizedLevenshtein();
+                    var correct_text_answer = question.MCourseWorkQuestionAnswerOptions
+                                                .Where(i => i.IsCorrectAnswer)
+                                                .Select(i => i.OptionText)
+                                                .FirstOrDefault();
+                    var score3 = nlevenshtien.Distance(text_answer,correct_text_answer);
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial()
                     {
                         CourseMaterialIdFk = question.MCourseMaterialIdFk,
@@ -184,7 +196,7 @@ else
                         AspNetUserIdFk = current_user.user_id,
                         DateAnswered = DateTime.Now,
                         Answer = text_answer,
-                        CorrectAnswer = false,
+                        CorrectAnswer = score3<(0.6),//0.6 is 60 percent tollerance anything above is incorrect, must be below 0.6 to be correct
                     };
                     await UploadAnswerToServer(users_answer);
                 }

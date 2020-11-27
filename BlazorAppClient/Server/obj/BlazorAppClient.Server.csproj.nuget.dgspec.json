@@ -67,6 +67,14 @@
               "target": "Package",
               "version": "[3.0.0, )"
             },
+            "DuoVia.FuzzyStrings": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "F23.StringSimilarity": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
               "version": "[3.2.1, )"

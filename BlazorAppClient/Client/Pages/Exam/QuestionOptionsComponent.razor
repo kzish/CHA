@@ -89,7 +89,6 @@
                 toastService.ShowError("Provide and answer");
                 return;
             }
-            Console.WriteLine(1);
             var current_user = await GetCurrentUser();
             if (question.EQuestionTypeIdFk == text_based_question_id)//text based answer
             {
@@ -100,12 +99,36 @@
                 }
                 else
                 {
-                    //todo: compare text asnwer with users answer using bayes algorithm
+                    //todo: improve on text based answer comparison
+                    //compare text asnwer with users answer
+                    //upload this answer to the server
+                    //taken from https://github.com/feature23/StringSimilarity.NET
+                    //also https://github.com/tylerjensen/FuzzyStrings
+
+                    var nlevenshtien = new F23.StringSimilarity.NormalizedLevenshtein();
+                    var correct_text_answer = question.MQuestionAnswerOptions
+                                                .Where(i => i.IsCorrectAnswer)
+                                                .Select(i => i.OptionText)
+                                                .FirstOrDefault();
+                    var score3 = nlevenshtien.Distance(text_answer, correct_text_answer);
+                    var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswers()
+                    {
+                        CourseIdFk = question.MCourseIdFk,
+                        TopicIdFk = question.MCourseTopicIdFk,
+                        QuestionIdFk = question.Id,
+                        AspNetUserIdFk = current_user.user_id,
+                        DateAnswered = DateTime.Now,
+                        Answer = text_answer,
+                        CorrectAnswer = score3 < (0.6),//0.6 is 60 percent tollerance anything above is incorrect, must be below 0.6 to be correct
+                    };
+                    if (await UploadAnswerToServer(users_answer))
+                    {
+                        state.SetAnswer(users_answer);
+                    }
                 }
             }
             else//radio and checkbox
             {
-                Console.WriteLine(2);
                 var list_of_correct_answers = course.MQuestionAnswerOptions
                 .Where(i => i.MQuestionIdFk == question.Id && i.IsCorrectAnswer)
                 .Select(i => i.Id)
@@ -130,19 +153,16 @@
                     var intersection = selected_answers.Intersect(list_of_correct_answers).ToList();
                     if (intersection.Count == list_of_correct_answers.Count)
                     {
-                        Console.WriteLine(4);
                         users_answer.CorrectAnswer = true;
                     }
                     //
                     if (await UploadAnswerToServer(users_answer))
                     {
-                        Console.WriteLine(6);
                         state.SetAnswer(users_answer);
                     }
                 }
                 else
                 {
-                    Console.WriteLine(7);
                     //record answers as incorrect already, since they are different lengths
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswers()
                     {
@@ -155,10 +175,8 @@
                         CorrectAnswer = false,
                     };
                     //
-                    Console.WriteLine(8);
                     if (await UploadAnswerToServer(users_answer))
                     {
-                        Console.WriteLine(9);
                         state.SetAnswer(users_answer);
                     }
                 }
@@ -172,7 +190,7 @@
 
     private void AddRemoveAnswer(ChangeEventArgs e, string answer)
     {
-        if(question.EQuestionTypeIdFk==radio_based_question_id)
+        if (question.EQuestionTypeIdFk == radio_based_question_id)
         {
             selected_answers.Clear();//remove all answers for radio
         }
@@ -198,12 +216,13 @@
         {
 
             loading = true;
-            //StateHasChanged();
+            StateHasChanged();
             var response1 = await http_client.PostAsJsonAsync<BlazorAppClient.Shared.Models.MUsersAnswers>("/Courses/UploadAnswerToServer", answer);
             var response2 = await response1.Content.ReadAsStringAsync();
             dynamic json = JsonConvert.DeserializeObject(response2);
             if (json.res.ToString() == "ok")
             {
+
                 return true;
             }
             else

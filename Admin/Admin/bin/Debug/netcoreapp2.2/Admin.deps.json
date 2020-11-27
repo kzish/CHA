@@ -24,6 +24,8 @@
     ".NETCoreApp,Version=v2.2": {
       "Admin/1.0.0": {
         "dependencies": {
+          "DuoVia.FuzzyStrings": "2.1.0",
+          "F23.StringSimilarity": "3.1.0",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.EntityFrameworkCore": "2.2.6",
@@ -31,13 +33,39 @@
           "Microsoft.EntityFrameworkCore.Tools": "2.2.6",
           "Microsoft.NETCore.App": "2.2.0",
           "MimeTypeMapOfficial": "1.0.11",
-          "Newtonsoft.Json": "12.0.3"
+          "Newtonsoft.Json": "12.0.3",
+          "StringSimilarity": "1.0.2"
         },
         "runtime": {
           "Admin.dll": {}
         },
         "compile": {
           "Admin.dll": {}
+        }
+      },
+      "DuoVia.FuzzyStrings/2.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/DuoVia.FuzzyStrings.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/DuoVia.FuzzyStrings.dll": {}
+        }
+      },
+      "F23.StringSimilarity/3.1.0": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard1.0/F23.StringSimilarity.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.0/F23.StringSimilarity.dll": {}
         }
       },
       "Microsoft.EntityFrameworkCore/2.2.6": {
@@ -202,6 +230,17 @@
             "assetType": "native",
             "fileVersion": "4.6.25512.1"
           }
+        }
+      },
+      "StringSimilarity/1.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/StringSimilarity.dll": {
+            "assemblyVersion": "1.0.2.0",
+            "fileVersion": "1.0.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/StringSimilarity.dll": {}
         }
       },
       "System.Collections.Immutable/1.5.0": {},
@@ -3336,6 +3375,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "DuoVia.FuzzyStrings/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xkGo6s2x3ISS6bLgxCW6lcrn0nxMbsuPuG8N55fk1g5TFkIVqWDlj0IVWQIW7anB0SmCWlPjACPHoFpw8gLJfQ==",
+      "path": "duovia.fuzzystrings/2.1.0",
+      "hashPath": "duovia.fuzzystrings.2.1.0.nupkg.sha512"
+    },
+    "F23.StringSimilarity/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vv4C72/x8oCRXDMEn2PtXrw5SSZ5MSXI+nN1uPb0smmvsFyo6ew2wQ2OsZuXIN6pWUAamx5twRFPqQoq6KN+LA==",
+      "path": "f23.stringsimilarity/3.1.0",
+      "hashPath": "f23.stringsimilarity.3.1.0.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore/2.2.6": {
       "type": "package",
       "serviceable": true,
@@ -3433,6 +3486,13 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "StringSimilarity/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8yTbuyKNj4xWlVz1uImDddtw+GI+IASCspeVTtWDJBeRenuLf/01HnxbM0EipEp5/JBUdNWlawzO1znQLcd9eg==",
+      "path": "stringsimilarity/1.0.2",
+      "hashPath": "stringsimilarity.1.0.2.nupkg.sha512"
     },
     "System.Collections.Immutable/1.5.0": {
       "type": "package",
