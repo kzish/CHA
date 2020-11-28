@@ -61,7 +61,7 @@ namespace Admin.Controllers
         }
 
         [HttpGet("CreateQuestionAndAnswer")]
-        public IActionResult CreateQuestionAndAnswer(string question_id,string course_material_id)
+        public IActionResult CreateQuestionAndAnswer(string question_id, string course_material_id)
         {
             var course_material = db.MCourseMaterial.Find(course_material_id);
             //remove blanks left over
@@ -139,7 +139,7 @@ namespace Admin.Controllers
 
 
         [HttpPost("AddAnswerOption")]
-        public IActionResult AddAnswerOption(string question_id,string course_material_id, MCourseWorkQuestionAnswerOptions answer)
+        public IActionResult AddAnswerOption(string question_id, string course_material_id, MCourseWorkQuestionAnswerOptions answer)
         {
             try
             {
@@ -153,8 +153,8 @@ namespace Admin.Controllers
                 TempData["msg"] = ex.Message;
                 TempData["type"] = "error";
             }
-            return RedirectToAction("CreateQuestionAndAnswer", new { question_id,course_material_id });
-            
+            return RedirectToAction("CreateQuestionAndAnswer", new { question_id, course_material_id });
+
         }
 
         [HttpPost("SetIsCorrectAnswer")]
@@ -197,7 +197,7 @@ namespace Admin.Controllers
 
 
         [HttpPost("UpdateQuestionAnswerOptionExplanation")]
-        public IActionResult UpdateQuestionAnswerOptionExplanation(string Id, string explanation,string course_material_id,string question_id)
+        public IActionResult UpdateQuestionAnswerOptionExplanation(string Id, string explanation, string course_material_id, string question_id)
         {
             var qao = db.MCourseWorkQuestionAnswerOptions.Find(Id);
 
@@ -222,8 +222,7 @@ namespace Admin.Controllers
 
         }
 
-
-
+       
 
     }
 }
