@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sgqoTJNMAG6A79vJBAtip9VyqCFIi80286hniHYZFywvEZwKTno5agpCNMaSXMDwIe1RTjZdhS+yWZED8R6ACw==",
+  "dgSpecHash": "EBg93wXWDmWzNkI5XFxiKkdlbZwRZvkOHud+415Z7dQl7ksXTZgUcvD8vilYwdlGvcg3bWRml9GImVuzvfoP8g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\BlazorAppClient.Client.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,7 @@
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.httphandler\\3.2.0\\microsoft.aspnetcore.components.webassembly.httphandler.3.2.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.runtime\\3.2.0\\microsoft.aspnetcore.components.webassembly.runtime.3.2.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.aspnetcore.metadata\\3.1.8\\microsoft.aspnetcore.metadata.3.1.8.nupkg.sha512",
+    "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.csharp\\4.4.1\\microsoft.csharp.4.4.1.nupkg.sha512",
@@ -54,6 +55,7 @@
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.9\\microsoft.extensions.primitives.3.1.9.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.jsinterop\\3.1.8\\microsoft.jsinterop.3.1.8.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.jsinterop.webassembly\\3.2.1\\microsoft.jsinterop.webassembly.3.2.1.nupkg.sha512",
+    "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\Kudzai\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",

@@ -7,6 +7,7 @@
 
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
+@inject NavigationManager nav
 
 @if (course == null)
 {
@@ -59,6 +60,7 @@ else
                                 <li data-jstree='{"topic_id":"@topic.Id","page_id":"@page_.Id", "selected" : false,"PageData":"@page_.PageData", "has_questions":"@page_.HasQuestions" }'>
                                     @page_.PageTitle
                                 </li>
+                                client_side_ordered_course_work.Add(page_.Id);
                             }
                         </ul>
                     </li>
@@ -143,7 +145,7 @@ else
                         else if (has_questions && course_material_questions != null)
                         {
                             <hr />
-                            foreach (var question in course_material_questions.OrderBy(i=>i.QuestionSequence))
+                            foreach (var question in course_material_questions.OrderBy(i => i.QuestionSequence))
                             {
                                 {
                                     <CourseMaterialQuestionOptionsComponent question="question" answers="completed_questions_answers" />
@@ -179,7 +181,8 @@ else
     private bool tree_initialized = false;
     private bool loading = false;
     private List<BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial> completed_questions_answers = null;
-
+    private List<string> client_side_ordered_course_work = new List<string>();
+    private BlazorAppClient.Shared.CurrentUser current_user = null;
     private BlazorAppClient.Shared.Models.MCourse course = null;
 
     private List<BlazorAppClient.Shared.Models.MCourseWorkQuestion> course_material_questions = null;
@@ -191,6 +194,8 @@ else
         page_id = string.Empty;
         topic_id = string.Empty;
         has_questions = false;
+        tree_initialized = false;
+        current_user = await GetCurrentUser();
         await StartCourse();
     }
 
@@ -205,6 +210,7 @@ else
         {
             await js.InvokeAsync<string>("initTree");
         }
+
 
     }
 
@@ -227,9 +233,17 @@ else
 
     private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
     {
-        dynamic user_string = await local_storage.GetItemAsStringAsync("current_user");
-        var current_user = JsonConvert.DeserializeObject<BlazorAppClient.Shared.CurrentUser>(user_string);
-        return current_user;
+        try
+        {
+            dynamic user_string = await local_storage.GetItemAsStringAsync("current_user");
+            var current_user = JsonConvert.DeserializeObject<BlazorAppClient.Shared.CurrentUser>(user_string);
+            return current_user;
+        }
+        catch (Exception ex)
+        {
+            nav.NavigateTo("/Auth/Login");
+        }
+        return null;
     }
 
 
@@ -241,6 +255,23 @@ else
         course_material_questions = null;
         if (!string.IsNullOrEmpty(page_data))
         {
+            bool is_first_question = client_side_ordered_course_work.First() == _page_id;
+            //toastService.ShowInfo("is_first_question: " + is_first_question);
+            if (!is_first_question)
+            {
+                //current position
+                var pos = client_side_ordered_course_work.IndexOf(_page_id);
+                //toastService.ShowInfo("pos: " + pos);
+                //toastService.ShowInfo("state.answers.Count: " + state.answers.Count);
+                //go back one if its present render
+                //else alert you must completed previous question first
+                if (state.completed_pages.Count < (pos))
+                {
+                    toastService.ShowError("You must complete previous page first");
+                    return;
+                }
+            }
+
             var base64EncodedBytes = System.Convert.FromBase64String(page_data);
             PageData = System.Text.Encoding.ASCII.GetString(base64EncodedBytes);
             page_id = _page_id;
@@ -258,7 +289,6 @@ else
     {
         try
         {
-            var current_user = await GetCurrentUser();
             var response1 = await http_client
                    .GetAsync($"Courses/StartCourse?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}&course_id={course_id}");
             var response2 = await response1.Content.ReadAsStringAsync();
@@ -271,7 +301,7 @@ else
                 state.SetCourse(course);
                 state.SetCompletedPages(completed_pages);
                 //course_percentage_complete = (state.completed_pages.Count / state.course.MCourseMaterial.Count) * 100;
-                //StateHasChanged();
+                StateHasChanged();
             }
             else
             {
@@ -299,7 +329,6 @@ else
         StateHasChanged();
         try
         {
-            var current_user = await GetCurrentUser();
             var content = new StringContent($"asp_net_user_id={current_user.user_id}&page_id={page_id}&course_id={course.Id}&topic_id={topic_id}",
                System.Text.Encoding.UTF8,
                "application/x-www-form-urlencoded");
@@ -340,7 +369,6 @@ else
     {
         try
         {
-            var current_user = await GetCurrentUser();
             var response1 = await http_client
                    .GetAsync($"Courses/LoadQuestionsForCourseMaterial?asp_net_user_id={HttpUtility.UrlEncode(current_user.user_id)}&course_material_id={page_id}&course_id={course_id}");
             var response2 = await response1.Content.ReadAsStringAsync();
@@ -361,6 +389,7 @@ else
         }
         finally
         {
+            //StateHasChanged();
         }
     }
 

@@ -36,7 +36,7 @@ else
         }
         else if (question.EQuestionTypeIdFk == text_based_question_id)//text
         {
-            <textarea class="form-control" placeholder="type answer here..." required @bind="text_answer"></textarea>
+            <textarea rows="7" class="form-control" placeholder="type answer here..." required @bind="text_answer"></textarea>
         }
     }
 }
@@ -83,9 +83,20 @@ else
 
     protected override void OnParametersSet()
     {
-        base.OnParametersSet();
-        //convert from base 64 text
-        question.QuestionText = System.Text.ASCIIEncoding.ASCII.GetString(System.Convert.FromBase64String(question.QuestionText));
+        try
+        {
+            base.OnParametersSet();
+            //convert from base 64 text
+            question.QuestionText = System.Text.ASCIIEncoding.ASCII.GetString(System.Convert.FromBase64String(question.QuestionText));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+        finally
+        {
+
+        }
     }
 
     private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
@@ -177,6 +188,7 @@ else
                 }
                 else
                 {
+                    // -- for now all text based questions are correct by default, the admin will mark this type of question via the continous assesment
                     //todo: improve on text based answer comparison
                     //compare text asnwer with users answer
                     //upload this answer to the server
@@ -188,7 +200,7 @@ else
                                                 .Where(i => i.IsCorrectAnswer)
                                                 .Select(i => i.OptionText)
                                                 .FirstOrDefault();
-                    var score3 = nlevenshtien.Distance(text_answer,correct_text_answer);
+                    var score3 = nlevenshtien.Distance(text_answer, correct_text_answer);
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial()
                     {
                         CourseMaterialIdFk = question.MCourseMaterialIdFk,
@@ -196,7 +208,7 @@ else
                         AspNetUserIdFk = current_user.user_id,
                         DateAnswered = DateTime.Now,
                         Answer = text_answer,
-                        CorrectAnswer = score3<(0.6),//0.6 is 60 percent tollerance anything above is incorrect, must be below 0.6 to be correct
+                        CorrectAnswer = true//score3<(0.6),//0.6 is 60 percent tollerance anything above is incorrect, must be below 0.6 to be correct
                     };
                     await UploadAnswerToServer(users_answer);
                 }

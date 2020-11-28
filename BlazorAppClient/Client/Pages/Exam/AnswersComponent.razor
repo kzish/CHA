@@ -1,61 +1,127 @@
 ﻿@inject State state
 
-<h3>Your answer is: @(state.answers.Where(i=>i.QuestionIdFk==question.Id).FirstOrDefault().CorrectAnswer? ((MarkupString)"<span style='color:green'>Correct</span>") : ((MarkupString)"<span style='color:red'>Wrong</span>"))</h3>
 @if (question.EQuestionTypeIdFk == text_based_question_id)
 {
-    <p>@text_answer</p>
-}
-else
-{
-    @if (selected_answers.Count > 0 && selected_answers != null)
+
+    @*todo: remove this first (if statement) when we have finalized the solution to text based answers*@
+    <h3>Your answer is: Recorded</h3>
+    @if (question.EQuestionTypeIdFk == text_based_question_id)
     {
-        <ul>
-            @foreach (var ans in selected_answers)
-            {
-                <li>
-                    @question.MQuestionAnswerOptions.Where(i => i.Id == ans).FirstOrDefault()?.OptionText
-                </li>
-            }
-        </ul>
+        <p>@text_answer</p>
     }
-}
-
-
-
-<h3>
-    Correct Answer
-</h3>
-
-@if (question.EQuestionTypeIdFk == text_based_question_id)
-{
-    <p>
-        @question.MQuestionAnswerOptions.FirstOrDefault().OptionText
-    </p>
-}
-else
-{
-
-    <div id="accordion">
-        @foreach (var ans in question.MQuestionAnswerOptions)
+    else
+    {
+        @if (selected_answers.Count > 0 && selected_answers != null)
         {
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0">
-                        <button style="color:@(ans.IsCorrectAnswer?"green":"red")" class="btn btn-link" data-toggle="collapse" data-target="#collapse_@(ans.Id)" aria-expanded="true" aria-controls="collapseOne">
-                            @ans.OptionText   <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapse_@(ans.Id)" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">
-                        @ans.Explanation
+            <ul>
+                @foreach (var ans in selected_answers)
+                {
+                    <li>
+                        @question.MQuestionAnswerOptions.Where(i => i.Id == ans).FirstOrDefault()?.OptionText
+                    </li>
+                }
+            </ul>
+        }
+    }
+
+
+
+    <h3>
+        Sample Answer
+    </h3>
+
+    @if (question.EQuestionTypeIdFk == text_based_question_id)
+    {
+        <p>
+            @question.MQuestionAnswerOptions.FirstOrDefault().OptionText
+        </p>
+    }
+    else
+    {
+
+        <div id="accordion">
+            @foreach (var ans in question.MQuestionAnswerOptions)
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <button style="color:@(ans.IsCorrectAnswer?"green":"red")" class="btn btn-link" data-toggle="collapse" data-target="#collapse_@(ans.Id)" aria-expanded="true" aria-controls="collapseOne">
+                                @ans.OptionText   <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse_@(ans.Id)" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            @ans.Explanation
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+        </div>
+
+
+    }
+
+}
+else
+{
+    <h3>Your answer is: @(state.answers.Where(i=>i.QuestionIdFk==question.Id).FirstOrDefault().CorrectAnswer? ((MarkupString)"<span style='color:green'>Correct</span>") : ((MarkupString)"<span style='color:red'>Wrong</span>"))</h3>
+    @if (question.EQuestionTypeIdFk == text_based_question_id)
+    {
+        <p>@text_answer</p>
+    }
+    else
+    {
+        @if (selected_answers.Count > 0 && selected_answers != null)
+        {
+            <ul>
+                @foreach (var ans in selected_answers)
+                {
+                    <li>
+                        @question.MQuestionAnswerOptions.Where(i => i.Id == ans).FirstOrDefault()?.OptionText
+                    </li>
+                }
+            </ul>
         }
-    </div>
+    }
 
 
+
+    <h3>
+        Correct Answer
+    </h3>
+
+    @if (question.EQuestionTypeIdFk == text_based_question_id)
+    {
+        <p>
+            @question.MQuestionAnswerOptions.FirstOrDefault().OptionText
+        </p>
+    }
+    else
+    {
+
+        <div id="accordion">
+            @foreach (var ans in question.MQuestionAnswerOptions)
+            {
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <button style="color:@(ans.IsCorrectAnswer?"green":"red")" class="btn btn-link" data-toggle="collapse" data-target="#collapse_@(ans.Id)" aria-expanded="true" aria-controls="collapseOne">
+                                @ans.OptionText   <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse_@(ans.Id)" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            @ans.Explanation
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+    }
 }
 
 

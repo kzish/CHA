@@ -21,7 +21,7 @@
     }
     else if (question.EQuestionTypeIdFk == text_based_question_id)//text
     {
-        <textarea class="form-control" placeholder="type answer here..." required @bind="text_answer"></textarea>
+        <textarea rows="7" class="form-control" placeholder="type answer here..." required @bind="text_answer"></textarea>
     }
 }
 
@@ -99,6 +99,7 @@
                 }
                 else
                 {
+                    // -- for now all text based questions are correct by default, the admin will mark this type of question via the continous assesment
                     //todo: improve on text based answer comparison
                     //compare text asnwer with users answer
                     //upload this answer to the server
@@ -119,7 +120,7 @@
                         AspNetUserIdFk = current_user.user_id,
                         DateAnswered = DateTime.Now,
                         Answer = text_answer,
-                        CorrectAnswer = score3 < (0.6),//0.6 is 60 percent tollerance anything above is incorrect, must be below 0.6 to be correct
+                        CorrectAnswer = true//score3 < (0.6),//0.6 is 60 percent tollerance anything above is incorrect, must be below 0.6 to be correct
                     };
                     if (await UploadAnswerToServer(users_answer))
                     {
@@ -137,7 +138,6 @@
                 //first check same number of answers
                 if (selected_answers.Count == list_of_correct_answers.Count)
                 {
-                    Console.WriteLine(3);
                     //
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswers()
                     {

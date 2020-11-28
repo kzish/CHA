@@ -11,6 +11,7 @@ using BlazorAppClient.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Humanizer;
 
 namespace BlazorAppClient.Server.Controllers
 {
@@ -146,10 +147,10 @@ namespace BlazorAppClient.Server.Controllers
                     .Where(i => i.Id == course_id)
                     .Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
-                    .Where(i=>i.Published)
+                    .Where(i => i.Published)
                     .First();
 
-                if(course==null)
+                if (course == null)
                 {
                     return Json(new
                     {
@@ -205,7 +206,7 @@ namespace BlazorAppClient.Server.Controllers
                 {
                     res = "ok",
                     data = course,
-                    completed_pages
+                    completed_pages,
                 });
             }
             catch (Exception ex)
@@ -217,6 +218,66 @@ namespace BlazorAppClient.Server.Controllers
                 });
             }
         }
+
+        /// <summary>
+        /// load the questions and answers for the selected page/course material
+        /// </summary>
+        /// <param name="course_material_id"></param>
+        /// <param name="asp_net_user_id"></param>
+        /// <returns></returns>
+        [HttpGet("LoadQuestionsForCourseMaterial")]
+        public JsonResult LoadQuestionsForCourseMaterial(string course_id, string course_material_id, string asp_net_user_id)
+        {
+            try
+            {
+                var course_taker = db.MCourseTakers
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
+                    .Any();
+                //
+                if (!course_taker)
+                {
+                    return Json(new
+                    {
+                        res = "err",
+                        data = "You cannot take this course"
+                    });
+                }
+                //
+                var course_material_questions = db.MCourseWorkQuestion
+                    .Where(i => i.MCourseMaterialIdFk == course_material_id)
+                    .Include(i => i.MCourseWorkQuestionAnswerOptions)
+                    .ToList();
+
+                //tell the client which questions are completed
+                var completed_questions_answers = db.MUsersAnswersCourseMaterial
+                    .Where(i => i.CourseMaterialIdFk == course_material_id && i.AspNetUserIdFk == asp_net_user_id)
+                    .ToList();
+                //
+                var course_material_questions_base_64 = new List<BlazorAppClient.Server.Models.MCourseWorkQuestion>();
+                foreach (var data in course_material_questions)
+                {
+                    //convert to base64
+                    data.QuestionText = Globals.Base64Encode(data.QuestionText);
+                    course_material_questions_base_64.Add(data);
+                }
+                //
+                return Json(new
+                {
+                    res = "ok",
+                    data = course_material_questions_base_64,
+                    completed_questions_answers
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    res = "err",
+                    data = ex.Message
+                });
+            }
+        }
+
 
 
         //todo: record start the exam
@@ -242,7 +303,7 @@ namespace BlazorAppClient.Server.Controllers
 
                 var course = db.MCourse
                     .Where(i => i.Id == course_id)
-                    .Where(i=>i.Published)
+                    .Where(i => i.Published)
                     //.Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
                     .Include(i => i.MQuestion)
@@ -283,11 +344,52 @@ namespace BlazorAppClient.Server.Controllers
                 //course.MCourseMaterial = course_materials_base_64;
                 course.MQuestion = course_question_base_64;
 
+                //check if the course work is completed
+                var completed_course_work_material = db.MCourseWorkProgress
+                    .Where(i => i.CourseIdFk == course_id)
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id)
+                    .Count();
+
+                var number_of_course_material = db.MCourseMaterial
+                    .Where(i => i.MCourseIdFk == course_id)
+                    .ToList();
+
+                //compare my course progress against the number of course work material
+                //if they are the same then course work is completed
+                //if not then i have not completed the course work
+                var is_course_work_completed = number_of_course_material.Count() == completed_course_work_material;
+
+                //if i have not completed the course work no need to check this also
+                //only check i have answered all inline questions in the course work if is_course_work_completed==true
+                if (is_course_work_completed)
+                {
+                    //check if all questions in course material have been answered
+                    foreach (var material in number_of_course_material)
+                    {
+                        var course_work_material_questions = db.MCourseWorkQuestion
+                                   .Where(i => i.MCourseMaterialIdFk == material.Id)
+                                   .Count();
+                        var my_course_work_answers = db.MUsersAnswersCourseMaterial
+                            .Where(i => i.AspNetUserIdFk == asp_net_user_id)
+                            .Where(i => i.CourseMaterialIdFk == material.Id)
+                            .Count();
+
+                        is_course_work_completed = course_work_material_questions == my_course_work_answers;
+                        if(!is_course_work_completed)
+                        {
+                            break;//end the loop as soon as i get a single false
+                            //this means there is at least one that is not completed
+                        }
+
+                    }
+                }
+
                 return Json(new
                 {
+                    is_course_work_completed,
                     res = "ok",
                     data = course,
-                    users_answers
+                    users_answers,
                 });
             }
             catch (Exception ex)
@@ -378,7 +480,7 @@ namespace BlazorAppClient.Server.Controllers
                 //
                 var exam_time = db.MCourseStartAndStopTime.Where(i => i.CourseIdFk == course_id && i.AspNetUserIdFk == asp_net_user_id).FirstOrDefault();
                 var total_time = exam_time?.CourseEndTime - exam_time?.CourseStartTime;
-                var time = total_time?.ToString() ?? TimeSpan.FromSeconds(0).ToString();
+                var time = total_time?.Humanize(3) ?? TimeSpan.FromSeconds(0).Humanize(3);
                 //
                 var assesments = db.MContinouseAssesment
                     .Where(i => i.MCourseIdFk == course_id)
@@ -475,7 +577,7 @@ namespace BlazorAppClient.Server.Controllers
                 var answers_count = db.MUsersAnswers
                     .Count(i => i.AspNetUserIdFk == answer.AspNetUserIdFk);
                 //end the exam
-                if(exam_questions_count==answers_count)
+                if (exam_questions_count == answers_count)
                 {
                     var time = db.MCourseStartAndStopTime
                         .Where(i => i.AspNetUserIdFk == answer.AspNetUserIdFk)
@@ -534,66 +636,7 @@ namespace BlazorAppClient.Server.Controllers
         }
 
 
-        /// <summary>
-        /// load the questions and answers for the selected page/course material
-        /// </summary>
-        /// <param name="course_material_id"></param>
-        /// <param name="asp_net_user_id"></param>
-        /// <returns></returns>
-        [HttpGet("LoadQuestionsForCourseMaterial")]
-        public JsonResult LoadQuestionsForCourseMaterial(string course_id, string course_material_id, string asp_net_user_id)
-        {
-            try
-            {
-                var course_taker = db.MCourseTakers
-                    .Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CourseIdFk == course_id)
-                    .Any();
-                //
-                if (!course_taker)
-                {
-                    return Json(new
-                    {
-                        res = "err",
-                        data = "You cannot take this course"
-                    });
-                }
-                //
-                var course_material_questions = db.MCourseWorkQuestion
-                    .Where(i => i.MCourseMaterialIdFk == course_material_id)
-                    .Include(i => i.MCourseWorkQuestionAnswerOptions)
-                    .ToList();
-
-                //tell the client which questions are completed
-                var completed_questions_answers = db.MUsersAnswersCourseMaterial
-                    .Where(i => i.CourseMaterialIdFk == course_material_id && i.AspNetUserIdFk == asp_net_user_id)
-                    .ToList();
-                //
-                var course_material_questions_base_64 = new List<BlazorAppClient.Server.Models.MCourseWorkQuestion>();
-                foreach (var data in course_material_questions)
-                {
-                    //convert to base64
-                    data.QuestionText = Globals.Base64Encode(data.QuestionText);
-                    course_material_questions_base_64.Add(data);
-                }
-                //
-                return Json(new
-                {
-                    res = "ok",
-                    data = course_material_questions_base_64,
-                    completed_questions_answers
-                });
-            }
-            catch (Exception ex)
-            {
-                return Json(new
-                {
-                    res = "err",
-                    data = ex.Message
-                });
-            }
-        }
-
-
+      
         [HttpPost("UploadCourseMaterialAnswerToServer")]
         public JsonResult UploadCourseMaterialAnswerToServer([FromBody] BlazorAppClient.Server.Models.MUsersAnswersCourseMaterial answer)
         {

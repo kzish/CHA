@@ -9,6 +9,7 @@
 @attribute [Authorize]
 @inject State state
 @inject IToastService toastService
+@inject NavigationManager nav
 
 @if (course == null)
 {
@@ -62,7 +63,9 @@ else
                                 <li data-jstree='{ "selected" : false,"PageData":"@page_.QuestionText","QuestionID":"@page_.Id" }'>
                                     Question @question_number
                                 </li>
+                                client_side_ordered_questions.Add(page_.Id);
                                 @(question_number = question_number + 1)
+
                             }
                         </ul>
                     </li>
@@ -145,6 +148,7 @@ else
     private bool tree_initialized = false;
     private BlazorAppClient.Shared.Models.MQuestion question = null;
     private bool show_answer = false;
+    private List<string> client_side_ordered_questions = new List<string>();
 
 
     private BlazorAppClient.Shared.Models.MCourse course = null;
@@ -170,7 +174,6 @@ else
     {
         if (first_render)
         {
-
             await js.InvokeAsync<string>("initInstance", DotNetObjectReference.Create(this));
             StateHasChanged();
         }
@@ -188,13 +191,38 @@ else
         return current_user;
     }
 
-
+    /// <summary>
+    /// dont render content unless previous question has been answered
+    /// this ensures questions are answered in chronological order
+    /// skip this check for the first question
+    ///
+    /// </summary>
+    /// <param name="page_data"></param>
+    /// <param name="question_id"></param>
     [JSInvokable]
     public void RenderContent(string page_data, string question_id)
     {
         tree_initialized = true;
+
         if (!string.IsNullOrEmpty(page_data))
         {
+            bool is_first_question = client_side_ordered_questions.First() == question_id;
+            //toastService.ShowInfo("is_first_question: " + is_first_question);
+            if (!is_first_question)
+            {
+                //current position
+                var pos = client_side_ordered_questions.IndexOf(question_id);
+                //toastService.ShowInfo("pos: " + pos);
+                //toastService.ShowInfo("state.answers.Count: " + state.answers.Count);
+                //go back one if its present render
+                //else alert you must completed previous question first
+                if (state.answers.Count < (pos))
+                {
+                    toastService.ShowError("You must answer previous question first");
+                    return;
+                }
+            }
+
             var base64EncodedBytes = System.Convert.FromBase64String(page_data);
             PageData = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
             question = course.MQuestion.Where(i => i.Id == question_id).First();
@@ -216,7 +244,15 @@ else
             {
                 course = JsonConvert.DeserializeObject<BlazorAppClient.Shared.Models.MCourse>(json.data.ToString());
                 var users_answers = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MUsersAnswers>>(json.users_answers.ToString());
-                //
+                string is_course_work_completed = json.is_course_work_completed.ToString();
+                if(is_course_work_completed.ToLower()=="false")
+                {
+                    //toastService.ShowError("You have not completed all the course work and questions", "Error");
+                    //navigate back
+                    nav.NavigateTo($"/Course/{course_id}?msg_type=error&msg={HttpUtility.UrlEncode("You have not completed all the course work and questions")}");
+
+                }
+
                 state.SetCourse(course);
                 state.SetAnswers(users_answers);
             }
