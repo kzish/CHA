@@ -1,7 +1,8 @@
-﻿var boardGameInstance;
-
+﻿var boardGameInstance;//DotNetObjectReference
+var obj_grid_id_look_up;//object to look up the ids of the grids with the dotnet ids
 function initBoardGameInstance(boardGameInstance_) {
     boardGameInstance = boardGameInstance_;
+    obj_grid_id_look_up = new Object();
 }
 
 function initDragDrop() {
@@ -30,14 +31,16 @@ function initDragDrop() {
         })
             .on('dragInit', function (item) {
                 //kz
-                console.log('item dragInit', item);
+                //console.log('item dragInit', item);
                 item.getElement().style.width = item.getWidth() + 'px';
                 item.getElement().style.height = item.getHeight() + 'px';
             })
             .on('dragReleaseEnd', function (item) {
                 //kz
-                console.log('element id:', item.getElement().id);
-                console.log('parent:', item);
+                //console.log('dragged element id:', item.getElement().id);
+                //console.log('parent grid id:', obj_grid_id_look_up[item._gridId]);
+                //send the "title id" and the "item id" to be reordered
+                boardGameInstance.invokeMethodAsync("ReorderGameBoardItemsOrdering", obj_grid_id_look_up[item._gridId], item.getElement().id);
                 item.getElement().style.width = '';
                 item.getElement().style.height = '';
                 item.getGrid().refreshItems([item]);
@@ -45,16 +48,15 @@ function initDragDrop() {
             .on('layoutStart', function () {
                 boardGrid.refreshItems().layout();
             });
-
-        //kz
+        //
         var items_array = [];//the items ids
-        grid._items.forEach(function (_item, _index)
-        {
+        grid._items.forEach(function (_item, _index) {
             items_array.push(_item.getElement().id);//push into an array
         });
-        //send the title id and the items ids
+        //send the "title id" and the "items ids"
         boardGameInstance.invokeMethodAsync("InitGameBoardItemsOrdering", grid.getElement().id, items_array);
         //
+        obj_grid_id_look_up[grid._id] = grid.getElement().id;//input the ids and the dotnet ids
         columnGrids.push(grid);
     });
 

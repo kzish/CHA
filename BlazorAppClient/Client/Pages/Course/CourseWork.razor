@@ -169,7 +169,12 @@ else
                         {
                             <BoardGameComponent board_game="board_game"
                                                 board_game_titles="board_game_titles"
-                                                board_game_items="board_game_items" />
+                                                board_game_items="board_game_items"
+                                                course_id="@course_id"
+                                                the_correct_answer_html_table="@the_correct_answer_html_table"
+                                                my_selected_answer_html_table="@my_selected_answer_html_table"
+                                                is_my_answer_correct="@is_my_answer_correct"
+                                                />
                         }
                     </div>
                 </div>
@@ -208,6 +213,10 @@ else
     private BlazorAppClient.Shared.Models.MBoardGame board_game = null;
     private List<BlazorAppClient.Shared.Models.MBoardGameTitles> board_game_titles = null;
     private List<BlazorAppClient.Shared.Models.MBoardGameItems> board_game_items = null;
+    //
+    public string the_correct_answer_html_table;
+    public string my_selected_answer_html_table;
+    public string is_my_answer_correct;
     //
     private List<BlazorAppClient.Shared.Models.MCourseWorkQuestion> course_material_questions = null;
 
@@ -407,6 +416,11 @@ else
                 board_game = JsonConvert.DeserializeObject<BlazorAppClient.Shared.Models.MBoardGame>(json.board_game.ToString());
                 board_game_titles = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MBoardGameTitles>>(json.board_game_titles.ToString());
                 board_game_items = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.Models.MBoardGameItems>>(json.board_game_items.ToString());
+
+                the_correct_answer_html_table = json.the_correct_answer_html_table.ToString();
+                my_selected_answer_html_table = json.my_selected_answer_html_table.ToString();
+                is_my_answer_correct = json.is_my_answer_correct.ToString();
+
             }
             else
             {

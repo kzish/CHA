@@ -32,7 +32,6 @@ obj\Debug\netstandard2.1\blazor\unlinked\System.Threading.Tasks.Extensions.dll
 obj\Debug\netstandard2.1\blazor\unlinked\System.Text.Json.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Bcl.AsyncInterfaces.dll
 obj\Debug\netstandard2.1\blazor\unlinked\System.Numerics.Vectors.dll
-obj\Debug\netstandard2.1\blazor\unlinked\Newtonsoft.Json.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.CSharp.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Extensions.Logging.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Extensions.DependencyInjection.dll
@@ -40,6 +39,7 @@ obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Extensions.DependencyInjectio
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Extensions.Logging.Abstractions.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Extensions.Options.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.Extensions.Http.dll
+obj\Debug\netstandard2.1\blazor\unlinked\Newtonsoft.Json.dll
 obj\Debug\netstandard2.1\blazor\unlinked\System.ComponentModel.Annotations.dll
 obj\Debug\netstandard2.1\blazor\unlinked\System.ComponentModel.DataAnnotations.dll
 obj\Debug\netstandard2.1\blazor\unlinked\Microsoft.AspNetCore.Components.Forms.dll

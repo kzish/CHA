@@ -11,6 +11,7 @@ namespace BlazorAppClient.Server.Models
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
+            MBoardGameUsersAnswers = new HashSet<MBoardGameUsersAnswers>();
             MCourse = new HashSet<MCourse>();
             MCourseExamReports = new HashSet<MCourseExamReports>();
             MCourseInstructor = new HashSet<MCourseInstructor>();
@@ -44,6 +45,7 @@ namespace BlazorAppClient.Server.Models
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual ICollection<MBoardGameUsersAnswers> MBoardGameUsersAnswers { get; set; }
         public virtual ICollection<MCourse> MCourse { get; set; }
         public virtual ICollection<MCourseExamReports> MCourseExamReports { get; set; }
         public virtual ICollection<MCourseInstructor> MCourseInstructor { get; set; }

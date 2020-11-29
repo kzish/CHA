@@ -1,30 +1,74 @@
 ﻿@inject State state
 @inject IJSRuntime js
-<div class="drag-container"></div>
-<div class="board">
-    @foreach (var obj in sortedObjects)
-    {
-        <div class="board-column todo" >
-            <div class="board-column-container">
-                <div class="board-column-header" title="@obj.title.Title">@obj.title.Title</div>
-                <div class="board-column-content-wrapper">
-                    <div class="board-column-content" id="@obj.id">
-                        @foreach (var item in obj.items)
-                        {
-                            <div class="board-item" id="@item.Id">
-                                <div class="board-item-content">
-                                    <span>@item.ItemText</span>
+@inject NavigationManager nav
+@inject HttpClient http_client
+
+@if (string.IsNullOrEmpty(the_correct_answer_html_table))
+{
+    <div class="drag-container"></div>
+    <div class="board">
+        @foreach (var obj in sortedObjects)
+        {
+            <div class="board-column todo">
+                <div class="board-column-container">
+                    <div class="board-column-header" title="@obj.title.Title">@obj.title.Title</div>
+                    <div class="board-column-content-wrapper">
+                        <div class="board-column-content" id="@obj.id">
+                            @foreach (var item in obj.items)
+                            {
+                                <div class="board-item" id="@item.Id">
+                                    <div class="board-item-content">
+                                        <span>@item.ItemText</span>
+                                    </div>
                                 </div>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
+    </div>
+
+    <br />
+    <button type="button" @onclick="ConfirmSubmit" class="btn btn-success btn-sm">
+        <Loading isloading="loading" />
+        Submit Answer
+    </button>
+    <br />
+    <small style="color:red;">you will not be able to change the answer</small>
+    <br />
+    <br />
+    <br />
+}
+else
+{
+
+    @if (!string.IsNullOrEmpty(the_correct_answer_html_table))
+    {
+        <h4>The correct Answer</h4>
+        @((MarkupString)the_correct_answer_html_table)
+        <br />
+        <br />
+        <br />
     }
-</div>
 
 
+    @if (!string.IsNullOrEmpty(my_selected_answer_html_table))
+    {
+        <h4>Your Answer</h4>
+        @((MarkupString)my_selected_answer_html_table)
+        <br />
+        <br />
+        <br />
+    }
+}
+
+<BlazoredToasts Position="ToastPosition.BottomCenter"
+                Timeout="3"
+                IconType="IconType.FontAwesome"
+                SuccessClass="success-toast-override"
+                SuccessIcon="fa fa-thumbs-up"
+                ErrorIcon="fa fa-bug" />
 
 @code {
 
@@ -34,11 +78,22 @@
     public List<BlazorAppClient.Shared.Models.MBoardGameTitles> board_game_titles { get; set; }
     [Parameter]
     public List<BlazorAppClient.Shared.Models.MBoardGameItems> board_game_items { get; set; }
+    [Parameter]
+    public string course_id { get; set; }
 
-    public List<BoardGameItemsOrdering> board_game_items_ordering = new List<BoardGameItemsOrdering>();
+    [Parameter]
+    public string the_correct_answer_html_table { get; set; }//this is a raw html with the correct answer
+    [Parameter]
+    public string my_selected_answer_html_table { get; set; }//this is a raw html with my selected answer
+    [Parameter]
+    public string is_my_answer_correct { get; set; }//get result from server
+
+    public List<BlazorAppClient.Shared.BoardGameItemsOrdering> board_game_items_ordering = new List<BlazorAppClient.Shared.BoardGameItemsOrdering>();//ordering based on the students choice
 
     private bool drag_initialized = false;
-    private List<BoardGameAndTitles> sortedObjects = new List<BoardGameAndTitles>();
+    private List<BoardGameAndTitles> sortedObjects = new List<BoardGameAndTitles>();//randomized initial ordering
+
+    private bool loading = false;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -46,14 +101,14 @@
 
         var num_titles = board_game_titles.Count;
         var num_items = board_game_items.Count;
-        decimal num_for_each =  (decimal)num_items/(decimal)num_titles ;
+        decimal num_for_each = (decimal)num_items / (decimal)num_titles;
         if (num_for_each % 1 != 0) num_for_each = (int)(num_for_each + 1);//get the extra is this has decimals
 
         for (int i = 0; i < num_titles; i++)
         {
             var obj = new BoardGameAndTitles()
             {
-                id= board_game_titles[i].Id,
+                id = board_game_titles[i].Id,
                 title = board_game_titles[i],
                 items = board_game_items.Skip(i * (int)num_for_each).Take((int)num_for_each).ToList()
             };
@@ -85,10 +140,11 @@
         state.OnChange -= StateHasChanged;
     }
 
+    //initialize the random order this is what is currently in the client order
     [JSInvokable]
-    public void InitGameBoardItemsOrdering(string title,List<string>items)
+    public void InitGameBoardItemsOrdering(string title, List<string> items)
     {
-        var board_game_item_order = new BoardGameItemsOrdering()
+        var board_game_item_order = new BlazorAppClient.Shared.BoardGameItemsOrdering()
         {
             title_id = title,
             item_ids = items
@@ -98,17 +154,24 @@
         drag_initialized = true;
     }
 
+    /// <summary>
+    /// reorder the elements as the student orders them
+    /// </summary>
+    /// <param name="title_id"></param>
+    /// <param name="item_id"></param>
     [JSInvokable]
-    public void ReorderGameBoardItemsOrdering(string title, string item_id)
+    public void ReorderGameBoardItemsOrdering(string title_id, string item_id)
     {
-        var board_game_item_order = new BoardGameItemsOrdering()
+        //1-check this item exists in which list
+        //2-remove it from that list
+        //3-add the item into the new list
+        foreach (var title in board_game_items_ordering)
         {
-            title_id = title,
-            //item_ids = items
-        };
-        board_game_items_ordering.Add(board_game_item_order);
-        //Console.WriteLine(JsonConvert.SerializeObject(board_game_items_ordering));
-        drag_initialized = true;
+            title.item_ids.Remove(item_id);//remove from any list that contains this item
+        }
+        //add into the list it was moved into
+        board_game_items_ordering.Where(i => i.title_id == title_id).FirstOrDefault().item_ids.Add(item_id);
+        Console.WriteLine(JsonConvert.SerializeObject(board_game_items_ordering));
     }
 
     /// <summary>
@@ -121,11 +184,75 @@
         public List<BlazorAppClient.Shared.Models.MBoardGameItems> items { get; set; }
     }
 
-    //this class groups the title id and the items id when rendered and ordered by the student
-    //this will be compared to the original from the server
-    public class BoardGameItemsOrdering
+
+    private async Task<BlazorAppClient.Shared.CurrentUser> GetCurrentUser()
     {
-        public string title_id { get; set; }
-        public List<string> item_ids { get; set; } = new List<string>();
+        try
+        {
+            dynamic user_string = await local_storage.GetItemAsStringAsync("current_user");
+            var current_user = JsonConvert.DeserializeObject<BlazorAppClient.Shared.CurrentUser>(user_string);
+            return current_user;
+        }
+        catch (Exception ex)
+        {
+            nav.NavigateTo("/Auth/Login");
+        }
+        return null;
     }
+
+
+    private async Task ConfirmSubmit()
+    {
+        var current_user = await GetCurrentUser();
+        //user has confirmed answer
+        var confirm = await js.InvokeAsync<bool>("confirm", new[] { "Confirm Answer", "Are you sure?" });
+        if (confirm)
+        {
+
+            loading = true;
+            StateHasChanged();
+            try
+            {
+                var board_game_users_answer = new BlazorAppClient.Shared.Models.MBoardGameUsersAnswers();
+                board_game_users_answer.AspNetUserIdFk = current_user.user_id;
+                board_game_users_answer.MCourseMaterialIdFk = board_game.CourseMaterialIdFk;
+                board_game_users_answer.MCourseIdFk = course_id;
+                board_game_users_answer.JsonAnswer = JsonConvert.SerializeObject(board_game_items_ordering);
+                board_game_users_answer.CorrectAnswer = false;
+
+                //post to server
+                var response1 = await http_client
+                  .PostAsJsonAsync($"Courses/UploadBoardGameAnswers", board_game_users_answer);
+                var response2 = await response1.Content.ReadAsStringAsync();
+                dynamic json = JsonConvert.DeserializeObject(response2);
+                if (json.res.ToString() == "ok")
+                {
+                    the_correct_answer_html_table = json.the_correct_answer_html_table.ToString();
+                    my_selected_answer_html_table = json.my_selected_answer_html_table.ToString();
+                    is_my_answer_correct = json.is_my_answer_correct.ToString();
+                    //course_percentage_complete = (state.completed_pages.Count / state.course.MCourseMaterial.Count) * 100;
+                    StateHasChanged();
+                }
+                else
+                {
+                    toastService.ShowError(json.data.ToString(), "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                toastService.ShowError(ex.Message);
+            }
+            finally
+            {
+                loading = false;
+                StateHasChanged();
+            }
+
+        }
+
+    }
+
+
+
+
 }

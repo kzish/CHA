@@ -28,6 +28,7 @@ namespace BlazorAppClient.Server.Models
         public virtual DbSet<MBoardGame> MBoardGame { get; set; }
         public virtual DbSet<MBoardGameItems> MBoardGameItems { get; set; }
         public virtual DbSet<MBoardGameTitles> MBoardGameTitles { get; set; }
+        public virtual DbSet<MBoardGameUsersAnswers> MBoardGameUsersAnswers { get; set; }
         public virtual DbSet<MCompany> MCompany { get; set; }
         public virtual DbSet<MContinouseAssesment> MContinouseAssesment { get; set; }
         public virtual DbSet<MCourse> MCourse { get; set; }
@@ -327,6 +328,59 @@ text,");
                     .WithMany(p => p.MBoardGameTitles)
                     .HasForeignKey(d => d.MBoardGameIdFk)
                     .HasConstraintName("FK_m_board_game_titles_m_board_game");
+            });
+
+            modelBuilder.Entity<MBoardGameUsersAnswers>(entity =>
+            {
+                entity.ToTable("m_board_game_users_answers");
+
+                entity.HasComment("records the users answers for the board games");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
+                    .HasColumnName("asp_net_user_id_fk")
+                    .HasMaxLength(450)
+                    .HasComment("links to the user");
+
+                entity.Property(e => e.CorrectAnswer)
+                    .HasColumnName("correct_answer")
+                    .HasComment("is this the correct answer or not");
+
+                entity.Property(e => e.JsonAnswer)
+                    .IsRequired()
+                    .HasColumnName("json_answer")
+                    .IsUnicode(false)
+                    .HasComment("stores the json answer in json string format");
+
+                entity.Property(e => e.MCourseIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_course_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasComment("links to the course");
+
+                entity.Property(e => e.MCourseMaterialIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_course_material_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasComment("links to the course material");
+
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MBoardGameUsersAnswers)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .HasConstraintName("FK_m_board_game_users_answers_AspNetUsers");
+
+                entity.HasOne(d => d.MCourseIdFkNavigation)
+                    .WithMany(p => p.MBoardGameUsersAnswers)
+                    .HasForeignKey(d => d.MCourseIdFk)
+                    .HasConstraintName("FK_m_board_game_users_answers_m_course");
             });
 
             modelBuilder.Entity<MCompany>(entity =>

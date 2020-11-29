@@ -6,3 +6,4 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.csproj.CoreCompileInputs.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.pdb
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Shared\obj\Debug\netstandard2.1\BlazorAppClient.Shared.csprojAssemblyReference.cache

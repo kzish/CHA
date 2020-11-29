@@ -292,16 +292,91 @@ namespace BlazorAppClient.Server.Controllers
                 var board_game = db.MBoardGame.Where(i => i.CourseMaterialIdFk == course_material_id).FirstOrDefault();
                 var board_game_titles = db.MBoardGameTitles.Where(i => i.MBoardGameIdFk == board_game.Id).ToList();
                 var board_game_items = db.MBoardGameItems.Where(i => i.MBoardGameIdFk == board_game.Id).ToList();
-                 return Json(new
-                 {
-                     res = "ok",
-                     board_game,
-                     board_game_titles,
-                     board_game_items
-                 });
+
+                //the below logic is the same as UploadBoardGame
+                //this is to check if there is already an answer and return that object to the client
+                //
+                var the_correct_answer_html_table = string.Empty;
+                var my_selected_answer_html_table = string.Empty;
+                bool is_my_answer_correct = true;//start at true break as soon as you hit a false
+                var existing_answer = db.MBoardGameUsersAnswers
+                    .Where(i => i.MCourseMaterialIdFk == course_material_id)//this course material
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id)//this user
+                    .FirstOrDefault();//only one board game per course material
+                if (existing_answer!=null)
+                {
+                    //format the correct answers to be in the same format as my uploaded answers
+                    var the_correct_answers = new List<BlazorAppClient.Shared.BoardGameItemsOrdering>();
+                    //
+                    foreach (var title in board_game_titles)
+                    {
+                        var items_under_this_title = board_game_items.Where(i => i.CorrectTitleIdFk == title.Id).Select(i => i.Id).ToList();
+                        //
+                        var order = new BlazorAppClient.Shared.BoardGameItemsOrdering();
+                        order.title_id = title.Id;
+                        order.item_ids.AddRange(items_under_this_title);
+                        the_correct_answers.Add(order);
+                    }
+                    //compare my answers with the stored answers
+                    var my_uploaded_answers = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.BoardGameItemsOrdering>>(existing_answer.JsonAnswer);
+                    foreach (var correct_order in the_correct_answers)
+                    {
+                        var my_order = my_uploaded_answers.Where(i => i.title_id == correct_order.title_id).First();
+                        //break as soon as you encounter one false
+                        //
+                        //first compare lengths if they are different this answer is wrong already
+                        is_my_answer_correct = my_order.item_ids.Count == correct_order.item_ids.Count;
+                        if (!is_my_answer_correct)
+                        {
+                            break;
+                        }
+                        //
+                        //now compare the actual items each must be the same
+                        for (int i = 0; i < correct_order.item_ids.Count; i++)
+                        {
+                            is_my_answer_correct = correct_order.item_ids[i] == correct_order.item_ids[i];
+                            if (!is_my_answer_correct)
+                            {
+                                break;
+                            }
+                        }
+                        if (!is_my_answer_correct)
+                        {
+                            break;
+                        }
+                    }
+                    the_correct_answer_html_table += "<table >";
+                    the_correct_answer_html_table += "<tr>";
+                    foreach (var title in the_correct_answers)
+                    {
+                        the_correct_answer_html_table += $"<td style='border:1px solid black;'>{db.MBoardGameTitles.Find(title.title_id).Title}</td>";
+                    }
+                    the_correct_answer_html_table += "</tr>";
+
+
+                    the_correct_answer_html_table += "</table>";
+
+                    my_selected_answer_html_table = the_correct_answer_html_table;
+
+                    //put into base64
+                    //my_selected_answer_html_table = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(my_selected_answer_html_table));
+                    //the_correct_answer_html_table = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(the_correct_answer_html_table));
+                }
+                //
+                return Json(new
+                {
+                    res = "ok",
+                    board_game,
+                    board_game_titles,
+                    board_game_items,
+                    the_correct_answer_html_table,
+                    my_selected_answer_html_table,
+                    is_my_answer_correct
+                });
             }
             catch (Exception ex)
             {
+                //
                 return Json(new
                 {
                     res = "err",
@@ -692,6 +767,97 @@ namespace BlazorAppClient.Server.Controllers
             }
         }
 
+
+        [HttpPost("UploadBoardGameAnswers")]
+        public JsonResult UploadBoardGameAnswers([FromBody]BlazorAppClient.Server.Models.MBoardGameUsersAnswers answer)
+        {
+            try
+            {
+                //
+                var the_correct_answer_html_table = string.Empty;
+                var my_selected_answer_html_table = string.Empty;
+                bool is_my_answer_correct = true;//start at true break as soon as you hit a false
+                //
+                var board_game = db.MBoardGame.Where(i => i.CourseMaterialIdFk == answer.MCourseMaterialIdFk).FirstOrDefault();
+                var board_game_titles = db.MBoardGameTitles.Where(i => i.MBoardGameIdFk == board_game.Id).ToList();
+                var board_game_items = db.MBoardGameItems.Where(i => i.MBoardGameIdFk == board_game.Id).ToList();
+                //
+                //format the correct answers to be in the same format as my uploaded answers
+                var the_correct_answers = new List<BlazorAppClient.Shared.BoardGameItemsOrdering>();
+                //
+                foreach (var title in board_game_titles)
+                {
+                    var items_under_this_title = board_game_items.Where(i => i.CorrectTitleIdFk == title.Id).Select(i => i.Id).ToList();
+                    //
+                    var order = new BlazorAppClient.Shared.BoardGameItemsOrdering();
+                    order.title_id = title.Id;
+                    order.item_ids.AddRange(items_under_this_title);
+                    the_correct_answers.Add(order);
+                }
+                //compare my answers with the stored answers
+                var my_uploaded_answers = JsonConvert.DeserializeObject<List<BlazorAppClient.Shared.BoardGameItemsOrdering>>(answer.JsonAnswer);
+                foreach (var correct_order in the_correct_answers)
+                {
+                    var my_order = my_uploaded_answers.Where(i => i.title_id == correct_order.title_id).First();
+                    //break as soon as you encounter one false
+                    //
+                    //first compare lengths if they are different this answer is wrong already
+                    is_my_answer_correct = my_order.item_ids.Count == correct_order.item_ids.Count;
+                    if (!is_my_answer_correct)
+                    {
+                        break;
+                    }
+                    //
+                    //now compare the actual items each must be the same
+                    for (int i = 0; i < correct_order.item_ids.Count; i++)
+                    {
+                        is_my_answer_correct = correct_order.item_ids[i] == correct_order.item_ids[i];
+                        if (!is_my_answer_correct)
+                        {
+                            break;
+                        }
+                    }
+                    if (!is_my_answer_correct)
+                    {
+                        break;
+                    }
+                }
+                answer.CorrectAnswer = is_my_answer_correct;
+                //
+                db.MBoardGameUsersAnswers.Add(answer);
+                db.SaveChanges();
+                //
+
+                the_correct_answer_html_table += "<table>";
+                the_correct_answer_html_table += "<tr>";
+                foreach(var title in the_correct_answers)
+                {
+                    the_correct_answer_html_table += $"<td>{title.title_id}</td>";
+                }
+                the_correct_answer_html_table += "</tr>";
+
+
+                the_correct_answer_html_table += "</table>";
+
+                my_selected_answer_html_table = the_correct_answer_html_table;
+                return Json(new
+                {
+                    res = "ok",
+                    the_correct_answer_html_table,
+                    my_selected_answer_html_table,
+                    is_my_answer_correct
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    res = "err",
+                    data = ex.Message
+                });
+            }
+
+        }
 
 
 
