@@ -1,17 +1,18 @@
 ﻿@{
     var questions = (List<Admin.Models.MCourseWorkQuestion>)ViewBag.questions;
-    var students = (List<Admin.Models.AspNetUsers>)ViewBag.students;
 }
 
 <table id="dt" class="table tblsm">
     <thead>
         <tr>
-            <th>Student</th>
+            <th>Coure Material</th>
+            <th>Type</th>
+            <th>Sequence</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in students)
+        @foreach (var item in questions)
         {
             <tr>
                 <td title="@item.MCourseMaterialIdFkNavigation.PageTitle">@item.MCourseMaterialIdFkNavigation.PageTitle</td>
@@ -22,8 +23,8 @@
                         Open
                     </a>
                     |
-                    <a href="~/CourseMaterialQuestionsAndAnswers/CreateQuestionAndAnswer?course_material_id=@(item.MCourseMaterialIdFk)&question_id=@(item.Id)" style="color:black;">
-                        Student Responses
+                    <a href="~/CourseMaterialQuestionsAndAnswers/BoardGame?course_material_id=@(item.MCourseMaterialIdFk)&question_id=@(item.Id)" style="color:orange;">
+                        BoardGame
                     </a>
                     |
                     <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete('@item.Id')">

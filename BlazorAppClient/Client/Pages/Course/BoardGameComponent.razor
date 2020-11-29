@@ -1,0 +1,93 @@
+﻿@inject State state
+@inject IJSRuntime js
+<div class="drag-container"></div>
+<div class="board">
+    @foreach (var obj in sortedObjects)
+    {
+        <div class="board-column todo">
+            <div class="board-column-container">
+                <div class="board-column-header" title="@obj.title.Title">@obj.title.Title</div>
+                <div class="board-column-content-wrapper">
+                    <div class="board-column-content">
+                        @foreach (var item in obj.items)
+                        {
+                            <div class="board-item">
+                                <div class="board-item-content">
+                                    <span>@item.ItemText</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public BlazorAppClient.Shared.Models.MBoardGame board_game { get; set; }
+    [Parameter]
+    public List<BlazorAppClient.Shared.Models.MBoardGameTitles> board_game_titles { get; set; }
+    [Parameter]
+    public List<BlazorAppClient.Shared.Models.MBoardGameItems> board_game_items { get; set; }
+
+    private bool drag_initialized = false;
+    private List<BoardGameAndTitles> sortedObjects = new List<BoardGameAndTitles>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        base.OnParametersSet();
+
+        var num_titles = board_game_titles.Count;
+        var num_items = board_game_items.Count;
+        decimal num_for_each =  (decimal)num_items/(decimal)num_titles ;
+        if (num_for_each % 1 != 0) num_for_each = (int)(num_for_each + 1);//get the extra is this has decimals
+
+        for (int i = 0; i < num_titles; i++)
+        {
+            var obj = new BoardGameAndTitles()
+            {
+                title = board_game_titles[i],
+                items = board_game_items.Skip(i * (int)num_for_each).Take((int)num_for_each).ToList()
+            };
+            sortedObjects.Add(obj);
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool first_render)
+    {
+        if (!drag_initialized)
+        {
+            //await js.InvokeAsync<string>("initTree");
+            await js.InvokeAsync<string>("initDragDrop");
+            Console.WriteLine("initDragDrop called");
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        state.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        state.OnChange -= StateHasChanged;
+    }
+
+    //[JSInvokable]
+    //public async Task RenderContent(string _page_id, string page_data, string _topic_id, string _has_questions, string _has_board_game)
+    //{
+    //    drag_initialized = true;
+    //}
+
+    class BoardGameAndTitles
+    {
+        public BlazorAppClient.Shared.Models.MBoardGameTitles title { get; set; }
+        public List<BlazorAppClient.Shared.Models.MBoardGameItems> items { get; set; }
+    }
+}

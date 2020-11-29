@@ -75,6 +75,7 @@ namespace Admin.Controllers
             {
                 material.CreatedByAspNetUserIdFk = db.AspNetUsers.Where(i => i.Email == User.Identity.Name).First().Id;
                 material.DateCreated = DateTime.Now;
+                if (string.IsNullOrEmpty(material.PageData)) material.PageData = "...";
                 if (material.Published) material.DatePublished = DateTime.Now;
                 db.MCourseMaterial.Add(material);
                 db.SaveChanges();
@@ -114,13 +115,14 @@ namespace Admin.Controllers
             {
                 old_material.MCourseTopicIdFk = material.MCourseTopicIdFk;
                 old_material.PageSequence = material.PageSequence;
-                old_material.PageData = material.PageData;
+                old_material.PageData = material.PageData??"...";
                 old_material.CreatedByAspNetUserIdFk = db.AspNetUsers.Where(i=>i.Email==User.Identity.Name).FirstOrDefault().Id;
                 old_material.DateCreated = DateTime.Now;
                 old_material.Published = material.Published;
                 old_material.DatePublished = DateTime.Now;
                 old_material.PageTitle = material.PageTitle;
                 old_material.HasQuestions = material.HasQuestions;
+                old_material.HasBoardGame = material.HasBoardGame;
                 db.SaveChanges();
                 TempData["msg"] = "Material Updated";
                 TempData["type"] = "success";

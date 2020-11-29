@@ -222,7 +222,34 @@ namespace Admin.Controllers
 
         }
 
-       
+        [HttpGet("BoardGame")]
+        public IActionResult BoardGame(string course_material_id)
+        {
+            ViewBag.title = "BoardGame";
+            var course_material = db.MCourseMaterial
+                .Include(i=>i.MCourseIdFkNavigation)
+                .Where(i=>i.Id==course_material_id)
+                .FirstOrDefault();
+                
+            var board_game = db.MBoardGame
+                .Where(i => i.CourseMaterialIdFk == course_material_id)
+                .Include(i=>i.MBoardGameTitles)
+                .Include(i=>i.MBoardGameItems)
+                .FirstOrDefault();
+            if(board_game==null)
+            {
+                board_game = new MBoardGame();
+                board_game.CourseMaterialIdFk = course_material_id;
+                db.MBoardGame.Add(board_game);
+                db.SaveChanges();
+            }
+               
+            ViewBag.course_material=course_material;
+            ViewBag.board_game = board_game;
+            return View();
+        }
+
+
 
     }
 }

@@ -28,9 +28,14 @@ function initInstance(dotnetInstance_) {
 //init tree in coursework
 function initTree() {
 
-    $('#mobile-nav').click(function (event) {
+
+    $('#mobile-nav').off('click').on("click", function (event) {
         $('._nav').toggleClass('active');
     });
+
+    //$('#mobile-nav').click(function (event) {
+    //    $('._nav').toggleClass('active');
+    //});
 
     $('#html_course_work').jstree();
     $('#html_exam').jstree();
@@ -41,7 +46,8 @@ function initTree() {
         var page_id = (data.node.data.jstree.page_id);
         var topic_id = (data.node.data.jstree.topic_id);
         var has_questions = (data.node.data.jstree.has_questions);
-        dotnetInstance.invokeMethodAsync("RenderContent", page_id, pageData, topic_id, has_questions);
+        var has_board_game = (data.node.data.jstree.has_board_game);
+        dotnetInstance.invokeMethodAsync("RenderContent", page_id, pageData, topic_id, has_questions, has_board_game);
     });
     //register event only once
     $('#html_exam').off('changed.jstree').on("changed.jstree", function (e, data) {
@@ -157,3 +163,5 @@ function printExamPercentageChart(_correct, _failed) {
         }]
     });
 }
+
+

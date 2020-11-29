@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using Admin.Models;
+using Humanizer;
 
 public class Globals
 {
@@ -66,6 +68,20 @@ public class Globals
         }
         obj[key] = value;
         File.WriteAllText(simba_config, obj.ToString());
+    }
+
+    public static string FetchBoardGameTitle(string id)
+    {
+        using (var db= new dbContext())
+        {
+            var board_game_title = db.MBoardGameTitles.Find(id);
+            db.Dispose();
+            if(board_game_title==null)
+            {
+                return "";
+            }
+            return board_game_title.Title;
+        }
     }
 
 

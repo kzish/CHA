@@ -278,6 +278,38 @@ namespace BlazorAppClient.Server.Controllers
             }
         }
 
+        /// <summary>
+        /// load the board game for the selected page/course material
+        /// </summary>
+        /// <param name="course_material_id"></param>
+        /// <param name="asp_net_user_id"></param>
+        /// <returns></returns>
+        [HttpGet("LoadBoardGameForCourseMaterial")]
+        public JsonResult LoadBoardGameForCourseMaterial(string course_id, string course_material_id, string asp_net_user_id)
+        {
+            try
+            {
+                var board_game = db.MBoardGame.Where(i => i.CourseMaterialIdFk == course_material_id).FirstOrDefault();
+                var board_game_titles = db.MBoardGameTitles.Where(i => i.MBoardGameIdFk == board_game.Id).ToList();
+                var board_game_items = db.MBoardGameItems.Where(i => i.MBoardGameIdFk == board_game.Id).ToList();
+                 return Json(new
+                 {
+                     res = "ok",
+                     board_game,
+                     board_game_titles,
+                     board_game_items
+                 });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    res = "err",
+                    data = ex.Message
+                });
+            }
+        }
+
 
 
         //todo: record start the exam
@@ -375,7 +407,7 @@ namespace BlazorAppClient.Server.Controllers
                             .Count();
 
                         is_course_work_completed = course_work_material_questions == my_course_work_answers;
-                        if(!is_course_work_completed)
+                        if (!is_course_work_completed)
                         {
                             break;//end the loop as soon as i get a single false
                             //this means there is at least one that is not completed
@@ -636,7 +668,7 @@ namespace BlazorAppClient.Server.Controllers
         }
 
 
-      
+
         [HttpPost("UploadCourseMaterialAnswerToServer")]
         public JsonResult UploadCourseMaterialAnswerToServer([FromBody] BlazorAppClient.Server.Models.MUsersAnswersCourseMaterial answer)
         {

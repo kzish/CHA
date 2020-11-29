@@ -1,7 +1,7 @@
 {
   "FilesToCompress": [
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\OHoNP1nt5gEwVISYoU_An31M9rP3jzDVZMjQ_Eh2e6I=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\hTKOtUAbQTClmiZobxm7Ktkipc0DpXgoI5fhTYE7uww=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BlazorAppClient.Client.dll",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BlazorAppClient.Client.dll.br"
     },
@@ -356,17 +356,17 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.JSInterop.WebAssembly.dll.br"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\ZVqBia8MUn_8RPDdfF7eRkxf67trkOLfY65UZlBOn2U=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\rwHHE-N6Gg-hng-6v8nS0ipNWtL2mrwz6kysLV_fqV8=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BlazorAppClient.Shared.dll",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BlazorAppClient.Shared.dll.br"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\MYnX4legF1yjCXy03YnAIaf2015-awy7t4u8awFAnKY=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\kr3LlnqR9KQJ5Vennlt6g6gXxpmZ4tmngNQZWOk1Ymc=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BlazorAppClient.Client.pdb",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BlazorAppClient.Client.pdb.br"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\ZCGwPjB0L5TlPXbsMRTF7dsN390i5b-OBS2bZmoPZhk=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\0HLVWx7uBM95mniWhde3DmWJPGmgbds1buKIkE8IOjY=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\BlazorAppClient.Shared.pdb",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/BlazorAppClient.Shared.pdb.br"
     },
@@ -391,12 +391,12 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.webassembly.js.br"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\ZD4e7yuVuA7Woc9DKhX8W6yOnCMe_C0nW7yGAUSyClA=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\NMCk_onUgSM-r3b0OzfvW_Pw_rGu1L9P8dSRM1cGnzQ=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\blazor.boot.json",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.boot.json.br"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\smjLTJM5FXbjlsDWXy6UQLiHgFn09ZRpAelOqdTi0u0=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\U5E_lmaY3-FtcS8qCRNDUM99eOjGlizUM1aSK1Kt-BE=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Debug\\netstandard2.1\\blazor\\service-worker-assets.js",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\service-worker-assets.js.br"
     }

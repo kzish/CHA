@@ -25,6 +25,9 @@ namespace Admin.Models
         public virtual DbSet<DeviceCodes> DeviceCodes { get; set; }
         public virtual DbSet<ECourseCategory> ECourseCategory { get; set; }
         public virtual DbSet<EQuestionAnswerType> EQuestionAnswerType { get; set; }
+        public virtual DbSet<MBoardGame> MBoardGame { get; set; }
+        public virtual DbSet<MBoardGameItems> MBoardGameItems { get; set; }
+        public virtual DbSet<MBoardGameTitles> MBoardGameTitles { get; set; }
         public virtual DbSet<MCompany> MCompany { get; set; }
         public virtual DbSet<MContinouseAssesment> MContinouseAssesment { get; set; }
         public virtual DbSet<MCourse> MCourse { get; set; }
@@ -232,6 +235,85 @@ namespace Admin.Models
                     .HasColumnName("type")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<MBoardGame>(entity =>
+            {
+                entity.ToTable("m_board_game");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.CourseMaterialIdFk)
+                    .IsRequired()
+                    .HasColumnName("course_material_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<MBoardGameItems>(entity =>
+            {
+                entity.ToTable("m_board_game_items");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.CorrectTitleIdFk)
+                    .IsRequired()
+                    .HasColumnName("correct_title_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ItemText)
+                    .IsRequired()
+                    .HasColumnName("item_text")
+                    .HasMaxLength(450)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MBoardGameIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_board_game_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.MBoardGameIdFkNavigation)
+                    .WithMany(p => p.MBoardGameItems)
+                    .HasForeignKey(d => d.MBoardGameIdFk)
+                    .HasConstraintName("FK_m_board_game_items_m_board_game");
+            });
+
+            modelBuilder.Entity<MBoardGameTitles>(entity =>
+            {
+                entity.ToTable("m_board_game_titles");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.MBoardGameIdFk)
+                    .IsRequired()
+                    .HasColumnName("m_board_game_id_fk")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Title)
+                    .IsRequired()
+                    .HasColumnName("title")
+                    .HasMaxLength(450)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.MBoardGameIdFkNavigation)
+                    .WithMany(p => p.MBoardGameTitles)
+                    .HasForeignKey(d => d.MBoardGameIdFk)
+                    .HasConstraintName("FK_m_board_game_titles_m_board_game");
             });
 
             modelBuilder.Entity<MCompany>(entity =>
@@ -462,6 +544,8 @@ namespace Admin.Models
                 entity.Property(e => e.DatePublished)
                     .HasColumnName("date_published")
                     .HasColumnType("datetime");
+
+                entity.Property(e => e.HasBoardGame).HasColumnName("has_board_game");
 
                 entity.Property(e => e.HasQuestions).HasColumnName("has_questions");
 

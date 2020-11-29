@@ -1,0 +1,170 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var course_material = (Admin.Models.MCourseMaterial)ViewBag.course_material;
+    var board_game = (Admin.Models.MBoardGame)ViewBag.board_game;
+    
+}
+@using Humanizer
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form" action="~/BoardGame/AddTitle" method="post">
+                <input type="hidden" name="course_material_id" value="@course_material.Id" />
+                <input type="hidden" value="@board_game.Id" name="MBoardGameIdFk" />
+                <div class="form-group">
+                    title: <input placeholder="title" type="text" required name="Title" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    <h3>titles</h3>
+    <table id="dt" class="table tblsm">
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in board_game.MBoardGameTitles)
+            {
+                <tr>
+                    <td title="@item.Title">@item.Title</td>
+                    <td>
+                        <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete_title('@item.Id')">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form" action="~/BoardGame/AddItem" method="post">
+                <input type="hidden" name="course_material_id" value="@course_material.Id" />
+                <input type="hidden" value="@board_game.Id" name="MBoardGameIdFk" />
+                <div class="form-group">
+                    Item text: <input type="text" name="ItemText" placeholder="ItemText" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    CorrectTitle:<select name="CorrectTitleIdFk" class="form-control">
+                        @foreach (var item in board_game.MBoardGameTitles)
+                        {
+                            <option value="@item.Id">@item.Title</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <br />
+    <h3>items</h3>
+    <table id="dt1" class="table tblsm">
+        <thead>
+            <tr>
+                <th>text</th>
+                <th>title</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in board_game.MBoardGameItems)
+            {
+                <tr>
+                    <td title="@item.ItemText">@item.ItemText</td>
+                    <td title="@Globals.FetchBoardGameTitle(item.CorrectTitleIdFk)"> @Globals.FetchBoardGameTitle(item.CorrectTitleIdFk) </td>
+                    <td>
+                        <a href="javascript:void(0);" style="color:red;" onclick="confirm_delete_item('@item.Id')">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<form method="post" action="~/BoardGame/DeleteTitle" id="delete_title">
+    <input type="hidden" name="course_material_id" value="@course_material.Id" />
+    <input type="hidden" name="id" id="title_id" />
+</form>
+
+<form method="post" action="~/BoardGame/DeleteItem" id="delete_item">
+    <input type="hidden" name="course_material_id" value="@course_material.Id" />
+    <input type="hidden" name="id" id="item_id" />
+</form>
+
+<script>
+
+    $('#dt').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+    $('#dt1').DataTable({
+        select: true,
+        responsive: true,
+        dom: 'lBfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    });
+
+
+    function confirm_delete_title(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Title?',
+            buttons: {
+                Yes: function () {
+                    $("#title_id").val(id);
+                    $("#delete_title").submit();
+                },
+                No: function () {
+                },
+            }
+        });
+    }
+
+    function confirm_delete_item(id) {
+        $.confirm({
+            title: 'Information',
+            type: "red",
+            content: 'Delete this Item?',
+            buttons: {
+                Yes: function () {
+                    $("#item_id").val(id);
+                    $("#delete_item").submit();
+                },
+                No: function () {
+                },
+            }
+        });
+    }
+
+</script>
