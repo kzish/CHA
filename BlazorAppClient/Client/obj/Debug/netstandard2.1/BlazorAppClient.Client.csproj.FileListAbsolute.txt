@@ -546,8 +546,8 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\BlazorAppClient.Client.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\blazor\serviceworkers\wwwroot\service-worker.js
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\blazor\service-worker-assets.js
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\Ut1eK0YSHTADxih1QWL3ydCKzblTdIprTzBVUn0V0f0=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\hTKOtUAbQTClmiZobxm7Ktkipc0DpXgoI5fhTYE7uww=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\kr3LlnqR9KQJ5Vennlt6g6gXxpmZ4tmngNQZWOk1Ymc=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\NMCk_onUgSM-r3b0OzfvW_Pw_rGu1L9P8dSRM1cGnzQ=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\U5E_lmaY3-FtcS8qCRNDUM99eOjGlizUM1aSK1Kt-BE=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\xOaOgm25zy3RFiGvJ96lODWz1WgvAqDOADT488EiG3M=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\M7BVk7NJSZwelXrBm1Izk9R2n5B2iYnzBESjIvVN4mo=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\X-8vOoi0jCk6jWMQ3rPrZy5rVDYTSrDVKX9utiWMvE4=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\ZmKLBWvkWoVYkaKybjlUR4N0bsV7i7GFCXEmxF_EJNU=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\M-BK4Azh3lJfcyeOjG6LgAa5fxdNVRvh5nZnm7Az0f8=.hash

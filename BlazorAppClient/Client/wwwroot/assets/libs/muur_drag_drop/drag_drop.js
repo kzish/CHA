@@ -1,4 +1,10 @@
-﻿function initDragDrop() {
+﻿var boardGameInstance;
+
+function initBoardGameInstance(boardGameInstance_) {
+    boardGameInstance = boardGameInstance_;
+}
+
+function initDragDrop() {
     var dragContainer = document.querySelector('.drag-container');
     var itemContainers = [].slice.call(document.querySelectorAll('.board-column-content'));
     var columnGrids = [];
@@ -23,10 +29,15 @@
             },
         })
             .on('dragInit', function (item) {
+                //kz
+                console.log('item dragInit', item);
                 item.getElement().style.width = item.getWidth() + 'px';
                 item.getElement().style.height = item.getHeight() + 'px';
             })
             .on('dragReleaseEnd', function (item) {
+                //kz
+                console.log('element id:', item.getElement().id);
+                console.log('parent:', item);
                 item.getElement().style.width = '';
                 item.getElement().style.height = '';
                 item.getGrid().refreshItems([item]);
@@ -35,6 +46,15 @@
                 boardGrid.refreshItems().layout();
             });
 
+        //kz
+        var items_array = [];//the items ids
+        grid._items.forEach(function (_item, _index)
+        {
+            items_array.push(_item.getElement().id);//push into an array
+        });
+        //send the title id and the items ids
+        boardGameInstance.invokeMethodAsync("InitGameBoardItemsOrdering", grid.getElement().id, items_array);
+        //
         columnGrids.push(grid);
     });
 

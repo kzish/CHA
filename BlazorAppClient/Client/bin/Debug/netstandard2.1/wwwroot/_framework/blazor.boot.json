@@ -9,7 +9,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "BlazorAppClient.Client.dll": "sha256-hTKOtUAbQTClmiZobxm7Ktkipc0DpXgoI5fhTYE7uww=",
+      "BlazorAppClient.Client.dll": "sha256-M7BVk7NJSZwelXrBm1Izk9R2n5B2iYnzBESjIvVN4mo=",
       "Microsoft.AspNetCore.WebUtilities.dll": "sha256-D5akJeBd7NNITuzAXxlX7zl2jfsc4uTKyeEKwwNhqoo=",
       "System.Text.Encodings.Web.dll": "sha256-Tqh1Da+iTRQJEZUGAsMNFuZ4hf1PMf13WApRZod+uw4=",
       "netstandard.dll": "sha256-\/zcPVM75OAY+joGVM8yIC1gO1SFYWP1CFERgQ8PJkfA=",
@@ -83,7 +83,7 @@
       "BlazorAppClient.Shared.dll": "sha256-rwHHE\/N6Gg\/hng\/6v8nS0ipNWtL2mrwz6kysLV+fqV8="
     },
     "pdb": {
-      "BlazorAppClient.Client.pdb": "sha256-kr3LlnqR9KQJ5Vennlt6g6gXxpmZ4tmngNQZWOk1Ymc=",
+      "BlazorAppClient.Client.pdb": "sha256-X\/8vOoi0jCk6jWMQ3rPrZy5rVDYTSrDVKX9utiWMvE4=",
       "BlazorAppClient.Shared.pdb": "sha256-0HLVWx7uBM95mniWhde3DmWJPGmgbds1buKIkE8IOjY="
     },
     "runtime": {

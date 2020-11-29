@@ -4,14 +4,14 @@
 <div class="board">
     @foreach (var obj in sortedObjects)
     {
-        <div class="board-column todo">
+        <div class="board-column todo" >
             <div class="board-column-container">
                 <div class="board-column-header" title="@obj.title.Title">@obj.title.Title</div>
                 <div class="board-column-content-wrapper">
-                    <div class="board-column-content">
+                    <div class="board-column-content" id="@obj.id">
                         @foreach (var item in obj.items)
                         {
-                            <div class="board-item">
+                            <div class="board-item" id="@item.Id">
                                 <div class="board-item-content">
                                     <span>@item.ItemText</span>
                                 </div>
@@ -35,6 +35,8 @@
     [Parameter]
     public List<BlazorAppClient.Shared.Models.MBoardGameItems> board_game_items { get; set; }
 
+    public List<BoardGameItemsOrdering> board_game_items_ordering = new List<BoardGameItemsOrdering>();
+
     private bool drag_initialized = false;
     private List<BoardGameAndTitles> sortedObjects = new List<BoardGameAndTitles>();
 
@@ -51,6 +53,7 @@
         {
             var obj = new BoardGameAndTitles()
             {
+                id= board_game_titles[i].Id,
                 title = board_game_titles[i],
                 items = board_game_items.Skip(i * (int)num_for_each).Take((int)num_for_each).ToList()
             };
@@ -60,11 +63,14 @@
 
     protected override async Task OnAfterRenderAsync(bool first_render)
     {
+        if (first_render)
+        {
+            await js.InvokeAsync<string>("initBoardGameInstance", DotNetObjectReference.Create(this));
+            //StateHasChanged();
+        }
         if (!drag_initialized)
         {
-            //await js.InvokeAsync<string>("initTree");
             await js.InvokeAsync<string>("initDragDrop");
-            Console.WriteLine("initDragDrop called");
         }
     }
 
@@ -79,15 +85,47 @@
         state.OnChange -= StateHasChanged;
     }
 
-    //[JSInvokable]
-    //public async Task RenderContent(string _page_id, string page_data, string _topic_id, string _has_questions, string _has_board_game)
-    //{
-    //    drag_initialized = true;
-    //}
-
-    class BoardGameAndTitles
+    [JSInvokable]
+    public void InitGameBoardItemsOrdering(string title,List<string>items)
     {
+        var board_game_item_order = new BoardGameItemsOrdering()
+        {
+            title_id = title,
+            item_ids = items
+        };
+        board_game_items_ordering.Add(board_game_item_order);
+        //Console.WriteLine(JsonConvert.SerializeObject(board_game_items_ordering));
+        drag_initialized = true;
+    }
+
+    [JSInvokable]
+    public void ReorderGameBoardItemsOrdering(string title, string item_id)
+    {
+        var board_game_item_order = new BoardGameItemsOrdering()
+        {
+            title_id = title,
+            //item_ids = items
+        };
+        board_game_items_ordering.Add(board_game_item_order);
+        //Console.WriteLine(JsonConvert.SerializeObject(board_game_items_ordering));
+        drag_initialized = true;
+    }
+
+    /// <summary>
+    /// this class groups the titles and items in randomized order for initialy displaying the items
+    /// </summary>
+    public class BoardGameAndTitles
+    {
+        public string id { get; set; }
         public BlazorAppClient.Shared.Models.MBoardGameTitles title { get; set; }
         public List<BlazorAppClient.Shared.Models.MBoardGameItems> items { get; set; }
+    }
+
+    //this class groups the title id and the items id when rendered and ordered by the student
+    //this will be compared to the original from the server
+    public class BoardGameItemsOrdering
+    {
+        public string title_id { get; set; }
+        public List<string> item_ids { get; set; } = new List<string>();
     }
 }
