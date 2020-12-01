@@ -84,7 +84,6 @@ namespace Admin.Controllers
             ViewBag.title = "Create Course";
             course.DateCreated = DateTime.Now;
             if (course.Published) course.DatePublished = DateTime.Now;
-            course.CreatedByAspNetUserIdFk = asp_net_user.Id;
             try
             {
                 db.MCourse.Add(course);

@@ -5,7 +5,7 @@
 
 
 
-@foreach (var item in course.MQuestionAnswerOptions.Where(i => i.MQuestionIdFk == question.Id))
+@foreach (var item in question_answers_options.Where(i => i.MQuestionIdFk == question.Id))
 {
     if (question.EQuestionTypeIdFk == checkbox_based_question_id)//checkbox
     {
@@ -42,6 +42,10 @@
 
     [Parameter]
     public BlazorAppClient.Shared.Models.MCourse course { get; set; }
+
+    [Parameter]
+    public List<BlazorAppClient.Shared.Models.MQuestionAnswerOptions> question_answers_options { get; set; }
+
 
     public List<string> selected_answers = new List<string>();
     private string text_answer = string.Empty;
@@ -114,8 +118,8 @@
                     var score3 = nlevenshtien.Distance(text_answer, correct_text_answer);
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswers()
                     {
-                        CourseIdFk = question.MCourseIdFk,
-                        TopicIdFk = question.MCourseTopicIdFk,
+                        CourseIdNfk = question.MCourseIdFk,
+                        TopicIdNfk = question.MCourseTopicIdNfk,
                         QuestionIdFk = question.Id,
                         AspNetUserIdFk = current_user.user_id,
                         DateAnswered = DateTime.Now,
@@ -130,10 +134,12 @@
             }
             else//radio and checkbox
             {
-                var list_of_correct_answers = course.MQuestionAnswerOptions
-                .Where(i => i.MQuestionIdFk == question.Id && i.IsCorrectAnswer)
-                .Select(i => i.Id)
-                .ToList();
+                var list_of_correct_answers = question_answers_options
+                    .Where(i => i.MCourseIdNfk == course.Id)
+                    .Where(i => i.MQuestionIdFk == question.Id)
+                    .Where(i => i.IsCorrectAnswer)
+                    .Select(i => i.Id)
+                    .ToList();
 
                 //first check same number of answers
                 if (selected_answers.Count == list_of_correct_answers.Count)
@@ -141,8 +147,8 @@
                     //
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswers()
                     {
-                        CourseIdFk = question.MCourseIdFk,
-                        TopicIdFk = question.MCourseTopicIdFk,
+                        CourseIdNfk = question.MCourseIdFk,
+                        TopicIdNfk = question.MCourseTopicIdNfk,
                         QuestionIdFk = question.Id,
                         AspNetUserIdFk = current_user.user_id,
                         DateAnswered = DateTime.Now,
@@ -166,8 +172,8 @@
                     //record answers as incorrect already, since they are different lengths
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswers()
                     {
-                        CourseIdFk = question.MCourseIdFk,
-                        TopicIdFk = question.MCourseTopicIdFk,
+                        CourseIdNfk = question.MCourseIdFk,
+                        TopicIdNfk = question.MCourseTopicIdNfk,
                         QuestionIdFk = question.Id,
                         AspNetUserIdFk = current_user.user_id,
                         DateAnswered = DateTime.Now,

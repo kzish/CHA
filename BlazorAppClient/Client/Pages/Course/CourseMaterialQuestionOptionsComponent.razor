@@ -203,7 +203,7 @@ else
                     var score3 = nlevenshtien.Distance(text_answer, correct_text_answer);
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial()
                     {
-                        CourseMaterialIdFk = question.MCourseMaterialIdFk,
+                        CourseMaterialIdNfk = question.MCourseMaterialIdFk,
                         CourseMaterialQuestionIdFk = question.Id,
                         AspNetUserIdFk = current_user.user_id,
                         DateAnswered = DateTime.Now,
@@ -226,7 +226,7 @@ else
                     //
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial()
                     {
-                        CourseMaterialIdFk = question.MCourseMaterialIdFk,
+                        CourseMaterialIdNfk = question.MCourseMaterialIdFk,
                         CourseMaterialQuestionIdFk = question.Id,
                         AspNetUserIdFk = current_user.user_id,
                         DateAnswered = DateTime.Now,
@@ -250,7 +250,7 @@ else
                     //record answers as incorrect already, since they are different lengths
                     var users_answer = new BlazorAppClient.Shared.Models.MUsersAnswersCourseMaterial()
                     {
-                        CourseMaterialIdFk = question.MCourseMaterialIdFk,
+                        CourseMaterialIdNfk = question.MCourseMaterialIdFk,
                         CourseMaterialQuestionIdFk = question.Id,
                         AspNetUserIdFk = current_user.user_id,
                         DateAnswered = DateTime.Now,

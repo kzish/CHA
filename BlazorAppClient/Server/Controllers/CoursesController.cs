@@ -40,6 +40,7 @@ namespace BlazorAppClient.Server.Controllers
 
                 var courses = my_courses
                     .Select(i => i.CourseIdFkNavigation)
+                    .OrderBy(i=>i.CourseName)
                     .Where(i => i.Published)//published
                     .Skip(page_size * (page_number - 1))
                     .Take(page_size)
@@ -250,7 +251,8 @@ namespace BlazorAppClient.Server.Controllers
 
                 //tell the client which questions are completed
                 var completed_questions_answers = db.MUsersAnswersCourseMaterial
-                    .Where(i => i.CourseMaterialIdFk == course_material_id && i.AspNetUserIdFk == asp_net_user_id)
+                    .Where(i => i.CourseMaterialIdNfk == course_material_id)
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id)
                     .ToList();
                 //
                 var course_material_questions_base_64 = new List<BlazorAppClient.Server.Models.MCourseWorkQuestion>();
@@ -310,7 +312,10 @@ namespace BlazorAppClient.Server.Controllers
                     //
                     foreach (var title in board_game_titles)
                     {
-                        var items_under_this_title = board_game_items.Where(i => i.CorrectTitleIdFk == title.Id).Select(i => i.Id).ToList();
+                        var items_under_this_title = board_game_items
+                            .Where(i => i.CorrectTitleIdNfk == title.Id)
+                            .Select(i => i.Id)
+                            .ToList();
                         //
                         var order = new BlazorAppClient.Shared.BoardGameItemsOrdering();
                         order.title_id = title.Id;
@@ -345,6 +350,28 @@ namespace BlazorAppClient.Server.Controllers
                             break;
                         }
                     }
+                    //create transpose of the table first
+                    string[][] transpose_of_correct_answers = new string[][] { };
+
+                    int row_number = 0;
+                    int column_number = 0;
+
+                    for(int obj_index = 0; obj_index < the_correct_answers.Count; obj_index++)
+                    {
+                        transpose_of_correct_answers[obj_index][0] = the_correct_answers[0].title_id;
+                        for (int item_index = 0; item_index < the_correct_answers[obj_index].item_ids.Count; item_index++)
+                        {
+                            transpose_of_correct_answers[obj_index][1] = the_correct_answers[0].item_ids[0];
+                            transpose_of_correct_answers[obj_index][2] = the_correct_answers[0].item_ids[1];
+                            transpose_of_correct_answers[obj_index][3] = the_correct_answers[0].item_ids[2];
+                            transpose_of_correct_answers[obj_index][4] = the_correct_answers[0].item_ids[3];
+                        }
+                    }
+
+
+
+
+
                     the_correct_answer_html_table += "<table >";
                     the_correct_answer_html_table += "<tr>";
                     foreach (var title in the_correct_answers)
@@ -352,8 +379,21 @@ namespace BlazorAppClient.Server.Controllers
                         the_correct_answer_html_table += $"<td style='border:1px solid black;'>{db.MBoardGameTitles.Find(title.title_id).Title}</td>";
                     }
                     the_correct_answer_html_table += "</tr>";
-
-
+                    //
+                   // int row_number = 0;
+                    //for(int i=0;i< the_correct_answers.Count)
+                    //foreach (var title in the_correct_answers)
+                    //{
+                    //    the_correct_answer_html_table += "<tr>";
+                       
+                    //        the_correct_answer_html_table += "<td>";
+                    //            db.MBoardGameItems.Where(i=>i.CorrectTitleIdFk==title)
+                    //        the_correct_answer_html_table += "</td>";
+                        
+                    //    the_correct_answer_html_table += "</tr>";
+                    //    row_number++;
+                    //}
+                    //
                     the_correct_answer_html_table += "</table>";
 
                     my_selected_answer_html_table = the_correct_answer_html_table;
@@ -411,12 +451,11 @@ namespace BlazorAppClient.Server.Controllers
                 var course = db.MCourse
                     .Where(i => i.Id == course_id)
                     .Where(i => i.Published)
-                    //.Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
                     .Include(i => i.MQuestion)
-                    .Include(i => i.MQuestionAnswerOptions)
+                    //.Include(i => i.MQuestionAnswerOptions)
                     .First();
-
+                var question_answers_options = db.MQuestionAnswerOptions.Where(i => i.MCourseIdNfk == course.Id).ToList();
                 if (course == null)
                 {
                     return Json(new
@@ -427,8 +466,8 @@ namespace BlazorAppClient.Server.Controllers
                 }
 
                 var users_answers = db.MUsersAnswers
-                    .Where(i => i.AspNetUserIdFk == asp_net_user_id
-                && i.CourseIdFk == course_id)
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id)
+                    .Where(i => i.CourseIdNfk == course_id)
                     .ToList();
                 //
                 //var course_materials_base_64 = new List<BlazorAppClient.Server.Models.MCourseMaterial>();
@@ -478,7 +517,7 @@ namespace BlazorAppClient.Server.Controllers
                                    .Count();
                         var my_course_work_answers = db.MUsersAnswersCourseMaterial
                             .Where(i => i.AspNetUserIdFk == asp_net_user_id)
-                            .Where(i => i.CourseMaterialIdFk == material.Id)
+                            .Where(i => i.CourseMaterialIdNfk == material.Id)
                             .Count();
 
                         is_course_work_completed = course_work_material_questions == my_course_work_answers;
@@ -497,6 +536,7 @@ namespace BlazorAppClient.Server.Controllers
                     res = "ok",
                     data = course,
                     users_answers,
+                    question_answers_options
                 });
             }
             catch (Exception ex)
@@ -533,9 +573,9 @@ namespace BlazorAppClient.Server.Controllers
                     .Include(i => i.MCourseMaterial)
                     .Include(i => i.MCourseTopic)
                     .Include(i => i.MQuestion)
-                    .Include(i => i.MQuestionAnswerOptions)
+                    //.Include(i => i.MQuestionAnswerOptions)
                     .First();
-
+                var question_answers_options = db.MQuestionAnswerOptions.Where(i => i.MCourseIdNfk == course.Id).ToList();
                 if (course == null)
                 {
                     return Json(new
@@ -546,8 +586,8 @@ namespace BlazorAppClient.Server.Controllers
                 }
                 //
                 var users_answers = db.MUsersAnswers
-                    .Where(i => i.AspNetUserIdFk == asp_net_user_id
-                && i.CourseIdFk == course_id)
+                    .Where(i => i.AspNetUserIdFk == asp_net_user_id)
+                    .Where(i => i.CourseIdNfk == course_id)
                     .ToList();
                 //tell the client which pages are completed
                 var completed_pages = db.MCourseWorkProgress
@@ -559,14 +599,14 @@ namespace BlazorAppClient.Server.Controllers
                 foreach (var topic in course.MCourseTopic)
                 {
                     int completion = 0;
-                    decimal cource_material_count = (decimal)course.MCourseMaterial.Count(i => i.MCourseTopicIdFk == topic.Id);
+                    decimal cource_material_count = (decimal)course.MCourseMaterial.Count(i => i.MCourseTopicIdNfk == topic.Id);
                     if (cource_material_count == 0)//prevent devide by zero error
                     {
                         completion = 0;
                         topic_percentage_completed.Add(topic.Topic, completion);
                         continue;//skip
                     }
-                    completion = (int)(((decimal)completed_pages.Count(i => i.TopicIdFk == topic.Id) / cource_material_count) * 100);
+                    completion = (int)(((decimal)completed_pages.Count(i => i.TopicIdNfk == topic.Id) / cource_material_count) * 100);
                     topic_percentage_completed.Add(topic.Topic, completion);
                 }
                 //
@@ -620,7 +660,7 @@ namespace BlazorAppClient.Server.Controllers
                     }
                 }
                 //
-                double exam_pass_percentage = ((double)db.MUsersAnswers.Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CorrectAnswer && i.CourseIdFk == course_id).Count() / ((double)db.MQuestion.Where(i => i.MCourseIdFk == course_id).Count()) * 100);
+                double exam_pass_percentage = ((double)db.MUsersAnswers.Where(i => i.AspNetUserIdFk == asp_net_user_id && i.CorrectAnswer && i.CourseIdNfk == course_id).Count() / ((double)db.MQuestion.Where(i => i.MCourseIdFk == course_id).Count()) * 100);
                 double course_work_pass_percentage = 0;
                 //
                 var all_course_material = db.MCourseMaterial.Include(i => i.MCourseWorkQuestion).Where(i => i.MCourseIdFk == course_id).ToList();
@@ -630,7 +670,10 @@ namespace BlazorAppClient.Server.Controllers
                 foreach (var m in all_course_material)
                 {
                     all_course_material_questions += m.MCourseWorkQuestion.Count;
-                    all_course_material_questions_correct += db.MUsersAnswersCourseMaterial.Where(i => i.CourseMaterialIdFk == m.Id && i.CorrectAnswer).Count();
+                    all_course_material_questions_correct += db.MUsersAnswersCourseMaterial
+                        .Where(i => i.CourseMaterialIdNfk == m.Id)
+                        .Where(i => i.CorrectAnswer)
+                        .Count();
                 }
                 //
                 course_work_pass_percentage = (all_course_material_questions_correct / all_course_material_questions) * 100;
@@ -651,7 +694,8 @@ namespace BlazorAppClient.Server.Controllers
                     over_all_percentage_score,
                     time,
                     _assesments,
-                    _continous_assesment_marks
+                    _continous_assesment_marks,
+                    question_answers_options
                 });
             }
             catch (Exception ex)
@@ -679,7 +723,7 @@ namespace BlazorAppClient.Server.Controllers
                 db.SaveChanges();
 
                 var exam_questions_count = db.MQuestion
-                    .Count(i => i.MCourseIdFk == answer.CourseIdFk);
+                    .Count(i => i.MCourseIdFk == answer.CourseIdNfk);
 
                 var answers_count = db.MUsersAnswers
                     .Count(i => i.AspNetUserIdFk == answer.AspNetUserIdFk);
@@ -688,7 +732,7 @@ namespace BlazorAppClient.Server.Controllers
                 {
                     var time = db.MCourseStartAndStopTime
                         .Where(i => i.AspNetUserIdFk == answer.AspNetUserIdFk)
-                        .Where(i => i.CourseIdFk == answer.CourseIdFk)
+                        .Where(i => i.CourseIdFk == answer.CourseIdNfk)
                         .FirstOrDefault();
                     time.CourseEndTime = DateTime.Now;
                     db.SaveChanges();
@@ -718,9 +762,9 @@ namespace BlazorAppClient.Server.Controllers
             {
                 var course_work_progress = new BlazorAppClient.Server.Models.MCourseWorkProgress();
                 course_work_progress.AspNetUserIdFk = asp_net_user_id;
-                course_work_progress.CoursePageIdFk = page_id;
+                course_work_progress.CoursePageIdNfk = page_id;
                 course_work_progress.CourseIdFk = course_id;
-                course_work_progress.TopicIdFk = topic_id;
+                course_work_progress.TopicIdNfk = topic_id;
                 db.MCourseWorkProgress.Add(course_work_progress);
                 db.SaveChanges();
 
@@ -787,7 +831,10 @@ namespace BlazorAppClient.Server.Controllers
                 //
                 foreach (var title in board_game_titles)
                 {
-                    var items_under_this_title = board_game_items.Where(i => i.CorrectTitleIdFk == title.Id).Select(i => i.Id).ToList();
+                    var items_under_this_title = board_game_items
+                        .Where(i => i.CorrectTitleIdNfk == title.Id)
+                        .Select(i => i.Id)
+                        .ToList();
                     //
                     var order = new BlazorAppClient.Shared.BoardGameItemsOrdering();
                     order.title_id = title.Id;

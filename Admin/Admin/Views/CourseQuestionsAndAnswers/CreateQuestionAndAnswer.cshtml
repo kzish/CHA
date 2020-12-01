@@ -30,7 +30,7 @@
                     <select class="form-control" name="MCourseTopicIdFk">
                         @foreach (var item in topics)
                         {
-                            <option value="@item.Id" selected="@(question.MCourseTopicIdFk==item.Id)">@item.Topic</option>
+                            <option value="@item.Id" selected="@(question.MCourseTopicIdNfk==item.Id)">@item.Topic</option>
                         }
                     </select>
                     <small><span style="color:red;">*</span> Course Topic</small>

@@ -20,7 +20,7 @@
                 <td title="@item.CourseName">@item.CourseName</td>
                 <td title="@item.ECourseCategoryIdFkNavigation.Category">@item.ECourseCategoryIdFkNavigation.Category</td>
                 <td title="@item.Published">@item.Published</td>
-                <td title="@item.DateCreated.ToString("yyyy-MM-dd")">@item.DateCreated.ToString("yyyy-MM-dd")</td>
+                <td title="@item.DateCreated?.ToString("yyyy-MM-dd")">@item.DateCreated?.ToString("yyyy-MM-dd")</td>
                 <td title="@item.DatePublished?.ToString("yyyy-MM-dd")">@item.DatePublished?.ToString("yyyy-MM-dd")</td>
                 <td>
                     <a href="~/Course/EditCourse?course_id=@item.Id" style="color:green;" title="Edit course">

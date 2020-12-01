@@ -67,6 +67,14 @@
               "target": "Package",
               "version": "[3.0.0, )"
             },
+            "DuoVia.FuzzyStrings": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "F23.StringSimilarity": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
               "version": "[3.2.1, )"
@@ -84,6 +92,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.2.1, )"
+            },
+            "Microsoft.AspNetCore.WebUtilities": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.CSharp": {
               "target": "Package",
@@ -188,6 +200,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Humanizer": {
+              "target": "Package",
+              "version": "[2.8.26, )"
+            },
             "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
               "target": "Package",
               "version": "[3.1.6, )"

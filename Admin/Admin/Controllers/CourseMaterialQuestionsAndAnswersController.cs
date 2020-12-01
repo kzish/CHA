@@ -65,8 +65,19 @@ namespace Admin.Controllers
         {
             var course_material = db.MCourseMaterial.Find(course_material_id);
             //remove blanks left over
-            var empty_questions = db.MCourseWorkQuestion.Where(i => i.QuestionText == string.Empty).ToList();
-            db.MCourseWorkQuestion.RemoveRange(empty_questions);
+            var empty_questions = db.MCourseWorkQuestion
+                .Where(i => i.QuestionText == string.Empty)
+                .Include(i=>i.MCourseWorkQuestionAnswerOptions)
+                .ToList();
+
+            foreach(var eq in empty_questions)
+            {
+                if(String.IsNullOrEmpty( eq.QuestionText) && eq.MCourseWorkQuestionAnswerOptions.Count==0)
+                {
+                    db.MCourseWorkQuestion.Remove(eq);
+                }
+            }
+           
             db.SaveChanges();
             //
             var question = new MCourseWorkQuestion();

@@ -1,4 +1,3 @@
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\Properties\launchSettings.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\BlazorAppClient.Client.StaticWebAssets.xml
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\BlazorAppClient.Client.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\BlazorAppClient.Client.pdb
@@ -38,7 +37,6 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\System.Text.Json.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\System.Numerics.Vectors.dll
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Newtonsoft.Json.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.CSharp.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.Logging.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.DependencyInjection.dll
@@ -46,6 +44,7 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.Options.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.Http.dll
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Newtonsoft.Json.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\System.ComponentModel.Annotations.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\System.ComponentModel.DataAnnotations.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.AspNetCore.Components.Forms.dll
@@ -118,7 +117,6 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\System.Text.Json.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Bcl.AsyncInterfaces.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\System.Numerics.Vectors.dll.gz
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Newtonsoft.Json.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.CSharp.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.Logging.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.DependencyInjection.dll.gz
@@ -126,6 +124,7 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.Logging.Abstractions.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.Options.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.Extensions.Http.dll.gz
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Newtonsoft.Json.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\System.ComponentModel.Annotations.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\System.ComponentModel.DataAnnotations.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\bin\Debug\netstandard2.1\wwwroot\_framework\_bin\Microsoft.AspNetCore.Components.Forms.dll.gz
@@ -336,7 +335,6 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\HQeN_ZfHAERO_uW0fP0J9J3WV1hQ3vUIOWbqGSYBPp8=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\EcDo-GQZkQrOT1Xd0jMPE3NwT5lsMq5DNsPxHVidLDQ=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\qAKfFnquY_7UC-MzLi04rjqEhLzTryCoLg-S6MxI19I=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\mRd6TL4DYldo1ko9czkjEDcoiPdMPrJxz3dekwV6OOY=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\ubyINHXDmWOAugBDEb8CCz_uV68eordXiYDxpUeRBvg=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\sMUxQEgnL-opNKBj6P9vNoOnnwb0545vj6DOruCVDcE=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\Vio27NdWW1HmLCdcXVEyHpx4LnRfNjOlElipIlxM-uQ=.hash
@@ -344,6 +342,7 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\PBU5INASuPqDlIS0ic0TMSDwIZQ6BIM6N0S0K5FhZHE=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\cKAZb7xh11kZxyizcq_t1c8646D5ZoQNvEwOg3z_DX8=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\fXppSpNZWwDJhYYWU_uQSwXoC5Krwc_3mqRwKJz0FHY=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\mRd6TL4DYldo1ko9czkjEDcoiPdMPrJxz3dekwV6OOY=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\tmnkCmP9OzLUkpQ3LP7PRosi7gt5pyfEZCM6aqAokFI=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\LIfCYwg_PHltTK4z3EnbSkA7m2cn8JS4jHVthdKrDF8=.hash
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\PnKO7lUOW7f4kozb_ZYmBIuHDJnrwSZKrFWmCL15nHk=.hash
@@ -413,7 +412,6 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.Text.Json.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Bcl.AsyncInterfaces.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.Numerics.Vectors.dll.gz
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Newtonsoft.Json.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.CSharp.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.Logging.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.DependencyInjection.dll.gz
@@ -421,6 +419,7 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.Logging.Abstractions.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.Options.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.Http.dll.gz
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Newtonsoft.Json.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.ComponentModel.Annotations.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.ComponentModel.DataAnnotations.dll.gz
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.AspNetCore.Components.Forms.dll.gz
@@ -493,7 +492,6 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.Text.Json.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Bcl.AsyncInterfaces.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.Numerics.Vectors.dll.br
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Newtonsoft.Json.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.CSharp.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.Logging.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.DependencyInjection.dll.br
@@ -501,6 +499,7 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.Logging.Abstractions.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.Options.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.Extensions.Http.dll.br
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Newtonsoft.Json.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.ComponentModel.Annotations.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\System.ComponentModel.DataAnnotations.dll.br
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\compressed\_framework\_bin\Microsoft.AspNetCore.Components.Forms.dll.br
@@ -544,10 +543,12 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\BlazorAppClient.Client.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\blazor\serviceworkers\wwwroot\service-worker.js
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\blazor\service-worker-assets.js
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\o0fmmNgRl_0VHv9gc9lwIiACTABbT3qh_OZSizEfPao=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\HyG7emTHyEka2pPvfJbQGLPR7V0Pn-L9hZ8sHKfXxYY=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\XOPOBcMtZSeSG2Pz1onaoB302qHsQYXP8BWFrK01iVI=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\_H6LO86Oc7Ez2dltcFzRrc6rnc_VZK11ybCbc4uQQGE=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\dPSXZIN3F4ix-X8uIqxomkuSRwlSXhUYSub7a1Y6xsY=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\CwR-W2R4dU5tcN8HQyy0q1iuwCW8B_53cGkJGyz0inw=.hash
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\v69D7WUdmUM6RWspgPH3qkQDtvr3zgrT8BksRx3mPn0=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\-DFn4ESguLc2SCA5EZexrfFozNGtdGKYOKx_hv31wG0=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\BlazorAppClient.Client.RazorComponent.output.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\P1HCC3AQnFbAZmjynz1OMUq3BEt9k4ODUfI8NS_yGBI=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\UO_NWsL_TozwUXddiSHkJqmyno6F8VpKd3SDmfuNQbw=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\f3QKIZvN9O4SqKE3rUU1vMWHIAtXBmmd-hqHppYVDks=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\HbYLSRPg4DNWn1rwcpfmPt4QOjtufvRIUXhJTu33qXQ=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\lC6ylLVx8y9pLFoJxzPHL4dS9iXZvHCKG2NZ-9iUx0s=.hash
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\scopedcss\bundle\BlazorAppClient.Client.styles.css
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\obj\Debug\netstandard2.1\integrity\bvG_vPKg2uxO5bHiAqobFdacrnYGAJKi8wOWkv4jizw=.hash

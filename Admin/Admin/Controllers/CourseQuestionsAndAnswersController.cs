@@ -51,10 +51,15 @@ namespace Admin.Controllers
             var questions = db.MQuestion
                 .Include(i => i.MQuestionAnswerOptions)
                 .Include(i => i.EQuestionTypeIdFkNavigation)
-                .Include(i => i.MCourseTopicIdFkNavigation)
                 .Where(i => i.MCourseIdFk == course_id)
                 .ToList();
+
+            var topics = db.MCourseTopic
+                .Where(i => i.CourseIdFk == course_id)
+                .ToList();
+
             ViewBag.questions = questions;
+            ViewBag.topics = topics;
             return View();
         }
 
@@ -72,7 +77,7 @@ namespace Admin.Controllers
             if (string.IsNullOrEmpty(question_id))
             {
                 question.EQuestionTypeIdFk = db.EQuestionAnswerType.First().Id;
-                question.MCourseTopicIdFk = db.MCourseTopic.Where(i => i.CourseIdFk == course_id).First().Id;
+                question.MCourseTopicIdNfk = db.MCourseTopic.Where(i => i.CourseIdFk == course_id).First().Id;
                 question.MCourseIdFk = course_id;
                 question.QuestionSequence = 0;
                 question.QuestionText = string.Empty;
@@ -153,7 +158,7 @@ namespace Admin.Controllers
                 TempData["msg"] = ex.Message;
                 TempData["type"] = "error";
             }
-            return RedirectToAction("CreateQuestionAndAnswer", new { course_id = answer.MCourseIdFk, question_id = answer.MQuestionIdFk });
+            return RedirectToAction("CreateQuestionAndAnswer", new { course_id = answer.MCourseIdNfk, question_id = answer.MQuestionIdFk });
         }
 
         [HttpPost("SetIsCorrectAnswer")]
@@ -215,7 +220,7 @@ namespace Admin.Controllers
 
             return RedirectToAction("CreateQuestionAndAnswer", new
             {
-                course_id = qao.MCourseIdFk,
+                course_id = qao.MCourseIdNfk,
                 question_id = qao.MQuestionIdFk
             });
 

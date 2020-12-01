@@ -1,6 +1,5 @@
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Debug\netcoreapp2.2\appsettings.Development.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Debug\netcoreapp2.2\appsettings.json
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Debug\netcoreapp2.2\Company.deps.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Debug\netcoreapp2.2\Company.runtimeconfig.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Company\bin\Debug\netcoreapp2.2\Company.runtimeconfig.dev.json

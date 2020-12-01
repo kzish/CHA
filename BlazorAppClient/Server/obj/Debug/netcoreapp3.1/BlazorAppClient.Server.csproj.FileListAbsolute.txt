@@ -1,10 +1,6 @@
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\BlazorAppClient.Client.StaticWebAssets.xml
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\web.config
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\BlazorDebugProxy\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\BlazorDebugProxy\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\bin\Debug\netcoreapp3.1\BlazorDebugProxy\de\Microsoft.CodeAnalysis.CSharp.resources.dll
@@ -347,3 +343,4 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\BlazorAppClient.Server.dll
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\BlazorAppClient.Server.pdb
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\BlazorAppClient.Server.genruntimeconfig.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Server\obj\Debug\netcoreapp3.1\scopedcss\bundle\BlazorAppClient.Server.styles.css

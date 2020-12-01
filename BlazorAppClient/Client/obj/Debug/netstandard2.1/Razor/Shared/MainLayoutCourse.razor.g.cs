@@ -135,27 +135,22 @@ using Microsoft.Extensions.Logging;
         {
             __builder.OpenElement(0, "div");
             __builder.AddAttribute(1, "class", "page-wrapper default-theme sidebar-bg bg1 toggled");
-            __builder.AddMarkupContent(2, "\r\n\r\n    <div id=\"mobile-nav\"></div>\r\n    ");
+            __builder.AddMarkupContent(2, "<div id=\"mobile-nav\"></div>\r\n    ");
             __builder.OpenElement(3, "nav");
             __builder.AddAttribute(4, "class", "_nav active");
-            __builder.AddMarkupContent(5, "\r\n        ");
-            __builder.AddMarkupContent(6, "<a href=\"/\" style=\"color:black;font-size:22px;text-decoration:none;margin:10px;\">\r\n            <i title=\"back\" class=\"fas fa-sign-out-alt flip_180\"></i>\r\n            Back\r\n        </a>\r\n        <hr>\r\n        ");
-            __builder.AddMarkupContent(7, "<h3 style=\"margin:10px;color:black;\">\r\n            <a>\r\n                Course Material\r\n            </a>\r\n        </h3>\r\n        ");
-            __builder.OpenElement(8, "div");
-            __builder.AddAttribute(9, "class", "sidebar-item sidebar-header d-flex flex-nowrap");
-            __builder.AddAttribute(10, "style", "margin:10px;");
-            __builder.AddMarkupContent(11, "\r\n            ");
-            __builder.AddMarkupContent(12, "<div class=\"user-pic\">\r\n                <img class=\"img-responsive img-rounded\" src=\"assets/img/user.jpg\" style=\"height:60px;width:auto;\" alt=\"User picture\">\r\n            </div>\r\n            ");
-            __builder.OpenElement(13, "div");
-            __builder.AddAttribute(14, "class", "user-info");
-            __builder.AddMarkupContent(15, "\r\n                ");
-            __builder.OpenElement(16, "span");
-            __builder.AddAttribute(17, "class", "user-name");
-            __builder.AddMarkupContent(18, "\r\n                    ");
-            __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(19);
-            __builder.AddAttribute(20, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
-                __builder2.AddMarkupContent(21, "\r\n                        ");
-                __builder2.AddContent(22, 
+            __builder.AddMarkupContent(5, "<a href=\"/\" style=\"color:black;font-size:22px;text-decoration:none;margin:10px;\"><i title=\"back\" class=\"fas fa-sign-out-alt flip_180\"></i>\r\n            Back\r\n        </a>\r\n        <hr>\r\n        ");
+            __builder.AddMarkupContent(6, "<h3 style=\"margin:10px;color:black;\"><a>\r\n                Course Material\r\n            </a></h3>\r\n        ");
+            __builder.OpenElement(7, "div");
+            __builder.AddAttribute(8, "class", "sidebar-item sidebar-header d-flex flex-nowrap");
+            __builder.AddAttribute(9, "style", "margin:10px;");
+            __builder.AddMarkupContent(10, "<div class=\"user-pic\"><img class=\"img-responsive img-rounded\" src=\"assets/img/user.jpg\" style=\"height:60px;width:auto;\" alt=\"User picture\"></div>\r\n            ");
+            __builder.OpenElement(11, "div");
+            __builder.AddAttribute(12, "class", "user-info");
+            __builder.OpenElement(13, "span");
+            __builder.AddAttribute(14, "class", "user-name");
+            __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(15);
+            __builder.AddAttribute(16, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
+                __builder2.AddContent(17, 
 #nullable restore
 #line 26 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\MainLayoutCourse.razor"
                          context.User.Identity.Name
@@ -164,26 +159,21 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
                 );
-                __builder2.AddMarkupContent(23, "\r\n                    ");
             }
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(24, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(25, "<br>\r\n                ");
-            __builder.AddMarkupContent(26, "<span class=\"user-role\">Candidate</span><br>\r\n                ");
-            __builder.AddMarkupContent(27, "<span class=\"user-status\">\r\n                    <i class=\"fa fa-circle\" style=\"color:limegreen;font-size:10px!important;\"></i>\r\n                    <span>Online</span>\r\n                </span>\r\n            ");
+            __builder.AddMarkupContent(18, "<br>\r\n                ");
+            __builder.AddMarkupContent(19, "<span class=\"user-role\">Candidate</span><br>\r\n                ");
+            __builder.AddMarkupContent(20, "<span class=\"user-status\"><i class=\"fa fa-circle\" style=\"color:limegreen;font-size:10px!important;\"></i>\r\n                    <span>Online</span></span>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(28, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(29, "\r\n        ");
-            __builder.OpenElement(30, "ul");
-            __builder.AddAttribute(31, "class", "menu");
-            __builder.AddMarkupContent(32, "\r\n            ");
-            __builder.OpenElement(33, "li");
-            __builder.AddMarkupContent(34, "\r\n                ");
-            __builder.OpenElement(35, "a");
-            __builder.AddAttribute(36, "href", "/Course/" + (
+            __builder.AddMarkupContent(21, "\r\n        ");
+            __builder.OpenElement(22, "ul");
+            __builder.AddAttribute(23, "class", "menu");
+            __builder.OpenElement(24, "li");
+            __builder.OpenElement(25, "a");
+            __builder.AddAttribute(26, "href", "/Course/" + (
 #nullable restore
 #line 38 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\MainLayoutCourse.razor"
                                   state?.course?.Id
@@ -192,16 +182,14 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             ));
-            __builder.AddMarkupContent(37, "\r\n                    <i class=\"fa fa-book\"></i>\r\n                    ");
-            __builder.AddMarkupContent(38, "<span class=\"menu-text\">Introduction</span>\r\n                ");
+            __builder.AddMarkupContent(27, "<i class=\"fa fa-book\"></i>\r\n                    ");
+            __builder.AddMarkupContent(28, "<span class=\"menu-text\">Introduction</span>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(39, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(40, "\r\n            ");
-            __builder.OpenElement(41, "li");
-            __builder.AddMarkupContent(42, "\r\n                ");
-            __builder.OpenElement(43, "a");
-            __builder.AddAttribute(44, "href", "/Reports/" + (
+            __builder.AddMarkupContent(29, "\r\n            ");
+            __builder.OpenElement(30, "li");
+            __builder.OpenElement(31, "a");
+            __builder.AddAttribute(32, "href", "/Reports/" + (
 #nullable restore
 #line 44 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\MainLayoutCourse.razor"
                                    state?.course?.Id
@@ -210,16 +198,14 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             ));
-            __builder.AddMarkupContent(45, "\r\n                    <i class=\"fa fa-calendar\"></i>\r\n                    ");
-            __builder.AddMarkupContent(46, "<span class=\"menu-text\">Reports</span>\r\n                ");
+            __builder.AddMarkupContent(33, "<i class=\"fa fa-calendar\"></i>\r\n                    ");
+            __builder.AddMarkupContent(34, "<span class=\"menu-text\">Reports</span>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(47, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(48, "\r\n            ");
-            __builder.OpenElement(49, "li");
-            __builder.AddMarkupContent(50, "\r\n                ");
-            __builder.OpenElement(51, "a");
-            __builder.AddAttribute(52, "href", "/Exam/" + (
+            __builder.AddMarkupContent(35, "\r\n            ");
+            __builder.OpenElement(36, "li");
+            __builder.OpenElement(37, "a");
+            __builder.AddAttribute(38, "href", "/Exam/" + (
 #nullable restore
 #line 50 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\MainLayoutCourse.razor"
                                 state?.course?.Id
@@ -228,23 +214,18 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             ));
-            __builder.AddMarkupContent(53, "\r\n                    <i class=\"fa fa-folder\"></i>\r\n                    ");
-            __builder.AddMarkupContent(54, "<span class=\"menu-text\">Exam</span>\r\n                ");
+            __builder.AddMarkupContent(39, "<i class=\"fa fa-folder\"></i>\r\n                    ");
+            __builder.AddMarkupContent(40, "<span class=\"menu-text\">Exam</span>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(55, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(56, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(57, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(58, "\r\n\r\n    \r\n    ");
-            __builder.OpenElement(59, "main");
-            __builder.AddAttribute(60, "class", "page-content pt-2");
-            __builder.AddMarkupContent(61, "\r\n        ");
-            __builder.OpenElement(62, "div");
-            __builder.AddAttribute(63, "class", "container-fluid p-5");
-            __builder.AddMarkupContent(64, "\r\n            ");
-            __builder.AddContent(65, 
+            __builder.AddMarkupContent(41, "\r\n\r\n    \r\n    ");
+            __builder.OpenElement(42, "main");
+            __builder.AddAttribute(43, "class", "page-content pt-2");
+            __builder.OpenElement(44, "div");
+            __builder.AddAttribute(45, "class", "container-fluid p-5");
+            __builder.AddContent(46, 
 #nullable restore
 #line 62 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\MainLayoutCourse.razor"
              Body
@@ -253,11 +234,8 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(66, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(67, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(68, "\r\n\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

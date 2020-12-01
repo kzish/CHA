@@ -164,7 +164,6 @@ using System.Linq;
         {
             __builder.OpenElement(0, "div");
             __builder.AddAttribute(1, "class", "container");
-            __builder.AddMarkupContent(2, "\r\n\r\n");
 #nullable restore
 #line 17 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
      if (course_percentage_complete == -1)
@@ -173,16 +172,13 @@ using System.Linq;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(3, "        ");
+            __builder.OpenElement(2, "div");
+            __builder.AddAttribute(3, "class", "row");
             __builder.OpenElement(4, "div");
-            __builder.AddAttribute(5, "class", "row");
-            __builder.AddMarkupContent(6, "\r\n            ");
-            __builder.OpenElement(7, "div");
-            __builder.AddAttribute(8, "class", "col-md-12");
-            __builder.AddAttribute(9, "style", "display:flex;align-content:center;justify-content:center;");
-            __builder.AddMarkupContent(10, "\r\n                ");
-            __builder.OpenComponent<BlazorAppClient.Client.Shared.Loading>(11);
-            __builder.AddAttribute(12, "isloading", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+            __builder.AddAttribute(5, "class", "col-md-12");
+            __builder.AddAttribute(6, "style", "display:flex;align-content:center;justify-content:center;");
+            __builder.OpenComponent<BlazorAppClient.Client.Shared.Loading>(7);
+            __builder.AddAttribute(8, "isloading", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 21 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                     true
@@ -191,7 +187,7 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(13, "height", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(9, "height", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 21 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                   50
@@ -200,7 +196,7 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(14, "width", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(10, "width", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 21 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                              50
@@ -210,12 +206,10 @@ using System.Linq;
 #nullable disable
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(15, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(16, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(17, "\r\n        ");
-            __builder.AddMarkupContent(18, "<div class=\"row\">\r\n            <div class=\"col-md-12\" style=\"display:flex;align-content:center;justify-content:center;\">\r\n                <p style=\"clear:both;\">Loading reports...</p>\r\n            </div>\r\n        </div>\r\n");
+            __builder.AddMarkupContent(11, "\r\n        ");
+            __builder.AddMarkupContent(12, "<div class=\"row\"><div class=\"col-md-12\" style=\"display:flex;align-content:center;justify-content:center;\"><p style=\"clear:both;\">Loading reports...</p></div></div>");
 #nullable restore
 #line 29 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
     }
@@ -226,19 +220,15 @@ using System.Linq;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(19, "        ");
-            __builder.AddMarkupContent(20, "<div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <h4>Course Progress</h4>\r\n            </div>\r\n        </div>\r\n        ");
-            __builder.OpenElement(21, "div");
-            __builder.AddAttribute(22, "class", "row");
-            __builder.AddMarkupContent(23, "\r\n            ");
-            __builder.OpenElement(24, "div");
-            __builder.AddAttribute(25, "class", "col-md-12");
-            __builder.AddMarkupContent(26, "\r\n                ");
-            __builder.OpenElement(27, "div");
-            __builder.AddAttribute(28, "class", "progress");
-            __builder.AddMarkupContent(29, "\r\n                    ");
-            __builder.OpenElement(30, "div");
-            __builder.AddAttribute(31, "class", "progress-bar" + " progress-bar-striped" + " progress-bar-animated" + " " + (
+            __builder.AddMarkupContent(13, "<div class=\"row\"><div class=\"col-md-12\"><h4>Course Progress</h4></div></div>\r\n        ");
+            __builder.OpenElement(14, "div");
+            __builder.AddAttribute(15, "class", "row");
+            __builder.OpenElement(16, "div");
+            __builder.AddAttribute(17, "class", "col-md-12");
+            __builder.OpenElement(18, "div");
+            __builder.AddAttribute(19, "class", "progress");
+            __builder.OpenElement(20, "div");
+            __builder.AddAttribute(21, "class", "progress-bar" + " progress-bar-striped" + " progress-bar-animated" + " " + (
 #nullable restore
 #line 42 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                                           course_percentage_complete == 100 ? "bg-success" :
@@ -250,8 +240,8 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(32, "role", "progressbar");
-            __builder.AddAttribute(33, "aria-valuenow", 
+            __builder.AddAttribute(22, "role", "progressbar");
+            __builder.AddAttribute(23, "aria-valuenow", 
 #nullable restore
 #line 47 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                           course_percentage_complete
@@ -260,9 +250,9 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(34, "aria-valuemin", "0");
-            __builder.AddAttribute(35, "aria-valuemax", "100");
-            __builder.AddAttribute(36, "style", "width:" + " " + (
+            __builder.AddAttribute(24, "aria-valuemin", "0");
+            __builder.AddAttribute(25, "aria-valuemax", "100");
+            __builder.AddAttribute(26, "style", "width:" + " " + (
 #nullable restore
 #line 50 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                          course_percentage_complete
@@ -271,11 +261,10 @@ using System.Linq;
 #line hidden
 #nullable disable
             ) + "%;");
-            __builder.AddMarkupContent(37, "\r\n                        ");
-            __builder.OpenElement(38, "span");
-            __builder.AddAttribute(39, "style", "color:white");
-            __builder.AddContent(40, " Overall ");
-            __builder.AddContent(41, 
+            __builder.OpenElement(27, "span");
+            __builder.AddAttribute(28, "style", "color:white");
+            __builder.AddContent(29, " Overall ");
+            __builder.AddContent(30, 
 #nullable restore
 #line 51 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                              course_percentage_complete
@@ -284,19 +273,15 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(42, "% ");
+            __builder.AddContent(31, "% ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(43, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(44, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(45, "\r\n\r\n                ");
-            __builder.OpenElement(46, "div");
-            __builder.AddAttribute(47, "class", "row");
-            __builder.AddMarkupContent(48, "\r\n                    ");
-            __builder.OpenElement(49, "div");
-            __builder.AddAttribute(50, "class", "col-md-12");
-            __builder.AddMarkupContent(51, "\r\n");
+            __builder.AddMarkupContent(32, "\r\n\r\n                ");
+            __builder.OpenElement(33, "div");
+            __builder.AddAttribute(34, "class", "row");
+            __builder.OpenElement(35, "div");
+            __builder.AddAttribute(36, "class", "col-md-12");
 #nullable restore
 #line 58 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                          foreach (var topic in topic_percentage_completed.Keys)
@@ -307,12 +292,11 @@ using System.Linq;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(52, "                            <br>\r\n                            ");
-            __builder.OpenElement(53, "div");
-            __builder.AddAttribute(54, "class", "progress");
-            __builder.AddMarkupContent(55, "\r\n                                ");
-            __builder.OpenElement(56, "div");
-            __builder.AddAttribute(57, "class", "progress-bar" + " progress-bar-striped" + " progress-bar-animated" + "  " + (
+            __builder.AddMarkupContent(37, "<br>\r\n                            ");
+            __builder.OpenElement(38, "div");
+            __builder.AddAttribute(39, "class", "progress");
+            __builder.OpenElement(40, "div");
+            __builder.AddAttribute(41, "class", "progress-bar" + " progress-bar-striped" + " progress-bar-animated" + "  " + (
 #nullable restore
 #line 64 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                                                        completed == 100 ? "bg-success" :
@@ -324,8 +308,8 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(58, "role", "progressbar");
-            __builder.AddAttribute(59, "aria-valuenow", 
+            __builder.AddAttribute(42, "role", "progressbar");
+            __builder.AddAttribute(43, "aria-valuenow", 
 #nullable restore
 #line 69 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                      completed
@@ -334,9 +318,9 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(60, "aria-valuemin", "0");
-            __builder.AddAttribute(61, "aria-valuemax", "100");
-            __builder.AddAttribute(62, "style", "width:" + " " + (
+            __builder.AddAttribute(44, "aria-valuemin", "0");
+            __builder.AddAttribute(45, "aria-valuemax", "100");
+            __builder.AddAttribute(46, "style", "width:" + " " + (
 #nullable restore
 #line 72 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                      completed
@@ -345,11 +329,9 @@ using System.Linq;
 #line hidden
 #nullable disable
             ) + "%;");
-            __builder.AddMarkupContent(63, "\r\n                                    ");
-            __builder.OpenElement(64, "span");
-            __builder.AddAttribute(65, "style", "color:white");
-            __builder.AddContent(66, " ");
-            __builder.AddContent(67, 
+            __builder.OpenElement(47, "span");
+            __builder.AddAttribute(48, "style", "color:white");
+            __builder.AddContent(49, 
 #nullable restore
 #line 73 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                  topic
@@ -358,8 +340,8 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(68, " ");
-            __builder.AddContent(69, 
+            __builder.AddContent(50, " ");
+            __builder.AddContent(51, 
 #nullable restore
 #line 73 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                           completed
@@ -368,13 +350,10 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(70, "% ");
+            __builder.AddContent(52, "% ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(71, "\r\n                                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(72, "\r\n                            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(73, "\r\n");
 #nullable restore
 #line 76 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                         }
@@ -382,27 +361,19 @@ using System.Linq;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(74, "                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(75, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(76, "\r\n\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(77, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(78, "\r\n        <hr>\r\n");
-            __builder.AddContent(79, "        ");
-            __builder.AddMarkupContent(80, "<div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <h4>Course Work</h4>\r\n            </div>\r\n        </div>\r\n        ");
-            __builder.OpenElement(81, "div");
-            __builder.AddAttribute(82, "class", "row");
-            __builder.AddMarkupContent(83, "\r\n            ");
-            __builder.OpenElement(84, "div");
-            __builder.AddAttribute(85, "class", "col-md-6");
-            __builder.AddMarkupContent(86, "\r\n                ");
-            __builder.OpenElement(87, "div");
-            __builder.AddAttribute(88, "class", "accordion");
-            __builder.AddAttribute(89, "id", "accordionExample");
-            __builder.AddMarkupContent(90, "\r\n");
+            __builder.AddMarkupContent(53, "\r\n        <hr>");
+            __builder.AddMarkupContent(54, "<div class=\"row\"><div class=\"col-md-12\"><h4>Course Work</h4></div></div>\r\n        ");
+            __builder.OpenElement(55, "div");
+            __builder.AddAttribute(56, "class", "row");
+            __builder.OpenElement(57, "div");
+            __builder.AddAttribute(58, "class", "col-md-6");
+            __builder.OpenElement(59, "div");
+            __builder.AddAttribute(60, "class", "accordion");
+            __builder.AddAttribute(61, "id", "accordionExample");
 #nullable restore
 #line 93 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                      foreach (var assesment in _assesments)
@@ -414,22 +385,18 @@ using System.Linq;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(91, "                        ");
-            __builder.OpenElement(92, "div");
-            __builder.AddAttribute(93, "class", "card");
-            __builder.AddMarkupContent(94, "\r\n                            ");
-            __builder.OpenElement(95, "div");
-            __builder.AddAttribute(96, "class", "card-header");
-            __builder.AddAttribute(97, "id", "headingOne");
-            __builder.AddMarkupContent(98, "\r\n                                ");
-            __builder.OpenElement(99, "div");
-            __builder.AddAttribute(100, "class", "mb-0");
-            __builder.AddMarkupContent(101, "\r\n                                    ");
-            __builder.OpenElement(102, "button");
-            __builder.AddAttribute(103, "class", "btn btn-link btn-block");
-            __builder.AddAttribute(104, "type", "button");
-            __builder.AddAttribute(105, "data-toggle", "collapse");
-            __builder.AddAttribute(106, "data-target", "#collapse_" + (
+            __builder.OpenElement(62, "div");
+            __builder.AddAttribute(63, "class", "card");
+            __builder.OpenElement(64, "div");
+            __builder.AddAttribute(65, "class", "card-header");
+            __builder.AddAttribute(66, "id", "headingOne");
+            __builder.OpenElement(67, "div");
+            __builder.AddAttribute(68, "class", "mb-0");
+            __builder.OpenElement(69, "button");
+            __builder.AddAttribute(70, "class", "btn btn-link btn-block");
+            __builder.AddAttribute(71, "type", "button");
+            __builder.AddAttribute(72, "data-toggle", "collapse");
+            __builder.AddAttribute(73, "data-target", "#collapse_" + (
 #nullable restore
 #line 101 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                                                                                         assesment.Id
@@ -438,15 +405,13 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(107, "aria-expanded", "true");
-            __builder.AddAttribute(108, "aria-controls", "collapseOne");
-            __builder.AddMarkupContent(109, "\r\n                                        ");
-            __builder.OpenElement(110, "div");
-            __builder.AddAttribute(111, "class", "progress");
-            __builder.AddAttribute(112, "style", "width:100%!important;");
-            __builder.AddMarkupContent(113, "\r\n                                            ");
-            __builder.OpenElement(114, "div");
-            __builder.AddAttribute(115, "class", "progress-bar" + " progress-bar-striped" + " progress-bar-animated" + " " + (
+            __builder.AddAttribute(74, "aria-expanded", "true");
+            __builder.AddAttribute(75, "aria-controls", "collapseOne");
+            __builder.OpenElement(76, "div");
+            __builder.AddAttribute(77, "class", "progress");
+            __builder.AddAttribute(78, "style", "width:100%!important;");
+            __builder.OpenElement(79, "div");
+            __builder.AddAttribute(80, "class", "progress-bar" + " progress-bar-striped" + " progress-bar-animated" + " " + (
 #nullable restore
 #line 103 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                                                                   score?.Percentage == 100 ? "bg-success" :
@@ -458,8 +423,8 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(116, "role", "progressbar");
-            __builder.AddAttribute(117, "aria-valuenow", 
+            __builder.AddAttribute(81, "role", "progressbar");
+            __builder.AddAttribute(82, "aria-valuenow", 
 #nullable restore
 #line 108 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                   score?.Percentage
@@ -468,9 +433,9 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(118, "aria-valuemin", "0");
-            __builder.AddAttribute(119, "aria-valuemax", "100");
-            __builder.AddAttribute(120, "style", "width:" + " " + (
+            __builder.AddAttribute(83, "aria-valuemin", "0");
+            __builder.AddAttribute(84, "aria-valuemax", "100");
+            __builder.AddAttribute(85, "style", "width:" + " " + (
 #nullable restore
 #line 111 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                  score?.Percentage
@@ -479,11 +444,9 @@ using System.Linq;
 #line hidden
 #nullable disable
             ) + "%;");
-            __builder.AddMarkupContent(121, "\r\n                                                ");
-            __builder.OpenElement(122, "span");
-            __builder.AddAttribute(123, "style", "color:white!important;");
-            __builder.AddContent(124, " ");
-            __builder.AddContent(125, 
+            __builder.OpenElement(86, "span");
+            __builder.AddAttribute(87, "style", "color:white!important;");
+            __builder.AddContent(88, 
 #nullable restore
 #line 112 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                                        assesment.AssesmentName
@@ -492,8 +455,8 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(126, " (");
-            __builder.AddContent(127, 
+            __builder.AddContent(89, " (");
+            __builder.AddContent(90, 
 #nullable restore
 #line 112 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                                                                   (score?.Percentage ?? 0).ToString("0")
@@ -502,16 +465,14 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(128, "%) ");
+            __builder.AddContent(91, "%) ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(129, "\r\n                                            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(130, "\r\n                                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(131, "\r\n                                        ");
-            __builder.OpenElement(132, "small");
-            __builder.AddAttribute(133, "style", "color:black;");
-            __builder.AddContent(134, 
+            __builder.AddMarkupContent(92, "\r\n                                        ");
+            __builder.OpenElement(93, "small");
+            __builder.AddAttribute(94, "style", "color:black;");
+            __builder.AddContent(95, 
 #nullable restore
 #line 115 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                      assesment.Description
@@ -521,15 +482,12 @@ using System.Linq;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(135, "\r\n                                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(136, "\r\n                                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(137, "\r\n                            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(138, "\r\n                            ");
-            __builder.OpenElement(139, "div");
-            __builder.AddAttribute(140, "id", "collapse_" + (
+            __builder.AddMarkupContent(96, "\r\n                            ");
+            __builder.OpenElement(97, "div");
+            __builder.AddAttribute(98, "id", "collapse_" + (
 #nullable restore
 #line 119 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                assesment.Id
@@ -538,14 +496,12 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(141, "class", "collapse");
-            __builder.AddAttribute(142, "aria-labelledby", "headingOne");
-            __builder.AddAttribute(143, "data-parent", "#accordionExample");
-            __builder.AddMarkupContent(144, "\r\n                                ");
-            __builder.OpenElement(145, "div");
-            __builder.AddAttribute(146, "class", "card-body");
-            __builder.AddMarkupContent(147, "\r\n                                    ");
-            __builder.AddContent(148, 
+            __builder.AddAttribute(99, "class", "collapse");
+            __builder.AddAttribute(100, "aria-labelledby", "headingOne");
+            __builder.AddAttribute(101, "data-parent", "#accordionExample");
+            __builder.OpenElement(102, "div");
+            __builder.AddAttribute(103, "class", "card-body");
+            __builder.AddContent(104, 
 #nullable restore
 #line 121 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                      score?.Comments
@@ -554,13 +510,9 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(149, "\r\n                                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(150, "\r\n                            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(151, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(152, "\r\n");
 #nullable restore
 #line 125 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                     }
@@ -568,26 +520,21 @@ using System.Linq;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(153, "                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(154, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(155, "\r\n            ");
-            __builder.AddMarkupContent(156, "<div class=\"col-md-6\">\r\n                <div id=\"printCourseWorkPercentageChart\" style=\"height:400px;width:100%;\">\r\n                </div>\r\n            </div>\r\n        ");
+            __builder.AddMarkupContent(105, "\r\n            ");
+            __builder.AddMarkupContent(106, "<div class=\"col-md-6\"><div id=\"printCourseWorkPercentageChart\" style=\"height:400px;width:100%;\"></div></div>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(157, "\r\n        <hr>\r\n        ");
-            __builder.AddMarkupContent(158, "<div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <h4>Exam Progress</h4>\r\n            </div>\r\n        </div>\r\n        ");
-            __builder.OpenElement(159, "div");
-            __builder.AddAttribute(160, "class", "row");
-            __builder.AddMarkupContent(161, "\r\n            ");
-            __builder.OpenElement(162, "div");
-            __builder.AddAttribute(163, "class", "col-md-12");
-            __builder.AddMarkupContent(164, "\r\n                ");
-            __builder.OpenElement(165, "div");
-            __builder.AddAttribute(166, "class", "progress");
-            __builder.AddMarkupContent(167, "\r\n                    ");
-            __builder.OpenElement(168, "div");
-            __builder.AddAttribute(169, "class", "progress-bar" + " progress-bar-striped" + " progress-bar-animated" + " " + (
+            __builder.AddMarkupContent(107, "\r\n        <hr>\r\n        ");
+            __builder.AddMarkupContent(108, "<div class=\"row\"><div class=\"col-md-12\"><h4>Exam Progress</h4></div></div>\r\n        ");
+            __builder.OpenElement(109, "div");
+            __builder.AddAttribute(110, "class", "row");
+            __builder.OpenElement(111, "div");
+            __builder.AddAttribute(112, "class", "col-md-12");
+            __builder.OpenElement(113, "div");
+            __builder.AddAttribute(114, "class", "progress");
+            __builder.OpenElement(115, "div");
+            __builder.AddAttribute(116, "class", "progress-bar" + " progress-bar-striped" + " progress-bar-animated" + " " + (
 #nullable restore
 #line 143 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                                                           exam_percentage_complete==100?"bg-success":
@@ -599,8 +546,8 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(170, "role", "progressbar");
-            __builder.AddAttribute(171, "aria-valuenow", 
+            __builder.AddAttribute(117, "role", "progressbar");
+            __builder.AddAttribute(118, "aria-valuenow", 
 #nullable restore
 #line 148 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                           exam_percentage_complete
@@ -609,9 +556,9 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddAttribute(172, "aria-valuemin", "0");
-            __builder.AddAttribute(173, "aria-valuemax", "100");
-            __builder.AddAttribute(174, "style", "width:" + " " + (
+            __builder.AddAttribute(119, "aria-valuemin", "0");
+            __builder.AddAttribute(120, "aria-valuemax", "100");
+            __builder.AddAttribute(121, "style", "width:" + " " + (
 #nullable restore
 #line 151 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                          exam_percentage_complete
@@ -620,11 +567,10 @@ using System.Linq;
 #line hidden
 #nullable disable
             ) + "%;");
-            __builder.AddMarkupContent(175, "\r\n                        ");
-            __builder.OpenElement(176, "span");
-            __builder.AddAttribute(177, "style", "color:white");
-            __builder.AddContent(178, " Overall ");
-            __builder.AddContent(179, 
+            __builder.OpenElement(122, "span");
+            __builder.AddAttribute(123, "style", "color:white");
+            __builder.AddContent(124, " Overall ");
+            __builder.AddContent(125, 
 #nullable restore
 #line 152 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                                              exam_percentage_complete
@@ -633,31 +579,22 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(180, "% ");
+            __builder.AddContent(126, "% ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(181, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(182, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(183, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(184, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(185, "\r\n");
-            __builder.AddContent(186, "        ");
-            __builder.OpenElement(187, "div");
-            __builder.AddAttribute(188, "class", "row");
-            __builder.AddMarkupContent(189, "\r\n            ");
-            __builder.AddMarkupContent(190, "<div class=\"col-md-6\">\r\n                <div id=\"printExamPercentageChart\" style=\"height:400px;width:100%;\">\r\n                </div>\r\n            </div>\r\n            ");
-            __builder.OpenElement(191, "div");
-            __builder.AddAttribute(192, "class", "col-md-6");
-            __builder.AddMarkupContent(193, "\r\n                ");
-            __builder.OpenElement(194, "div");
-            __builder.AddAttribute(195, "style", "display: flex;\r\n                            justify-content: center;\r\n                            align-items: center;\r\n                            height: 400px;\r\n                            width: 100%;\r\n                            ");
-            __builder.AddMarkupContent(196, "\r\n                    ");
-            __builder.AddMarkupContent(197, "<h4>Total Time</h4>\r\n                    &nbsp;\r\n                    &nbsp;\r\n                    ");
-            __builder.OpenElement(198, "h4");
-            __builder.AddContent(199, 
+            __builder.OpenElement(127, "div");
+            __builder.AddAttribute(128, "class", "row");
+            __builder.AddMarkupContent(129, "<div class=\"col-md-6\"><div id=\"printExamPercentageChart\" style=\"height:400px;width:100%;\"></div></div>\r\n            ");
+            __builder.OpenElement(130, "div");
+            __builder.AddAttribute(131, "class", "col-md-6");
+            __builder.OpenElement(132, "div");
+            __builder.AddAttribute(133, "style", "display: flex;\r\n                            justify-content: center;\r\n                            align-items: center;\r\n                            height: 400px;\r\n                            width: 100%;\r\n                            ");
+            __builder.AddMarkupContent(134, "<h4>Total Time</h4>\r\n                    &nbsp;\r\n                    &nbsp;\r\n                    ");
+            __builder.OpenElement(135, "h4");
+            __builder.AddContent(136, 
 #nullable restore
 #line 173 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                          total_time
@@ -667,23 +604,16 @@ using System.Linq;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(200, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(201, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(202, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(203, "\r\n");
-            __builder.AddContent(204, "        ");
-            __builder.OpenElement(205, "div");
-            __builder.AddAttribute(206, "class", "row");
-            __builder.AddMarkupContent(207, "\r\n            ");
-            __builder.OpenElement(208, "div");
-            __builder.AddAttribute(209, "class", "col-md-12");
-            __builder.AddMarkupContent(210, "\r\n                ");
-            __builder.OpenElement(211, "h2");
-            __builder.AddContent(212, "Final Score: ");
-            __builder.AddContent(213, 
+            __builder.OpenElement(137, "div");
+            __builder.AddAttribute(138, "class", "row");
+            __builder.OpenElement(139, "div");
+            __builder.AddAttribute(140, "class", "col-md-12");
+            __builder.OpenElement(141, "h2");
+            __builder.AddContent(142, "Final Score: ");
+            __builder.AddContent(143, 
 #nullable restore
 #line 181 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                                    over_all_percentage_score<0?0: over_all_percentage_score
@@ -692,13 +622,10 @@ using System.Linq;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(214, " %");
+            __builder.AddContent(144, " %");
             __builder.CloseElement();
-            __builder.AddMarkupContent(215, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(216, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(217, "\r\n");
 #nullable restore
 #line 184 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
 
@@ -707,11 +634,10 @@ using System.Linq;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(218, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(219, "\r\n\r\n");
-            __builder.OpenComponent<Blazored.Toast.BlazoredToasts>(220);
-            __builder.AddAttribute(221, "Position", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
+            __builder.AddMarkupContent(145, "\r\n\r\n");
+            __builder.OpenComponent<Blazored.Toast.BlazoredToasts>(146);
+            __builder.AddAttribute(147, "Position", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
 #nullable restore
 #line 189 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                           ToastPosition.BottomCenter
@@ -720,7 +646,7 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(222, "Timeout", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(148, "Timeout", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 190 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                          3
@@ -729,7 +655,7 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(223, "IconType", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
+            __builder.AddAttribute(149, "IconType", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
 #nullable restore
 #line 191 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\CourseReports\CourseReports.razor"
                           IconType.FontAwesome
@@ -738,9 +664,9 @@ using System.Linq;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(224, "SuccessClass", "success-toast-override");
-            __builder.AddAttribute(225, "SuccessIcon", "fa fa-thumbs-up");
-            __builder.AddAttribute(226, "ErrorIcon", "fa fa-bug");
+            __builder.AddAttribute(150, "SuccessClass", "success-toast-override");
+            __builder.AddAttribute(151, "SuccessIcon", "fa fa-thumbs-up");
+            __builder.AddAttribute(152, "ErrorIcon", "fa fa-bug");
             __builder.CloseComponent();
         }
         #pragma warning restore 1998

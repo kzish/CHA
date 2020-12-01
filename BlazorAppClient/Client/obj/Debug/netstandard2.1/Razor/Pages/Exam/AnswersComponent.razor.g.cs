@@ -143,8 +143,7 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(0, "    ");
-            __builder.AddMarkupContent(1, "<h3>Your answer is: Recorded</h3>\r\n");
+            __builder.AddMarkupContent(0, "<h3>Your answer is: Recorded</h3>");
 #nullable restore
 #line 8 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
      if (question.EQuestionTypeIdFk == text_based_question_id)
@@ -153,9 +152,8 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(2, "        ");
-            __builder.OpenElement(3, "p");
-            __builder.AddContent(4, 
+            __builder.OpenElement(1, "p");
+            __builder.AddContent(2, 
 #nullable restore
 #line 10 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
             text_answer
@@ -165,7 +163,6 @@ using Microsoft.Extensions.Logging;
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(5, "\r\n");
 #nullable restore
 #line 11 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
     }
@@ -184,9 +181,7 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(6, "            ");
-            __builder.OpenElement(7, "ul");
-            __builder.AddMarkupContent(8, "\r\n");
+            __builder.OpenElement(3, "ul");
 #nullable restore
 #line 17 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                  foreach (var ans in selected_answers)
@@ -195,10 +190,8 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(9, "                    ");
-            __builder.OpenElement(10, "li");
-            __builder.AddMarkupContent(11, "\r\n                        ");
-            __builder.AddContent(12, 
+            __builder.OpenElement(4, "li");
+            __builder.AddContent(5, 
 #nullable restore
 #line 20 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                          question.MQuestionAnswerOptions.Where(i => i.Id == ans).FirstOrDefault()?.OptionText
@@ -207,9 +200,7 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(13, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(14, "\r\n");
 #nullable restore
 #line 22 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                 }
@@ -217,9 +208,7 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(15, "            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(16, "\r\n");
 #nullable restore
 #line 24 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
         }
@@ -235,8 +224,7 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(17, "    ");
-            __builder.AddMarkupContent(18, "<h3>\r\n        Sample Answer\r\n    </h3>\r\n");
+            __builder.AddMarkupContent(6, "<h3>\r\n        Sample Answer\r\n    </h3>");
 #nullable restore
 #line 33 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
      if (question.EQuestionTypeIdFk == text_based_question_id)
@@ -245,10 +233,8 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(19, "        ");
-            __builder.OpenElement(20, "p");
-            __builder.AddMarkupContent(21, "\r\n            ");
-            __builder.AddContent(22, 
+            __builder.OpenElement(7, "p");
+            __builder.AddContent(8, 
 #nullable restore
 #line 36 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
              question.MQuestionAnswerOptions.FirstOrDefault().OptionText
@@ -257,9 +243,7 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(23, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(24, "\r\n");
 #nullable restore
 #line 38 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
     }
@@ -270,10 +254,8 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(25, "        ");
-            __builder.OpenElement(26, "div");
-            __builder.AddAttribute(27, "id", "accordion");
-            __builder.AddMarkupContent(28, "\r\n");
+            __builder.OpenElement(9, "div");
+            __builder.AddAttribute(10, "id", "accordion");
 #nullable restore
 #line 43 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
              foreach (var ans in question.MQuestionAnswerOptions)
@@ -282,18 +264,14 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(29, "                ");
-            __builder.OpenElement(30, "div");
-            __builder.AddAttribute(31, "class", "card");
-            __builder.AddMarkupContent(32, "\r\n                    ");
-            __builder.OpenElement(33, "div");
-            __builder.AddAttribute(34, "class", "card-header");
-            __builder.AddMarkupContent(35, "\r\n                        ");
-            __builder.OpenElement(36, "h5");
-            __builder.AddAttribute(37, "class", "mb-0");
-            __builder.AddMarkupContent(38, "\r\n                            ");
-            __builder.OpenElement(39, "button");
-            __builder.AddAttribute(40, "style", "color:" + (
+            __builder.OpenElement(11, "div");
+            __builder.AddAttribute(12, "class", "card");
+            __builder.OpenElement(13, "div");
+            __builder.AddAttribute(14, "class", "card-header");
+            __builder.OpenElement(15, "h5");
+            __builder.AddAttribute(16, "class", "mb-0");
+            __builder.OpenElement(17, "button");
+            __builder.AddAttribute(18, "style", "color:" + (
 #nullable restore
 #line 48 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                                                    ans.IsCorrectAnswer?"green":"red"
@@ -302,9 +280,9 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(41, "class", "btn btn-link");
-            __builder.AddAttribute(42, "data-toggle", "collapse");
-            __builder.AddAttribute(43, "data-target", "#collapse_" + (
+            __builder.AddAttribute(19, "class", "btn btn-link");
+            __builder.AddAttribute(20, "data-toggle", "collapse");
+            __builder.AddAttribute(21, "data-target", "#collapse_" + (
 #nullable restore
 #line 48 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                                                                                                                                                             ans.Id
@@ -313,10 +291,9 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(44, "aria-expanded", "true");
-            __builder.AddAttribute(45, "aria-controls", "collapseOne");
-            __builder.AddMarkupContent(46, "\r\n                                ");
-            __builder.AddContent(47, 
+            __builder.AddAttribute(22, "aria-expanded", "true");
+            __builder.AddAttribute(23, "aria-controls", "collapseOne");
+            __builder.AddContent(24, 
 #nullable restore
 #line 49 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                                  ans.OptionText
@@ -325,15 +302,13 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(48, "   <i class=\"fas fa-arrow-right\"></i>\r\n                            ");
+            __builder.AddMarkupContent(25, "   <i class=\"fas fa-arrow-right\"></i>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(49, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(50, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(51, "\r\n                    ");
-            __builder.OpenElement(52, "div");
-            __builder.AddAttribute(53, "id", "collapse_" + (
+            __builder.AddMarkupContent(26, "\r\n                    ");
+            __builder.OpenElement(27, "div");
+            __builder.AddAttribute(28, "id", "collapse_" + (
 #nullable restore
 #line 53 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                                         ans.Id
@@ -342,14 +317,12 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(54, "class", "collapse");
-            __builder.AddAttribute(55, "aria-labelledby", "headingOne");
-            __builder.AddAttribute(56, "data-parent", "#accordion");
-            __builder.AddMarkupContent(57, "\r\n                        ");
-            __builder.OpenElement(58, "div");
-            __builder.AddAttribute(59, "class", "card-body");
-            __builder.AddMarkupContent(60, "\r\n                            ");
-            __builder.AddContent(61, 
+            __builder.AddAttribute(29, "class", "collapse");
+            __builder.AddAttribute(30, "aria-labelledby", "headingOne");
+            __builder.AddAttribute(31, "data-parent", "#accordion");
+            __builder.OpenElement(32, "div");
+            __builder.AddAttribute(33, "class", "card-body");
+            __builder.AddContent(34, 
 #nullable restore
 #line 55 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                              ans.Explanation
@@ -358,13 +331,9 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(62, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(63, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(64, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(65, "\r\n");
 #nullable restore
 #line 59 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
             }
@@ -372,9 +341,7 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(66, "        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(67, "\r\n");
 #nullable restore
 #line 61 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
 
@@ -395,10 +362,9 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(68, "    ");
-            __builder.OpenElement(69, "h3");
-            __builder.AddContent(70, "Your answer is: ");
-            __builder.AddContent(71, 
+            __builder.OpenElement(35, "h3");
+            __builder.AddContent(36, "Your answer is: ");
+            __builder.AddContent(37, 
 #nullable restore
 #line 68 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                           state.answers.Where(i=>i.QuestionIdFk==question.Id).FirstOrDefault().CorrectAnswer? ((MarkupString)"<span style='color:green'>Correct</span>") : ((MarkupString)"<span style='color:red'>Wrong</span>")
@@ -408,7 +374,6 @@ else
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(72, "\r\n");
 #nullable restore
 #line 69 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
      if (question.EQuestionTypeIdFk == text_based_question_id)
@@ -417,9 +382,8 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(73, "        ");
-            __builder.OpenElement(74, "p");
-            __builder.AddContent(75, 
+            __builder.OpenElement(38, "p");
+            __builder.AddContent(39, 
 #nullable restore
 #line 71 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
             text_answer
@@ -429,7 +393,6 @@ else
 #nullable disable
             );
             __builder.CloseElement();
-            __builder.AddMarkupContent(76, "\r\n");
 #nullable restore
 #line 72 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
     }
@@ -448,9 +411,7 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(77, "            ");
-            __builder.OpenElement(78, "ul");
-            __builder.AddMarkupContent(79, "\r\n");
+            __builder.OpenElement(40, "ul");
 #nullable restore
 #line 78 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                  foreach (var ans in selected_answers)
@@ -459,10 +420,8 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(80, "                    ");
-            __builder.OpenElement(81, "li");
-            __builder.AddMarkupContent(82, "\r\n                        ");
-            __builder.AddContent(83, 
+            __builder.OpenElement(41, "li");
+            __builder.AddContent(42, 
 #nullable restore
 #line 81 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                          question.MQuestionAnswerOptions.Where(i => i.Id == ans).FirstOrDefault()?.OptionText
@@ -471,9 +430,7 @@ else
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(84, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(85, "\r\n");
 #nullable restore
 #line 83 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                 }
@@ -481,9 +438,7 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(86, "            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(87, "\r\n");
 #nullable restore
 #line 85 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
         }
@@ -499,8 +454,7 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(88, "    ");
-            __builder.AddMarkupContent(89, "<h3>\r\n        Correct Answer\r\n    </h3>\r\n");
+            __builder.AddMarkupContent(43, "<h3>\r\n        Correct Answer\r\n    </h3>");
 #nullable restore
 #line 94 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
      if (question.EQuestionTypeIdFk == text_based_question_id)
@@ -509,10 +463,8 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(90, "        ");
-            __builder.OpenElement(91, "p");
-            __builder.AddMarkupContent(92, "\r\n            ");
-            __builder.AddContent(93, 
+            __builder.OpenElement(44, "p");
+            __builder.AddContent(45, 
 #nullable restore
 #line 97 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
              question.MQuestionAnswerOptions.FirstOrDefault().OptionText
@@ -521,9 +473,7 @@ else
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(94, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(95, "\r\n");
 #nullable restore
 #line 99 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
     }
@@ -534,10 +484,8 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(96, "        ");
-            __builder.OpenElement(97, "div");
-            __builder.AddAttribute(98, "id", "accordion");
-            __builder.AddMarkupContent(99, "\r\n");
+            __builder.OpenElement(46, "div");
+            __builder.AddAttribute(47, "id", "accordion");
 #nullable restore
 #line 104 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
              foreach (var ans in question.MQuestionAnswerOptions)
@@ -546,18 +494,14 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(100, "                ");
-            __builder.OpenElement(101, "div");
-            __builder.AddAttribute(102, "class", "card");
-            __builder.AddMarkupContent(103, "\r\n                    ");
-            __builder.OpenElement(104, "div");
-            __builder.AddAttribute(105, "class", "card-header");
-            __builder.AddMarkupContent(106, "\r\n                        ");
-            __builder.OpenElement(107, "h5");
-            __builder.AddAttribute(108, "class", "mb-0");
-            __builder.AddMarkupContent(109, "\r\n                            ");
-            __builder.OpenElement(110, "button");
-            __builder.AddAttribute(111, "style", "color:" + (
+            __builder.OpenElement(48, "div");
+            __builder.AddAttribute(49, "class", "card");
+            __builder.OpenElement(50, "div");
+            __builder.AddAttribute(51, "class", "card-header");
+            __builder.OpenElement(52, "h5");
+            __builder.AddAttribute(53, "class", "mb-0");
+            __builder.OpenElement(54, "button");
+            __builder.AddAttribute(55, "style", "color:" + (
 #nullable restore
 #line 109 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                                                    ans.IsCorrectAnswer?"green":"red"
@@ -566,9 +510,9 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(112, "class", "btn btn-link");
-            __builder.AddAttribute(113, "data-toggle", "collapse");
-            __builder.AddAttribute(114, "data-target", "#collapse_" + (
+            __builder.AddAttribute(56, "class", "btn btn-link");
+            __builder.AddAttribute(57, "data-toggle", "collapse");
+            __builder.AddAttribute(58, "data-target", "#collapse_" + (
 #nullable restore
 #line 109 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                                                                                                                                                             ans.Id
@@ -577,10 +521,9 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(115, "aria-expanded", "true");
-            __builder.AddAttribute(116, "aria-controls", "collapseOne");
-            __builder.AddMarkupContent(117, "\r\n                                ");
-            __builder.AddContent(118, 
+            __builder.AddAttribute(59, "aria-expanded", "true");
+            __builder.AddAttribute(60, "aria-controls", "collapseOne");
+            __builder.AddContent(61, 
 #nullable restore
 #line 110 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                                  ans.OptionText
@@ -589,15 +532,13 @@ else
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(119, "   <i class=\"fas fa-arrow-right\"></i>\r\n                            ");
+            __builder.AddMarkupContent(62, "   <i class=\"fas fa-arrow-right\"></i>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(120, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(121, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(122, "\r\n                    ");
-            __builder.OpenElement(123, "div");
-            __builder.AddAttribute(124, "id", "collapse_" + (
+            __builder.AddMarkupContent(63, "\r\n                    ");
+            __builder.OpenElement(64, "div");
+            __builder.AddAttribute(65, "id", "collapse_" + (
 #nullable restore
 #line 114 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                                         ans.Id
@@ -606,14 +547,12 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(125, "class", "collapse");
-            __builder.AddAttribute(126, "aria-labelledby", "headingOne");
-            __builder.AddAttribute(127, "data-parent", "#accordion");
-            __builder.AddMarkupContent(128, "\r\n                        ");
-            __builder.OpenElement(129, "div");
-            __builder.AddAttribute(130, "class", "card-body");
-            __builder.AddMarkupContent(131, "\r\n                            ");
-            __builder.AddContent(132, 
+            __builder.AddAttribute(66, "class", "collapse");
+            __builder.AddAttribute(67, "aria-labelledby", "headingOne");
+            __builder.AddAttribute(68, "data-parent", "#accordion");
+            __builder.OpenElement(69, "div");
+            __builder.AddAttribute(70, "class", "card-body");
+            __builder.AddContent(71, 
 #nullable restore
 #line 116 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
                              ans.Explanation
@@ -622,13 +561,9 @@ else
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(133, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(134, "\r\n                    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(135, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(136, "\r\n");
 #nullable restore
 #line 120 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
             }
@@ -636,9 +571,7 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(137, "        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(138, "\r\n");
 #nullable restore
 #line 122 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Exam\AnswersComponent.razor"
 

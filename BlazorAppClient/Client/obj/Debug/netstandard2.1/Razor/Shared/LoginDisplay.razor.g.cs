@@ -142,11 +142,10 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
         {
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(0);
             __builder.AddAttribute(1, "Authorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
-                __builder2.AddMarkupContent(2, "\r\n        ");
-                __builder2.OpenElement(3, "a");
-                __builder2.AddAttribute(4, "href", "authentication/profile");
-                __builder2.AddContent(5, "Hello, ");
-                __builder2.AddContent(6, 
+                __builder2.OpenElement(2, "a");
+                __builder2.AddAttribute(3, "href", "authentication/profile");
+                __builder2.AddContent(4, "Hello, ");
+                __builder2.AddContent(5, 
 #nullable restore
 #line 9 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\LoginDisplay.razor"
                                                  context.User.Identity.Name
@@ -155,12 +154,12 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
                 );
-                __builder2.AddContent(7, "!");
+                __builder2.AddContent(6, "!");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(8, "\r\n        ");
-                __builder2.OpenElement(9, "button");
-                __builder2.AddAttribute(10, "class", "nav-link btn btn-link");
-                __builder2.AddAttribute(11, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+                __builder2.AddMarkupContent(7, "\r\n        ");
+                __builder2.OpenElement(8, "button");
+                __builder2.AddAttribute(9, "class", "nav-link btn btn-link");
+                __builder2.AddAttribute(10, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 10 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\LoginDisplay.razor"
                                                         BeginSignOut
@@ -169,15 +168,13 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddContent(12, "Log out");
+                __builder2.AddContent(11, "Log out");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(13, "\r\n    ");
             }
             ));
-            __builder.AddAttribute(14, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
-                __builder2.AddMarkupContent(15, "\r\n        ");
-                __builder2.AddMarkupContent(16, "<a href=\"authentication/register\">Register</a>\r\n        ");
-                __builder2.AddMarkupContent(17, "<a href=\"authentication/login\">Log in</a>\r\n    ");
+            __builder.AddAttribute(12, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
+                __builder2.AddMarkupContent(13, "<a href=\"authentication/register\">Register</a>\r\n        ");
+                __builder2.AddMarkupContent(14, "<a href=\"authentication/login\">Log in</a>");
             }
             ));
             __builder.CloseComponent();

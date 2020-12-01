@@ -1,5 +1,6 @@
 ﻿@{
     var materials = (List<Admin.Models.MCourseMaterial>)ViewBag.materials;
+    var topics = (List<Admin.Models.MCourseTopic>)ViewBag.topics;
 }
 
 <table id="dt" class="table tblsm">
@@ -8,7 +9,6 @@
             <th>Topic</th>
             <th>Title</th>
             <th>Sequence</th>
-            <th>CreatedBy</th>
             <th>DateCreated</th>
             <th>Published</th>
             <th>Action</th>
@@ -18,10 +18,9 @@
         @foreach (var item in materials)
         {
             <tr>
-                <td title="@item.MCourseTopicIdFkNavigation.Topic">@item.MCourseTopicIdFkNavigation.Topic</td>
+                <td title="@(topics.Where(i=>i.Id==item.MCourseTopicIdNfk).FirstOrDefault().Topic)">@(topics.Where(i=>i.Id==item.MCourseTopicIdNfk).FirstOrDefault().Topic)</td>
                 <td title="@item.PageTitle">@item.PageTitle</td>
                 <td title="@item.PageSequence">@item.PageSequence</td>
-                <td title="@item.CreatedByAspNetUserIdFkNavigation.Email">@item.CreatedByAspNetUserIdFkNavigation.Email</td>
                 <td title="@item.DateCreated.ToString("yyyy-MM-dd")">@item.DateCreated.ToString("yyyy-MM-dd")</td>
                 <td title="@item.Published">@item.Published</td>
                 <td>

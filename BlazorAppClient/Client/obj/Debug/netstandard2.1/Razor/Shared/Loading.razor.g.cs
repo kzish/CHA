@@ -141,10 +141,9 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(0, "    ");
-            __builder.OpenElement(1, "img");
-            __builder.AddAttribute(2, "src", "/assets/img/loading.gif");
-            __builder.AddAttribute(3, "style", "height:" + (
+            __builder.OpenElement(0, "img");
+            __builder.AddAttribute(1, "src", "/assets/img/loading.gif");
+            __builder.AddAttribute(2, "style", "height:" + (
 #nullable restore
 #line 3 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\Loading.razor"
                                                        height
@@ -162,7 +161,6 @@ using Microsoft.Extensions.Logging;
 #nullable disable
             ) + "px;");
             __builder.CloseElement();
-            __builder.AddMarkupContent(4, "\r\n");
 #nullable restore
 #line 4 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\Loading.razor"
 }

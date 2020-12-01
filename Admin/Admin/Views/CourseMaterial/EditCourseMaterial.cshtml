@@ -18,10 +18,10 @@
             <form method="post" action="~/CourseMaterial/EditCourseMaterial">
                 <div class="form-group">
                     <input type="hidden" name="Id" value="@material.Id" />
-                    <select class="form-control" name="MCourseTopicIdFk">
+                    <select class="form-control" name="MCourseTopicIdNfk">
                         @foreach (var item in topics)
                         {
-                            <option value="@item.Id" selected="@(material.MCourseTopicIdFk==item.Id)">@item.Topic</option>
+                            <option value="@item.Id" selected="@(material.MCourseTopicIdNfk==item.Id)">@item.Topic</option>
                         }
                     </select>
                     <small><span style="color:red;">*</span> Course Topic</small>

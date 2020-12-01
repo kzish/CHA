@@ -136,18 +136,14 @@ using Microsoft.Extensions.Logging;
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
             __builder.AddMarkupContent(0, "<br>\r\n\r\n");
-            __builder.AddMarkupContent(1, @"<div class=""row"">
-    <div class=""col-md-6"">
+            __builder.AddMarkupContent(1, @"<div class=""row""><div class=""col-md-6"">
         12th Floor | Cyrex Business Centre | Joina City |
 
         Cnr. J. Moyo Street/ J. Nyerere Avenue | Harare | Zimbabwe
 
         Mobile/WhatsApp: +263-772661343 | Landline: +263-242753115
 
-        Website:  |  <a href=""www.cha-africa.org"">www.cha-africa.org</a>
-    </div>
-   
-</div>");
+        Website:  |  <a href=""www.cha-africa.org"">www.cha-africa.org</a></div></div>");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private SweetAlertService Swal { get; set; }

@@ -55,7 +55,7 @@ else
                     <li data-jstree='{ "opened" : @(course_counter == 0 ? "true" : "false") }'>
                         @topic.Topic
                         <ul>
-                            @foreach (var page_ in course.MCourseMaterial.Where(i => i.MCourseTopicIdFk == topic.Id).OrderBy(i => i.PageSequence))
+                            @foreach (var page_ in course.MCourseMaterial.Where(i => i.MCourseTopicIdNfk == topic.Id).OrderBy(i => i.PageSequence))
                             {
                                 <li data-jstree='{"topic_id":"@topic.Id","page_id":"@page_.Id", "selected" : false,"PageData":"@page_.PageData", "has_questions":"@page_.HasQuestions","has_board_game":"@page_.HasBoardGame" }'>
                                     @page_.PageTitle
@@ -115,7 +115,7 @@ else
 
                     @* button update progress *@
                     <div class="form-group">
-                        @if (state.completed_pages.Where(i => i.CoursePageIdFk == page_id).Any())
+                        @if (state.completed_pages.Where(i => i.CoursePageIdNfk == page_id).Any())
                         {
                             <button class="btn btn-sm btn-warning">
                                 Saved

@@ -5,6 +5,8 @@ obj\Release\netstandard2.1\blazor\linker\Blazored.Toast.dll
 obj\Release\netstandard2.1\blazor\linker\BlazorPagination.dll
 obj\Release\netstandard2.1\blazor\linker\BlazorTable.dll
 obj\Release\netstandard2.1\blazor\linker\CurrieTechnologies.Razor.SweetAlert2.dll
+obj\Release\netstandard2.1\blazor\linker\DuoVia.FuzzyStrings.dll
+obj\Release\netstandard2.1\blazor\linker\F23.StringSimilarity.dll
 obj\Release\netstandard2.1\blazor\linker\LinqKit.Core.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.AspNetCore.Authorization.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.AspNetCore.Components.Authorization.dll
@@ -14,6 +16,7 @@ obj\Release\netstandard2.1\blazor\linker\Microsoft.AspNetCore.Components.Web.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.AspNetCore.Components.WebAssembly.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.AspNetCore.Metadata.dll
+obj\Release\netstandard2.1\blazor\linker\Microsoft.AspNetCore.WebUtilities.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.Bcl.AsyncInterfaces.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.Bcl.HashCode.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.CSharp.dll
@@ -33,6 +36,7 @@ obj\Release\netstandard2.1\blazor\linker\Microsoft.Extensions.Options.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.Extensions.Primitives.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.JSInterop.dll
 obj\Release\netstandard2.1\blazor\linker\Microsoft.JSInterop.WebAssembly.dll
+obj\Release\netstandard2.1\blazor\linker\Microsoft.Net.Http.Headers.dll
 obj\Release\netstandard2.1\blazor\linker\Mono.Security.dll
 obj\Release\netstandard2.1\blazor\linker\mscorlib.dll
 obj\Release\netstandard2.1\blazor\linker\netstandard.dll

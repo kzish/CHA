@@ -254,7 +254,6 @@ text,");
                     .HasDefaultValueSql("(newid())");
 
                 entity.Property(e => e.CourseMaterialIdFk)
-                    .IsRequired()
                     .HasColumnName("course_material_id_fk")
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -272,12 +271,12 @@ text,");
                     .IsUnicode(false)
                     .HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.CorrectTitleIdFk)
+                entity.Property(e => e.CorrectTitleIdNfk)
                     .IsRequired()
-                    .HasColumnName("correct_title_id_fk")
+                    .HasColumnName("correct_title_id_nfk")
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasComment("the correct tile id");
+                    .HasComment("the correct title id no foregn key");
 
                 entity.Property(e => e.ItemText)
                     .IsRequired()
@@ -358,13 +357,6 @@ text,");
                     .IsUnicode(false)
                     .HasComment("stores the json answer in json string format");
 
-                entity.Property(e => e.MCourseIdFk)
-                    .IsRequired()
-                    .HasColumnName("m_course_id_fk")
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasComment("links to the course");
-
                 entity.Property(e => e.MCourseMaterialIdFk)
                     .IsRequired()
                     .HasColumnName("m_course_material_id_fk")
@@ -377,10 +369,10 @@ text,");
                     .HasForeignKey(d => d.AspNetUserIdFk)
                     .HasConstraintName("FK_m_board_game_users_answers_AspNetUsers");
 
-                entity.HasOne(d => d.MCourseIdFkNavigation)
+                entity.HasOne(d => d.MCourseMaterialIdFkNavigation)
                     .WithMany(p => p.MBoardGameUsersAnswers)
-                    .HasForeignKey(d => d.MCourseIdFk)
-                    .HasConstraintName("FK_m_board_game_users_answers_m_course");
+                    .HasForeignKey(d => d.MCourseMaterialIdFk)
+                    .HasConstraintName("FK_m_board_game_users_answers_m_course_material");
             });
 
             modelBuilder.Entity<MCompany>(entity =>
@@ -430,6 +422,7 @@ during the coursework");
                     .IsUnicode(false);
 
                 entity.Property(e => e.Description)
+                    .IsRequired()
                     .HasColumnName("description")
                     .IsUnicode(false);
 
@@ -484,11 +477,6 @@ during the coursework");
 
                 entity.Property(e => e.CourseStudyTimeHours).HasColumnName("course_study_time_hours");
 
-                entity.Property(e => e.CreatedByAspNetUserIdFk)
-                    .IsRequired()
-                    .HasColumnName("created_by_asp_net_user_id_fk")
-                    .HasMaxLength(450);
-
                 entity.Property(e => e.DateCreated)
                     .HasColumnName("date_created")
                     .HasColumnType("datetime");
@@ -514,16 +502,9 @@ during the coursework");
                     .HasColumnName("start_date")
                     .HasColumnType("datetime");
 
-                entity.HasOne(d => d.CreatedByAspNetUserIdFkNavigation)
-                    .WithMany(p => p.MCourse)
-                    .HasForeignKey(d => d.CreatedByAspNetUserIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_m_course_AspNetUsers");
-
                 entity.HasOne(d => d.ECourseCategoryIdFkNavigation)
                     .WithMany(p => p.MCourse)
                     .HasForeignKey(d => d.ECourseCategoryIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_course_e_course_category");
             });
 
@@ -561,13 +542,11 @@ during the coursework");
                 entity.HasOne(d => d.AspNetUserIdFkNavigation)
                     .WithMany(p => p.MCourseExamReports)
                     .HasForeignKey(d => d.AspNetUserIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_course_exam_reports_AspNetUsers");
 
                 entity.HasOne(d => d.CourseIdFkNavigation)
                     .WithMany(p => p.MCourseExamReports)
                     .HasForeignKey(d => d.CourseIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_course_exam_reports_m_course");
             });
 
@@ -584,29 +563,15 @@ during the coursework");
                     .HasDefaultValueSql("(newid())");
 
                 entity.Property(e => e.AspNetUserIdFk)
-                    .IsRequired()
                     .HasColumnName("asp_net_user_id_fk")
                     .HasMaxLength(450)
                     .HasComment("links to the aspnetuser who is the instructor");
 
                 entity.Property(e => e.MCourseIdFk)
-                    .IsRequired()
                     .HasColumnName("m_course_id_fk")
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasComment("links to the course this instructor is taking/assigned");
-
-                entity.HasOne(d => d.AspNetUserIdFkNavigation)
-                    .WithMany(p => p.MCourseInstructor)
-                    .HasForeignKey(d => d.AspNetUserIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_m_course_intructor_AspNetUsers");
-
-                entity.HasOne(d => d.MCourseIdFkNavigation)
-                    .WithMany(p => p.MCourseInstructor)
-                    .HasForeignKey(d => d.MCourseIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_m_course_instructor_m_course");
             });
 
             modelBuilder.Entity<MCourseMaterial>(entity =>
@@ -622,10 +587,6 @@ sequencing by page numbers");
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.CreatedByAspNetUserIdFk)
-                    .HasColumnName("created_by_asp_net_user_id_fk")
-                    .HasMaxLength(450);
 
                 entity.Property(e => e.DateCreated)
                     .HasColumnName("date_created")
@@ -646,12 +607,12 @@ sequencing by page numbers");
                     .IsUnicode(false)
                     .HasComment("links to the course");
 
-                entity.Property(e => e.MCourseTopicIdFk)
+                entity.Property(e => e.MCourseTopicIdNfk)
                     .IsRequired()
-                    .HasColumnName("m_course_topic_id_fk")
+                    .HasColumnName("m_course_topic_id_nfk")
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasComment("links to the course topic");
+                    .HasComment("links to the course topic no foreign key");
 
                 entity.Property(e => e.PageData)
                     .IsRequired()
@@ -672,21 +633,10 @@ images, audio, video will be rendered and will have extra parameters to help ren
 
                 entity.Property(e => e.Published).HasColumnName("published");
 
-                entity.HasOne(d => d.CreatedByAspNetUserIdFkNavigation)
-                    .WithMany(p => p.MCourseMaterial)
-                    .HasForeignKey(d => d.CreatedByAspNetUserIdFk)
-                    .HasConstraintName("FK_m_course_material_AspNetUsers");
-
                 entity.HasOne(d => d.MCourseIdFkNavigation)
                     .WithMany(p => p.MCourseMaterial)
                     .HasForeignKey(d => d.MCourseIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_course_material_m_course");
-
-                entity.HasOne(d => d.MCourseTopicIdFkNavigation)
-                    .WithMany(p => p.MCourseMaterial)
-                    .HasForeignKey(d => d.MCourseTopicIdFk)
-                    .HasConstraintName("FK_m_course_material_m_course_topic");
             });
 
             modelBuilder.Entity<MCourseObjectives>(entity =>
@@ -700,11 +650,13 @@ images, audio, video will be rendered and will have extra parameters to help ren
                     .HasDefaultValueSql("(newid())");
 
                 entity.Property(e => e.CourseIdFk)
+                    .IsRequired()
                     .HasColumnName("course_id_fk")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Objective)
+                    .IsRequired()
                     .HasColumnName("objective")
                     .IsUnicode(false);
 
@@ -727,6 +679,7 @@ images, audio, video will be rendered and will have extra parameters to help ren
                     .HasDefaultValueSql("(newid())");
 
                 entity.Property(e => e.AspNetUserIdFk)
+                    .IsRequired()
                     .HasColumnName("asp_net_user_id_fk")
                     .HasMaxLength(450);
 
@@ -735,6 +688,7 @@ images, audio, video will be rendered and will have extra parameters to help ren
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.CourseIdFk)
+                    .IsRequired()
                     .HasColumnName("course_id_fk")
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -746,13 +700,11 @@ images, audio, video will be rendered and will have extra parameters to help ren
                 entity.HasOne(d => d.AspNetUserIdFkNavigation)
                     .WithMany(p => p.MCourseStartAndStopTime)
                     .HasForeignKey(d => d.AspNetUserIdFk)
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_m_course_start_and_stop_time_AspNetUsers");
 
                 entity.HasOne(d => d.CourseIdFkNavigation)
                     .WithMany(p => p.MCourseStartAndStopTime)
                     .HasForeignKey(d => d.CourseIdFk)
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_m_course_start_and_stop_time_m_course");
             });
 
@@ -812,7 +764,6 @@ images, audio, video will be rendered and will have extra parameters to help ren
                 entity.Property(e => e.Topic)
                     .IsRequired()
                     .HasColumnName("topic")
-                    .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasComment("name of the topic under this course");
 
@@ -848,17 +799,17 @@ user simply clicks a button to confirm that he/she  has gone thru this page and 
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CoursePageIdFk)
-                    .IsRequired()
-                    .HasColumnName("course_page_id_fk")
+                entity.Property(e => e.CoursePageIdNfk)
+                    .HasColumnName("course_page_id_nfk")
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasComment("links to the page that is completed by the user");
+                    .HasComment("links to the page that is completed by the user no foreign key");
 
-                entity.Property(e => e.TopicIdFk)
-                    .HasColumnName("topic_id_fk")
+                entity.Property(e => e.TopicIdNfk)
+                    .HasColumnName("topic_id_nfk")
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .HasComment("no fk but links to the topic");
 
                 entity.HasOne(d => d.AspNetUserIdFkNavigation)
                     .WithMany(p => p.MCourseWorkProgress)
@@ -869,11 +820,6 @@ user simply clicks a button to confirm that he/she  has gone thru this page and 
                     .WithMany(p => p.MCourseWorkProgress)
                     .HasForeignKey(d => d.CourseIdFk)
                     .HasConstraintName("FK_m_course_work_progress_m_course");
-
-                entity.HasOne(d => d.TopicIdFkNavigation)
-                    .WithMany(p => p.MCourseWorkProgress)
-                    .HasForeignKey(d => d.TopicIdFk)
-                    .HasConstraintName("FK_m_course_work_progress_m_course_topic");
             });
 
             modelBuilder.Entity<MCourseWorkQuestion>(entity =>
@@ -1015,12 +961,12 @@ since all media is uploaded independantly it can be shared and reused in several
                     .IsUnicode(false)
                     .HasComment("links to the course");
 
-                entity.Property(e => e.MCourseTopicIdFk)
+                entity.Property(e => e.MCourseTopicIdNfk)
                     .IsRequired()
-                    .HasColumnName("m_course_topic_id_fk")
+                    .HasColumnName("m_course_topic_id_nfk")
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasComment("links to the topic this question is under");
+                    .HasComment("links to the topic this question is under but no fk");
 
                 entity.Property(e => e.QuestionSequence)
                     .HasColumnName("question_sequence")
@@ -1035,19 +981,12 @@ since all media is uploaded independantly it can be shared and reused in several
                 entity.HasOne(d => d.EQuestionTypeIdFkNavigation)
                     .WithMany(p => p.MQuestion)
                     .HasForeignKey(d => d.EQuestionTypeIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_m_question_e_question_type");
+                    .HasConstraintName("FK_m_question_e_question_answer_type");
 
                 entity.HasOne(d => d.MCourseIdFkNavigation)
                     .WithMany(p => p.MQuestion)
                     .HasForeignKey(d => d.MCourseIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_question_m_course");
-
-                entity.HasOne(d => d.MCourseTopicIdFkNavigation)
-                    .WithMany(p => p.MQuestion)
-                    .HasForeignKey(d => d.MCourseTopicIdFk)
-                    .HasConstraintName("FK_m_question_m_course_topic");
             });
 
             modelBuilder.Entity<MQuestionAnswerOptions>(entity =>
@@ -1070,35 +1009,28 @@ each question type will be rendered in its own way");
 
                 entity.Property(e => e.IsCorrectAnswer).HasColumnName("is_correct_answer");
 
-                entity.Property(e => e.MCourseIdFk)
+                entity.Property(e => e.MCourseIdNfk)
                     .IsRequired()
-                    .HasColumnName("m_course_id_fk")
+                    .HasColumnName("m_course_id_nfk")
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasComment("links to the course");
+                    .HasComment("links to the course no fk");
 
                 entity.Property(e => e.MQuestionIdFk)
                     .IsRequired()
                     .HasColumnName("m_question_id_fk")
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasComment("links to the question");
+                    .HasComment("links to the question and cascade");
 
                 entity.Property(e => e.OptionText)
                     .IsRequired()
                     .HasColumnName("option_text")
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.MCourseIdFkNavigation)
-                    .WithMany(p => p.MQuestionAnswerOptions)
-                    .HasForeignKey(d => d.MCourseIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_m_question_answer_options_m_course");
-
                 entity.HasOne(d => d.MQuestionIdFkNavigation)
                     .WithMany(p => p.MQuestionAnswerOptions)
                     .HasForeignKey(d => d.MQuestionIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_question_answer_options_m_question");
             });
 
@@ -1126,9 +1058,9 @@ each question type will be rendered in its own way");
 
                 entity.Property(e => e.CorrectAnswer).HasColumnName("correct_answer");
 
-                entity.Property(e => e.CourseIdFk)
+                entity.Property(e => e.CourseIdNfk)
                     .IsRequired()
-                    .HasColumnName("course_id_fk")
+                    .HasColumnName("course_id_nfk")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -1142,35 +1074,21 @@ each question type will be rendered in its own way");
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TopicIdFk)
+                entity.Property(e => e.TopicIdNfk)
                     .IsRequired()
-                    .HasColumnName("topic_id_fk")
+                    .HasColumnName("topic_id_nfk")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.AspNetUserIdFkNavigation)
                     .WithMany(p => p.MUsersAnswers)
                     .HasForeignKey(d => d.AspNetUserIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_users_answers_AspNetUsers");
-
-                entity.HasOne(d => d.CourseIdFkNavigation)
-                    .WithMany(p => p.MUsersAnswers)
-                    .HasForeignKey(d => d.CourseIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_m_users_answers_m_course");
 
                 entity.HasOne(d => d.QuestionIdFkNavigation)
                     .WithMany(p => p.MUsersAnswers)
                     .HasForeignKey(d => d.QuestionIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_users_answers_m_question");
-
-                entity.HasOne(d => d.TopicIdFkNavigation)
-                    .WithMany(p => p.MUsersAnswers)
-                    .HasForeignKey(d => d.TopicIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_m_users_answers_m_course_topic");
             });
 
             modelBuilder.Entity<MUsersAnswersCourseMaterial>(entity =>
@@ -1197,9 +1115,8 @@ each question type will be rendered in its own way");
 
                 entity.Property(e => e.CorrectAnswer).HasColumnName("correct_answer");
 
-                entity.Property(e => e.CourseMaterialIdFk)
-                    .IsRequired()
-                    .HasColumnName("course_material_id_fk")
+                entity.Property(e => e.CourseMaterialIdNfk)
+                    .HasColumnName("course_material_id_nfk")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -1216,17 +1133,11 @@ each question type will be rendered in its own way");
                 entity.HasOne(d => d.AspNetUserIdFkNavigation)
                     .WithMany(p => p.MUsersAnswersCourseMaterial)
                     .HasForeignKey(d => d.AspNetUserIdFk)
-                    .HasConstraintName("FK_m_users_answers_coure_material_AspNetUsers");
-
-                entity.HasOne(d => d.CourseMaterialIdFkNavigation)
-                    .WithMany(p => p.MUsersAnswersCourseMaterial)
-                    .HasForeignKey(d => d.CourseMaterialIdFk)
-                    .HasConstraintName("FK_m_users_answers_coure_material_m_course_material");
+                    .HasConstraintName("FK_m_users_answers_course_material_AspNetUsers");
 
                 entity.HasOne(d => d.CourseMaterialQuestionIdFkNavigation)
                     .WithMany(p => p.MUsersAnswersCourseMaterial)
                     .HasForeignKey(d => d.CourseMaterialQuestionIdFk)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_m_users_answers_course_material_m_course_work_question");
             });
 
@@ -1243,7 +1154,6 @@ each question type will be rendered in its own way");
                     .HasDefaultValueSql("(newid())");
 
                 entity.Property(e => e.AspNetUserIdFk)
-                    .IsRequired()
                     .HasColumnName("asp_net_user_id_fk")
                     .HasMaxLength(450)
                     .HasComment("links to the candidate who is getting this assesment");
@@ -1254,7 +1164,6 @@ each question type will be rendered in its own way");
                     .HasComment("any comments the admin may have");
 
                 entity.Property(e => e.MContinouseAssesmentIdFk)
-                    .IsRequired()
                     .HasColumnName("m_continouse_assesment_id_fk")
                     .HasMaxLength(50)
                     .IsUnicode(false)
@@ -1265,9 +1174,16 @@ each question type will be rendered in its own way");
                     .HasColumnType("numeric(18, 0)")
                     .HasComment("the percentage this candidate was awareded");
 
+                entity.HasOne(d => d.AspNetUserIdFkNavigation)
+                    .WithMany(p => p.MUsersAssesmentMarks)
+                    .HasForeignKey(d => d.AspNetUserIdFk)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_m_users_assesment_marks_AspNetUsers");
+
                 entity.HasOne(d => d.MContinouseAssesmentIdFkNavigation)
                     .WithMany(p => p.MUsersAssesmentMarks)
                     .HasForeignKey(d => d.MContinouseAssesmentIdFk)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_m_users_assesment_marks_m_continouse_assesment");
             });
 

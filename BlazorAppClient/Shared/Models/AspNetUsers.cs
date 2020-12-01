@@ -12,15 +12,13 @@ namespace BlazorAppClient.Shared.Models
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
             MBoardGameUsersAnswers = new HashSet<MBoardGameUsersAnswers>();
-            MCourse = new HashSet<MCourse>();
             MCourseExamReports = new HashSet<MCourseExamReports>();
-            MCourseInstructor = new HashSet<MCourseInstructor>();
-            MCourseMaterial = new HashSet<MCourseMaterial>();
             MCourseStartAndStopTime = new HashSet<MCourseStartAndStopTime>();
             MCourseTakers = new HashSet<MCourseTakers>();
             MCourseWorkProgress = new HashSet<MCourseWorkProgress>();
             MUsersAnswers = new HashSet<MUsersAnswers>();
             MUsersAnswersCourseMaterial = new HashSet<MUsersAnswersCourseMaterial>();
+            MUsersAssesmentMarks = new HashSet<MUsersAssesmentMarks>();
         }
 
         public string Id { get; set; }
@@ -46,14 +44,12 @@ namespace BlazorAppClient.Shared.Models
         public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual ICollection<MBoardGameUsersAnswers> MBoardGameUsersAnswers { get; set; }
-        public virtual ICollection<MCourse> MCourse { get; set; }
         public virtual ICollection<MCourseExamReports> MCourseExamReports { get; set; }
-        public virtual ICollection<MCourseInstructor> MCourseInstructor { get; set; }
-        public virtual ICollection<MCourseMaterial> MCourseMaterial { get; set; }
         public virtual ICollection<MCourseStartAndStopTime> MCourseStartAndStopTime { get; set; }
         public virtual ICollection<MCourseTakers> MCourseTakers { get; set; }
         public virtual ICollection<MCourseWorkProgress> MCourseWorkProgress { get; set; }
         public virtual ICollection<MUsersAnswers> MUsersAnswers { get; set; }
         public virtual ICollection<MUsersAnswersCourseMaterial> MUsersAnswersCourseMaterial { get; set; }
+        public virtual ICollection<MUsersAssesmentMarks> MUsersAssesmentMarks { get; set; }
     }
 }

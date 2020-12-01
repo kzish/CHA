@@ -157,7 +157,7 @@ using Microsoft.AspNetCore.Authorization;
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
-            __builder.AddMarkupContent(0, "<br>\r\n\r\n");
+            __builder.AddMarkupContent(0, "<br>");
 #nullable restore
 #line 17 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
  if (my_courses == null)
@@ -166,16 +166,13 @@ using Microsoft.AspNetCore.Authorization;
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(1, "    ");
-            __builder.OpenElement(2, "div");
-            __builder.AddAttribute(3, "class", "row");
-            __builder.AddMarkupContent(4, "\r\n        ");
-            __builder.OpenElement(5, "div");
-            __builder.AddAttribute(6, "class", "col-md-12");
-            __builder.AddAttribute(7, "style", "display:flex;align-content:center;justify-content:center;");
-            __builder.AddMarkupContent(8, "\r\n            ");
-            __builder.OpenComponent<BlazorAppClient.Client.Shared.Loading>(9);
-            __builder.AddAttribute(10, "isloading", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+            __builder.OpenElement(1, "div");
+            __builder.AddAttribute(2, "class", "row");
+            __builder.OpenElement(3, "div");
+            __builder.AddAttribute(4, "class", "col-md-12");
+            __builder.AddAttribute(5, "style", "display:flex;align-content:center;justify-content:center;");
+            __builder.OpenComponent<BlazorAppClient.Client.Shared.Loading>(6);
+            __builder.AddAttribute(7, "isloading", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 21 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                                 true
@@ -184,7 +181,7 @@ using Microsoft.AspNetCore.Authorization;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(11, "height", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(8, "height", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 21 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                                               50
@@ -193,7 +190,7 @@ using Microsoft.AspNetCore.Authorization;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(12, "width", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(9, "width", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 21 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                                                          50
@@ -203,12 +200,10 @@ using Microsoft.AspNetCore.Authorization;
 #nullable disable
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(13, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(14, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(15, "\r\n    ");
-            __builder.AddMarkupContent(16, "<div class=\"row\">\r\n        <div class=\"col-md-12\" style=\"display:flex;align-content:center;justify-content:center;\">\r\n            <p style=\"clear:both;\">Loading courses...</p>\r\n        </div>\r\n    </div>\r\n");
+            __builder.AddMarkupContent(10, "\r\n    ");
+            __builder.AddMarkupContent(11, "<div class=\"row\"><div class=\"col-md-12\" style=\"display:flex;align-content:center;justify-content:center;\"><p style=\"clear:both;\">Loading courses...</p></div></div>");
 #nullable restore
 #line 29 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
 }
@@ -219,10 +214,8 @@ else if(my_courses.Count>0)
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(17, "    ");
-            __builder.OpenElement(18, "div");
-            __builder.AddAttribute(19, "class", "row");
-            __builder.AddMarkupContent(20, "\r\n");
+            __builder.OpenElement(12, "div");
+            __builder.AddAttribute(13, "class", "row");
 #nullable restore
 #line 34 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
          foreach (var item in my_courses)
@@ -231,13 +224,11 @@ else if(my_courses.Count>0)
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(21, "            ");
-            __builder.OpenElement(22, "div");
-            __builder.AddAttribute(23, "class", "col-md-4");
-            __builder.AddAttribute(24, "style", "margin-bottom:15px!important;");
-            __builder.AddMarkupContent(25, "\r\n                ");
-            __builder.OpenElement(26, "a");
-            __builder.AddAttribute(27, "href", "/Course/" + (
+            __builder.OpenElement(14, "div");
+            __builder.AddAttribute(15, "class", "col-md-4");
+            __builder.AddAttribute(16, "style", "margin-bottom:15px!important;");
+            __builder.OpenElement(17, "a");
+            __builder.AddAttribute(18, "href", "/Course/" + (
 #nullable restore
 #line 37 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                                   item.Id
@@ -246,15 +237,12 @@ else if(my_courses.Count>0)
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(28, "class", "menu_link");
-            __builder.AddMarkupContent(29, "\r\n                    ");
-            __builder.OpenElement(30, "div");
-            __builder.AddAttribute(31, "class", "menu_item");
-            __builder.AddMarkupContent(32, "\r\n                        ");
-            __builder.OpenElement(33, "div");
-            __builder.AddAttribute(34, "class", "menu_item_title");
-            __builder.AddMarkupContent(35, "\r\n                            ");
-            __builder.AddContent(36, 
+            __builder.AddAttribute(19, "class", "menu_link");
+            __builder.OpenElement(20, "div");
+            __builder.AddAttribute(21, "class", "menu_item");
+            __builder.OpenElement(22, "div");
+            __builder.AddAttribute(23, "class", "menu_item_title");
+            __builder.AddContent(24, 
 #nullable restore
 #line 40 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                              item.CourseName
@@ -263,16 +251,12 @@ else if(my_courses.Count>0)
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(37, "\r\n                        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(38, "\r\n                        ");
-            __builder.AddMarkupContent(39, "<center>\r\n                            <br>\r\n                            <img src=\"/assets/img/atom.png\" class=\"menu_icon\">\r\n                        </center>\r\n                    ");
+            __builder.AddMarkupContent(25, "\r\n                        ");
+            __builder.AddMarkupContent(26, "<center><br>\r\n                            <img src=\"/assets/img/atom.png\" class=\"menu_icon\"></center>");
             __builder.CloseElement();
-            __builder.AddMarkupContent(40, "\r\n                ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(41, "\r\n            ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(42, "\r\n");
 #nullable restore
 #line 49 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
         }
@@ -280,17 +264,14 @@ else if(my_courses.Count>0)
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(43, "    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(44, "\r\n    <br>\r\n    ");
-            __builder.OpenElement(45, "div");
-            __builder.AddAttribute(46, "class", "row");
-            __builder.AddMarkupContent(47, "\r\n        ");
-            __builder.OpenElement(48, "div");
-            __builder.AddAttribute(49, "class", "col-md-12");
-            __builder.AddMarkupContent(50, "\r\n            ");
-            __builder.OpenComponent<BlazorAppClient.Client.Shared.Pagination>(51);
-            __builder.AddAttribute(52, "MetaData", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<BlazorAppClient.Shared.PaginationMetaData>(
+            __builder.AddMarkupContent(27, "\r\n    <br>\r\n    ");
+            __builder.OpenElement(28, "div");
+            __builder.AddAttribute(29, "class", "row");
+            __builder.OpenElement(30, "div");
+            __builder.AddAttribute(31, "class", "col-md-12");
+            __builder.OpenComponent<BlazorAppClient.Client.Shared.Pagination>(32);
+            __builder.AddAttribute(33, "MetaData", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<BlazorAppClient.Shared.PaginationMetaData>(
 #nullable restore
 #line 54 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                                    MetaData
@@ -299,7 +280,7 @@ else if(my_courses.Count>0)
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(53, "Spread", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(34, "Spread", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 54 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                                                      2
@@ -308,7 +289,7 @@ else if(my_courses.Count>0)
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(54, "SelectedPage", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
+            __builder.AddAttribute(35, "SelectedPage", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Int32>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Int32>(this, 
 #nullable restore
 #line 54 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                                                                        SelectedPage
@@ -318,11 +299,8 @@ else if(my_courses.Count>0)
 #nullable disable
             )));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(55, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(56, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(57, "\r\n");
 #nullable restore
 #line 57 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
 }
@@ -332,8 +310,7 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddContent(58, "    ");
-            __builder.AddMarkupContent(59, "<div class=\"row\">\r\n        <div class=\"col-md-12\">\r\n            <center>\r\n                <h3 style=\"color:red\">You have no courses<br>assigned to you</h3>\r\n            </center>\r\n        </div>\r\n    </div>\r\n");
+            __builder.AddMarkupContent(36, "<div class=\"row\"><div class=\"col-md-12\"><center><h3 style=\"color:red\">You have no courses<br>assigned to you</h3></center></div></div>");
 #nullable restore
 #line 67 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
 }
@@ -341,9 +318,8 @@ else
 #line default
 #line hidden
 #nullable disable
-            __builder.AddMarkupContent(60, "\r\n\r\n");
-            __builder.OpenComponent<Blazored.Toast.BlazoredToasts>(61);
-            __builder.AddAttribute(62, "Position", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
+            __builder.OpenComponent<Blazored.Toast.BlazoredToasts>(37);
+            __builder.AddAttribute(38, "Position", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
 #nullable restore
 #line 70 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                           ToastPosition.BottomCenter
@@ -352,7 +328,7 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(63, "Timeout", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(39, "Timeout", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 71 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                          3
@@ -361,7 +337,7 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(64, "IconType", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
+            __builder.AddAttribute(40, "IconType", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
 #nullable restore
 #line 72 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Menu\MainMenu.razor"
                           IconType.FontAwesome
@@ -370,9 +346,9 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(65, "SuccessClass", "success-toast-override");
-            __builder.AddAttribute(66, "SuccessIcon", "fa fa-thumbs-up");
-            __builder.AddAttribute(67, "ErrorIcon", "fa fa-bug");
+            __builder.AddAttribute(41, "SuccessClass", "success-toast-override");
+            __builder.AddAttribute(42, "SuccessIcon", "fa fa-thumbs-up");
+            __builder.AddAttribute(43, "ErrorIcon", "fa fa-bug");
             __builder.CloseComponent();
         }
         #pragma warning restore 1998

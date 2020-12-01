@@ -6,6 +6,10 @@
     <!--<UserSecretsId>4c781dc8-03cc-4d98-bada-6ba5a8688c73</UserSecretsId>
     <UserSecretsId>BlazorAppClient.Server-A8A83FE4-F6ED-4157-A999-EF523331D565</UserSecretsId>-->
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="web.config" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.8.26" />

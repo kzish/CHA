@@ -98,7 +98,13 @@ namespace Company.Controllers
                         UserName = Email
                     };
                     //
-                    await userManager.CreateAsync(new_id_user, Password);
+                    var result = await userManager.CreateAsync(new_id_user, Password);
+                    if(!result.Succeeded)
+                    {
+                        TempData["msg"] = String.Join(", ",result.Errors.Select(i=>i.Description).ToList());
+                        TempData["type"] = "error";
+                        return RedirectToAction("CreateNewUser", new { company_id = current_asp_net_user.MCompanyIdFk });
+                    }
                     //
                     var new_asp_net_user = db.AspNetUsers.Where(i => i.Email == Email).First();
                     new_asp_net_user.MCompanyIdFk = current_asp_net_user.MCompanyIdFk;

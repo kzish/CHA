@@ -50,10 +50,16 @@ namespace Admin.Controllers
             var materials = db.MCourseMaterial
                 .Where(i => i.MCourseIdFk == course_id)
                 .Include(i => i.MCourseIdFkNavigation)
-                .Include(i => i.MCourseTopicIdFkNavigation)
-                .Include(i => i.CreatedByAspNetUserIdFkNavigation)
+                //.Include(i => i.MCourseTopicIdFkNavigation)
+                //.Include(i => i.CreatedByAspNetUserIdFkNavigation)
                 .ToList();
+
+            var topics = db.MCourseTopic
+                .Where(i => i.CourseIdFk == course_id)
+                .ToList();
+
             ViewBag.materials = materials;
+            ViewBag.topics = topics;
             return View();
         }
 
@@ -73,7 +79,6 @@ namespace Admin.Controllers
         {
             try
             {
-                material.CreatedByAspNetUserIdFk = db.AspNetUsers.Where(i => i.Email == User.Identity.Name).First().Id;
                 material.DateCreated = DateTime.Now;
                 if (string.IsNullOrEmpty(material.PageData)) material.PageData = "...";
                 if (material.Published) material.DatePublished = DateTime.Now;
@@ -113,10 +118,9 @@ namespace Admin.Controllers
             var old_material = db.MCourseMaterial.Find(material.Id);
             try
             {
-                old_material.MCourseTopicIdFk = material.MCourseTopicIdFk;
+                old_material.MCourseTopicIdNfk = material.MCourseTopicIdNfk;
                 old_material.PageSequence = material.PageSequence;
                 old_material.PageData = material.PageData??"...";
-                old_material.CreatedByAspNetUserIdFk = db.AspNetUsers.Where(i=>i.Email==User.Identity.Name).FirstOrDefault().Id;
                 old_material.DateCreated = DateTime.Now;
                 old_material.Published = material.Published;
                 old_material.DatePublished = DateTime.Now;

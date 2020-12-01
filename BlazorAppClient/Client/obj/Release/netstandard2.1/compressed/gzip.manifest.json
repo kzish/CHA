@@ -1,12 +1,12 @@
 {
   "FilesToCompress": [
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\1b5QKh46cW0jAI6mmLim8DW60goiinr50ANrMiRdWeM=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\WaXHKCdN4LSfm6VliCLHEd0esPi6W1Z4eoaYE9sixrM=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\BlazorAppClient.Client.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/BlazorAppClient.Client.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\K0wwNj1UOPK3jSl38V_hQydeZTwWuG2aM2nOsXy4iyI=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\dEBuan-yYqqg64s-x4rVxRrPTgentY2hMs9BMTLiPDA=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\BlazorAppClient.Shared.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/BlazorAppClient.Shared.dll.gz"
     },
@@ -36,49 +36,64 @@
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/CurrieTechnologies.Razor.SweetAlert2.dll.gz"
     },
     {
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\wk6BcW-JTOqtig5bPOkAYNxhjS2HAYT2rAICqaoUN9A=.hash",
+      "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\DuoVia.FuzzyStrings.dll",
+      "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/DuoVia.FuzzyStrings.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\D6Bu-Yu2HXgIF7gbvF0W8bZ98Y5C9LmgQB3OtbXwzvY=.hash",
+      "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\F23.StringSimilarity.dll",
+      "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/F23.StringSimilarity.dll.gz"
+    },
+    {
       "InputSource": "obj\\Release\\netstandard2.1\\integrity\\W6R6IsuLG_DKsWfU2pceLmzwQWmCZlpt1YWURIxIboY=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\LinqKit.Core.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/LinqKit.Core.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\FFWGCFuGm7H_6bpYWFD7UJLwR-L1QXeRqDDk-3vGL2g=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\dli_1QRSk8oJFBQsYn4rI9E40vN1leQCoWZAZaReqto=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.AspNetCore.Authorization.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Authorization.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\F52RB8KlvXZvOdfqwjKDsVCAw7iq34M7Xmh_RC8sgvI=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\EJZzGBXKXS0e1t8x8jw10zGkU5EhP8TcP0u8rrLHEwA=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.AspNetCore.Components.Authorization.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Components.Authorization.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\WJg82WTqGydda8_uWpOQT9qo1PXsyIjAJZB3-yJpkZc=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\oZOlTZ2KkNHoAgOTeQRZzVtTX4ZTuvY9xpBGd9-LpjQ=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.AspNetCore.Components.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Components.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\40EDOFPuu0jLrSmfh4Bc_vpvoYsRBfkHUTcc9m8PjXI=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\5kUqI2L8pKeAA3IP7GEMinY1PLK4fHOeemyE-S5Pb4w=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.AspNetCore.Components.Forms.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Components.Forms.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\CAqPowm5jwBNIAyGEIuLOuJqCKT3nG4NXmyiSBNkMIg=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\KHQTNOVxFYzPsOVDQTm-rXWX-IVmzm1OdNUjCR-hs-0=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.AspNetCore.Components.Web.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Components.Web.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\8oWD8ogCVtY5TKQI4yt5RXpg5NoITX_GgpJCl0ZPfik=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\ZXMGrRhHRaSjhvwhmKLRC0yafKI_RWXjykL5vgPiwgw=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\nIw6m7pbGGsoiuBVER5r6wC3xjntEmlIdmV45wWou6U=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\0DgtG7uc4kCF1X8rDpu5CRKMwg8K4_i6Ryfc9GfVaEo=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.AspNetCore.Components.WebAssembly.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Components.WebAssembly.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\7h9z6OlkC7N5wjRAslasejSdqWW0tLIDIqjiiULqd7E=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\tA0ewpkDlh_uvlXMijDf1uda4VW_cvfcqLnne-zJbi4=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.AspNetCore.Metadata.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.Metadata.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\FHwphF_ijeHIS-edqgw82_WVoxsgpiTmqkv6KxK3aT8=.hash",
+      "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.AspNetCore.WebUtilities.dll",
+      "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.AspNetCore.WebUtilities.dll.gz"
     },
     {
       "InputSource": "obj\\Release\\netstandard2.1\\integrity\\EcDo-GQZkQrOT1Xd0jMPE3NwT5lsMq5DNsPxHVidLDQ=.hash",
@@ -106,62 +121,62 @@
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.EntityFrameworkCore.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\5h-twXCGPpbk75alRlbN3MhMfJEBwgs9DUy6DyVN8d8=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\c6Y6BgQGjjzmcwH_uXSNTMBxRL8hfM8A9DnZSHD1cxs=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Caching.Abstractions.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Caching.Abstractions.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\odIThhXKJM1O07hrQXovzGR8KqlNBfrsTUhgR3rAkq4=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\24ydMsOZfyTCwYfFRD6_OYVO0kIqKCKsAz02BYF6Kwg=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Caching.Memory.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Caching.Memory.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\BbpZUc4ctsLbCwxqdaroxh0eyc8DgHC3RQaeWoMiqao=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\1p0Dl3AgwBiNQByCMLDFWNp2DVGhSsdCovo1yS6XLH4=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Configuration.Abstractions.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Configuration.Abstractions.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\ZoTiRmTxtqsm4ZjR47rBHEC6fCu_lzggtEeroaU6s8M=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\OiWu_b72mc26aJ4fYX5O3RAP13NBo2yJu4Z7ZPBDQKM=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Configuration.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Configuration.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\hVePsC0mv0PBZ_KHXJfZH84NxIjMzWTxu3EOaSEIX04=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\LZEQcgXJvy5jaO-A9ITC7XrOXtHbTAj6PQdNmJBwuIk=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Configuration.Json.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Configuration.Json.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\ff7zbuh3alyRS0_AokC16MpZlM4eza1P9hQ_gE3WvC8=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\HgvrdtHU8ycWFmn0oeKTmXdE3f1iMwx7kYm3CuIktkg=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.DependencyInjection.Abstractions.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.DependencyInjection.Abstractions.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\W0vGJ3JWxbM9-FJBiOuikOkW2ZTnB-UKjYxw-oDsGuU=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\MO32VvMR8vPLS1_DE7I8SFpPA10AbhyEk-OdF2SJp7A=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.DependencyInjection.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.DependencyInjection.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\1ptAwa5h1yGhzkOf-CllLXdP12kplAUrP15RuvRwxCA=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\mRCLoSLfPxXXkf3iRbG1EXUarNpgFP3Jj9gkZNcRGvw=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Http.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Http.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\_GIkD4Uytz5uLiXrRhyVGPskXRLQoa0VFdpIQ0PzWDI=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\3PKncSvkGaJ-bIH3fjCEmyfel9zjcR1MqZYcEO6qTEI=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Logging.Abstractions.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Logging.Abstractions.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\08-2B1H_ogguy3KsCzWSaTFV-6j-BudJ7tGSbsregcA=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\1VAcR7GJU-Q-cLAxIxd4M7br5efBaOjK3pFREioEARo=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Logging.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Logging.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\Vs_sLJhCWoiWJVXwfEhL4cdaFpVlkSixrqijD04izHk=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\SwA7SnhVZk7vKwS91BfTIJsc-UCBoqEJnJmCHu86cJY=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Options.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Options.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\NaqSm6531Ll1Xlus-4kxAOHU2PpekAz1PqvhPluCJuk=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\SjEsT7gV_mEiK9RQhK7AUbfV96RydONP7XfapcDk-ME=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Extensions.Primitives.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Extensions.Primitives.dll.gz"
     },
@@ -176,17 +191,22 @@
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.JSInterop.WebAssembly.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\X5trgH-qMLSuG3qo7xHElQy4kQptOHtpxMtF6ECRqH4=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\HDflFNcxo8ubOKxTtz1RKLgDJgaRYIw5Ix06xh0dbRs=.hash",
+      "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Microsoft.Net.Http.Headers.dll",
+      "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.Net.Http.Headers.dll.gz"
+    },
+    {
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\IJ5GVZRwb0VcIHsWEWl--qfPz-6JfUzvupgnDE8ibXQ=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\Mono.Security.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Mono.Security.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\yIHfBCtVQtF_Mk5S7ycbX_9Jw5SlhNMif_G43-OwBlo=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\IvecOvruDu2cMRc13NBiLt6qotwZYZlS4wFEEGSCz-o=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\mscorlib.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/mscorlib.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\sZNWIGbJcfoOjHos0ACm_B-5x14mzS0sBRuseNKfSAE=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\P-7EpiucDP3B04A52q-Mk-A5_97q9JXFlYLoLkQY8Ik=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\netstandard.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/netstandard.dll.gz"
     },
@@ -196,92 +216,92 @@
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/Newtonsoft.Json.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\0psBMqfxt4d2VRKViw_yDmeRFr2fW_BDBTbdvk60RpE=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\zsBB0bzFv3q7If2ARZ8U9GmdsgIImIrHPGXUhCVNX4g=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Collections.Immutable.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Collections.Immutable.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\q-IzPiGEWUKhf1MZE_sqNL9Li5vDDlj_4octj9GY2xk=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\SEsQnPt2Gcat_sXVuBYszdmXsshrA-H-0ABrg_tDIQ8=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.ComponentModel.DataAnnotations.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.ComponentModel.DataAnnotations.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\k_MAH70Y2toNurcLK8yeVCWr1pXqXYOqiGVst5xrnTs=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\VU5ptXeztbdWKy5daRlIG6cL5VYN6oPbVxjWHpvbhx8=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Core.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Core.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\jGvnbbGpAz86N74iuaBPkNJWO9wlty3QstPqFdhpKo0=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\l1e42KPgho2AnwfmYR38klJP6wg1sxnrUytBCCDQnDM=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Data.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Data.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\XxQ0UMnrWMeIRJrJ64MMFIAofCF_fGdxpjpFBJaanqA=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\S0LaSRPpMkmaG6tczITkqCxuFUY24TfgT-4Nj1ojYJc=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Diagnostics.DiagnosticSource.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Diagnostics.DiagnosticSource.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\4Bd_7nIQMK5WqeUHAoXgPkzHgn6AWkjauCZRDs_4DDg=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\HHUQQCOfIvT8v5-rYOCfD1IKbx7WMhJsWzpRP3Pa-PI=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\V08_tqs5ZSuoMzf-mTFeXcqY3D08rSOyPex_E49IQ1o=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\iHyaqa6p11dcNCEbiFpbeNjt28zXHnZMVXAF5poEfpI=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Net.Http.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Net.Http.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\jtu4baZBDbrAVy2Md6fclWXW0CZdOklMuhUvCAK7xtk=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\E85cmM6OzOz-lXSSHPa0OIoJRT-q3ChY1ey6dhwe7m8=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Net.Http.Json.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Net.Http.Json.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\WLJOgdmIX4x6m_vHtOtXQVwyxrSxig_W6sxsB_d-AzI=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\nv56x9Va5KjSDVq8vZrjTzr7rGu8z8AaxWWtutwm9JI=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Net.Http.WebAssemblyHttpHandler.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Net.Http.WebAssemblyHttpHandler.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\Qes4-TMHpcS-hdtOe5sI6QcYLyf2uHcYl2YL0wiFxKw=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\crHi3vGYea0pkuUoX-RgzxHbZUWyCCiP3TqCu0Fuma4=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Numerics.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Numerics.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\HVvmUPqx0tr5kd5_tPiWb5wrre5WZhOQ5TH0X3BK5YU=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\AYydWkUbXazxzljcnXM0-Wnpglm9xUT4swUVAOc-FfQ=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Runtime.CompilerServices.Unsafe.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Runtime.CompilerServices.Unsafe.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\ieDFkki2ypVU6DgYV37sfipPR50RfNxXg2hakDuK1gM=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\Bt_jfAnJ8MPBg5BpYBmI9d1BCeRe5Xu7Pmph0hhyDgg=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Runtime.Serialization.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Runtime.Serialization.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\SlsQPQEF7cdOZkh26FJnUuJnI6_gbY8ZoFlHDcYDSwY=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\bKuMvjlEXWbxV75uDuQE_pyefDuq4yFY-nrkd15606g=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Text.Encodings.Web.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Text.Encodings.Web.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\Xz8RWTaAUaBxNesii-3u-ZBS81HNJ-A8Ckbq4nEQMB8=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\dmrJDf5f41B9nYRCEVo5CLwHsL2CvZ48QUQl0g0Qvvo=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Text.Json.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Text.Json.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\3upYkvtONp1TBaCbPpeI4km23fHo8ma1vaxXZGAZVCo=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\yl4GkZIPADxwtHKo8N8PZ1DL6oJO3sdDDZpT1yzXaG8=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Transactions.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Transactions.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\MC6dddnng0X-uNqdoYtepxtkwvP1IpJj-8kxlVYw-o8=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\FVntw_cTFc2VJP33IhT6L7J7XNezXzQpwatFsr9VprY=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Xml.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Xml.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\yHnX-f_FyRSjYSIpxqZBy73_HywUZHJ8LecEsKguBAY=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\disp7aZskm2MTxtv93TmjkArRxR-8Jku3c3u7k32xgA=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\System.Xml.Linq.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/System.Xml.Linq.dll.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\9ETprORToZMm3BSu-dRnHdW1zQEmly6m4d-4dJlZvK4=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\enhvE_DCsv97oYXvdAbDFBJQiwY9TeTrGebUEQCRi7Y=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\linker\\WebAssembly.Bindings.dll",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/_bin\/WebAssembly.Bindings.dll.gz"
     },
@@ -306,12 +326,12 @@
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/blazor.webassembly.js.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\bS9YO6X1JRShPk9HVk5Zw4QhasBAgxekfrGIONKaUzY=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\3in0WXMPFG2GkhByxbetgRmf4QvaWBJd663swd-zHi8=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\blazor.boot.json",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\_framework\/blazor.boot.json.gz"
     },
     {
-      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\DDpcg27But-93H3J6mPod7g-KW_uDO8YexpBvrCCqYM=.hash",
+      "InputSource": "obj\\Release\\netstandard2.1\\integrity\\_2_dSTzYbMBc_5GLxLH9GZy0gENkELYA6vClPqsABmI=.hash",
       "Source": "C:\\Users\\Kudzai\\Documents\\Visual Studio 2019\\Projects\\CHAPROJECT\\BlazorAppClient\\Client\\obj\\Release\\netstandard2.1\\blazor\\service-worker-assets.js",
       "Target": "obj\\Release\\netstandard2.1\\compressed\\service-worker-assets.js.gz"
     }

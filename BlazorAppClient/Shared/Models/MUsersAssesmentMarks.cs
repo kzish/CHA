@@ -11,6 +11,7 @@ namespace BlazorAppClient.Shared.Models
         public decimal Percentage { get; set; }
         public string Comments { get; set; }
 
+        public virtual AspNetUsers AspNetUserIdFkNavigation { get; set; }
         public virtual MContinouseAssesment MContinouseAssesmentIdFkNavigation { get; set; }
     }
 }

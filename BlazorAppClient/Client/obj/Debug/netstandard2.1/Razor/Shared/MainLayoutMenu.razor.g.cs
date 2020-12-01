@@ -142,41 +142,28 @@ using System.Web;
         {
             __builder.OpenElement(0, "nav");
             __builder.AddAttribute(1, "class", "navbar navbar-expand-lg navbar-light bg-light");
-            __builder.AddMarkupContent(2, "\r\n    ");
-            __builder.AddMarkupContent(3, "<a class=\"navbar-brand\" href=\"/\">\r\n        <img src=\"/assets/img/logo.png\" style=\"height:auto;width:80px!important;\">|\r\n        <img src=\"/assets/img/sphere_logo.png\" style=\"height:auto;width:80px!important;\">\r\n    </a>\r\n    ");
-            __builder.AddMarkupContent(4, "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor03\" aria-controls=\"navbarColor03\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n        <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n\r\n    ");
-            __builder.OpenElement(5, "div");
-            __builder.AddAttribute(6, "class", "collapse navbar-collapse");
-            __builder.AddAttribute(7, "id", "navbarColor03");
-            __builder.AddMarkupContent(8, "\r\n        ");
-            __builder.AddMarkupContent(9, @"<ul class=""navbar-nav mr-auto"">
-            <li class=""nav-item active"">
-                <a class=""nav-link"" href=""/"">Menu</a>
-            </li>
-            <li class=""nav-item"">
-                <a class=""nav-link"" href=""/Help"">Help</a>
-            </li>
-            <li class=""nav-item"">
-                <a class=""nav-link"" href=""/About"">About</a>
-            </li>
-        </ul>
+            __builder.AddMarkupContent(2, "<a class=\"navbar-brand\" href=\"/\"><img src=\"/assets/img/logo.png\" style=\"height:auto;width:80px!important;\">|\r\n        <img src=\"/assets/img/sphere_logo.png\" style=\"height:auto;width:80px!important;\"></a>\r\n    ");
+            __builder.AddMarkupContent(3, "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor03\" aria-controls=\"navbarColor03\" aria-expanded=\"false\" aria-label=\"Toggle navigation\"><span class=\"navbar-toggler-icon\"></span></button>\r\n\r\n    ");
+            __builder.OpenElement(4, "div");
+            __builder.AddAttribute(5, "class", "collapse navbar-collapse");
+            __builder.AddAttribute(6, "id", "navbarColor03");
+            __builder.AddMarkupContent(7, @"<ul class=""navbar-nav mr-auto""><li class=""nav-item active""><a class=""nav-link"" href=""/"">Menu</a></li>
+            <li class=""nav-item""><a class=""nav-link"" href=""/Help"">Help</a></li>
+            <li class=""nav-item""><a class=""nav-link"" href=""/About"">About</a></li></ul>
         ");
-            __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(10);
-            __builder.AddAttribute(11, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
-                __builder2.AddMarkupContent(12, "\r\n            ");
-                __builder2.OpenElement(13, "div");
-                __builder2.AddAttribute(14, "class", "nav-item dropdown");
-                __builder2.AddMarkupContent(15, "\r\n                ");
-                __builder2.OpenElement(16, "a");
-                __builder2.AddAttribute(17, "class", "nav-link dropdown-toggle");
-                __builder2.AddAttribute(18, "data-toggle", "dropdown");
-                __builder2.AddAttribute(19, "href", "#");
-                __builder2.AddAttribute(20, "role", "button");
-                __builder2.AddAttribute(21, "aria-haspopup", "true");
-                __builder2.AddAttribute(22, "aria-expanded", "false");
-                __builder2.AddMarkupContent(23, "\r\n                    ");
-                __builder2.OpenComponent<BlazorAppClient.Client.Shared.Loading>(24);
-                __builder2.AddAttribute(25, "isloading", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+            __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(8);
+            __builder.AddAttribute(9, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
+                __builder2.OpenElement(10, "div");
+                __builder2.AddAttribute(11, "class", "nav-item dropdown");
+                __builder2.OpenElement(12, "a");
+                __builder2.AddAttribute(13, "class", "nav-link dropdown-toggle");
+                __builder2.AddAttribute(14, "data-toggle", "dropdown");
+                __builder2.AddAttribute(15, "href", "#");
+                __builder2.AddAttribute(16, "role", "button");
+                __builder2.AddAttribute(17, "aria-haspopup", "true");
+                __builder2.AddAttribute(18, "aria-expanded", "false");
+                __builder2.OpenComponent<BlazorAppClient.Client.Shared.Loading>(19);
+                __builder2.AddAttribute(20, "isloading", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 31 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\MainLayoutMenu.razor"
                                          isloading
@@ -186,7 +173,7 @@ using System.Web;
 #nullable disable
                 ));
                 __builder2.CloseComponent();
-                __builder2.AddContent(26, 
+                __builder2.AddContent(21, 
 #nullable restore
 #line 31 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\MainLayoutMenu.razor"
                                                        context.User.Identity.Name
@@ -195,15 +182,13 @@ using System.Web;
 #line hidden
 #nullable disable
                 );
-                __builder2.AddMarkupContent(27, "\r\n                ");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(28, "\r\n                ");
-                __builder2.OpenElement(29, "div");
-                __builder2.AddAttribute(30, "class", "dropdown-menu");
-                __builder2.AddMarkupContent(31, "\r\n                    ");
-                __builder2.OpenElement(32, "a");
-                __builder2.AddAttribute(33, "class", "dropdown-item");
-                __builder2.AddAttribute(34, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
+                __builder2.AddMarkupContent(22, "\r\n                ");
+                __builder2.OpenElement(23, "div");
+                __builder2.AddAttribute(24, "class", "dropdown-menu");
+                __builder2.OpenElement(25, "a");
+                __builder2.AddAttribute(26, "class", "dropdown-item");
+                __builder2.AddAttribute(27, "onclick", Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Web.MouseEventArgs>(this, 
 #nullable restore
 #line 36 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\MainLayoutMenu.razor"
                                                       (()=>  Logout())
@@ -212,31 +197,24 @@ using System.Web;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddMarkupContent(35, "\r\n                    Log out\r\n                    ");
+                __builder2.AddMarkupContent(28, "\r\n                    Log out\r\n                    ");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(36, "\r\n                ");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(37, "\r\n            ");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(38, "\r\n        ");
             }
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(39, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(40, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(41, "\r\n");
-            __builder.OpenElement(42, "div");
-            __builder.AddAttribute(43, "class", "bg_menu");
-            __builder.AddMarkupContent(44, "\r\n    ");
-            __builder.OpenElement(45, "main");
-            __builder.AddAttribute(46, "class", "page-content pt-2");
-            __builder.AddMarkupContent(47, "\r\n        <div id=\"overlay\" class=\"overlay\"></div>\r\n        ");
-            __builder.OpenElement(48, "div");
-            __builder.AddAttribute(49, "class", "container-fluid p-5");
-            __builder.AddMarkupContent(50, "\r\n            ");
-            __builder.AddContent(51, 
+            __builder.AddMarkupContent(29, "\r\n");
+            __builder.OpenElement(30, "div");
+            __builder.AddAttribute(31, "class", "bg_menu");
+            __builder.OpenElement(32, "main");
+            __builder.AddAttribute(33, "class", "page-content pt-2");
+            __builder.AddMarkupContent(34, "<div id=\"overlay\" class=\"overlay\"></div>\r\n        ");
+            __builder.OpenElement(35, "div");
+            __builder.AddAttribute(36, "class", "container-fluid p-5");
+            __builder.AddContent(37, 
 #nullable restore
 #line 48 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Shared\MainLayoutMenu.razor"
              Body
@@ -245,11 +223,8 @@ using System.Web;
 #line hidden
 #nullable disable
             );
-            __builder.AddMarkupContent(52, "\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(53, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(54, "\r\n");
             __builder.CloseElement();
         }
         #pragma warning restore 1998

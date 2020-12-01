@@ -1,5 +1,6 @@
 ﻿@{
     var questions = (List<Admin.Models.MQuestion>)ViewBag.questions;
+    var topics = (List<Admin.Models.MCourseTopic>)ViewBag.topics;
 }
 
 <table id="dt" class="table tblsm">
@@ -15,7 +16,7 @@
         @foreach (var item in questions)
         {
             <tr>
-                <td title="@item.MCourseTopicIdFkNavigation.Topic">@item.MCourseTopicIdFkNavigation.Topic</td>
+                <td title="@(topics.Where(i=>i.Id==item.MCourseTopicIdNfk).FirstOrDefault().Topic)">@(topics.Where(i=>i.Id==item.MCourseTopicIdNfk).FirstOrDefault().Topic)</td>
                 <td title="@item.EQuestionTypeIdFkNavigation.Type">@item.EQuestionTypeIdFkNavigation.Type</td>
                 <td title="@item.QuestionSequence">@item.QuestionSequence</td>
                 <td>

@@ -150,15 +150,12 @@ using System.ComponentModel.DataAnnotations;
         {
             __builder.OpenElement(0, "div");
             __builder.AddAttribute(1, "class", "login_page");
-            __builder.AddMarkupContent(2, "\r\n    ");
-            __builder.OpenElement(3, "div");
-            __builder.AddAttribute(4, "class", "row");
-            __builder.AddMarkupContent(5, "\r\n        ");
-            __builder.OpenElement(6, "div");
-            __builder.AddAttribute(7, "class", "col-md-12");
-            __builder.AddMarkupContent(8, "\r\n            ");
-            __builder.OpenComponent<Microsoft.AspNetCore.Components.Forms.EditForm>(9);
-            __builder.AddAttribute(10, "Model", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
+            __builder.OpenElement(2, "div");
+            __builder.AddAttribute(3, "class", "row");
+            __builder.OpenElement(4, "div");
+            __builder.AddAttribute(5, "class", "col-md-12");
+            __builder.OpenComponent<Microsoft.AspNetCore.Components.Forms.EditForm>(6);
+            __builder.AddAttribute(7, "Model", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
 #nullable restore
 #line 13 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Auth\Login.razor"
                               LM
@@ -167,7 +164,7 @@ using System.ComponentModel.DataAnnotations;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(11, "OnValidSubmit", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
+            __builder.AddAttribute(8, "OnValidSubmit", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
 #nullable restore
 #line 13 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Auth\Login.razor"
                                                   HandleValidSubmit
@@ -176,30 +173,20 @@ using System.ComponentModel.DataAnnotations;
 #line hidden
 #nullable disable
             )));
-            __builder.AddAttribute(12, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Forms.EditContext>)((context) => (__builder2) => {
-                __builder2.AddMarkupContent(13, "\r\n                ");
-                __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>(14);
+            __builder.AddAttribute(9, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Forms.EditContext>)((context) => (__builder2) => {
+                __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator>(10);
                 __builder2.CloseComponent();
-                __builder2.AddMarkupContent(15, "\r\n                ");
-                __builder2.AddMarkupContent(16, @"<center>
-                    <img src=""/assets/img/logo.png"" style=""height:auto;width:184px;"">
-                    <br>
-                    <br>
-                    <br>
-                    <h3 class=""black"">User Login</h3>
-                </center>
-
-                ");
-                __builder2.OpenElement(17, "div");
-                __builder2.AddAttribute(18, "class", "form-group");
-                __builder2.AddMarkupContent(19, "\r\n                    ");
-                __builder2.AddMarkupContent(20, "<label class=\"black\">Email</label>\r\n                    ");
-                __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(21);
-                __builder2.AddAttribute(22, "type", "email");
-                __builder2.AddAttribute(23, "class", "form-control");
-                __builder2.AddAttribute(24, "placeholder", "Enter Email");
-                __builder2.AddAttribute(25, "name", "email");
-                __builder2.AddAttribute(26, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddMarkupContent(11, "\r\n                ");
+                __builder2.AddMarkupContent(12, "<center><img src=\"/assets/img/logo.png\" style=\"height:auto;width:184px;\">\r\n                    <br>\r\n                    <br>\r\n                    <br>\r\n                    <h3 class=\"black\">User Login</h3></center>\r\n\r\n                ");
+                __builder2.OpenElement(13, "div");
+                __builder2.AddAttribute(14, "class", "form-group");
+                __builder2.AddMarkupContent(15, "<label class=\"black\">Email</label>\r\n                    ");
+                __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(16);
+                __builder2.AddAttribute(17, "type", "email");
+                __builder2.AddAttribute(18, "class", "form-control");
+                __builder2.AddAttribute(19, "placeholder", "Enter Email");
+                __builder2.AddAttribute(20, "name", "email");
+                __builder2.AddAttribute(21, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 25 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Auth\Login.razor"
                                             LM.email
@@ -208,11 +195,11 @@ using System.ComponentModel.DataAnnotations;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(27, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => LM.email = __value, LM.email))));
-                __builder2.AddAttribute(28, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => LM.email));
+                __builder2.AddAttribute(22, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => LM.email = __value, LM.email))));
+                __builder2.AddAttribute(23, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => LM.email));
                 __builder2.CloseComponent();
-                __builder2.AddMarkupContent(29, "\r\n                    ");
-                __Blazor.BlazorAppClient.Client.Pages.Auth.Login.TypeInference.CreateValidationMessage_0(__builder2, 30, 31, 
+                __builder2.AddMarkupContent(24, "\r\n                    ");
+                __Blazor.BlazorAppClient.Client.Pages.Auth.Login.TypeInference.CreateValidationMessage_0(__builder2, 25, 26, 
 #nullable restore
 #line 26 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Auth\Login.razor"
                                               () => LM.email
@@ -221,19 +208,17 @@ using System.ComponentModel.DataAnnotations;
 #line hidden
 #nullable disable
                 );
-                __builder2.AddMarkupContent(32, "\r\n                ");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(33, "\r\n\r\n                ");
-                __builder2.OpenElement(34, "div");
-                __builder2.AddAttribute(35, "class", "form-group");
-                __builder2.AddMarkupContent(36, "\r\n                    ");
-                __builder2.AddMarkupContent(37, "<label class=\"black\">Password</label>\r\n                    ");
-                __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(38);
-                __builder2.AddAttribute(39, "type", "password");
-                __builder2.AddAttribute(40, "class", "form-control");
-                __builder2.AddAttribute(41, "placeholder", "Enter Password");
-                __builder2.AddAttribute(42, "name", "password");
-                __builder2.AddAttribute(43, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddMarkupContent(27, "\r\n\r\n                ");
+                __builder2.OpenElement(28, "div");
+                __builder2.AddAttribute(29, "class", "form-group");
+                __builder2.AddMarkupContent(30, "<label class=\"black\">Password</label>\r\n                    ");
+                __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(31);
+                __builder2.AddAttribute(32, "type", "password");
+                __builder2.AddAttribute(33, "class", "form-control");
+                __builder2.AddAttribute(34, "placeholder", "Enter Password");
+                __builder2.AddAttribute(35, "name", "password");
+                __builder2.AddAttribute(36, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 31 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Auth\Login.razor"
                                             LM.password
@@ -242,11 +227,11 @@ using System.ComponentModel.DataAnnotations;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(44, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => LM.password = __value, LM.password))));
-                __builder2.AddAttribute(45, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => LM.password));
+                __builder2.AddAttribute(37, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => LM.password = __value, LM.password))));
+                __builder2.AddAttribute(38, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => LM.password));
                 __builder2.CloseComponent();
-                __builder2.AddMarkupContent(46, "\r\n                    ");
-                __Blazor.BlazorAppClient.Client.Pages.Auth.Login.TypeInference.CreateValidationMessage_1(__builder2, 47, 48, 
+                __builder2.AddMarkupContent(39, "\r\n                    ");
+                __Blazor.BlazorAppClient.Client.Pages.Auth.Login.TypeInference.CreateValidationMessage_1(__builder2, 40, 41, 
 #nullable restore
 #line 32 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Auth\Login.razor"
                                               () => LM.password
@@ -255,18 +240,15 @@ using System.ComponentModel.DataAnnotations;
 #line hidden
 #nullable disable
                 );
-                __builder2.AddMarkupContent(49, "\r\n                ");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(50, "\r\n\r\n\r\n                ");
-                __builder2.OpenElement(51, "div");
-                __builder2.AddAttribute(52, "class", "form-group");
-                __builder2.AddMarkupContent(53, "\r\n                    ");
-                __builder2.OpenElement(54, "button");
-                __builder2.AddAttribute(55, "type", "submit");
-                __builder2.AddAttribute(56, "class", "btn btn-primary btn-block");
-                __builder2.AddMarkupContent(57, "\r\n                        ");
-                __builder2.OpenComponent<BlazorAppClient.Client.Shared.Loading>(58);
-                __builder2.AddAttribute(59, "isloading", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+                __builder2.AddMarkupContent(42, "\r\n\r\n\r\n                ");
+                __builder2.OpenElement(43, "div");
+                __builder2.AddAttribute(44, "class", "form-group");
+                __builder2.OpenElement(45, "button");
+                __builder2.AddAttribute(46, "type", "submit");
+                __builder2.AddAttribute(47, "class", "btn btn-primary btn-block");
+                __builder2.OpenComponent<BlazorAppClient.Client.Shared.Loading>(48);
+                __builder2.AddAttribute(49, "isloading", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 38 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Auth\Login.razor"
                                              isloading
@@ -276,16 +258,14 @@ using System.ComponentModel.DataAnnotations;
 #nullable disable
                 ));
                 __builder2.CloseComponent();
-                __builder2.AddMarkupContent(60, "\r\n                        Login\r\n                    ");
+                __builder2.AddMarkupContent(50, "\r\n                        Login\r\n                    ");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(61, "\r\n                ");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(62, "\r\n                ");
-                __builder2.OpenElement(63, "center");
-                __builder2.AddMarkupContent(64, "\r\n                    ");
-                __builder2.OpenElement(65, "p");
-                __builder2.AddAttribute(66, "style", "color:red;");
-                __builder2.AddContent(67, 
+                __builder2.AddMarkupContent(51, "\r\n                ");
+                __builder2.OpenElement(52, "center");
+                __builder2.OpenElement(53, "p");
+                __builder2.AddAttribute(54, "style", "color:red;");
+                __builder2.AddContent(55, 
 #nullable restore
 #line 43 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\Pages\Auth\Login.razor"
                                            message
@@ -295,20 +275,15 @@ using System.ComponentModel.DataAnnotations;
 #nullable disable
                 );
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(68, "\r\n                ");
                 __builder2.CloseElement();
-                __builder2.AddMarkupContent(69, "\r\n\r\n            ");
             }
             ));
             __builder.CloseComponent();
-            __builder.AddMarkupContent(70, "\r\n\r\n        ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(71, "\r\n    ");
             __builder.CloseElement();
-            __builder.AddMarkupContent(72, "\r\n");
             __builder.CloseElement();
-            __builder.AddMarkupContent(73, "\r\n\r\n");
-            __builder.AddMarkupContent(74, "<style>\r\n    .validation-message {\r\n        color: red;\r\n    }\r\n</style>");
+            __builder.AddMarkupContent(56, "\r\n\r\n");
+            __builder.AddMarkupContent(57, "<style>\r\n    .validation-message {\r\n        color: red;\r\n    }\r\n</style>");
         }
         #pragma warning restore 1998
 #nullable restore

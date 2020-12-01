@@ -1,6 +1,5 @@
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\bin\Debug\netcoreapp2.2\appsettings.Development.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\bin\Debug\netcoreapp2.2\appsettings.json
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\bin\Debug\netcoreapp2.2\Admin.deps.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\bin\Debug\netcoreapp2.2\Admin.runtimeconfig.json
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\bin\Debug\netcoreapp2.2\Admin.runtimeconfig.dev.json
@@ -18,6 +17,13 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.TagHelpers.output.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.RazorCoreGenerate.cache
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.RazorTargetAssemblyInfo.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.RazorTargetAssemblyInfo.cs
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.Views.pdb
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.dll
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.pdb
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.genruntimeconfig.cache
+C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csproj.CopyComplete
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\Auth\Login.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\Company\ajaxAllCompanies.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\Company\ajaxAllUsers.cshtml.g.cs
@@ -73,10 +79,3 @@ C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.cshtml.g.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.RazorTargetAssemblyInfo.cache
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.RazorTargetAssemblyInfo.cs
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.Views.pdb
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.dll
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.pdb
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.genruntimeconfig.cache
-C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\Admin\Admin\obj\Debug\netcoreapp2.2\Admin.csproj.CopyComplete

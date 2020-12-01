@@ -135,9 +135,8 @@ using Microsoft.Extensions.Logging;
         {
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState>(0);
             __builder.AddAttribute(1, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment)((__builder2) => {
-                __builder2.AddMarkupContent(2, "\r\n    ");
-                __builder2.OpenComponent<Microsoft.AspNetCore.Components.Routing.Router>(3);
-                __builder2.AddAttribute(4, "AppAssembly", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Reflection.Assembly>(
+                __builder2.OpenComponent<Microsoft.AspNetCore.Components.Routing.Router>(2);
+                __builder2.AddAttribute(3, "AppAssembly", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Reflection.Assembly>(
 #nullable restore
 #line 2 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\App.razor"
                           typeof(Program).Assembly
@@ -146,10 +145,9 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(5, "Found", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.RouteData>)((routeData) => (__builder3) => {
-                    __builder3.AddMarkupContent(6, "\r\n            ");
-                    __builder3.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>(7);
-                    __builder3.AddAttribute(8, "RouteData", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.RouteData>(
+                __builder2.AddAttribute(4, "Found", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.RouteData>)((routeData) => (__builder3) => {
+                    __builder3.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView>(5);
+                    __builder3.AddAttribute(6, "RouteData", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.RouteData>(
 #nullable restore
 #line 4 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\App.razor"
                                             routeData
@@ -158,13 +156,11 @@ using Microsoft.Extensions.Logging;
 #line hidden
 #nullable disable
                     ));
-                    __builder3.AddAttribute(9, "Authorizing", (Microsoft.AspNetCore.Components.RenderFragment)((__builder4) => {
-                        __builder4.AddMarkupContent(10, "\r\n                    ");
-                        __builder4.AddMarkupContent(11, "<div style=\"height:100vh;width:100%;display: flex;justify-content: center;align-items: center;\">\r\n                        <img src=\"assets/img/loading.gif\" style=\"height:70px;width:70px;\">\r\n                    </div>\r\n                ");
+                    __builder3.AddAttribute(7, "Authorizing", (Microsoft.AspNetCore.Components.RenderFragment)((__builder4) => {
+                        __builder4.AddMarkupContent(8, "<div style=\"height:100vh;width:100%;display: flex;justify-content: center;align-items: center;\"><img src=\"assets/img/loading.gif\" style=\"height:70px;width:70px;\"></div>");
                     }
                     ));
-                    __builder3.AddAttribute(12, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder4) => {
-                        __builder4.AddMarkupContent(13, "\r\n");
+                    __builder3.AddAttribute(9, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder4) => {
 #nullable restore
 #line 11 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\App.razor"
                      if (!context.User.Identity.IsAuthenticated)
@@ -173,10 +169,8 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-                        __builder4.AddContent(14, "                        ");
-                        __builder4.OpenComponent<BlazorAppClient.Client.Shared.RedirectToLogin>(15);
+                        __builder4.OpenComponent<BlazorAppClient.Client.Shared.RedirectToLogin>(10);
                         __builder4.CloseComponent();
-                        __builder4.AddMarkupContent(16, "\r\n");
 #nullable restore
 #line 14 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\App.razor"
                     }
@@ -186,8 +180,7 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-                        __builder4.AddContent(17, "                        ");
-                        __builder4.AddMarkupContent(18, "<p>You are not authorized to access this resource.</p>\r\n");
+                        __builder4.AddMarkupContent(11, "<p>You are not authorized to access this resource.</p>");
 #nullable restore
 #line 18 "C:\Users\Kudzai\Documents\Visual Studio 2019\Projects\CHAPROJECT\BlazorAppClient\Client\App.razor"
                     }
@@ -195,27 +188,21 @@ using Microsoft.Extensions.Logging;
 #line default
 #line hidden
 #nullable disable
-                        __builder4.AddContent(19, "                ");
                     }
                     ));
                     __builder3.CloseComponent();
-                    __builder3.AddMarkupContent(20, "\r\n        ");
                 }
                 ));
-                __builder2.AddAttribute(21, "NotFound", (Microsoft.AspNetCore.Components.RenderFragment)((__builder3) => {
-                    __builder3.AddMarkupContent(22, "\r\n            ");
-                    __builder3.OpenComponent<Microsoft.AspNetCore.Components.LayoutView>(23);
-                    __builder3.AddAttribute(24, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment)((__builder4) => {
-                        __builder4.AddMarkupContent(25, "\r\n                ");
-                        __builder4.AddMarkupContent(26, "<p>Sorry, there\'s nothing at this address.</p>\r\n            ");
+                __builder2.AddAttribute(12, "NotFound", (Microsoft.AspNetCore.Components.RenderFragment)((__builder3) => {
+                    __builder3.OpenComponent<Microsoft.AspNetCore.Components.LayoutView>(13);
+                    __builder3.AddAttribute(14, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment)((__builder4) => {
+                        __builder4.AddMarkupContent(15, "<p>Sorry, there\'s nothing at this address.</p>");
                     }
                     ));
                     __builder3.CloseComponent();
-                    __builder3.AddMarkupContent(27, "\r\n        ");
                 }
                 ));
                 __builder2.CloseComponent();
-                __builder2.AddMarkupContent(28, "\r\n");
             }
             ));
             __builder.CloseComponent();

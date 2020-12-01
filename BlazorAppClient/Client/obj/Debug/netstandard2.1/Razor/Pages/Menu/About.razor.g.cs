@@ -136,26 +136,14 @@ using Microsoft.Extensions.Logging;
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
             __builder.AddMarkupContent(0, "<br>\r\n\r\n");
-            __builder.AddMarkupContent(1, @"<div class=""row row_80_percent"">
-
-    <div class=""col-md-6"">
-        <video controls=""controls"" style=""height:auto;width:100%;"">
-            <source src=""/assets/about_cha.mp4"" type=""video/mp4"">
-        </video>
-    </div>
-    <div class=""col-md-6"">
-        <h1>
+            __builder.AddMarkupContent(1, @"<div class=""row row_80_percent""><div class=""col-md-6""><video controls=""controls"" style=""height:auto;width:100%;""><source src=""/assets/about_cha.mp4"" type=""video/mp4""></video></div>
+    <div class=""col-md-6""><h1>
             Centre for Humanitarian Analytics
         </h1>
         <h3>
             Connecting data, Decision making and Humanitarian response
         </h3>
-        <img src=""/assets/img/about_logo.png"" class=""img-fluid"">
-    </div>
-
-
-   
-</div>");
+        <img src=""/assets/img/about_logo.png"" class=""img-fluid""></div></div>");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private SweetAlertService Swal { get; set; }

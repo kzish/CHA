@@ -216,7 +216,7 @@ else
                 var board_game_users_answer = new BlazorAppClient.Shared.Models.MBoardGameUsersAnswers();
                 board_game_users_answer.AspNetUserIdFk = current_user.user_id;
                 board_game_users_answer.MCourseMaterialIdFk = board_game.CourseMaterialIdFk;
-                board_game_users_answer.MCourseIdFk = course_id;
+                //board_game_users_answer.MCourseIdFk = course_id;
                 board_game_users_answer.JsonAnswer = JsonConvert.SerializeObject(board_game_items_ordering);
                 board_game_users_answer.CorrectAnswer = false;
 

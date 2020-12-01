@@ -8,11 +8,10 @@ namespace BlazorAppClient.Server.Models
         public string Id { get; set; }
         public string AspNetUserIdFk { get; set; }
         public string MCourseMaterialIdFk { get; set; }
-        public string MCourseIdFk { get; set; }
         public string JsonAnswer { get; set; }
         public bool CorrectAnswer { get; set; }
 
         public virtual AspNetUsers AspNetUserIdFkNavigation { get; set; }
-        public virtual MCourse MCourseIdFkNavigation { get; set; }
+        public virtual MCourseMaterial MCourseMaterialIdFkNavigation { get; set; }
     }
 }
